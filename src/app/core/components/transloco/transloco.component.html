@@ -1,0 +1,10 @@
+<div *transloco="let t">
+  <div>{{ t('hello') }}</div>
+</div>
+
+<div *transloco="let t; read: 'welcome'">
+  <div>{{ t('test') }}</div>
+</div>
+
+<button (click)="changeLang('ru')">RU</button>
+<button (click)="changeLang('en')">EN</button>
