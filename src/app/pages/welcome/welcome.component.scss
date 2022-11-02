@@ -1,0 +1,55 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.back-1,
+.back-2,
+.back-3 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.back-1 {
+    background-image: url('../../../assets/images/keyboard.jpg');
+}
+
+.back-2 {
+    background-image: url('../../../assets/images/crack.jpg');
+}
+
+.back-3 {
+    background-image: url('../../../assets/images/branch-background.jpg');
+}
+
+.about-app-wrap {
+    width: 50rem;
+    height: 30rem;
+    background-image: url('../../../assets/images/leaves-03.png');
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.about-app-wrap-fake {
+    width: 50rem;
+    height: 30rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    border-radius: 30px;
+}
+
+.about-app {
+    width: 90%;
+    height: 80%;
+}
+
+.card-title {
+    color: black;
+    padding-bottom: 1rem;
+}
