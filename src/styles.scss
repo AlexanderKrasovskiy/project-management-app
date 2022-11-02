@@ -1,5 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '../node_modules/primeflex/primeflex.css';
-@import './styles_global.scss';
 @import './fonts.scss';
+
+* {
+  padding: 0;
+  margin: 0;
+  // box-sizing: border-box;
+  font-family: 'InterFont', sans-serif;
+}
+
+.card-simple {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+}
+
+.card-with-blur {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  border-radius: 30px;
+}
+
+.card-with-opacity {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+}
