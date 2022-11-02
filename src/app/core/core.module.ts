@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
-import { I18nModule } from './i18n/i18n.module';
 
 @NgModule({
   declarations: [],
@@ -19,7 +18,6 @@ import { I18nModule } from './i18n/i18n.module';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    I18nModule,
   ],
   exports: [],
   providers: [],
