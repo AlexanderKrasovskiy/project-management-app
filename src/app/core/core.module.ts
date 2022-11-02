@@ -7,8 +7,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 
+import { TranslocoRootModule } from '../transloco-root.module';
+import { TranslocoComponent } from './components/transloco/transloco.component';
+
 @NgModule({
-  declarations: [],
+  declarations: [TranslocoComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -18,8 +21,9 @@ import { environment } from '../../environments/environment';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    TranslocoRootModule,
   ],
-  exports: [],
+  exports: [TranslocoComponent],
   providers: [],
 })
 export class CoreModule {}

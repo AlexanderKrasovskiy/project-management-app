@@ -4,7 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+
 import { CoreModule } from './core/core.module';
+import { TranslocoRootModule } from './transloco-root.module';
 import { WelcomeModule } from './pages/welcome/welcome.module';
 import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
@@ -16,6 +18,7 @@ import { FooterModule } from './footer/footer.module';
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
+    TranslocoRootModule,
     WelcomeModule,
     HeaderModule,
     FooterModule,
