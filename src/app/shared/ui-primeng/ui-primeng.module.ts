@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
 
-const PrimeComponents = [ButtonModule];
+const PrimeComponents = [ButtonModule, ChipModule];
 
 @NgModule({
   imports: [...PrimeComponents],
