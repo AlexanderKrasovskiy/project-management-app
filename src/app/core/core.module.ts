@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 
 import { TranslocoRootModule } from '../transloco-root.module';
 import { TranslocoComponent } from './components/transloco/transloco.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [TranslocoComponent],
@@ -22,6 +23,7 @@ import { TranslocoComponent } from './components/transloco/transloco.component';
       logOnly: environment.production,
     }),
     TranslocoRootModule,
+    SharedModule,
   ],
   exports: [TranslocoComponent],
   providers: [],
