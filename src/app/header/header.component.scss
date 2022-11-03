@@ -1,0 +1,58 @@
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 4rem;
+    background-color: white;
+    border-bottom: 2px solid rgb(226, 226, 226);
+}
+
+.logo-wrap {
+    position: relative;
+    width: 14rem;
+    height: 6rem;
+    z-index: 3;
+    border-radius: 0 10px 30px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-circle {
+    width: 4.8rem;
+    position: absolute;
+    left: 1.8rem;
+    backdrop-filter: blur(0);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.logo-title-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    left: 3rem;
+}
+
+.buttons-wrap {
+    width: fit-content;
+    border-radius: 30px;
+    border: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 2rem;
+    gap: 1rem;
+    position: relative;
+    z-index: 3;
+}
+
+// .buttons-wrap-small {
+//     padding: 0 0.5rem;
+//     gap: 0.5rem;
+//     width: 100%;
+//     border-radius: 0;
+// }

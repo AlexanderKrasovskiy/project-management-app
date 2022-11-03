@@ -1,6 +1,17 @@
 {
-  "hello": "Привет, мир!",
-  "welcome": {
-    "test": "тест"
-  }
+    "hello": "Привет, мир!",
+    "welcome": {
+        "test": "тест",
+        "about": "О приложении",
+        "guide": "Гид по приложению",
+        "team": "Наша команда",
+        "course": "Курс Angular от RS School, 2022",
+        "alla": "Алла",
+        "sasha": "Саша",
+        "svetlana": "Светлана",
+        "backend": "Бэкенд",
+        "teamlead": "Тимлид",
+        "frontend": "Фронтенд",
+        "design": "Дизайн"
+    }
 }

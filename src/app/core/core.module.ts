@@ -8,11 +8,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 
 import { TranslocoRootModule } from '../transloco-root.module';
-import { TranslocoComponent } from './components/transloco/transloco.component';
+
 import { ApiInterceptor } from './interceptors/api.interceptor';
+// import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [TranslocoComponent],
+  declarations: [],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -23,8 +24,9 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
       logOnly: environment.production,
     }),
     TranslocoRootModule,
+    // SharedModule,
   ],
-  exports: [TranslocoComponent],
+  exports: [],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
