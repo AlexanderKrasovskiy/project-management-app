@@ -9,7 +9,7 @@ export interface LoginRequestModel {
   password: string;
 }
 
-export interface User {
+export interface UserModel {
   id: string;
   login: string;
   password: string;

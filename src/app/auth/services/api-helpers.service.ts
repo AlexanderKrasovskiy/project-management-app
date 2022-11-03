@@ -5,15 +5,15 @@ import {
   LoginRequestModel,
   RegisterRequestModel,
   TokenResponseModel,
-  User,
+  UserModel,
 } from '../models/auth.model';
 
 @Injectable()
 export class ApiHelpersService {
   constructor(private httpClient: HttpClient) {}
 
-  regicter(payload: RegisterRequestModel): Observable<User> {
-    return this.httpClient.post<User>('signup', payload).pipe(
+  regicter(payload: RegisterRequestModel): Observable<UserModel> {
+    return this.httpClient.post<UserModel>('signup', payload).pipe(
       retry(4),
       catchError((error) => {
         console.log('[ERROR]: ', error);
