@@ -1,106 +1,114 @@
-<section class="back-1 grid">
-    <div class="back-1-left col-12 padding-2 md:col-8 padding-10">
-        <div class="about-app-wrap-fake">
-            <div class="card-simple about-app-wrap shadow-4">
-                <h2 class="font-light card-title">About application</h2>
-                <div class="card-with-opacity about-app shadow-4"></div>
+<ng-container *transloco="let t; read: 'welcome'">
+    <section class="back-1 grid">
+        <div class="back-1-left col-12 padding-2 md:col-8 padding-10">
+            <div class="about-app-wrap-fake">
+                <div class="card-simple about-app-wrap shadow-4">
+                    <!-- <h2 class="font-light card-title">About application</h2> -->
+                    <h2 class="font-light card-title">
+                        {{ t('about') }}
+                    </h2>
+                    <div class="card-with-opacity about-app shadow-4"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="back-1-right md:col-4">
-        <div class="card-with-blur about-app-big-circle shadow-4"></div>
-        <div class="card-with-blur about-app-small-circle shadow-4"></div>
-    </div>
-</section>
+        <div class="back-1-right md:col-4">
+            <div class="card-with-blur about-app-big-circle shadow-4 scale"></div>
+            <div class="card-with-blur about-app-small-circle shadow-4 scale"></div>
+        </div>
+    </section>
 
-<section class="back-2 grid">
-    <div class="back-2-left md:col-4">
-        <div class="app-guide-big-circle-fake"></div>
-        <div class="app-guide-big-circle shadow-4"></div>
+    <section class="back-2 grid">
+        <div class="back-2-left md:col-4">
+            <div class="app-guide-big-circle-fake"></div>
+            <div class="app-guide-big-circle shadow-4 scale"></div>
 
-        <div class="app-guide-small-circle-fake"></div>
-        <div class="app-guide-small-circle shadow-4"></div>
-    </div>
+            <div class="app-guide-small-circle-fake"></div>
+            <div class="app-guide-small-circle shadow-4 scale"></div>
+        </div>
 
-    <div class="back-2-right col-12 padding-2 md:col-8 padding-10">
-        <div class="card-with-blur app-guide-wrap shadow-4">
-            <h2 class="font-light card-title">Application guide</h2>
-            <div class="app-guide-all">
-                <div class="card-with-opacity app-guide shadow-2"></div>
-                <div class="card-with-opacity app-guide shadow-2"></div>
-                <div class="card-with-opacity app-guide shadow-2"></div>
-                <div class="card-with-opacity app-guide shadow-2"></div>
+        <div class="back-2-right col-12 padding-2 md:col-8 padding-10">
+            <div class="card-with-blur app-guide-wrap shadow-4">
+                <h2 class="font-light card-title">
+                    {{ t('guide') }}
+                </h2>
+                <!-- <h2 class="font-light card-title">Application guide</h2> -->
+                <div class="app-guide-all">
+                    <div class="card-with-opacity app-guide shadow-2"></div>
+                    <div class="card-with-opacity app-guide shadow-2"></div>
+                    <div class="card-with-opacity app-guide shadow-2"></div>
+                    <div class="card-with-opacity app-guide shadow-2"></div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="back-3">
-    <div class="back-3-top">
-        <div class="card-with-blur team-title-wrap shadow-4">
-            <h2 class="font-light">Our team</h2>
-        </div>
-    </div>
-
-    <div class="back-3-bottom">
-        <div class="card-with-blur course-title-wrap shadow-4">
-            <p class="font-light course-title">Course Angular by RS School, 2022</p>
+    <section class="back-3">
+        <div class="back-3-top">
+            <div class="card-with-blur team-title-wrap shadow-4">
+                <h2 class="font-light">{{ t('team') }}</h2>
+            </div>
         </div>
 
-        <div class="team-circle-alla shadow-4">
-            <h2 class="center avatar-wrap">
-                <div class="alla"></div>
-            </h2>
-            <h5 class="main-github">
-                Alla
-                <a href="https://github.com/ALLaTk" class="main-github__link">
-                    <div class="main-github__image"></div>
-                </a>
-            </h5>
-            <div class="lang_team_tags">
-                <p-chip>Backend</p-chip>
-                <p-chip>Frontend</p-chip>
+        <div class="back-3-bottom">
+            <div class="card-with-blur course-title-wrap shadow-4">
+                <p class="font-light course-title">{{ t('course') }}</p>
             </div>
-            <p class="light team-info">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis?
-            </p>
-        </div>
-        <div class="team-circle-sasha shadow-4">
-            <h2 class="center avatar-wrap">
-                <div class="alexander"></div>
-            </h2>
-            <h5 class="main-github">
-                Sasha
-                <a href="https://github.com/AlexanderKrasovskiy" class="main-github__link">
-                    <div class="main-github__image"></div>
-                </a>
-            </h5>
-            <div class="lang_team_tags">
-                <p-chip>Teamlead</p-chip>
-                <p-chip>Frontend</p-chip>
+
+            <div class="team-circle-alla shadow-4 scale">
+                <h2 class="center avatar-wrap">
+                    <div class="alla"></div>
+                </h2>
+                <h5 class="main-github">
+                    {{ t('alla') }}
+                    <a href="https://github.com/ALLaTk" class="main-github__link">
+                        <div class="main-github__image"></div>
+                    </a>
+                </h5>
+                <div class="lang_team_tags">
+                    <p-chip>{{ t('backend') }}</p-chip>
+                    <p-chip>{{ t('frontend') }}</p-chip>
+                </div>
+                <p class="light team-info">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis?
+                </p>
             </div>
-            <p class="light team-info">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis?
-            </p>
-        </div>
-        <div class="team-circle-sveta shadow-4">
-            <h2 class="center avatar-wrap">
-                <div class="svetlana"></div>
-            </h2>
-            <h5 class="main-github">
-                Svetlana
-                <a href="https://github.com/Svt1108" class="main-github__link">
-                    <div class="main-github__image"></div>
-                </a>
-            </h5>
-            <div class="lang_team_tags">
-                <p-chip>Design</p-chip>
-                <p-chip>Frontend</p-chip>
+            <div class="team-circle-sasha shadow-4 scale">
+                <h2 class="center avatar-wrap">
+                    <div class="alexander"></div>
+                </h2>
+                <h5 class="main-github">
+                    {{ t('sasha') }}
+                    <a href="https://github.com/AlexanderKrasovskiy" class="main-github__link">
+                        <div class="main-github__image"></div>
+                    </a>
+                </h5>
+                <div class="lang_team_tags">
+                    <p-chip>{{ t('teamlead') }}</p-chip>
+                    <p-chip>{{ t('frontend') }}</p-chip>
+                </div>
+                <p class="light team-info">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis?
+                </p>
             </div>
-            <p class="light team-info">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis?
-            </p>
+            <div class="team-circle-sveta shadow-4 scale">
+                <h2 class="center avatar-wrap">
+                    <div class="svetlana"></div>
+                </h2>
+                <h5 class="main-github">
+                    {{ t('svetlana') }}
+                    <a href="https://github.com/Svt1108" class="main-github__link">
+                        <div class="main-github__image"></div>
+                    </a>
+                </h5>
+                <div class="lang_team_tags">
+                    <p-chip>{{ t('design') }}</p-chip>
+                    <p-chip>{{ t('frontend') }}</p-chip>
+                </div>
+                <p class="light team-info">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis?
+                </p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</ng-container>

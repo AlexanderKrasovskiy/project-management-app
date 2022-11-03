@@ -39,3 +39,10 @@
     padding-top: 100%;
     display: block;
 }
+
+.scale {
+    transition: 1s;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
