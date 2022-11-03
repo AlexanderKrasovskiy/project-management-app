@@ -9,7 +9,7 @@ export class ApiControlService {
 
   loginUp(user: RegisterRequestModel): void {
     this.apiHelpers
-      .regicter(user)
+      .register(user)
       .pipe(
         tap((results) => localStorage.setItem('USER', JSON.stringify(results))),
       )

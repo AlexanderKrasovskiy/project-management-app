@@ -12,7 +12,7 @@ import {
 export class ApiHelpersService {
   constructor(private httpClient: HttpClient) {}
 
-  regicter(payload: RegisterRequestModel): Observable<UserModel> {
+  register(payload: RegisterRequestModel): Observable<UserModel> {
     return this.httpClient.post<UserModel>('signup', payload).pipe(
       retry(4),
       catchError((error) => {
