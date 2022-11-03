@@ -13,6 +13,6 @@
         <button pButton pRipple type="button" class="p-button-raised p-button-secondary p-button-text button-custom" button (click)="authPage()">
       Sign up
     </button>
-        <app-transloco></app-transloco>
+        <p-selectButton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value" (onOptionClick)="changeLang(value1)"></p-selectButton>
     </div>
 </div>
