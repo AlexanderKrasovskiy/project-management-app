@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { fromEvent, throttleTime } from 'rxjs';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-header',
