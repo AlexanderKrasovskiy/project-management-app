@@ -1,0 +1,35 @@
+:host {
+  background-color: white;
+}
+
+.footer-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.github-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-github {
+  width: 2rem;
+  height: 2rem;
+  background-image: url(../../assets/images/svg/github-icon-black.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.footer-logo {
+  width: 6rem;
+  height: 2rem;
+  background-image: url(../../assets/images/svg/rs_school.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  // fill: black;
+}
