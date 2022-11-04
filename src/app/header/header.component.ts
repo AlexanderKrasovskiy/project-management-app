@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   public stateOptions;
 
   public value1: string = 'En';
@@ -17,6 +18,12 @@ export class HeaderComponent {
       { label: 'En', value: 'en' },
       { label: 'Ru', value: 'ru' },
     ];
+  }
+
+  ngOnInit(): void {
+    fromEvent(window, 'scroll').subscribe((event) => {
+      console.log('scroll', event);
+    });
   }
 
   changeLang(lang: string) {
