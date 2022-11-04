@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { fromEvent } from 'rxjs';
+import { fromEvent, throttleTime } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,13 @@ export class HeaderComponent implements OnInit {
 
   public value1: string = 'En';
 
-  constructor(private transloco: TranslocoService, private router: Router) {
+  public inScroll = false;
+
+  constructor(
+    // @inject(DOCUMENT) private document: Document,
+    private transloco: TranslocoService,
+    private router: Router,
+  ) {
     this.stateOptions = [
       { label: 'En', value: 'en' },
       { label: 'Ru', value: 'ru' },
@@ -21,9 +27,16 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    fromEvent(window, 'scroll').subscribe((event) => {
-      console.log('scroll', event);
-    });
+    fromEvent(window, 'scroll')
+      // .pipe(throttleTime(50))
+      .subscribe(() => {
+        if (Number(document.defaultView?.scrollY) > 0) {
+          this.inScroll = true;
+          // console.log('scroll', event);
+        } else {
+          this.inScroll = false;
+        }
+      });
   }
 
   changeLang(lang: string) {

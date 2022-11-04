@@ -8,7 +8,7 @@
   z-index: 99;
   position: -webkit-sticky;
   position: fixed;
-  transition: 0.3s;
+  // transition: 0.3s;
 }
 
 .logo-wrap {
@@ -52,6 +52,10 @@
   gap: 1rem;
   position: relative;
   z-index: 3;
+}
+
+.sticky-header {
+  border-bottom: 3px solid rgb(143, 142, 142);
 }
 
 // .buttons-wrap-small {
