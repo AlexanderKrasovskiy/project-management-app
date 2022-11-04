@@ -1,17 +1,20 @@
 {
-    "hello": "Hello World!",
-    "welcome": {
-        "test": "test",
-        "about": "About application",
-        "guide": "Application guide",
-        "team": "Our team",
-        "course": "Course Angular by RS School, 2022",
-        "alla": "Alla",
-        "sasha": "Sasha",
-        "svetlana": "Svetlana",
-        "backend": "Backend",
-        "teamlead": "Teamlead",
-        "frontend": "Frontend",
-        "design": "Design"
-    }
+  "hello": "Hello World!",
+  "welcome": {
+    "test": "test",
+    "about": "About application",
+    "guide": "Application guide",
+    "team": "Our team",
+    "course": "Course Angular by RS School, 2022",
+    "alla": "Alla",
+    "sasha": "Sasha",
+    "svetlana": "Svetlana",
+    "backend": "Backend",
+    "teamlead": "Teamlead",
+    "frontend": "Frontend",
+    "design": "Design"
+  },
+  "registration": {
+    "title": "registration"
+  }
 }
