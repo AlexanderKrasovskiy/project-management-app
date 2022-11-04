@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+import { TranslocoRootModule } from 'src/app/transloco-root.module';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomeComponent } from './welcome.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 // import { CoreModule } from 'src/app/core/core.module';
-import { TranslocoRootModule } from 'src/app/transloco-root.module';
 
 @NgModule({
   declarations: [WelcomeComponent],

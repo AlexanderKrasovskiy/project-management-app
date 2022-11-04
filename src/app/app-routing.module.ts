@@ -14,7 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () =>
+      import('./auth/auth.module').then((module) => module.AuthModule),
+  },
+  {
+    path: 'main',
+    loadChildren: () =>
+      import('./main/main.module').then((module) => module.MainModule),
   },
   // { path: '**', component: NotFoundComponent },
 ];

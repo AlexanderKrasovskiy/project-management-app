@@ -1,19 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, retry, catchError, EMPTY } from 'rxjs';
-import {
-  LoginRequestModel,
-  RegisterRequestModel,
-  TokenResponseModel,
-  UserModel,
-} from '../models/auth.model';
+import { BoardIDRequestModel, BoardRequestModel } from '../models/main.model';
 
 @Injectable()
-export class ApiHelpersService {
+export class ApiMainHelpersService {
   constructor(private httpClient: HttpClient) {}
 
-  register(payload: RegisterRequestModel): Observable<UserModel> {
-    return this.httpClient.post<UserModel>('/signup', payload).pipe(
+  createBoard(payload: BoardRequestModel): Observable<BoardIDRequestModel> {
+    return this.httpClient.post<BoardIDRequestModel>('/boards', payload).pipe(
       retry(4),
       catchError((error) => {
         console.log('[ERROR]: ', error);
@@ -22,8 +17,8 @@ export class ApiHelpersService {
     );
   }
 
-  login(payload: LoginRequestModel): Observable<TokenResponseModel> {
-    return this.httpClient.post<TokenResponseModel>('/signin', payload).pipe(
+  getAllBoards(): Observable<BoardIDRequestModel[]> {
+    return this.httpClient.get<BoardIDRequestModel[]>('/boards').pipe(
       retry(4),
       catchError((error) => {
         console.log('[ERROR]: ', error);
