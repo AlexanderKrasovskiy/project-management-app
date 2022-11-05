@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
-import { PasswordErrors } from 'src/app/shared/models/common.model';
+// import { PasswordErrors } from 'src/app/shared/models/common.model';
 
 @Component({
   selector: 'app-reg',
@@ -59,16 +59,16 @@ export class RegComponent {
     );
   }
 
-  public handleErrors(err: PasswordErrors): string {
-    let message = '';
-    if (err.length || err.letters || err.symbols) {
-      message = `${message}Your password isn't strong enough. It should contain`;
-    }
-    if (err.length) message = `${message} at least 8 characters,`;
-    if (err.letters)
-      message = `${message} a mixture of both uppercase and lowercase letters,`;
-    if (err.symbols)
-      message = `${message} inclusion of at least one special character, e.g., ! @ # ? ]`;
-    return message;
-  }
+  // public handleErrors(err: PasswordErrors): string {
+  //   let message = '';
+  //   if (err.length || err.letters || err.symbols) {
+  //     message = `${message}Your password isn't strong enough. It should contain`;
+  //   }
+  //   if (err.length) message = `${message} at least 8 characters,`;
+  //   if (err.letters)
+  //     message = `${message} a mixture of both uppercase and lowercase letters,`;
+  //   if (err.symbols)
+  //     message = `${message} inclusion of at least one special character, e.g., ! @ # ? ]`;
+  //   return message;
+  // }
 }

@@ -93,8 +93,34 @@
 
 .reg-login-wrapper {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
   justify-content: center;
   align-items: center;
-  padding-top: 3rem;
+  padding-top: 2rem;
 }
+
+.input-error {
+  color: red;
+  font-size: 0.6rem;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.error-border {
+  border-color: red;
+  color: red;
+}
+
+.reg-wrapper {
+  display: flex;
+  padding-top: 1.6rem;
+  gap: 1rem;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+// .ok-border {
+//   border-color: red;
+// }
