@@ -14,7 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'registration',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () =>
+      import('./auth/auth.module').then((module) => module.AuthModule),
+  },
+  {
+    path: 'boards',
+    loadChildren: () =>
+      import('./main/main.module').then((module) => module.MainModule),
   },
   {
     path: 'boards/:id',
