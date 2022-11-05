@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { TooltipModule } from 'primeng/tooltip';
 import { SharedModule } from 'primeng/api';
 import { MainRoutingModule } from './main-routing.module';
 import { ApiMainHelpersService } from './services/api-main-helpers.service';
@@ -9,7 +9,7 @@ import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   declarations: [MainComponent, MainPageComponent],
-  imports: [CommonModule, MainRoutingModule, SharedModule],
+  imports: [CommonModule, MainRoutingModule, SharedModule, TooltipModule],
   providers: [ApiMainHelpersService],
 })
 export class MainModule {}

@@ -1,13 +1,23 @@
 <main class="main">
   <h1 class="main__title card-with-blur">Boards</h1>
   <div class="main__boards grid">
-    <div class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3">
+    <div
+      class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3"
+      pTooltip="Создать нову доску"
+      tooltipPosition="bottom">
+      <i class="pi pi-plus"></i>
+    </div>
+    <div
+      class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3"
+      *ngFor="let card of boards$ | async"
+      [pTooltip]="card.description | slice: 0:10"
+      tooltipPosition="bottom">
       <div class="board__setting">
         <i class="pi pi-trash"></i>
         <i class="pi pi-cog"></i>
         <i class="pi pi-pencil"></i>
       </div>
-      <h3>new board</h3>
+      <h3 class="board__title">{{ card.title }}</h3>
     </div>
   </div>
 </main>

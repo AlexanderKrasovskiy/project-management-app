@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { loadBoards } from 'src/app/store/actions/boards.action';
+import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
 import { ApiMainHelpersService } from '../../services/api-main-helpers.service';
 
 @Component({
@@ -8,12 +10,10 @@ import { ApiMainHelpersService } from '../../services/api-main-helpers.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  constructor(private api: ApiMainHelpersService) {}
+  constructor(private api: ApiMainHelpersService, public store: Store) {}
+  boards$ = this.store.select(selectCurrentBoards);
 
   ngOnInit(): void {
-    this.api
-      .getAllBoards()
-      .pipe(tap((r) => console.log(r)))
-      .subscribe();
+    this.store.dispatch(loadBoards());
   }
 }

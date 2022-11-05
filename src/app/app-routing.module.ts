@@ -18,7 +18,7 @@ const routes: Routes = [
       import('./auth/auth.module').then((module) => module.AuthModule),
   },
   {
-    path: 'main',
+    path: 'boards',
     loadChildren: () =>
       import('./main/main.module').then((module) => module.MainModule),
   },
