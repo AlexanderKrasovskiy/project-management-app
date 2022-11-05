@@ -120,7 +120,8 @@
         </div>
 
         <div class="reg-login-wrapper">
-          <a routerLink="/auth">Registration</a>
+          <span>Already registered?</span>
+          <a routerLink="/auth">Login</a>
           <button
             pButton
             pRipple
@@ -128,7 +129,7 @@
             type="submit"
             [disabled]="!regForm.valid"
             class="p-button-raised p-button-secondary button-custom-white"
-            label="Login"></button>
+            label="Sign Up"></button>
         </div>
       </form>
     </div>
