@@ -1,0 +1,142 @@
+<ng-container *transloco="let t; read: 'registration'">
+  <div class="overflow-y-auto md:overflow-y-hidden reg-wrap">
+    <div class="card-simple reg-card shadow-4">
+      <h2 class="font-light reg-title">Registration</h2>
+
+      <form
+        [formGroup]="regForm"
+        (ngSubmit)="onSubmit()"
+        #formDirective="ngForm">
+        <div class="fields-wrapper p-inputtext-lg">
+          <!-- <div *ngIf="regForm.get('nameInput')?.invalid && (regForm.get('nameInput')?.dirty || regForm.get('nameInput')?.touched)"
+        class="alert alert-danger"> -->
+
+          <p class="p-float-label reg-input field">
+            <input
+              type="text"
+              name="nameInput"
+              formControlName="nameInput"
+              id="nameInput"
+              pInputText
+              class="reg-input-inside"
+              formControlName="nameInput" />
+            <label for="nameInput">Enter your name</label>
+          </p>
+
+          <p
+            *ngIf="regForm.get('nameInput')?.errors?.['required'] && (regForm.get('nameInput')?.dirty)">
+            Please enter a login
+          </p>
+
+          <p class="p-float-label reg-input field">
+            <input
+              type="text"
+              formControlName="loginInput"
+              id="loginInput"
+              pInputText
+              class="reg-input-inside"
+              formControlName="loginInput" />
+            <label for="loginInput">Enter your login</label>
+          </p>
+
+          <!-- <div
+          class="p-field"
+          appearance="fill"
+          class="login-input"
+          matTooltip="Use your e-mail like a login, please"
+          matTooltipPosition="right">
+          <label>Enter your login</label>
+          <input
+            matInput
+            type="text"
+            formControlName="loginInput"
+            id="loginInput" />
+          <p *ngIf="regForm.get('loginInput')?.errors?.['required']">
+            Please enter a login
+          </p>
+        </div> -->
+
+          <span class="p-float-label reg-input mb-3">
+            <p-password
+              [(ngModel)]="passwordInput"
+              [toggleMask]="true"
+              id="passwordInput"
+              formControlName="passwordInput">
+            </p-password>
+            <label for="passwordInput">Enter a password</label>
+          </span>
+
+          <!-- <p *ngIf="regForm.get('passwordInput')?.errors?.['required']">
+            Please enter a password
+          </p> -->
+
+          <span class="p-float-label reg-input">
+            <p-password
+              [(ngModel)]="twicePasswordInput"
+              [toggleMask]="true"
+              id="twicePasswordInput"
+              formControlName="twicePasswordInput"></p-password>
+            <label for="passwordInput">Repeat a password</label>
+          </span>
+
+          <!-- <div
+          class="p-field"
+          appearance="fill"
+          class="login-input"
+          matTooltip="Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]"
+          matTooltipPosition="right">
+          <label>Enter your password</label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="passwordInput"
+            id="passwordInput" />
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <i class="pi pi-eye">{{
+              hide ? 'visibility_off' : 'visibility'
+            }}</i>
+          </button>
+          <p *ngIf="regForm.get('passwordInput')?.errors?.['required']">
+            Please enter a password
+          </p>
+          <p *ngIf="!regForm.get('passwordInput')?.errors?.['required']">
+            {{
+              this.handleErrors({
+                length: regForm.get('passwordInput')?.getError('invalidLength'),
+                letters: regForm
+                  .get('passwordInput')
+                  ?.getError('invalidLetters'),
+                symbols: regForm
+                  .get('passwordInput')
+                  ?.getError('invalidSymbols')
+              })
+            }}
+          </p>
+        </div> -->
+        </div>
+
+        <div class="reg-login-wrapper">
+          <a routerLink="/auth">Registration</a>
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="submit"
+            [disabled]="!regForm.valid"
+            class="p-button-raised p-button-secondary button-custom-white"
+            label="Login"></button>
+        </div>
+      </form>
+    </div>
+    <div
+      class="hidden md:block circle-with-blur reg-big-circle shadow-4 scale"></div>
+    <div
+      class="hidden md:block circle-with-blur reg-small-circle shadow-4 scale"></div>
+  </div>
+</ng-container>

@@ -48,7 +48,9 @@
 }
 
 .p-button-raised.button-custom,
-.button-custom {
+.button-custom,
+.button-custom-white {
   border-radius: 20px;
-  height: 2rem;
+  height: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
 }
