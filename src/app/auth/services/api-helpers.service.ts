@@ -13,7 +13,7 @@ export class ApiHelpersService {
   constructor(private httpClient: HttpClient) {}
 
   register(payload: RegisterRequestModel): Observable<UserModel> {
-    return this.httpClient.post<UserModel>('signup', payload).pipe(
+    return this.httpClient.post<UserModel>('/signup', payload).pipe(
       retry(4),
       catchError((error) => {
         console.log('[ERROR]: ', error);
@@ -23,7 +23,7 @@ export class ApiHelpersService {
   }
 
   login(payload: LoginRequestModel): Observable<TokenResponseModel> {
-    return this.httpClient.post<TokenResponseModel>('signin', payload).pipe(
+    return this.httpClient.post<TokenResponseModel>('/signin', payload).pipe(
       retry(4),
       catchError((error) => {
         console.log('[ERROR]: ', error);
