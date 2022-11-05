@@ -21,10 +21,6 @@ export class RegComponent {
 
   public hide = true;
 
-  public passwordInput!: string;
-
-  public twicePasswordInput!: string;
-
   constructor(
     // private authService: AuthService,
     private router: Router,
@@ -48,8 +44,6 @@ export class RegComponent {
   private initializeForm(): void {
     this.regForm = new FormGroup(
       {
-        // nameInput: new FormControl(['', [Validators.required]]),
-        // loginInput: new FormControl(['', [Validators.required]]),
         nameInput: new FormControl('', [Validators.required]),
         loginInput: new FormControl('', [Validators.required]),
         passwordInput: new FormControl('', [
@@ -60,21 +54,6 @@ export class RegComponent {
           Validators.required,
           ValidatePassword,
         ]),
-        // `loginInput`: new FormControl(['', [Validators.required]])
-        // `passwordInput`: new FormControl([
-        //   '',
-        //   [
-        //     Validators.required,
-        //     ValidatePassword,
-        //   ],
-        // ]),
-        // `twicePasswordInput`: new FormControl([
-        //   '',
-        //   [
-        //     Validators.required,
-        //     ValidatePassword,
-        //   ],
-        // ]),
       },
       { validators: ComparePassword },
     );

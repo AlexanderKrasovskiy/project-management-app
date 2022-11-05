@@ -9,7 +9,7 @@ const ComparePassword: ValidatorFn = (
 ): ValidationErrors | null => {
   const password = control.get('passwordInput');
   const twicePassword = control.get('twicePasswordInput');
-  console.log(1);
+  // console.log(1);
 
   return password && twicePassword && password.value !== twicePassword.value
     ? { notIdenticalPassword: true }
