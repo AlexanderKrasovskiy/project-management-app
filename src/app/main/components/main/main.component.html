@@ -1,14 +1,14 @@
 <main class="main">
-  <h1 class="main__title card-with-blur">Boards</h1>
+  <h1 class="main__title card-with-blur scale">Boards</h1>
   <div class="main__boards grid">
     <div
-      class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3"
-      pTooltip="Создать нову доску"
+      class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3 scale"
+      pTooltip="Создать новую доску"
       tooltipPosition="bottom">
       <i class="pi pi-plus"></i>
     </div>
     <div
-      class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3"
+      class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3 scale"
       *ngFor="let card of boards$ | async"
       [pTooltip]="card.description | slice: 0:10"
       tooltipPosition="bottom">

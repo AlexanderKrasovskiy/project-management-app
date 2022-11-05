@@ -11,18 +11,6 @@ export class BoardsEffects {
     private apiBoards: ApiMainHelpersService,
   ) {}
 
-  // createBoards$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(BoardsActions.createBoard),
-  //     switchMap(({ boards: value }) =>
-  //       from(this.apiBoards.createBoard(value)).pipe(
-  //         map((board) => BoardsActions.loadBoardSuccess({ boards: board })),
-  //         catchError((error) => of(BoardsActions.loadBoardFailure({ error }))),
-  //       ),
-  //     ),
-  //   );
-  // });
-
   loadBoards$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(BoardsActions.loadBoards),
@@ -38,4 +26,20 @@ export class BoardsEffects {
       ),
     );
   });
+
+  // createBoards$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(BoardsActions.createBoard),
+  //     switchMap(({ boards: value }) =>
+  //       this.apiBoards.createBoard(value).pipe(
+  //         map((board) =>
+  //           BoardsActions.loadBoardsSuccess({
+  //             boards: value,
+  //           }),
+  //         ),
+  //         catchError((error) => of(BoardsActions.loadBoardsFailure({ error }))),
+  //       ),
+  //     ),
+  //   );
+  // });
 }
