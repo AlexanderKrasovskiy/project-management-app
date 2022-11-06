@@ -1,0 +1,73 @@
+<p-toast
+  [breakpoints]="{
+    '920px': { width: '100%', right: '0', left: '0' }
+  }"></p-toast>
+<ng-container *transloco="let t; read: 'registration'">
+  <div class="overflow-y-auto md:overflow-y-hidden reg-wrap">
+    <div class="card-simple reg-card shadow-4">
+      <h2 class="font-light reg-title">{{ t('title') }}</h2>
+
+      <!-- <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        #formDirective="ngForm">
+        <div class="fields-wrapper p-inputtext-lg">
+          <div class="p-float-label reg-input field">
+            <input
+              type="text"
+              formControlName="loginInput"
+              id="loginInput"
+              pInputText
+              class="reg-input-inside"
+              [ngClass]="(loginForm.get('loginInput')?.errors?.['required'] && loginForm.get('loginInput')?.touched) ? 'error-border' : '' "
+              formControlName="loginInput" />
+            <label for="loginInput">{{ t('login') }}</label>
+            <div
+              class="input-error"
+              *ngIf="loginForm.get('loginInput')?.errors?.['required'] && (loginForm.get('loginInput')?.dirty || loginForm.get('loginInput')?.touched)">
+              {{ t('emptyField') }}
+            </div>
+          </div>
+
+          <span class="p-float-label reg-input mb-3">
+            <p-password
+              [toggleMask]="true"
+              id="passwordInput"
+              formControlName="passwordInput">
+            </p-password>
+            <label for="passwordInput">{{ t('password') }}</label>
+            <div
+              class="input-error"
+              *ngIf="!loginForm.get('passwordInput')?.errors?.['required'] && loginForm.errors?.['notIdenticalPassword'] && (loginForm.get('passwordInput')?.dirty || loginForm.get('passwordInput')?.touched) && (loginForm.get('twicePasswordInput')?.dirty || loginForm.get('twicePasswordInput')?.touched)">
+              {{ t('identicalPassword') }}
+            </div>
+            <div
+              class="input-error"
+              *ngIf="loginForm.get('passwordInput')?.errors?.['required'] && (loginForm.get('passwordInput')?.dirty || loginForm.get('passwordInput')?.touched) ">
+              {{ t('emptyField') }}
+            </div>
+          </span>
+        </div>
+
+        <div class="reg-login-wrapper">
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="submit"
+            [disabled]="!loginForm.valid"
+            class="p-button-raised p-button-secondary button-custom-white"
+            label="{{ t('signup') }}"></button>
+        </div>
+        <div class="reg-wrapper">
+          <p>{{ t('registered') }}</p>
+          <a routerLink="/registration">{{ t('Login') }}</a>
+        </div>
+      </form> -->
+    </div>
+    <div
+      class="hidden md:block circle-with-blur reg-big-circle shadow-4 scale"></div>
+    <div
+      class="hidden md:block circle-with-blur reg-small-circle shadow-4 scale"></div>
+  </div>
+</ng-container>

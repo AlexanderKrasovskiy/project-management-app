@@ -50,6 +50,7 @@
       pRipple
       type="button"
       label="Login"
+      (click)="loginPage()"
       class="p-button-raised p-button-secondary p-button-text button-custom"></button>
     <button
       *ngIf="(this.authService.isUserLogged$ | async) === false"
@@ -58,7 +59,6 @@
       type="button"
       label="Sign up"
       class="p-button-raised p-button-secondary p-button-text button-custom"
-      button
       (click)="authPage()"></button>
     <p-selectButton
       [options]="stateOptions"

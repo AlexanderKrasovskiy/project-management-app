@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -25,7 +25,7 @@ import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
   encapsulation: ViewEncapsulation.None,
   // providers: [MessageService],
 })
-export class RegComponent {
+export class RegComponent implements OnInit {
   public regForm!: FormGroup;
 
   constructor(
