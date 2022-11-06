@@ -27,19 +27,17 @@ export class BoardsEffects {
     );
   });
 
-  // createBoards$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(BoardsActions.createBoard),
-  //     switchMap(({ boards: value }) =>
-  //       this.apiBoards.createBoard(value).pipe(
-  //         map((board) =>
-  //           BoardsActions.loadBoardsSuccess({
-  //             boards: value,
-  //           }),
-  //         ),
-  //         catchError((error) => of(BoardsActions.loadBoardsFailure({ error }))),
-  //       ),
-  //     ),
-  //   );
-  // });
+  createBoard$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(BoardsActions.createBoard),
+      switchMap(({ boards: value }) =>
+        this.apiBoards.createBoard(value).pipe(
+          map((board) => BoardsActions.createBoardSuccess(board)),
+          catchError((error) =>
+            of(BoardsActions.createBoardFailure({ error })),
+          ),
+        ),
+      ),
+    );
+  });
 }

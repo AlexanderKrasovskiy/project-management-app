@@ -11,6 +11,16 @@ export const createBoard = createAction(
   props<{ boards: BoardRequestModel }>(),
 );
 
+export const createBoardSuccess = createAction(
+  '[Board] Create Board Success',
+  props<{ id: string; title: string; description: string }>(),
+);
+
+export const createBoardFailure = createAction(
+  '[Board] Create Board Load Failure',
+  props<{ error: string }>(),
+);
+
 export const loadBoardsSuccess = createAction(
   '[Board] Boards Load Success',
   props<{ boards: BoardIDRequestModel[] }>(),

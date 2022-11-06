@@ -1,10 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 import { BoardIDRequestModel } from 'src/app/main/models/main.model';
-import { loadBoards, loadBoardsSuccess } from '../actions/boards.action';
+import {
+  createBoardSuccess,
+  loadBoards,
+  loadBoardsSuccess,
+} from '../actions/boards.action';
 
 export const initialBoardsState: BoardsState = { boards: [] };
 
-export type BoardsState = { boards: BoardIDRequestModel[] };
+export type BoardsState = { boards: BoardIDRequestModel[] | [] };
 
 export const allBoardsReducer = createReducer(
   initialBoardsState,
@@ -14,6 +18,12 @@ export const allBoardsReducer = createReducer(
     (state, { boards }): BoardsState => ({
       ...state,
       boards,
+    }),
+  ),
+  on(
+    createBoardSuccess,
+    (state, boards): BoardsState => ({
+      boards: [...state.boards, boards],
     }),
   ),
 );

@@ -37,7 +37,7 @@ export class RegComponent {
       //   this.regForm.value.loginInput,
       //   this.regForm.value.passwordInput,
       // );
-      this.router.navigate(['main']);
+      this.router.navigate(['boards']);
     }
   }
 
