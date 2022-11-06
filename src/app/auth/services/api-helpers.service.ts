@@ -38,8 +38,13 @@ export class ApiHelpersService {
   login(payload: LoginRequestModel): Observable<TokenResponseModel> {
     return this.httpClient.post<TokenResponseModel>('/signin', payload).pipe(
       retry(4),
-      catchError((error) => {
-        console.log('[ERROR]: ', error);
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Can not login :(',
+          life: 5000,
+        });
         return EMPTY;
       }),
     );

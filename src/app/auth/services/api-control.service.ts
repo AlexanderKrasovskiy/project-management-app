@@ -3,6 +3,7 @@ import { Observable, tap } from 'rxjs';
 import {
   LoginRequestModel,
   RegisterRequestModel,
+  TokenResponseModel,
   UserModel,
 } from '../models/auth.model';
 import { ApiHelpersService } from './api-helpers.service';
@@ -14,16 +15,18 @@ export class ApiControlService {
   public loginUp(user: RegisterRequestModel): Observable<UserModel> {
     return this.apiHelpers.register(user).pipe(
       tap((results) => {
-        localStorage.setItem('USER', JSON.stringify(results));
+        localStorage.setItem('PlanUserInfo', JSON.stringify(results));
       }),
     );
     // .subscribe();
   }
 
-  public loginIn(user: LoginRequestModel): void {
-    this.apiHelpers
+  public loginIn(user: LoginRequestModel): Observable<TokenResponseModel> {
+    return this.apiHelpers
       .login(user)
-      .pipe(tap((results) => localStorage.setItem('TOKEN', results.token)))
-      .subscribe();
+      .pipe(
+        tap((results) => localStorage.setItem('PlanTokenInfo', results.token)),
+      );
+    //  .subscribe();
   }
 }

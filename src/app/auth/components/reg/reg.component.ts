@@ -53,8 +53,17 @@ export class RegComponent {
         detail: 'Successful registration!',
         life: 5000,
       });
-      this.apiControlService.loginIn(loginUser);
-      this.router.navigate(['boards']);
+      this.apiControlService.loginIn(loginUser).subscribe(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successful login!',
+          life: 5000,
+        });
+        setTimeout(() => {
+          this.router.navigate(['boards']);
+        }, 2000);
+      });
     });
   }
 
