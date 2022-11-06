@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { fromEvent } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
+import { IsBoardsService } from '../auth/services/is-boards.service';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
     private transloco: TranslocoService,
     private router: Router,
     public authService: AuthService,
+    public isBoardsService: IsBoardsService,
   ) {
     this.stateOptions = [
       { label: 'En', value: 'en' },

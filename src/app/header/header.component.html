@@ -12,24 +12,38 @@
   </a>
   <div
     class="px-1 w-full md:px-5 md:w-max card-with-opacity buttons-wrap shadow-3">
-    <p class="user-name-auth">{{ this.authService.getUser() }}</p>
-    <button
-      *ngIf="this.authService.isUserLogged$ | async"
-      pButton
-      pRipple
-      type="button"
-      label="Boards"
-      class="p-button-raised p-button-secondary p-button-text button-custom"
-      routerLink="/boards"></button>
-    <button
-      *ngIf="this.authService.isUserLogged$ | async"
-      pButton
-      pRipple
-      type="button"
-      label="Logout"
-      class="p-button-raised p-button-secondary p-button-text button-custom"
-      (click)="this.authService.logoutUser()"
-      routerLink="/registration"></button>
+    <div
+      *ngIf="
+        this.authService.getUser() || (this.authService.isUserLogged$ | async)
+      "
+      class="flex gap-2">
+      <span *ngIf="this.isBoardsService.boardsPage()" class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText placeholder="Search" />
+      </span>
+
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Create board"
+        class="p-button-raised p-button-primary p-button-text button-custom"
+        routerLink="/boards"></button>
+
+      <p class="user-name-auth">
+        {{ this.authService.getUser() }}
+      </p>
+
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-sign-out"
+        class="p-button-rounded p-button-secondary"
+        (click)="this.authService.logoutUser()"
+        routerLink="/registration"></button>
+    </div>
+
     <button
       *ngIf="(this.authService.isUserLogged$ | async) === false"
       pButton
