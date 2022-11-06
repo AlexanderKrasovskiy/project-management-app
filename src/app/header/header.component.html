@@ -12,13 +12,33 @@
   </a>
   <div
     class="px-1 w-full md:px-5 md:w-max card-with-opacity buttons-wrap shadow-3">
+    <p class="user-name-auth">{{ this.authService.getUser() }}</p>
     <button
+      *ngIf="this.authService.isUserLogged$ | async"
+      pButton
+      pRipple
+      type="button"
+      label="Boards"
+      class="p-button-raised p-button-secondary p-button-text button-custom"
+      routerLink="/boards"></button>
+    <button
+      *ngIf="this.authService.isUserLogged$ | async"
+      pButton
+      pRipple
+      type="button"
+      label="Logout"
+      class="p-button-raised p-button-secondary p-button-text button-custom"
+      (click)="this.authService.logoutUser()"
+      routerLink="/registration"></button>
+    <button
+      *ngIf="(this.authService.isUserLogged$ | async) === false"
       pButton
       pRipple
       type="button"
       label="Login"
       class="p-button-raised p-button-secondary p-button-text button-custom"></button>
     <button
+      *ngIf="(this.authService.isUserLogged$ | async) === false"
       pButton
       pRipple
       type="button"

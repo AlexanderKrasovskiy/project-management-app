@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { fromEvent } from 'rxjs';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
     // @inject(DOCUMENT) private document: Document,
     private transloco: TranslocoService,
     private router: Router,
+    public authService: AuthService,
   ) {
     this.stateOptions = [
       { label: 'En', value: 'en' },

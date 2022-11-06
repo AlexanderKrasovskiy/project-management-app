@@ -10,8 +10,9 @@ import { ApiHelpersService } from './services/api-helpers.service';
 // import { AuthComponent } from './components/auth/auth.component';
 import { ApiControlService } from './services/api-control.service';
 import { TranslocoRootModule } from '../transloco-root.module';
-import { RegComponent } from './components/reg/reg.component';
+// import { RegComponent } from './components/reg/reg.component';
 import { SharedModule } from '../shared/shared.module';
+import { RegComponent } from './components/reg/reg.component';
 
 @NgModule({
   declarations: [RegComponent],

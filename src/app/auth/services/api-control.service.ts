@@ -7,15 +7,19 @@ import {
   UserModel,
 } from '../models/auth.model';
 import { ApiHelpersService } from './api-helpers.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class ApiControlService {
-  constructor(private apiHelpers: ApiHelpersService) {}
+  constructor(
+    private apiHelpers: ApiHelpersService,
+    private authService: AuthService,
+  ) {}
 
   public loginUp(user: RegisterRequestModel): Observable<UserModel> {
     return this.apiHelpers.register(user).pipe(
       tap((results) => {
-        localStorage.setItem('PlanUserInfo', JSON.stringify(results));
+        this.authService.setUser(results, user.name);
       }),
     );
     // .subscribe();
@@ -24,9 +28,7 @@ export class ApiControlService {
   public loginIn(user: LoginRequestModel): Observable<TokenResponseModel> {
     return this.apiHelpers
       .login(user)
-      .pipe(
-        tap((results) => localStorage.setItem('PlanTokenInfo', results.token)),
-      );
+      .pipe(tap((results) => this.authService.setToken(results)));
     //  .subscribe();
   }
 }
