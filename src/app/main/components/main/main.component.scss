@@ -45,6 +45,12 @@
         display: flex;
         justify-content: space-between;
         width: 90%;
+        .setting {
+          display: flex;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+        }
       }
       .board__title {
         font-family: 'Inter';

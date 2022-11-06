@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { BoardIDRequestModel } from 'src/app/main/models/main.model';
 import {
   createBoardSuccess,
+  deleteBoardSuccess,
   loadBoards,
   loadBoardsSuccess,
 } from '../actions/boards.action';
@@ -24,6 +25,13 @@ export const allBoardsReducer = createReducer(
     createBoardSuccess,
     (state, boards): BoardsState => ({
       boards: [...state.boards, boards],
+    }),
+  ),
+  on(
+    deleteBoardSuccess,
+    (state, { id }): BoardsState => ({
+      ...state,
+      boards: state.boards.filter((board) => board.id !== id),
     }),
   ),
 );

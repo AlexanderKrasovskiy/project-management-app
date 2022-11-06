@@ -6,6 +6,16 @@ import {
 
 export const loadBoards = createAction(`[Board] Load Boards`);
 
+export const loadBoardsSuccess = createAction(
+  '[Board] Boards Load Success',
+  props<{ boards: BoardIDRequestModel[] }>(),
+);
+
+export const loadBoardsFailure = createAction(
+  '[Board] Boards Load Failure',
+  props<{ error: string }>(),
+);
+
 export const createBoard = createAction(
   '[Board] Create Board',
   props<{ boards: BoardRequestModel }>(),
@@ -21,12 +31,17 @@ export const createBoardFailure = createAction(
   props<{ error: string }>(),
 );
 
-export const loadBoardsSuccess = createAction(
-  '[Board] Boards Load Success',
-  props<{ boards: BoardIDRequestModel[] }>(),
+export const deleteBoard = createAction(
+  '[Board] Delete Board',
+  props<{ id: string }>(),
 );
 
-export const loadBoardsFailure = createAction(
-  '[Board] Boards Load Failure',
+export const deleteBoardSuccess = createAction(
+  '[Board] Success Delete Board',
+  props<{ id: string }>(),
+);
+
+export const deleteBoardFailure = createAction(
+  '[Board] Create Board Load Failure',
   props<{ error: string }>(),
 );

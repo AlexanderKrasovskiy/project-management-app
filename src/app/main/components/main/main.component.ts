@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { createBoard, loadBoards } from 'src/app/store/actions/boards.action';
+import {
+  createBoard,
+  deleteBoard,
+  loadBoards,
+} from 'src/app/store/actions/boards.action';
 import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
 import { ApiMainHelpersService } from '../../services/api-main-helpers.service';
 
@@ -23,5 +27,9 @@ export class MainComponent implements OnInit {
         boards: { title: 'new board 5', description: 'app board' },
       }),
     );
+  }
+
+  removeBoard(id: string) {
+    this.store.dispatch(deleteBoard({ id }));
   }
 }

@@ -9,8 +9,17 @@ export class ApiMainHelpersService {
   constructor(private httpClient: HttpClient, public store: Store) {}
 
   createBoard(payload: BoardRequestModel): Observable<BoardIDRequestModel> {
-    console.log(payload);
     return this.httpClient.post<BoardIDRequestModel>('/boards', payload).pipe(
+      retry(4),
+      catchError((error) => {
+        console.log('[ERROR]: ', error);
+        return EMPTY;
+      }),
+    );
+  }
+
+  deleteBoard(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`/boards/${id}`).pipe(
       retry(4),
       catchError((error) => {
         console.log('[ERROR]: ', error);
