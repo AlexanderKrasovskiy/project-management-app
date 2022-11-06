@@ -1,16 +1,17 @@
+<p-toast
+  [breakpoints]="{
+    '920px': { width: '100%', right: '0', left: '0' }
+  }"></p-toast>
 <ng-container *transloco="let t; read: 'registration'">
   <div class="overflow-y-auto md:overflow-y-hidden reg-wrap">
     <div class="card-simple reg-card shadow-4">
-      <h2 class="font-light reg-title">Registration</h2>
+      <h2 class="font-light reg-title">{{ t('title') }}</h2>
 
       <form
         [formGroup]="regForm"
         (ngSubmit)="onSubmit()"
         #formDirective="ngForm">
         <div class="fields-wrapper p-inputtext-lg">
-          <!-- <div *ngIf="regForm.get('nameInput')?.invalid && (regForm.get('nameInput')?.dirty || regForm.get('nameInput')?.touched)"
-        class="alert alert-danger"> -->
-
           <div class="p-float-label reg-input field">
             <input
               type="text"
@@ -21,11 +22,11 @@
               class="reg-input-inside"
               [ngClass]="(regForm.get('nameInput')?.errors?.['required'] && regForm.get('nameInput')?.touched) ? 'error-border' : '' "
               formControlName="nameInput" />
-            <label for="nameInput">Enter your name</label>
+            <label for="nameInput">{{ t('name') }}</label>
             <div
               class="input-error"
               *ngIf="regForm.get('nameInput')?.errors?.['required'] && (regForm.get('nameInput')?.dirty || regForm.get('nameInput')?.touched)">
-              This field can't be empty
+              {{ t('emptyField') }}
             </div>
           </div>
 
@@ -38,54 +39,33 @@
               class="reg-input-inside"
               [ngClass]="(regForm.get('loginInput')?.errors?.['required'] && regForm.get('loginInput')?.touched) ? 'error-border' : '' "
               formControlName="loginInput" />
-            <label for="loginInput">Enter your login</label>
+            <label for="loginInput">{{ t('login') }}</label>
             <div
               class="input-error"
               *ngIf="regForm.get('loginInput')?.errors?.['required'] && (regForm.get('loginInput')?.dirty || regForm.get('loginInput')?.touched)">
-              This field can't be empty
+              {{ t('emptyField') }}
             </div>
           </div>
-
-          <!-- <div
-          class="p-field"
-          appearance="fill"
-          class="login-input"
-          matTooltip="Use your e-mail like a login, please"
-          matTooltipPosition="right">
-          <label>Enter your login</label>
-          <input
-            matInput
-            type="text"
-            formControlName="loginInput"
-            id="loginInput" />
-          <p *ngIf="regForm.get('loginInput')?.errors?.['required']">
-            Please enter a login
-          </p>
-        </div> -->
 
           <span class="p-float-label reg-input mb-3">
             <p-password
               [toggleMask]="true"
               id="passwordInput"
               formControlName="passwordInput"
-              pTooltip="Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]">
+              pTooltip="{{ t('tooltipPassword') }}">
             </p-password>
-            <label for="passwordInput">Enter a password</label>
+            <label for="passwordInput">{{ t('password') }}</label>
             <div
               class="input-error"
               *ngIf="!regForm.get('passwordInput')?.errors?.['required'] && regForm.errors?.['notIdenticalPassword'] && (regForm.get('passwordInput')?.dirty || regForm.get('passwordInput')?.touched) && (regForm.get('twicePasswordInput')?.dirty || regForm.get('twicePasswordInput')?.touched)">
-              Both passwords must be identical
+              {{ t('identicalPassword') }}
             </div>
             <div
               class="input-error"
               *ngIf="regForm.get('passwordInput')?.errors?.['required'] && (regForm.get('passwordInput')?.dirty || regForm.get('passwordInput')?.touched) ">
-              This field can't be empty
+              {{ t('emptyField') }}
             </div>
           </span>
-
-          <!-- <p *ngIf="regForm.get('passwordInput')?.errors?.['required']">
-            Please enter a password
-          </p> -->
 
           <span class="p-float-label reg-input">
             <p-password
@@ -93,59 +73,18 @@
               id="twicePasswordInput"
               formControlName="twicePasswordInput"
               pTooltip="Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]"></p-password>
-            <label for="passwordInput">Repeat a password</label>
+            <label for="passwordInput">{{ t('repeatPassword') }}</label>
             <div
               class="input-error"
               *ngIf="!regForm.get('twicePasswordInput')?.errors?.['required'] && regForm.errors?.['notIdenticalPassword'] && (regForm.get('passwordInput')?.dirty || regForm.get('passwordInput')?.touched) && (regForm.get('twicePasswordInput')?.dirty || regForm.get('twicePasswordInput')?.touched)">
-              Both passwords must be identical
+              {{ t('identicalPassword') }}
             </div>
             <div
               class="input-error"
               *ngIf="regForm.get('twicePasswordInput')?.errors?.['required'] && (regForm.get('twicePasswordInput')?.dirty || regForm.get('twicePasswordInput')?.touched) ">
-              This field can't be empty
+              {{ t('emptyField') }}
             </div>
           </span>
-
-          <!-- <div
-          class="p-field"
-          appearance="fill"
-          class="login-input"
-          matTooltip="Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]"
-          matTooltipPosition="right">
-          <label>Enter your password</label>
-          <input
-            matInput
-            [type]="hide ? 'password' : 'text'"
-            formControlName="passwordInput"
-            id="passwordInput" />
-          <button
-            mat-icon-button
-            matSuffix
-            type="button"
-            (click)="hide = !hide"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <i class="pi pi-eye">{{
-              hide ? 'visibility_off' : 'visibility'
-            }}</i>
-          </button>
-          <p *ngIf="regForm.get('passwordInput')?.errors?.['required']">
-            Please enter a password
-          </p>
-          <p *ngIf="!regForm.get('passwordInput')?.errors?.['required']">
-            {{
-              this.handleErrors({
-                length: regForm.get('passwordInput')?.getError('invalidLength'),
-                letters: regForm
-                  .get('passwordInput')
-                  ?.getError('invalidLetters'),
-                symbols: regForm
-                  .get('passwordInput')
-                  ?.getError('invalidSymbols')
-              })
-            }}
-          </p>
-        </div> -->
         </div>
 
         <div class="reg-login-wrapper">
@@ -156,11 +95,11 @@
             type="submit"
             [disabled]="!regForm.valid"
             class="p-button-raised p-button-secondary button-custom-white"
-            label="Sign Up"></button>
+            label="{{ t('signup') }}"></button>
         </div>
         <div class="reg-wrapper">
-          <p>Already registered?</p>
-          <a routerLink="/auth">Login</a>
+          <p>{{ t('registered') }}</p>
+          <a routerLink="/login">{{ t('Login') }}</a>
         </div>
       </form>
     </div>
