@@ -8,6 +8,8 @@ import {
 import { Router } from '@angular/router';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
+import { RegisterRequestModel } from '../../models/auth.model';
+import { ApiControlService } from '../../services/api-control.service';
 // import { PasswordErrors } from 'src/app/shared/models/common.model';
 
 @Component({
@@ -22,7 +24,7 @@ export class RegComponent {
   public hide = true;
 
   constructor(
-    // private authService: AuthService,
+    private apiControlService: ApiControlService,
     private router: Router,
     public fb: FormBuilder,
   ) {}
@@ -32,14 +34,23 @@ export class RegComponent {
   }
 
   public onSubmit(): void {
-    if (this.regForm.valid) {
-      // this.authService.setToken(
-      //   this.regForm.value.loginInput,
-      //   this.regForm.value.passwordInput,
-      // );
-      this.router.navigate(['main']);
-    }
+    const newUser: RegisterRequestModel = this.generateNewUser(
+      this.regForm.value,
+    );
+
+    this.apiControlService.loginUp(newUser);
+    this.router.navigate(['boards']);
   }
+
+  private generateNewUser = (formValue: {
+    nameInput: string;
+    loginInput: string;
+    passwordInput: string;
+  }): RegisterRequestModel => ({
+    name: formValue.nameInput,
+    login: formValue.loginInput,
+    password: formValue.passwordInput,
+  });
 
   private initializeForm(): void {
     this.regForm = new FormGroup(
