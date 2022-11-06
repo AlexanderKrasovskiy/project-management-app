@@ -6,9 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { PrimeNGConfig, MessageService } from 'primeng/api';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
+
 import {
   LoginRequestModel,
   RegisterRequestModel,
@@ -22,7 +23,7 @@ import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
   templateUrl: './reg.component.html',
   styleUrls: ['./reg.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [MessageService],
+  // providers: [MessageService],
 })
 export class RegComponent {
   public regForm!: FormGroup;
@@ -50,6 +51,7 @@ export class RegComponent {
         severity: 'success',
         summary: 'Success',
         detail: 'Successful registration!',
+        life: 5000,
       });
       this.apiControlService.loginIn(loginUser);
       this.router.navigate(['boards']);

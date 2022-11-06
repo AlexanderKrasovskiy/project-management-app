@@ -22,13 +22,14 @@ export class ApiHelpersService {
   register(payload: RegisterRequestModel): Observable<UserModel> {
     return this.httpClient.post<UserModel>('/signup', payload).pipe(
       retry(4),
-      catchError((error) => {
+      catchError(() => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: 'Can not create user :(',
+          life: 5000,
         });
-        console.log('[ERROR]: ', error);
+        // console.log('[ERROR]: ', error);
         return EMPTY;
       }),
     );
