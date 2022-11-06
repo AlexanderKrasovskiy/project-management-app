@@ -14,11 +14,13 @@
       [pTooltip]="board.description | slice: 0:40"
       tooltipPosition="bottom">
       <div class="board__setting">
-        <div class="setting" (click)="removeBoard(board.id)">
+        <div class="setting" (click)="deleteBoard(board.id)">
           <i class="pi pi-trash"></i>
         </div>
         <div class="setting"><i class="pi pi-cog"></i></div>
-        <div class="setting"><i class="pi pi-pencil"></i></div>
+        <div class="setting" (click)="updateBoard(board.id)">
+          <i class="pi pi-pencil"></i>
+        </div>
       </div>
       <h3 class="board__title">{{ board.title }}</h3>
     </div>

@@ -5,6 +5,7 @@ import {
   deleteBoardSuccess,
   loadBoards,
   loadBoardsSuccess,
+  updateBoardSuccess,
 } from '../actions/boards.action';
 
 export const initialBoardsState: BoardsState = { boards: [] };
@@ -23,8 +24,8 @@ export const allBoardsReducer = createReducer(
   ),
   on(
     createBoardSuccess,
-    (state, boards): BoardsState => ({
-      boards: [...state.boards, boards],
+    (state, { newBoard }): BoardsState => ({
+      boards: [...state.boards, newBoard],
     }),
   ),
   on(
@@ -32,6 +33,15 @@ export const allBoardsReducer = createReducer(
     (state, { id }): BoardsState => ({
       ...state,
       boards: state.boards.filter((board) => board.id !== id),
+    }),
+  ),
+  on(
+    updateBoardSuccess,
+    (state, { newBoard }): BoardsState => ({
+      ...state,
+      boards: state.boards.map((board) =>
+        board.id === newBoard.id ? newBoard : board,
+      ),
     }),
   ),
 );

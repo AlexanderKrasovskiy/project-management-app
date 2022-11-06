@@ -1,23 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { map, switchMap, of, catchError } from 'rxjs';
 import { ApiMainHelpersService } from 'src/app/main/services/api-main-helpers.service';
 import * as BoardsActions from '../actions/boards.action';
 
 @Injectable()
 export class BoardsEffects {
-  constructor(
-    private actions$: Actions,
-    private apiBoards: ApiMainHelpersService,
-    private store: Store,
-  ) {}
+  constructor(private actions$: Actions, private api: ApiMainHelpersService) {}
 
   loadBoards$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(BoardsActions.loadBoards),
       switchMap(() =>
-        this.apiBoards.getAllBoards().pipe(
+        this.api.getAllBoards().pipe(
           map((value) =>
             BoardsActions.loadBoardsSuccess({
               boards: value,
@@ -32,10 +27,29 @@ export class BoardsEffects {
   createBoard$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(BoardsActions.createBoard),
-      switchMap(({ boards: value }) =>
-        this.apiBoards
-          .createBoard(value)
-          .pipe(map((board) => BoardsActions.createBoardSuccess(board))),
+      switchMap(({ newBoard: value }) =>
+        this.api.createBoard(value).pipe(
+          map((board) => BoardsActions.createBoardSuccess({ newBoard: board })),
+          catchError((error) =>
+            of(BoardsActions.createBoardFailure({ error })),
+          ),
+        ),
+      ),
+    );
+  });
+
+  updateBoard$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(BoardsActions.updateBoard),
+      switchMap(({ id: value, newBoard: board }) =>
+        this.api.updateBoard(value, board).pipe(
+          map((updateBoard) =>
+            BoardsActions.updateBoardSuccess({ newBoard: updateBoard }),
+          ),
+          catchError((error) =>
+            of(BoardsActions.updateBoardFailure({ error })),
+          ),
+        ),
       ),
     );
   });
@@ -44,7 +58,7 @@ export class BoardsEffects {
     return this.actions$.pipe(
       ofType(BoardsActions.deleteBoard),
       switchMap(({ id: value }) =>
-        this.apiBoards.deleteBoard(value).pipe(
+        this.api.deleteBoard(value).pipe(
           map(() => BoardsActions.deleteBoardSuccess({ id: value })),
           catchError((error) =>
             of(BoardsActions.deleteBoardFailure({ error })),
@@ -53,14 +67,4 @@ export class BoardsEffects {
       ),
     );
   });
-
-  // saveBoards$ = createEffect(
-  //   () => {
-  //     return this.actions$.pipe(
-  //       ofType(BoardsActions.deleteBoard),
-  //       concatLatestFrom(() => this.store.select(selectCurrentBoards)),
-  //     );
-  //   },
-  //   { dispatch: false },
-  // );
 }

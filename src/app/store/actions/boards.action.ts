@@ -18,16 +18,31 @@ export const loadBoardsFailure = createAction(
 
 export const createBoard = createAction(
   '[Board] Create Board',
-  props<{ boards: BoardRequestModel }>(),
+  props<{ newBoard: BoardRequestModel }>(),
 );
 
 export const createBoardSuccess = createAction(
   '[Board] Create Board Success',
-  props<{ id: string; title: string; description: string }>(),
+  props<{ newBoard: BoardIDRequestModel }>(),
 );
 
 export const createBoardFailure = createAction(
-  '[Board] Create Board Load Failure',
+  '[Board] Create Board Failure',
+  props<{ error: string }>(),
+);
+
+export const updateBoard = createAction(
+  '[Board] Update Board',
+  props<{ id: string; newBoard: BoardRequestModel }>(),
+);
+
+export const updateBoardSuccess = createAction(
+  '[Board] Update Board Success',
+  props<{ newBoard: BoardIDRequestModel }>(),
+);
+
+export const updateBoardFailure = createAction(
+  '[Board] Update Board Failure',
   props<{ error: string }>(),
 );
 
@@ -37,11 +52,11 @@ export const deleteBoard = createAction(
 );
 
 export const deleteBoardSuccess = createAction(
-  '[Board] Success Delete Board',
+  '[Board] Delete Board Success',
   props<{ id: string }>(),
 );
 
 export const deleteBoardFailure = createAction(
-  '[Board] Create Board Load Failure',
+  '[Board] Create Board Failure',
   props<{ error: string }>(),
 );
