@@ -3,12 +3,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
   .main__title {
     font-weight: 500;
     line-height: 97px;
@@ -17,6 +16,7 @@
     align-items: center;
     width: 212px;
     height: 70px;
+    margin-top: 90px;
     text-align: center;
   }
   .main__boards {
@@ -72,7 +72,7 @@
     max-width: 25rem;
     width: 95%;
     position: absolute;
-    top: 155px;
+    top: 170px;
     .inform-title {
       padding-bottom: 2rem;
       text-align: center;

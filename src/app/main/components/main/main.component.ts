@@ -38,6 +38,11 @@ export class MainComponent implements OnInit {
     this.mainService.isModalWindow = false;
   }
 
+  removeBoard() {
+    this.deleteBoard(this.mainService.idBoard);
+    this.mainService.isConfirmationModalWindow = false;
+  }
+
   createNewBoard(board: BoardRequestModel): void {
     this.store.dispatch(
       createBoard({

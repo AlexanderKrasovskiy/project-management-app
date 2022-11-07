@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MainService {
   isModalWindow: boolean = false;
+  isConfirmationModalWindow: boolean = false;
   titleModalWindow: string = '';
   idBoard: string = '';
 
@@ -18,6 +19,14 @@ export class MainService {
 
   hideModalWindow(): void {
     this.isModalWindow = false;
+  }
+
+  showConfirmationModalWindow(): void {
+    this.isConfirmationModalWindow = true;
+  }
+
+  hideConfirmationModalWindow(): void {
+    this.isConfirmationModalWindow = false;
   }
 
   updateId(id: string) {
