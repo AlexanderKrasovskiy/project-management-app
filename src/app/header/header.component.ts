@@ -48,10 +48,10 @@ export class HeaderComponent implements OnInit {
   }
 
   authPage() {
-    this.router.navigate(['/registration']);
+    this.router.navigate(['/auth/registration']);
   }
 
   loginPage() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 }

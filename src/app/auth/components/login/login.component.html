@@ -2,12 +2,12 @@
   [breakpoints]="{
     '920px': { width: '100%', right: '0', left: '0' }
   }"></p-toast>
-<ng-container *transloco="let t; read: 'registration'">
+<ng-container *transloco="let t; read: 'login'">
   <div class="overflow-y-auto md:overflow-y-hidden reg-wrap">
     <div class="card-simple reg-card shadow-4">
       <h2 class="font-light reg-title">{{ t('title') }}</h2>
 
-      <!-- <form
+      <form
         [formGroup]="loginForm"
         (ngSubmit)="onSubmit()"
         #formDirective="ngForm">
@@ -57,13 +57,13 @@
             type="submit"
             [disabled]="!loginForm.valid"
             class="p-button-raised p-button-secondary button-custom-white"
-            label="{{ t('signup') }}"></button>
+            label="{{ t('Login') }}"></button>
         </div>
         <div class="reg-wrapper">
-          <p>{{ t('registered') }}</p>
-          <a routerLink="/registration">{{ t('Login') }}</a>
+          <p>{{ t('notRegistered') }}</p>
+          <a routerLink="/auth/registration">{{ t('signup') }}</a>
         </div>
-      </form> -->
+      </form>
     </div>
     <div
       class="hidden md:block circle-with-blur reg-big-circle shadow-4 scale"></div>

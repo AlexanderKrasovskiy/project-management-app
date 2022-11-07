@@ -1,5 +1,5 @@
 .reg-wrap {
-  background-image: url('../../../../assets/images/registration-background.jpg');
+  background-image: url('../../../../assets/images/login-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -13,7 +13,7 @@
 
 .reg-card {
   padding: 2rem;
-  background-image: url('../../../../assets/images/registration-leaf.png');
+  background-image: url('../../../../assets/images/login-leaf.png');
   background-size: cover;
   background-repeat: no-repeat;
   max-width: 30rem;
@@ -24,16 +24,16 @@
 .reg-big-circle {
   width: 35%;
   position: absolute;
-  bottom: -10%;
-  right: -10%;
+  top: 10%;
+  right: -5%;
 }
 
 .reg-small-circle {
-  width: 20%;
+  width: 17%;
   position: absolute;
-  bottom: 10%;
-  left: 5%;
-  background-color: rgba(121, 255, 64, 0.1);
+  bottom: 12%;
+  left: 17%;
+  // background-color: rgba(121, 255, 64, 0.1);
 }
 
 // .example-container .mat-form-field + .mat-form-field {
