@@ -23,7 +23,7 @@
     text-align: center;
   }
   .main__boards {
-    margin: 20px 60px 50px 60px;
+    margin: 20px 60px 100px 60px;
     gap: 20px;
     justify-content: center;
     .board {
@@ -45,7 +45,12 @@
         display: flex;
         justify-content: space-between;
         width: 90%;
-        cursor: pointer;
+        .setting {
+          display: flex;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+        }
       }
       .board__title {
         font-family: 'Inter';
@@ -62,7 +67,6 @@
       }
       .pi-plus {
         font-size: 2rem;
-        cursor: pointer;
       }
     }
   }

@@ -26,7 +26,7 @@ export class ApiInterceptor implements HttpInterceptor {
           url: this.apiUrl + request.url,
           headers: new HttpHeaders({
             accept: 'application/json',
-            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/json',
             Authorization: `Bearer ${this.token}` || '',
           }),
         }),
