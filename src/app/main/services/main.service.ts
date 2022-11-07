@@ -17,10 +17,6 @@ export class MainService {
     this.titleModalWindow = 'Обновить доску?';
   }
 
-  hideModalWindow(): void {
-    this.isModalWindow = false;
-  }
-
   showConfirmationModalWindow(): void {
     this.isConfirmationModalWindow = true;
   }

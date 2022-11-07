@@ -63,4 +63,9 @@ export class MainComponent implements OnInit {
   deleteBoard(id: string): void {
     this.store.dispatch(deleteBoard({ id }));
   }
+
+  hideModalWindow(): void {
+    this.mainService.isModalWindow = false;
+    this.formMain.reset();
+  }
 }

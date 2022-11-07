@@ -71,15 +71,16 @@
             pButton
             pRipple
             color="primary"
+            type="button"
             class="p-button-raised p-button-danger button-custom-white button-false"
-            (click)="this.mainService.hideModalWindow()"
+            (click)="hideModalWindow()"
             label="Нет"></button>
           <button
             pButton
             pRipple
             color="primary"
-            type="submit"
             class="p-button-raised p-button-success button-custom-white button-true"
+            type="submit"
             label="Да"></button>
         </div>
       </form>
