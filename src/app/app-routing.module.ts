@@ -17,7 +17,7 @@ const routes: Routes = [
     component: WelcomeComponent,
   },
   {
-    path: 'registration',
+    path: 'auth',
     loadChildren: () =>
       import('./auth/auth.module').then((module) => module.AuthModule),
   },

@@ -8,7 +8,7 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { SidebarModule } from 'primeng/sidebar';
-import { MessageService } from 'primeng/api';
+// import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
 
@@ -29,6 +29,6 @@ const PrimeComponents = [
 @NgModule({
   imports: [...PrimeComponents],
   exports: [...PrimeComponents],
-  providers: [MessageService],
+  providers: [],
 })
 export class UiPrimengModule {}

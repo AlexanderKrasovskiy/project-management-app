@@ -1,5 +1,5 @@
-.reg-wrap {
-  background-image: url('../../../../assets/images/registration-background.jpg');
+.login-wrap {
+  background-image: url('../../../../assets/images/login-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -11,9 +11,9 @@
   overflow-x: hidden;
 }
 
-.reg-card {
+.login-card {
   padding: 2rem;
-  background-image: url('../../../../assets/images/registration-leaf.png');
+  background-image: url('../../../../assets/images/login-leaf.png');
   background-size: cover;
   background-repeat: no-repeat;
   max-width: 30rem;
@@ -21,19 +21,26 @@
   justify-content: center;
 }
 
-.reg-big-circle {
+.login-big-circle {
   width: 35%;
   position: absolute;
-  bottom: -10%;
-  right: -10%;
+  top: 10%;
+  right: -5%;
 }
 
-.reg-small-circle {
-  width: 20%;
+.login-small-circle {
+  width: 17%;
   position: absolute;
-  bottom: 10%;
-  left: 5%;
-  background-color: rgba(121, 255, 64, 0.1);
+  bottom: 12%;
+  left: 17%;
+  // background-color: rgba(121, 255, 64, 0.1);
+}
+
+.login-big-circle:after,
+.login-small-circle:after {
+  content: '';
+  padding-top: 100%;
+  display: block;
 }
 
 // .example-container .mat-form-field + .mat-form-field {
@@ -49,19 +56,19 @@
 //   display: none;
 // }
 
-.reg-title {
+.login-title {
   // display: flex;
   padding-bottom: 2rem;
   // justify-content: center;
   text-align: center;
 }
 
-.reg-input,
-.reg-input-inside {
+.login-input,
+.login-input-inside {
   width: 100%;
 }
 
-// .reg-input-inside .p-inputtext,
+// .login-input-inside .p-inputtext,
 // .p-password-input {
 //   width: 100% !important;
 // }
@@ -77,7 +84,7 @@
   background-color: transparent;
 }
 
-.reg-input-inside {
+.login-input-inside {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.8);
 }
@@ -91,7 +98,7 @@
   width: 100%;
 }
 
-.reg-login-wrapper {
+.login-login-wrapper {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -113,7 +120,7 @@
   color: red;
 }
 
-.reg-wrapper {
+.login-wrapper {
   display: flex;
   padding-top: 1.6rem;
   gap: 1rem;
