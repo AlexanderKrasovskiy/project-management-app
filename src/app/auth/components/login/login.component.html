@@ -2,23 +2,23 @@
   [breakpoints]="{
     '920px': { width: '100%', right: '0', left: '0' }
   }"></p-toast>
-<ng-container *transloco="let t; read: 'registration'">
-  <div class="overflow-y-auto md:overflow-y-hidden reg-wrap">
-    <div class="card-simple reg-card shadow-4">
-      <h2 class="font-light reg-title">{{ t('title') }}</h2>
+<ng-container *transloco="let t; read: 'login'">
+  <div class="overflow-y-auto md:overflow-y-hidden login-wrap">
+    <div class="card-simple login-card shadow-4">
+      <h2 class="font-light login-title">{{ t('title') }}</h2>
 
-      <!-- <form
+      <form
         [formGroup]="loginForm"
         (ngSubmit)="onSubmit()"
         #formDirective="ngForm">
         <div class="fields-wrapper p-inputtext-lg">
-          <div class="p-float-label reg-input field">
+          <div class="p-float-label login-input field">
             <input
               type="text"
               formControlName="loginInput"
               id="loginInput"
               pInputText
-              class="reg-input-inside"
+              class="login-input-inside"
               [ngClass]="(loginForm.get('loginInput')?.errors?.['required'] && loginForm.get('loginInput')?.touched) ? 'error-border' : '' "
               formControlName="loginInput" />
             <label for="loginInput">{{ t('login') }}</label>
@@ -29,7 +29,7 @@
             </div>
           </div>
 
-          <span class="p-float-label reg-input mb-3">
+          <span class="p-float-label login-input mb-3">
             <p-password
               [toggleMask]="true"
               id="passwordInput"
@@ -49,7 +49,7 @@
           </span>
         </div>
 
-        <div class="reg-login-wrapper">
+        <div class="login-login-wrapper">
           <button
             pButton
             pRipple
@@ -57,17 +57,17 @@
             type="submit"
             [disabled]="!loginForm.valid"
             class="p-button-raised p-button-secondary button-custom-white"
-            label="{{ t('signup') }}"></button>
+            label="{{ t('Login') }}"></button>
         </div>
-        <div class="reg-wrapper">
-          <p>{{ t('registered') }}</p>
-          <a routerLink="/registration">{{ t('Login') }}</a>
+        <div class="login-wrapper">
+          <p>{{ t('notRegistered') }}</p>
+          <a routerLink="/auth/registration">{{ t('signup') }}</a>
         </div>
-      </form> -->
+      </form>
     </div>
     <div
-      class="hidden md:block circle-with-blur reg-big-circle shadow-4 scale"></div>
+      class="hidden md:block circle-with-blur login-big-circle shadow-4 scale"></div>
     <div
-      class="hidden md:block circle-with-blur reg-small-circle shadow-4 scale"></div>
+      class="hidden md:block circle-with-blur login-small-circle shadow-4 scale"></div>
   </div>
 </ng-container>

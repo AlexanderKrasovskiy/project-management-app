@@ -26,5 +26,14 @@
     "Login": "Login",
     "tooltipPassword": "Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]",
     "signup": "Sign Up"
+  },
+  "login": {
+    "title": "Login",
+    "emptyField": "This field can't be empty",
+    "login": "Enter your login",
+    "password": "Enter a password",
+    "notRegistered": "Not registered yet?",
+    "Login": "Login",
+    "signup": "Sign Up"
   }
 }
