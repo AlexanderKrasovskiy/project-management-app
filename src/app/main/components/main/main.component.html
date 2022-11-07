@@ -22,7 +22,7 @@
           <i class="pi pi-pencil"></i>
         </div>
       </div>
-      <h3 class="board__title">{{ board.title }}</h3>
+      <h3 class="board__title">{{ board.title | slice: 0:20 }}</h3>
     </div>
   </div>
 </main>
