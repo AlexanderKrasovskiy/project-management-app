@@ -3,23 +3,20 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
   .main__title {
-    margin-top: 90px;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 500;
-    font-size: 40px;
     line-height: 97px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 212px;
     height: 70px;
+    margin-top: 90px;
     text-align: center;
   }
   .main__boards {
@@ -53,11 +50,8 @@
         }
       }
       .board__title {
-        font-family: 'Inter';
-        font-style: normal;
         font-weight: 500;
-        font-size: 35px;
-        line-height: 97px;
+        line-height: 37px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -67,6 +61,47 @@
       }
       .pi-plus {
         font-size: 2rem;
+      }
+    }
+  }
+  .inform-card {
+    padding: 2rem;
+    background-image: url('../../../../assets/images/question.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 25rem;
+    width: 95%;
+    position: absolute;
+    top: 170px;
+    .inform-title {
+      padding-bottom: 2rem;
+      text-align: center;
+      padding-bottom: 30px;
+    }
+    .inform-input,
+    .inform-input-inside {
+      width: 100%;
+    }
+    .inform-input-inside {
+      margin-bottom: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .inform-wrapper {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
+      .button-false,
+      .button-true {
+        background-color: rgba(255, 255, 255, 0.8);
+        min-width: 100px;
+      }
+      .button-false {
+        color: #D42323;
+      }
+      .button-true {
+        color: #038B19;
       }
     }
   }

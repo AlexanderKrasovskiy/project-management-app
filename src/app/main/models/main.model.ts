@@ -9,17 +9,9 @@ export interface BoardRequestModel {
   description: string;
 }
 
-export interface LoginRequestModel {
-  login: string;
-  password: string;
-}
-
-export interface UserModel {
+export interface BoardModel {
   id: string;
-  login: string;
-  password: string;
-}
-
-export interface TokenResponseModel {
-  token: string;
+  title: string;
+  description: string;
+  columns: any[];
 }
