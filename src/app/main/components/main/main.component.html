@@ -5,7 +5,7 @@
       class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3 scale"
       pTooltip="Создать новую доску"
       tooltipPosition="bottom"
-      (click)="createNewBoard()">
+      (click)="this.mainService.showModalWindowForCreate()">
       <i class="pi pi-plus"></i>
     </div>
     <div
@@ -18,16 +18,28 @@
           <i class="pi pi-trash"></i>
         </div>
         <div class="setting"><i class="pi pi-cog"></i></div>
-        <div class="setting" (click)="updateBoard(board.id)">
+        <div
+          class="setting"
+          (click)="
+            this.mainService.updateId(board.id);
+            this.mainService.showModalWindowForUpdate()
+          ">
           <i class="pi pi-pencil"></i>
         </div>
       </div>
       <h3 class="board__title">{{ board.title | slice: 0:20 }}</h3>
     </div>
   </section>
-  <section class="inform-card card-simple shadow-4">
-    <h2 class="font-light inform-title">Создать доску?</h2>
-    <form action="">
+  <section
+    class="inform-card card-simple shadow-4"
+    *ngIf="this.mainService.isModalWindow">
+    <h2 class="font-light inform-title">
+      {{ this.mainService.titleModalWindow }}
+    </h2>
+    <form
+      action=""
+      [formGroup]="formMain"
+      (ngSubmit)="formMain.valid && onSubmit()">
       <div class="fields-wrapper p-inputtext-lg">
         <div class="p-float-label inform-input field">
           <input
@@ -35,6 +47,7 @@
             pInputText
             class="inform-input-inside"
             name="nameInput"
+            formControlName="title"
             autocomplete="off" />
           <label for="nameInput">Введите название доски</label>
         </div>
@@ -44,6 +57,7 @@
             pInputText
             class="inform-input-inside"
             name="nameInput"
+            formControlName="description"
             autocomplete="off" />
           <label for="nameInput">Введите описание доски</label>
         </div>
@@ -54,6 +68,7 @@
           pRipple
           color="primary"
           class="p-button-raised p-button-danger button-custom-white button-false"
+          (click)="this.mainService.hideModalWindow()"
           label="Нет"></button>
         <button
           pButton

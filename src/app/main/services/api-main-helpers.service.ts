@@ -35,7 +35,6 @@ export class ApiMainHelpersService {
     id: string,
     payload: BoardRequestModel,
   ): Observable<BoardIDRequestModel> {
-    console.log(id);
     return this.httpClient
       .put<BoardIDRequestModel>(`/boards/${id}`, payload)
       .pipe(
