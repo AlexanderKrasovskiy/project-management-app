@@ -1,0 +1,46 @@
+<main class="board">
+  <section class="board_header">
+    <p-sidebar [(visible)]="display" [style]="sideBarStyles">
+      SideBar Demo
+    </p-sidebar>
+
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-arrow-left"
+      class="p-button-rounded"></button>
+
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-align-left"
+      (click)="display = true"
+      class="p-button-rounded"></button>
+
+    <h4>Board: <span class="board_title">TestSmth</span></h4>
+  </section>
+
+  <section
+    class="board_body"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)">
+    <article cdkDropListGroup class="board_columns">
+      <section
+        class="column card-with-blur"
+        *ngFor="let column of columns"
+        cdkDrag
+        [cdkDragData]="column">
+        <div>Col Header</div>
+
+        <div>CdkDropList</div>
+
+        <div>Col Footer</div>
+      </section>
+    </article>
+
+    <button class="btn_add_column">+ Add Column</button>
+  </section>
+</main>
