@@ -7,6 +7,7 @@ import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
+import { SidebarModule } from 'primeng/sidebar';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
@@ -20,6 +21,7 @@ const PrimeComponents = [
   PasswordModule,
   InputTextModule,
   TooltipModule,
+  SidebarModule,
   ToastModule,
   RippleModule,
 ];
