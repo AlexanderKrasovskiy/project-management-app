@@ -31,7 +31,7 @@
   flex-grow: 1;
   display: flex;
   gap: 10px;
-  padding: 10px;
+  padding: 5px 10px;
   overflow-x: scroll;
   margin-bottom: 60px;
 }
@@ -49,6 +49,7 @@
   cursor: move;
   @media (max-width: 600px) {
     width: 220px;
+    border-radius: 21px;
   }
 }
 
@@ -80,7 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 10px;
+  padding: 10px;
   height: 40px;
 }
 
@@ -96,6 +97,7 @@
   height: 100%;
   text-align: center;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .column_title_edit {
@@ -118,4 +120,23 @@
     gap: 10px;
     cursor: pointer;
   }
+}
+
+.column_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  // gap: 10px;
+  padding: 10px;
+  @media (max-width: 600px) {
+    padding: 10px 2px 1px;
+    justify-content: space-between;
+  }
+}
+
+:host ::ng-deep .p-button-label {
+  flex-shrink: 0;
+  display: flex;
+  // font-size: 12px;
+  font-weight: normal;
 }
