@@ -1,6 +1,6 @@
 <main class="main">
   <h1 class="main__title card-with-blur scale">Доски</h1>
-  <div class="main__boards grid">
+  <section class="main__boards grid">
     <div
       class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3 scale"
       pTooltip="Создать новую доску"
@@ -24,5 +24,45 @@
       </div>
       <h3 class="board__title">{{ board.title | slice: 0:20 }}</h3>
     </div>
-  </div>
+  </section>
+  <section class="inform-card card-simple shadow-4">
+    <h2 class="font-light inform-title">Создать доску?</h2>
+    <form action="">
+      <div class="fields-wrapper p-inputtext-lg">
+        <div class="p-float-label inform-input field">
+          <input
+            type="text"
+            pInputText
+            class="inform-input-inside"
+            name="nameInput"
+            autocomplete="off" />
+          <label for="nameInput">Введите название доски</label>
+        </div>
+        <div class="p-float-label inform-input field">
+          <input
+            type="text"
+            pInputText
+            class="inform-input-inside"
+            name="nameInput"
+            autocomplete="off" />
+          <label for="nameInput">Введите описание доски</label>
+        </div>
+      </div>
+      <div class="inform-wrapper">
+        <button
+          pButton
+          pRipple
+          color="primary"
+          class="p-button-raised p-button-danger button-custom-white button-false"
+          label="Нет"></button>
+        <button
+          pButton
+          pRipple
+          color="primary"
+          type="submit"
+          class="p-button-raised p-button-success button-custom-white button-true"
+          label="Да"></button>
+      </div>
+    </form>
+  </section>
 </main>
