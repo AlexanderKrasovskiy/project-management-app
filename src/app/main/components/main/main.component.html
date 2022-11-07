@@ -2,14 +2,14 @@
   <h1 class="main__title card-with-blur scale">Доски</h1>
   <section class="main__boards grid">
     <div
-      class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3 scale"
+      class="board card-with-blur"
       pTooltip="Создать новую доску"
       tooltipPosition="bottom"
       (click)="this.mainService.showModalWindowForCreate()">
       <i class="pi pi-plus"></i>
     </div>
     <div
-      class="board card-with-blur col-12 sm:col-1 md:col-2 lg:col-3 scale"
+      class="board card-with-blur"
       *ngFor="let board of boards$ | async"
       [pTooltip]="board.description | slice: 0:40"
       tooltipPosition="bottom">
@@ -32,78 +32,78 @@
           <i class="pi pi-pencil"></i>
         </div>
       </div>
-      <h3 class="board__title">{{ board.title | slice: 0:20 }}</h3>
+      <h3 class="board__title">{{ board.title | slice: 0:17 }}</h3>
     </div>
   </section>
-  <section
-    class="inform-card card-simple shadow-4"
-    *ngIf="this.mainService.isModalWindow">
-    <h2 class="font-light inform-title">
-      {{ this.mainService.titleModalWindow }}
-    </h2>
-    <form
-      action=""
-      [formGroup]="formMain"
-      (ngSubmit)="formMain.valid && onSubmit()">
-      <div class="fields-wrapper p-inputtext-lg">
-        <div class="p-float-label inform-input field">
-          <input
-            type="text"
-            pInputText
-            class="inform-input-inside"
-            name="nameInput"
-            formControlName="title"
-            autocomplete="off" />
-          <label for="nameInput">Введите название доски</label>
+  <section class="overlay" *ngIf="this.mainService.isModalWindow">
+    <div class="inform-card card-simple shadow-4">
+      <h2 class="font-light inform-title">
+        {{ this.mainService.titleModalWindow }}
+      </h2>
+      <form
+        action=""
+        [formGroup]="formMain"
+        (ngSubmit)="formMain.valid && onSubmit()">
+        <div class="fields-wrapper p-inputtext-lg">
+          <div class="p-float-label inform-input field">
+            <input
+              type="text"
+              pInputText
+              class="inform-input-inside"
+              name="nameInput"
+              formControlName="title"
+              autocomplete="off" />
+            <label for="nameInput">Введите название доски</label>
+          </div>
+          <div class="p-float-label inform-input field">
+            <input
+              type="text"
+              pInputText
+              class="inform-input-inside"
+              name="nameInput"
+              formControlName="description"
+              autocomplete="off" />
+            <label for="nameInput">Введите описание доски</label>
+          </div>
         </div>
-        <div class="p-float-label inform-input field">
-          <input
-            type="text"
-            pInputText
-            class="inform-input-inside"
-            name="nameInput"
-            formControlName="description"
-            autocomplete="off" />
-          <label for="nameInput">Введите описание доски</label>
+        <div class="inform-wrapper">
+          <button
+            pButton
+            pRipple
+            color="primary"
+            class="p-button-raised p-button-danger button-custom-white button-false"
+            (click)="this.mainService.hideModalWindow()"
+            label="Нет"></button>
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="submit"
+            class="p-button-raised p-button-success button-custom-white button-true"
+            label="Да"></button>
         </div>
-      </div>
+      </form>
+    </div>
+  </section>
+  <section class="overlay" *ngIf="this.mainService.isConfirmationModalWindow">
+    <div class="inform-card card-simple shadow-4">
+      <h2 class="font-light inform-title">Удалить доску?</h2>
       <div class="inform-wrapper">
         <button
           pButton
           pRipple
           color="primary"
           class="p-button-raised p-button-danger button-custom-white button-false"
-          (click)="this.mainService.hideModalWindow()"
+          (click)="this.mainService.hideConfirmationModalWindow()"
           label="Нет"></button>
         <button
           pButton
           pRipple
           color="primary"
-          type="submit"
+          (click)="removeBoard()"
           class="p-button-raised p-button-success button-custom-white button-true"
           label="Да"></button>
       </div>
-    </form>
-  </section>
-  <section
-    class="inform-card card-simple shadow-4"
-    *ngIf="this.mainService.isConfirmationModalWindow">
-    <h2 class="font-light inform-title">Удалить доску?</h2>
-    <div class="inform-wrapper">
-      <button
-        pButton
-        pRipple
-        color="primary"
-        class="p-button-raised p-button-danger button-custom-white button-false"
-        (click)="this.mainService.hideConfirmationModalWindow()"
-        label="Нет"></button>
-      <button
-        pButton
-        pRipple
-        color="primary"
-        (click)="removeBoard()"
-        class="p-button-raised p-button-success button-custom-white button-true"
-        label="Да"></button>
     </div>
   </section>
 </main>
