@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import {
   createBoard,
@@ -7,6 +8,8 @@ import {
   updateBoard,
 } from 'src/app/store/actions/boards.action';
 import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
+import { BoardRequestModel } from '../../models/main.model';
+import { MainService } from '../../services/main.service';
 
 @Component({
   selector: 'app-main',
@@ -14,26 +17,45 @@ import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  constructor(public store: Store) {}
+  formMain: FormGroup = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+  });
+
   boards$ = this.store.select(selectCurrentBoards);
+
+  constructor(private store: Store, public mainService: MainService) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadBoards());
   }
 
-  createNewBoard(): void {
+  onSubmit() {
+    if (this.mainService.titleModalWindow === 'Создать доску?')
+      this.createNewBoard(this.formMain.value);
+    else this.updateBoard(this.mainService.idBoard, this.formMain.value);
+    this.formMain.reset();
+    this.mainService.isModalWindow = false;
+  }
+
+  removeBoard() {
+    this.deleteBoard(this.mainService.idBoard);
+    this.mainService.isConfirmationModalWindow = false;
+  }
+
+  createNewBoard(board: BoardRequestModel): void {
     this.store.dispatch(
       createBoard({
-        newBoard: { title: 'new board 5', description: 'app board' },
+        newBoard: board,
       }),
     );
   }
 
-  updateBoard(id: string): void {
+  updateBoard(id: string, board: BoardRequestModel): void {
     this.store.dispatch(
       updateBoard({
         id,
-        newBoard: { title: 'new board 7', description: 'app board' },
+        newBoard: board,
       }),
     );
   }
