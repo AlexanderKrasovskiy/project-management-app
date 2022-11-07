@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { fromEvent } from 'rxjs';
+import { AuthService } from '../auth/services/auth.service';
+import { IsBoardsService } from '../auth/services/is-boards.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +21,8 @@ export class HeaderComponent implements OnInit {
     // @inject(DOCUMENT) private document: Document,
     private transloco: TranslocoService,
     private router: Router,
+    public authService: AuthService,
+    public isBoardsService: IsBoardsService,
   ) {
     this.stateOptions = [
       { label: 'En', value: 'en' },
@@ -45,5 +49,9 @@ export class HeaderComponent implements OnInit {
 
   authPage() {
     this.router.navigate(['/registration']);
+  }
+
+  loginPage() {
+    this.router.navigate(['/login']);
   }
 }

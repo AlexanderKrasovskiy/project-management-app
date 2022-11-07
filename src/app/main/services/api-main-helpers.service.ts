@@ -17,6 +17,31 @@ export class ApiMainHelpersService {
     );
   }
 
+  deleteBoard(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`/boards/${id}`).pipe(
+      retry(4),
+      catchError((error) => {
+        console.log('[ERROR]: ', error);
+        return EMPTY;
+      }),
+    );
+  }
+
+  updateBoard(
+    id: string,
+    payload: BoardRequestModel,
+  ): Observable<BoardIDRequestModel> {
+    return this.httpClient
+      .put<BoardIDRequestModel>(`/boards/${id}`, payload)
+      .pipe(
+        retry(4),
+        catchError((error) => {
+          console.log('[ERROR]: ', error);
+          return EMPTY;
+        }),
+      );
+  }
+
   getAllBoards(): Observable<BoardIDRequestModel[]> {
     return this.httpClient.get<BoardIDRequestModel[]>('/boards').pipe(
       retry(4),
