@@ -24,4 +24,10 @@ export class DetailsPageComponent {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
     // console.log('AFTER: ', this.columns);
   }
+
+  isEditable = false;
+
+  toggleEdit() {
+    this.isEditable = !this.isEditable;
+  }
 }

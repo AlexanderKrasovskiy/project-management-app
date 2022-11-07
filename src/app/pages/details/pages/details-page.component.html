@@ -33,11 +33,25 @@
         *ngFor="let column of columns"
         cdkDrag
         [cdkDragData]="column">
-        <div>Col Header</div>
+        <div class="column_title">
+          <div
+            class="column_title_text"
+            [ngClass]="{ hidden: isEditable }"
+            (click)="toggleEdit()">
+            {{ column }}
+          </div>
+          <div class="column_title_edit" [ngClass]="{ hidden: !isEditable }">
+            <input type="text" pInputText [value]="column" />
+            <div class="edit_btns">
+              <i class="pi pi-check"></i>
+              <i class="pi pi-times" (click)="toggleEdit()"></i>
+            </div>
+          </div>
+        </div>
 
         <div>CdkDropList</div>
 
-        <div>Col Footer</div>
+        <div class="column_footer">Col Footer</div>
       </section>
     </article>
 
