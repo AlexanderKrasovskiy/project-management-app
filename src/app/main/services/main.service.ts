@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
+import { deleteBoard } from 'src/app/store/actions/boards.action';
 
 @Injectable()
 export class MainService {
   isModalWindow: boolean = false;
-  isConfirmationModalWindow: boolean = false;
   titleModalWindow: string = '';
   idBoard: string = '';
+
+  constructor(
+    private store: Store,
+    public confirmationService: ConfirmationModalService,
+  ) {}
 
   showModalWindowForCreate(): void {
     this.isModalWindow = true;
@@ -17,19 +24,22 @@ export class MainService {
     this.titleModalWindow = 'Обновить доску?';
   }
 
-  hideModalWindow(): void {
-    this.isModalWindow = false;
-  }
-
   showConfirmationModalWindow(): void {
-    this.isConfirmationModalWindow = true;
-  }
-
-  hideConfirmationModalWindow(): void {
-    this.isConfirmationModalWindow = false;
+    this.confirmationService.isConfirmationModalBoard = true;
+    this.confirmationService.title = 'доску';
   }
 
   updateId(id: string) {
     this.idBoard = id;
+  }
+
+  deleteBoard(id: string): void {
+    this.store.dispatch(deleteBoard({ id }));
+  }
+
+  removeBoard() {
+    this.deleteBoard(this.idBoard);
+    this.confirmationService.isConfirmationModalBoard = false;
+    this.confirmationService.title = '';
   }
 }
