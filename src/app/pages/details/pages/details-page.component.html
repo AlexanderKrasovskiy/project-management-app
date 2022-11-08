@@ -1,97 +1,13 @@
 <main class="board">
-  <section class="board_header">
-    <p-sidebar [(visible)]="displaySide" [style]="sideBarStyles">
-      SideBar Demo
-    </p-sidebar>
-
-    <button
-      pButton
-      pRipple
-      type="button"
-      icon="pi pi-arrow-left"
-      class="p-button-rounded"></button>
-
-    <button
-      pButton
-      pRipple
-      type="button"
-      icon="pi pi-align-left"
-      (click)="displaySide = true"
-      class="p-button-rounded"></button>
-
-    <h4>
-      Board:
-      <span class="board_title"
-        >TestSmthTestSmthTestSmthTestSmthTestSmthTestSmth</span
-      >
-    </h4>
-  </section>
+  <app-board-header></app-board-header>
 
   <section
     class="board_body"
     cdkDropList
     cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="dropCols($event)">
+    (cdkDropListDropped)="dropCols($event, columns)">
     <article cdkDropListGroup class="board_columns">
-      <section
-        class="column card-with-blur"
-        *ngFor="let column of columns"
-        cdkDrag
-        [cdkDragData]="column">
-        <div class="column_title">
-          <div
-            class="column_title_text"
-            [ngClass]="{ hidden: isEditable }"
-            (click)="toggleEdit()">
-            {{ column }}
-          </div>
-          <div class="column_title_edit" [ngClass]="{ hidden: !isEditable }">
-            <input type="text" pInputText [value]="column" />
-            <div class="edit_btns">
-              <i class="pi pi-check"></i>
-              <i class="pi pi-times" (click)="toggleEdit()"></i>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="column_body"
-          cdkDropList
-          [cdkDropListData]="tasks"
-          (cdkDropListDropped)="dropTask($event)">
-          <div
-            class="task"
-            *ngFor="let task of tasks"
-            cdkDrag
-            [cdkDragData]="task">
-            <div class="task_title">
-              {{ task }} Task Title Task Title Task Title Task Title
-            </div>
-            <button
-              pButton
-              pRipple
-              type="button"
-              icon="pi pi-trash"
-              class="task_btn p-button-rounded p-button-danger p-button-outlined"></button>
-          </div>
-        </div>
-
-        <div class="column_footer">
-          <button
-            pButton
-            pRipple
-            icon="pi pi-plus"
-            type="button"
-            label="Добавить Задачу"
-            class="p-button-rounded p-button-sm"></button>
-          <button
-            pButton
-            pRipple
-            type="button"
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-danger p-button-outlined"></button>
-        </div>
-      </section>
+      <app-column *ngFor="let column of columns" [column]="column"></app-column>
     </article>
 
     <button pRipple class="btn_add_column">+ Add Column</button>

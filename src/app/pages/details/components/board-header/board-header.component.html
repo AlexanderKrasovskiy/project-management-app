@@ -1,0 +1,27 @@
+<section class="board_header">
+  <p-sidebar [(visible)]="displaySide" [style]="sideBarStyles">
+    SideBar Demo
+  </p-sidebar>
+
+  <button
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-arrow-left"
+    class="p-button-rounded"></button>
+
+  <button
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-align-left"
+    (click)="displaySide = true"
+    class="p-button-rounded"></button>
+
+  <h4>
+    Board:
+    <span class="board_title"
+      >TestSmthTestSmthTestSmthTestSmthTestSmthTestSmth</span
+    >
+  </h4>
+</section>

@@ -1,0 +1,20 @@
+.board_header {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.board_header > h4 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 45%;
+}
+
+.board_title {
+  color: coral;
+  flex-grow: 0;
+}
