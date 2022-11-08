@@ -1,0 +1,121 @@
+.update-wrap {
+  background-image: url('../../../../assets/images/update-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.update-card {
+  padding: 2rem;
+  background-image: url('../../../../assets/images/update-leaf-03.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 30rem;
+  width: 95%;
+  justify-content: center;
+}
+
+.update-big-circle {
+  width: 35%;
+  position: absolute;
+  bottom: 0;
+  right: -10%;
+}
+
+.update-small-circle {
+  width: 23%;
+  position: absolute;
+  bottom: 10%;
+  left: 1%;
+}
+
+// .example-container .mat-form-field + .mat-form-field {
+//   margin-left: 8px;
+// }
+
+// .example-right-align {
+//   text-align: right;
+// }
+
+// input.example-right-align::-webkit-outer-spin-button,
+// input.example-right-align::-webkit-inner-spin-button {
+//   display: none;
+// }
+
+.update-title {
+  // display: flex;
+  padding-bottom: 2rem;
+  // justify-content: center;
+  text-align: center;
+}
+
+.update-input,
+.update-input-inside {
+  width: 100%;
+}
+
+// .update-input-inside .p-inputtext,
+// .p-password-input {
+//   width: 100% !important;
+// }
+
+.fields-wrapper .p-component {
+  width: 93%;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.fields-wrapper .p-inputwrapper {
+  width: 100%;
+  background-color: transparent;
+}
+
+.update-input-inside {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.update-login-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.input-error {
+  color: red;
+  font-size: 0.6rem;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.error-border {
+  border-color: red;
+  color: red;
+}
+
+.update-wrapper {
+  display: flex;
+  padding-top: 1.6rem;
+  gap: 1rem;
+  justify-content: center;
+  font-size: 0.9rem;
+}

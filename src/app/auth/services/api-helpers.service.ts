@@ -3,10 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable, retry, catchError, EMPTY } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import {
+  GetUserModel,
   LoginRequestModel,
   RegisterRequestModel,
   TokenResponseModel,
-  UserModel,
+  // UserModel,
 } from '../models/auth.model';
 
 // @Injectable({
@@ -19,11 +20,11 @@ export class ApiHelpersService {
     private messageService: MessageService,
   ) {}
 
-  register(payload: RegisterRequestModel): Observable<UserModel> {
+  public register(payload: RegisterRequestModel): Observable<GetUserModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
-      .post<UserModel>('/signup', payload, {
+      .post<GetUserModel>('/signup', payload, {
         headers: header,
       })
       .pipe(
@@ -41,7 +42,7 @@ export class ApiHelpersService {
       );
   }
 
-  login(payload: LoginRequestModel): Observable<TokenResponseModel> {
+  public login(payload: LoginRequestModel): Observable<TokenResponseModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
@@ -60,5 +61,38 @@ export class ApiHelpersService {
           return EMPTY;
         }),
       );
+  }
+
+  public user(id: string): Observable<GetUserModel> {
+    return this.httpClient.get<GetUserModel>(`/users/${id}`).pipe(
+      retry(4),
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Can not find user :(',
+          life: 5000,
+        });
+        return EMPTY;
+      }),
+    );
+  }
+
+  public update(
+    id: string,
+    payload: RegisterRequestModel,
+  ): Observable<GetUserModel> {
+    return this.httpClient.put<GetUserModel>(`/users/${id}`, payload).pipe(
+      retry(4),
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Can not update user :(',
+          life: 5000,
+        });
+        return EMPTY;
+      }),
+    );
   }
 }

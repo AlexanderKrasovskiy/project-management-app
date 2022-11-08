@@ -7,9 +7,10 @@ import { TranslocoRootModule } from '../transloco-root.module';
 import { SharedModule } from '../shared/shared.module';
 import { RegComponent } from './components/reg/reg.component';
 import { LoginComponent } from './components/login/login.component';
+import { UpdateComponent } from './components/update/update.component';
 
 @NgModule({
-  declarations: [RegComponent, LoginComponent],
+  declarations: [RegComponent, LoginComponent, UpdateComponent],
   imports: [CommonModule, AuthRoutingModule, SharedModule, TranslocoRootModule],
   providers: [ApiHelpersService, ApiControlService],
 })
