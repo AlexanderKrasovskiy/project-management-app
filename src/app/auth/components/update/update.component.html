@@ -1,0 +1,111 @@
+<p-toast
+  [breakpoints]="{
+    '920px': { width: '100%', right: '0', left: '0' }
+  }"></p-toast>
+<ng-container *transloco="let t; read: 'registration'">
+  <div class="overflow-y-auto md:overflow-y-hidden update-wrap">
+    <div class="card-simple update-card shadow-4">
+      <h2 class="font-light update-title">{{ t('title') }}</h2>
+
+      <form
+        [formGroup]="updateForm"
+        (ngSubmit)="onSubmit()"
+        #formDirective="ngForm">
+        <div class="fields-wrapper p-inputtext-lg">
+          <div class="p-float-label update-input field">
+            <input
+              type="text"
+              name="nameInput"
+              formControlName="nameInput"
+              id="nameInput"
+              pInputText
+              class="update-input-inside"
+              [ngClass]="(updateForm.get('nameInput')?.errors?.['required'] && updateForm.get('nameInput')?.touched) ? 'error-border' : '' "
+              formControlName="nameInput" />
+            <label for="nameInput">{{ t('name') }}</label>
+            <div
+              class="input-error"
+              *ngIf="updateForm.get('nameInput')?.errors?.['required'] && (updateForm.get('nameInput')?.dirty || updateForm.get('nameInput')?.touched)">
+              {{ t('emptyField') }}
+            </div>
+          </div>
+
+          <div class="p-float-label update-input field">
+            <input
+              type="text"
+              formControlName="loginInput"
+              id="loginInput"
+              pInputText
+              class="update-input-inside"
+              [ngClass]="(updateForm.get('loginInput')?.errors?.['required'] && updateForm.get('loginInput')?.touched) ? 'error-border' : '' "
+              formControlName="loginInput" />
+            <label for="loginInput">{{ t('login') }}</label>
+            <div
+              class="input-error"
+              *ngIf="updateForm.get('loginInput')?.errors?.['required'] && (updateForm.get('loginInput')?.dirty || updateForm.get('loginInput')?.touched)">
+              {{ t('emptyField') }}
+            </div>
+          </div>
+
+          <span class="p-float-label update-input mb-3">
+            <p-password
+              [toggleMask]="true"
+              id="passwordInput"
+              formControlName="passwordInput"
+              pTooltip="{{ t('tooltipPassword') }}">
+            </p-password>
+            <label for="passwordInput">{{ t('password') }}</label>
+            <div
+              class="input-error"
+              *ngIf="!updateForm.get('passwordInput')?.errors?.['required'] && updateForm.errors?.['notIdenticalPassword'] && (updateForm.get('passwordInput')?.dirty || updateForm.get('passwordInput')?.touched) && (updateForm.get('twicePasswordInput')?.dirty || updateForm.get('twicePasswordInput')?.touched)">
+              {{ t('identicalPassword') }}
+            </div>
+            <div
+              class="input-error"
+              *ngIf="updateForm.get('passwordInput')?.errors?.['required'] && (updateForm.get('passwordInput')?.dirty || updateForm.get('passwordInput')?.touched) ">
+              {{ t('emptyField') }}
+            </div>
+          </span>
+
+          <span class="p-float-label update-input">
+            <p-password
+              [toggleMask]="true"
+              id="twicePasswordInput"
+              formControlName="twicePasswordInput"
+              pTooltip="Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]"></p-password>
+            <label for="passwordInput">{{ t('repeatPassword') }}</label>
+            <div
+              class="input-error"
+              *ngIf="!updateForm.get('twicePasswordInput')?.errors?.['required'] && updateForm.errors?.['notIdenticalPassword'] && (updateForm.get('passwordInput')?.dirty || updateForm.get('passwordInput')?.touched) && (updateForm.get('twicePasswordInput')?.dirty || updateForm.get('twicePasswordInput')?.touched)">
+              {{ t('identicalPassword') }}
+            </div>
+            <div
+              class="input-error"
+              *ngIf="updateForm.get('twicePasswordInput')?.errors?.['required'] && (updateForm.get('twicePasswordInput')?.dirty || updateForm.get('twicePasswordInput')?.touched) ">
+              {{ t('emptyField') }}
+            </div>
+          </span>
+        </div>
+
+        <div class="update-login-wrapper">
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="submit"
+            [disabled]="!updateForm.valid"
+            class="p-button-raised p-button-secondary button-custom-white"
+            label="{{ t('signup') }}"></button>
+        </div>
+        <div class="update-wrapper">
+          <p>{{ t('registered') }}</p>
+          <a routerLink="/login">{{ t('Login') }}</a>
+        </div>
+      </form>
+    </div>
+    <div
+      class="hidden md:block circle-with-blur update-big-circle shadow-4 scale"></div>
+    <div
+      class="hidden md:block circle-with-blur update-small-circle shadow-4 scale"></div>
+  </div>
+</ng-container>

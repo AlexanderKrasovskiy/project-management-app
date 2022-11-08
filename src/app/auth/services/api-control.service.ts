@@ -6,7 +6,7 @@ import {
   // ParsedToken,
   RegisterRequestModel,
   TokenResponseModel,
-  UserModel,
+  // UserModel,
 } from '../models/auth.model';
 // import { parseJwt } from '../utils/parse-token.util';
 import { ApiHelpersService } from './api-helpers.service';
@@ -19,7 +19,7 @@ export class ApiControlService {
     private authService: AuthService,
   ) {}
 
-  public loginUp(user: RegisterRequestModel): Observable<UserModel> {
+  public loginUp(user: RegisterRequestModel): Observable<GetUserModel> {
     return this.apiHelpers.register(user).pipe(tap(() => {}));
   }
 
@@ -41,6 +41,17 @@ export class ApiControlService {
 
   public getUser(id: string): Observable<GetUserModel> {
     return this.apiHelpers.user(id).pipe(
+      tap((res) => {
+        this.authService.setUser(res);
+      }),
+    );
+  }
+
+  public updateUser(
+    id: string,
+    user: RegisterRequestModel,
+  ): Observable<GetUserModel> {
+    return this.apiHelpers.update(id, user).pipe(
       tap((res) => {
         this.authService.setUser(res);
       }),

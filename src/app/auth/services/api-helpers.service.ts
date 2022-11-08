@@ -7,7 +7,7 @@ import {
   LoginRequestModel,
   RegisterRequestModel,
   TokenResponseModel,
-  UserModel,
+  // UserModel,
 } from '../models/auth.model';
 
 // @Injectable({
@@ -20,11 +20,11 @@ export class ApiHelpersService {
     private messageService: MessageService,
   ) {}
 
-  public register(payload: RegisterRequestModel): Observable<UserModel> {
+  public register(payload: RegisterRequestModel): Observable<GetUserModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
-      .post<UserModel>('/signup', payload, {
+      .post<GetUserModel>('/signup', payload, {
         headers: header,
       })
       .pipe(
@@ -78,11 +78,11 @@ export class ApiHelpersService {
     );
   }
 
-  public updateUser(
+  public update(
     id: string,
     payload: RegisterRequestModel,
-  ): Observable<UserModel> {
-    return this.httpClient.put<UserModel>(`/users/${id}`, payload).pipe(
+  ): Observable<GetUserModel> {
+    return this.httpClient.put<GetUserModel>(`/users/${id}`, payload).pipe(
       retry(4),
       catchError(() => {
         this.messageService.add({
