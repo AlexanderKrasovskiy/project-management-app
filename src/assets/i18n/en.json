@@ -47,5 +47,17 @@
     "delete": "Delete profile",
     "tooltipPassword": "Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]",
     "update": "Update"
+  },
+  "main": {
+    "title": "All boards",
+    "createNewBoard": "Create a new board",
+    "titleBoard": "Enter a board title",
+    "descriptionBoard": "Enter a board description",
+    "true": "Yes",
+    "false": "No"
+  },
+  "confirmation": {
+    "true": "Remove",
+    "false": "Cancel"
   }
 }
