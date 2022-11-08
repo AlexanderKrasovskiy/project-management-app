@@ -1,6 +1,6 @@
 <main class="board">
   <section class="board_header">
-    <p-sidebar [(visible)]="display" [style]="sideBarStyles">
+    <p-sidebar [(visible)]="displaySide" [style]="sideBarStyles">
       SideBar Demo
     </p-sidebar>
 
@@ -16,17 +16,22 @@
       pRipple
       type="button"
       icon="pi pi-align-left"
-      (click)="display = true"
+      (click)="displaySide = true"
       class="p-button-rounded"></button>
 
-    <h4>Board: <span class="board_title">TestSmth</span></h4>
+    <h4>
+      Board:
+      <span class="board_title"
+        >TestSmthTestSmthTestSmthTestSmthTestSmthTestSmth</span
+      >
+    </h4>
   </section>
 
   <section
     class="board_body"
     cdkDropList
     cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="drop($event)">
+    (cdkDropListDropped)="dropCols($event)">
     <article cdkDropListGroup class="board_columns">
       <section
         class="column card-with-blur"
@@ -49,7 +54,27 @@
           </div>
         </div>
 
-        <div>CdkDropList</div>
+        <div
+          class="column_body"
+          cdkDropList
+          [cdkDropListData]="tasks"
+          (cdkDropListDropped)="dropTask($event)">
+          <div
+            class="task"
+            *ngFor="let task of tasks"
+            cdkDrag
+            [cdkDragData]="task">
+            <div class="task_title">
+              {{ task }} Task Title Task Title Task Title Task Title
+            </div>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-trash"
+              class="task_btn p-button-rounded p-button-danger p-button-outlined"></button>
+          </div>
+        </div>
 
         <div class="column_footer">
           <button
@@ -69,6 +94,6 @@
       </section>
     </article>
 
-    <button class="btn_add_column">+ Add Column</button>
+    <button pRipple class="btn_add_column">+ Add Column</button>
   </section>
 </main>
