@@ -35,5 +35,17 @@
     "notRegistered": "Not registered yet?",
     "Login": "Login",
     "signup": "Sign Up"
+  },
+  "update": {
+    "title": "Profile modification",
+    "name": "Enter your name",
+    "emptyField": "This field can't be empty",
+    "login": "Enter your login",
+    "password": "Enter a password",
+    "identicalPassword": "Both passwords must be identical",
+    "repeatPassword": "Repeat a password",
+    "delete": "Delete profile",
+    "tooltipPassword": "Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]",
+    "update": "Update"
   }
 }

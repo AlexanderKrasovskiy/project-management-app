@@ -2,7 +2,7 @@
   [breakpoints]="{
     '920px': { width: '100%', right: '0', left: '0' }
   }"></p-toast>
-<ng-container *transloco="let t; read: 'registration'">
+<ng-container *transloco="let t; read: 'update'">
   <div class="overflow-y-auto md:overflow-y-hidden update-wrap">
     <div class="card-simple update-card shadow-4">
       <h2 class="font-light update-title">{{ t('title') }}</h2>
@@ -95,11 +95,10 @@
             type="submit"
             [disabled]="!updateForm.valid"
             class="p-button-raised p-button-secondary button-custom-white"
-            label="{{ t('signup') }}"></button>
+            label="{{ t('update') }}"></button>
         </div>
         <div class="update-wrapper">
-          <p>{{ t('registered') }}</p>
-          <a routerLink="/login">{{ t('Login') }}</a>
+          <a routerLink="">{{ t('delete') }}</a>
         </div>
       </form>
     </div>
