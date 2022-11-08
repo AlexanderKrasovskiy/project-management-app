@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, retry, catchError, EMPTY } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import {
+  GetUserModel,
   LoginRequestModel,
   RegisterRequestModel,
   TokenResponseModel,
@@ -60,5 +61,20 @@ export class ApiHelpersService {
           return EMPTY;
         }),
       );
+  }
+
+  user(id: string): Observable<GetUserModel> {
+    return this.httpClient.get<GetUserModel>(`/users/${id}`).pipe(
+      retry(4),
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Can not find user :(',
+          life: 5000,
+        });
+        return EMPTY;
+      }),
+    );
   }
 }
