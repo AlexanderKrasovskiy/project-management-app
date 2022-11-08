@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
       isUserLoggedValue = value;
     });
     if (isUserLoggedValue === false) {
-      this.router.navigate(['registration']);
+      this.router.navigate(['/auth/login']);
     }
     return isUserLoggedValue;
   }
