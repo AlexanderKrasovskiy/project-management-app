@@ -20,7 +20,7 @@ export class ApiHelpersService {
     private messageService: MessageService,
   ) {}
 
-  register(payload: RegisterRequestModel): Observable<UserModel> {
+  public register(payload: RegisterRequestModel): Observable<UserModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
@@ -42,7 +42,7 @@ export class ApiHelpersService {
       );
   }
 
-  login(payload: LoginRequestModel): Observable<TokenResponseModel> {
+  public login(payload: LoginRequestModel): Observable<TokenResponseModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
@@ -63,7 +63,7 @@ export class ApiHelpersService {
       );
   }
 
-  user(id: string): Observable<GetUserModel> {
+  public user(id: string): Observable<GetUserModel> {
     return this.httpClient.get<GetUserModel>(`/users/${id}`).pipe(
       retry(4),
       catchError(() => {
@@ -71,6 +71,24 @@ export class ApiHelpersService {
           severity: 'error',
           summary: 'Error',
           detail: 'Can not find user :(',
+          life: 5000,
+        });
+        return EMPTY;
+      }),
+    );
+  }
+
+  public updateUser(
+    id: string,
+    payload: RegisterRequestModel,
+  ): Observable<UserModel> {
+    return this.httpClient.put<UserModel>(`/users/${id}`, payload).pipe(
+      retry(4),
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Can not update user :(',
           life: 5000,
         });
         return EMPTY;

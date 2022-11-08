@@ -16,6 +16,7 @@ import {
 } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
 import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
+import { parseJwt } from '../../utils/parse-token.util';
 // import { PasswordErrors } from 'src/app/shared/models/common.model';
 
 @Component({
@@ -53,7 +54,8 @@ export class RegComponent implements OnInit {
         detail: 'Successful registration!',
         life: 5000,
       });
-      this.apiControlService.loginIn(loginUser).subscribe(() => {
+      this.apiControlService.loginIn(loginUser).subscribe((res) => {
+        this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
         this.messageService.add({
           severity: 'success',
           summary: 'Success',

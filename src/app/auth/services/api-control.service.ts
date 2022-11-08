@@ -3,12 +3,12 @@ import { Observable, tap } from 'rxjs';
 import {
   GetUserModel,
   LoginRequestModel,
-  ParsedToken,
+  // ParsedToken,
   RegisterRequestModel,
   TokenResponseModel,
   UserModel,
 } from '../models/auth.model';
-import { parseJwt } from '../utils/parse-token.util';
+// import { parseJwt } from '../utils/parse-token.util';
 import { ApiHelpersService } from './api-helpers.service';
 import { AuthService } from './auth.service';
 
@@ -27,15 +27,23 @@ export class ApiControlService {
     return this.apiHelpers.login(user).pipe(
       tap((results) => {
         this.authService.setToken(results);
-        const parsedToken: ParsedToken = parseJwt(results.token);
-        this.getUser(parsedToken.userId).subscribe((res) => {
-          this.authService.setUser(res);
-        });
+        // const parsedToken: ParsedToken = parseJwt(results.token);
+        // this.getUser(parseJwt(results.token).userId).subscribe();
+        //    const parsedToken: ParsedToken = parseJwt(results.token);
+        // this.getUser(parsedToken.userId).pipe(
+        //   tap((res) => {
+        //     this.authService.setUser(res);
+        //   }),
+        //        );
       }),
     );
   }
 
   public getUser(id: string): Observable<GetUserModel> {
-    return this.apiHelpers.user(id).pipe(tap(() => {}));
+    return this.apiHelpers.user(id).pipe(
+      tap((res) => {
+        this.authService.setUser(res);
+      }),
+    );
   }
 }
