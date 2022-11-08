@@ -2,14 +2,14 @@
   <h1 class="main__title card-with-blur scale">Доски</h1>
   <section class="main__boards grid">
     <div
-      class="board card-with-blur"
+      class="board card-with-blur scale"
       pTooltip="Создать новую доску"
       tooltipPosition="bottom"
       (click)="this.mainService.showModalWindowForCreate()">
       <i class="pi pi-plus"></i>
     </div>
     <div
-      class="board card-with-blur"
+      class="board card-with-blur scale"
       *ngFor="let board of boards$ | async"
       [pTooltip]="board.description | slice: 0:40"
       tooltipPosition="bottom">
@@ -86,25 +86,8 @@
       </form>
     </div>
   </section>
-  <section class="overlay" *ngIf="this.mainService.isConfirmationModalWindow">
-    <div class="inform-card card-simple shadow-4">
-      <h2 class="font-light inform-title">Удалить доску?</h2>
-      <div class="inform-wrapper">
-        <button
-          pButton
-          pRipple
-          color="primary"
-          class="p-button-raised p-button-danger button-custom-white button-false"
-          (click)="this.mainService.hideConfirmationModalWindow()"
-          label="Нет"></button>
-        <button
-          pButton
-          pRipple
-          color="primary"
-          (click)="removeBoard()"
-          class="p-button-raised p-button-success button-custom-white button-true"
-          label="Да"></button>
-      </div>
-    </div>
-  </section>
+  <app-confirmation-modal
+    *ngIf="
+      this.confirmationService.isConfirmationModalBoard
+    "></app-confirmation-modal>
 </main>

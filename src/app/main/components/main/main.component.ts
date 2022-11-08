@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import {
   createBoard,
-  deleteBoard,
   loadBoards,
   updateBoard,
 } from 'src/app/store/actions/boards.action';
@@ -24,7 +24,11 @@ export class MainComponent implements OnInit {
 
   boards$ = this.store.select(selectCurrentBoards);
 
-  constructor(private store: Store, public mainService: MainService) {}
+  constructor(
+    private store: Store,
+    public mainService: MainService,
+    public confirmationService: ConfirmationModalService,
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadBoards());
@@ -36,11 +40,6 @@ export class MainComponent implements OnInit {
     else this.updateBoard(this.mainService.idBoard, this.formMain.value);
     this.formMain.reset();
     this.mainService.isModalWindow = false;
-  }
-
-  removeBoard() {
-    this.deleteBoard(this.mainService.idBoard);
-    this.mainService.isConfirmationModalWindow = false;
   }
 
   createNewBoard(board: BoardRequestModel): void {
@@ -58,10 +57,6 @@ export class MainComponent implements OnInit {
         newBoard: board,
       }),
     );
-  }
-
-  deleteBoard(id: string): void {
-    this.store.dispatch(deleteBoard({ id }));
   }
 
   hideModalWindow(): void {

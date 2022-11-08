@@ -1,0 +1,43 @@
+.overlay {
+  z-index: 3;
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  .inform-card {
+    z-index: 4;
+    padding: 2rem;
+    background-image: url('../../../../assets/images/question.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 25rem;
+    width: 95%;
+    position: absolute;
+    top: 170px;
+    .inform-title {
+      padding-bottom: 2rem;
+      text-align: center;
+      padding-bottom: 30px;
+    }
+    .inform-wrapper {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
+      .button-false,
+      .button-true {
+        background-color: rgba(255, 255, 255, 0.8);
+        min-width: 100px;
+      }
+      .button-false {
+        color: #D42323;
+      }
+      .button-true {
+        color: #038B19;
+      }
+    }
+  }
+}
