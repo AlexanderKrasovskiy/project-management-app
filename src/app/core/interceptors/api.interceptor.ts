@@ -37,7 +37,9 @@ export class ApiInterceptor implements HttpInterceptor {
             // this.store.dispatch(UserAction.ClearData());
           }
 
-          return throwError(() => new Error('test'));
+          // return throwError(() => new Error('test'));
+          console.error(error);
+          return throwError(() => error);
         }),
       );
   }

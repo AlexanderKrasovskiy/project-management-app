@@ -1,0 +1,41 @@
+<section class="column card-with-blur" cdkDrag [cdkDragData]="column">
+  <div class="column_title">
+    <div
+      class="column_title_text"
+      [ngClass]="{ hidden: isEditable }"
+      (click)="toggleEdit()">
+      {{ column }}
+    </div>
+    <div class="column_title_edit" [ngClass]="{ hidden: !isEditable }">
+      <input type="text" pInputText [value]="column" />
+      <div class="edit_btns">
+        <i class="pi pi-check"></i>
+        <i class="pi pi-times" (click)="toggleEdit()"></i>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="column_body"
+    cdkDropList
+    [cdkDropListData]="tasks"
+    (cdkDropListDropped)="dropTask($event)">
+    <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+  </div>
+
+  <div class="column_footer">
+    <button
+      pButton
+      pRipple
+      icon="pi pi-plus"
+      type="button"
+      label="Добавить Задачу"
+      class="p-button-rounded p-button-sm"></button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-trash"
+      class="p-button-rounded p-button-danger p-button-outlined"></button>
+  </div>
+</section>

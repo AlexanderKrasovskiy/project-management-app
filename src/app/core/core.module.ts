@@ -14,6 +14,9 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
 import { allBoardsReducer } from '../store/reducers/boards.reducer';
 import { BoardsEffects } from '../store/effects/boards.effect';
 import { ApiMainHelpersService } from '../main/services/api-main-helpers.service';
+import { currentBoardReducer } from '../store/reducers/details.reducer';
+import { DetailsEffects } from '../store/effects/details.effects';
+import { DetailsService } from '../pages/details/services/details.service';
 // import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -23,12 +26,13 @@ import { ApiMainHelpersService } from '../main/services/api-main-helpers.service
     HttpClientModule,
     StoreModule.forRoot({
       boards: allBoardsReducer,
+      currentBoard: currentBoardReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([BoardsEffects]),
+    EffectsModule.forRoot([BoardsEffects, DetailsEffects]),
     TranslocoRootModule,
     // SharedModule,
   ],
@@ -41,6 +45,7 @@ import { ApiMainHelpersService } from '../main/services/api-main-helpers.service
       multi: true,
     },
     MessageService,
+    DetailsService,
   ],
 })
 export class CoreModule {}
