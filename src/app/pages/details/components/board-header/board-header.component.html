@@ -3,12 +3,13 @@
     SideBar Demo
   </p-sidebar>
 
-  <button
+  <a
     pButton
     pRipple
     type="button"
     icon="pi pi-arrow-left"
-    class="p-button-rounded"></button>
+    routerLink="/boards"
+    class="back_btn p-button-rounded"></a>
 
   <button
     pButton
@@ -20,8 +21,6 @@
 
   <h4>
     Board:
-    <span class="board_title"
-      >TestSmthTestSmthTestSmthTestSmthTestSmthTestSmth</span
-    >
+    <span class="board_title">{{ boardTitle$ | async }}</span>
   </h4>
 </section>
