@@ -11,7 +11,7 @@ import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { LoginRequestModel } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
 import { generateLoginUser } from '../../utils/generate.util';
-import { parseJwt } from '../../utils/parse-token.util';
+// import { parseJwt } from '../../utils/parse-token.util';
 // import { parseJwt } from '../../utils/parse-token.util';
 
 @Component({
@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
       this.loginForm.value,
     );
 
-    this.apiControlService.loginIn(loginUser).subscribe((res) => {
-      this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
+    this.apiControlService.loginIn(loginUser).subscribe(() => {
+      // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
       this.messageService.add({
         severity: 'success',
         summary: 'Success',

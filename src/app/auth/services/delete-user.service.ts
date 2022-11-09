@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { parseJwt } from '../utils/parse-token.util';
@@ -18,6 +19,7 @@ export class DeleteUserService {
     public authService: AuthService,
     private apiControlService: ApiControlService,
     private messageService: MessageService,
+    private translocoService: TranslocoService,
   ) {}
 
   // showModalWindowForUpdate(): void {
@@ -26,29 +28,9 @@ export class DeleteUserService {
   // }
 
   public showConfirmationModalWindow(): void {
-    this.confirmationService.isConfirmationModalBoard = true;
+    this.confirmationService.isConfirmationModalUser = true;
     this.confirmationService.title = 'пользователя';
   }
-
-  // updateId(id: string) {
-  //   this.idUser = id;
-  // }
-
-  // public deleteUser(id: string): void {
-  //   this.apiControlService.loginIn(id).subscribe((res) => {
-  //     this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
-  //     this.messageService.add({
-  //       severity: 'success',
-  //       summary: 'Success',
-  //       detail: 'Successful login!',
-  //       life: 5000,
-  //     });
-  //     setTimeout(() => {
-  //       this.router.navigate(['boards']);
-  //     }, 2000);
-  //   });
-  //   //  this.store.dispatch(deleteBoard({ id }));
-  // }
 
   public removeUser() {
     this.apiControlService
@@ -62,7 +44,7 @@ export class DeleteUserService {
           detail: 'Successful delete!',
           life: 5000,
         });
-        this.confirmationService.isConfirmationModalBoard = false;
+        this.confirmationService.isConfirmationModalUser = false;
         this.confirmationService.title = '';
         this.authService.logoutUser();
         setTimeout(() => {

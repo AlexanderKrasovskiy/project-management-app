@@ -9,6 +9,7 @@ import {
   TokenResponseModel,
   // UserModel,
 } from '../models/auth.model';
+import { AuthService } from './auth.service';
 
 // @Injectable({
 //   providers: [MessageService],
@@ -18,6 +19,7 @@ export class ApiHelpersService {
   constructor(
     private httpClient: HttpClient,
     private messageService: MessageService,
+    private authService: AuthService,
   ) {}
 
   public register(payload: RegisterRequestModel): Observable<GetUserModel> {
@@ -58,6 +60,7 @@ export class ApiHelpersService {
             detail: 'Can not login :(',
             life: 5000,
           });
+          this.authService.logoutUser();
           return EMPTY;
         }),
       );
