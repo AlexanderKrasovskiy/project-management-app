@@ -13,7 +13,9 @@ import {
 // @Injectable({
 //   providers: [MessageService],
 // })
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ApiHelpersService {
   constructor(
     private httpClient: HttpClient,

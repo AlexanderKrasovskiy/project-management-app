@@ -6,7 +6,9 @@ import { parseJwt } from '../utils/parse-token.util';
 import { ApiControlService } from './api-control.service';
 import { AuthService } from './auth.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DeleteUserService {
   isModalWindow: boolean = false;
   titleModalWindow: string = '';
@@ -26,8 +28,9 @@ export class DeleteUserService {
   // }
 
   public showConfirmationModalWindow(): void {
-    this.confirmationService.isConfirmationModalBoard = true;
+    this.confirmationService.isConfirmationModalUser = true;
     this.confirmationService.title = 'пользователя';
+    console.log(this.confirmationService.isConfirmationModalUser);
   }
 
   // updateId(id: string) {
@@ -62,7 +65,7 @@ export class DeleteUserService {
           detail: 'Successful delete!',
           life: 5000,
         });
-        this.confirmationService.isConfirmationModalBoard = false;
+        this.confirmationService.isConfirmationModalUser = false;
         this.confirmationService.title = '';
         this.authService.logoutUser();
         setTimeout(() => {

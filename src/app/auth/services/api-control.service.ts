@@ -12,7 +12,9 @@ import {
 import { ApiHelpersService } from './api-helpers.service';
 import { AuthService } from './auth.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ApiControlService {
   constructor(
     private apiHelpers: ApiHelpersService,

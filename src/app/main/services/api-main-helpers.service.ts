@@ -7,7 +7,9 @@ import {
   BoardRequestModel,
 } from '../models/main.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ApiMainHelpersService {
   constructor(private httpClient: HttpClient) {}
 

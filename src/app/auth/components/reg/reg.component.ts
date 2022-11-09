@@ -56,16 +56,19 @@ export class RegComponent implements OnInit {
         life: 5000,
       });
       this.apiControlService.loginIn(loginUser).subscribe((res) => {
-        this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Successful login!',
-          life: 5000,
-        });
-        setTimeout(() => {
-          this.router.navigate(['boards']);
-        }, 2000);
+        this.apiControlService
+          .getUser(parseJwt(res.token).userId)
+          .subscribe(() => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Successful login!',
+              life: 5000,
+            });
+            setTimeout(() => {
+              this.router.navigate(['boards']);
+            }, 2000);
+          });
       });
     });
   }

@@ -42,17 +42,22 @@ export class LoginComponent implements OnInit {
     );
 
     this.apiControlService.loginIn(loginUser).subscribe((res) => {
-      this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Successful login!',
-        life: 5000,
-      });
-      setTimeout(() => {
-        this.router.navigate(['boards']);
-      }, 2000);
+      // console.log(res);
+      this.apiControlService
+        .getUser(parseJwt(res.token).userId)
+        .subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Successful login!',
+            life: 5000,
+          });
+          setTimeout(() => {
+            this.router.navigate(['boards']);
+          }, 2000);
+        });
     });
+    // .unsubscribe();
   }
 
   private initializeForm(): void {

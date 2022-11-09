@@ -3,7 +3,9 @@ import { Store } from '@ngrx/store';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { deleteBoard } from 'src/app/store/actions/boards.action';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class MainService {
   isModalWindow: boolean = false;
   titleModalWindow: string = '';
