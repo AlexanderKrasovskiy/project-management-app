@@ -5,9 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TooltipModule } from 'primeng/tooltip';
 import { UiPrimengModule } from './ui-primeng/ui-primeng.module';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalService } from './services/confirmation-modal.service';
 
 @NgModule({
-  declarations: [],
+  declarations: [ConfirmationModalComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -15,6 +17,13 @@ import { UiPrimengModule } from './ui-primeng/ui-primeng.module';
     UiPrimengModule,
     TooltipModule,
   ],
-  exports: [FormsModule, ReactiveFormsModule, UiPrimengModule, TooltipModule], // m.b. delete
+  exports: [
+    FormsModule,
+    ReactiveFormsModule,
+    UiPrimengModule,
+    TooltipModule,
+    ConfirmationModalComponent,
+  ], // m.b. delete
+  providers: [ConfirmationModalService],
 })
 export class SharedModule {}

@@ -38,8 +38,16 @@
         pButton
         pRipple
         type="button"
+        icon="pi pi-user-edit"
+        class="p-button-rounded p-button-warning"
+        routerLink="/auth/update"></button>
+
+      <button
+        pButton
+        pRipple
+        type="button"
         icon="pi pi-sign-out"
-        class="p-button-rounded p-button-secondary"
+        class="p-button-rounded p-button-warning"
         (click)="this.authService.logoutUser()"
         routerLink="/auth/login"></button>
     </div>
