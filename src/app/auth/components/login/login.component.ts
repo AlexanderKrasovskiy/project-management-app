@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 import { LoginRequestModel } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
@@ -20,8 +21,10 @@ import { generateLoginUser } from '../../utils/generate.util';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public loginForm!: FormGroup;
+
+  login$: Subscription = new Subscription();
 
   constructor(
     private apiControlService: ApiControlService,
@@ -36,12 +39,15 @@ export class LoginComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
+  ngOnDestroy(): void {
+    this.login$.unsubscribe();
+  }
+
   public onSubmit(): void {
     const loginUser: LoginRequestModel = generateLoginUser(
       this.loginForm.value,
     );
-
-    this.apiControlService.loginIn(loginUser).subscribe(() => {
+    this.login$ = this.apiControlService.loginIn(loginUser).subscribe(() => {
       // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
       this.messageService.add({
         severity: 'success',

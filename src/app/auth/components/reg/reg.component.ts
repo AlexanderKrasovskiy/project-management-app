@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
 
@@ -27,8 +28,10 @@ import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
   encapsulation: ViewEncapsulation.None,
   // providers: [MessageService],
 })
-export class RegComponent implements OnInit {
+export class RegComponent implements OnInit, OnDestroy {
   public regForm!: FormGroup;
+
+  reg$: Subscription = new Subscription();
 
   constructor(
     private apiControlService: ApiControlService,
@@ -43,12 +46,16 @@ export class RegComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
+  ngOnDestroy(): void {
+    this.reg$.unsubscribe();
+  }
+
   public onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(this.regForm.value);
 
     const loginUser: LoginRequestModel = generateLoginUser(this.regForm.value);
 
-    this.apiControlService.loginUp(newUser).subscribe(() => {
+    this.reg$ = this.apiControlService.loginUp(newUser).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslocoService } from '@ngneat/transloco';
+// import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { parseJwt } from '../utils/parse-token.util';
@@ -18,8 +18,7 @@ export class DeleteUserService {
     public confirmationService: ConfirmationModalService,
     public authService: AuthService,
     private apiControlService: ApiControlService,
-    private messageService: MessageService,
-    private translocoService: TranslocoService,
+    private messageService: MessageService, // private translocoService: TranslocoService,
   ) {}
 
   // showModalWindowForUpdate(): void {

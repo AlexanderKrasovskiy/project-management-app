@@ -39,6 +39,7 @@ export class ApiControlService {
   public loginIn(user: LoginRequestModel): Observable<GetUserModel> {
     return this.apiHelpers.login(user).pipe(
       switchMap((res) => {
+        // console.log('111');
         this.authService.setToken(res);
         return this.getUser(parseJwt(res.token).userId);
       }),

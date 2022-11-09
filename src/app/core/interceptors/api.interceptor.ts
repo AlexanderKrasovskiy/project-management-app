@@ -13,7 +13,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
   private apiUrl: string = 'https://rs-kanban.herokuapp.com';
-  private token = localStorage.getItem('PlanTokenInfo');
+  // private token = localStorage.getItem('PlanTokenInfo');
 
   intercept(
     request: HttpRequest<unknown>,
@@ -27,7 +27,8 @@ export class ApiInterceptor implements HttpInterceptor {
           headers: new HttpHeaders({
             accept: 'application/json',
             // 'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.token}` || '',
+            Authorization:
+              `Bearer ${localStorage.getItem('PlanTokenInfo')}` || '',
           }),
         }),
       )
