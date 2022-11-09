@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
+import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import {
   RegisterRequestModel,
   // LoginRequestModel,
 } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
+import { DeleteUserService } from '../../services/delete-user.service';
 import { generateNewUser } from '../../utils/generate.util';
 import { parseJwt } from '../../utils/parse-token.util';
 
@@ -32,6 +34,8 @@ export class UpdateComponent implements OnInit {
     public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
+    public confirmationService: ConfirmationModalService,
+    public deleteUserService: DeleteUserService,
   ) {}
 
   public ngOnInit(): void {

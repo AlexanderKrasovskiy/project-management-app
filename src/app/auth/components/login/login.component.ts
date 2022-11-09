@@ -12,6 +12,7 @@ import { LoginRequestModel } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
 import { generateLoginUser } from '../../utils/generate.util';
 import { parseJwt } from '../../utils/parse-token.util';
+// import { parseJwt } from '../../utils/parse-token.util';
 
 @Component({
   selector: 'app-login',

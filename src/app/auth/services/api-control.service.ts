@@ -57,4 +57,8 @@ export class ApiControlService {
       }),
     );
   }
+
+  public deleteUser(id: string): Observable<void> {
+    return this.apiHelpers.delete(id).pipe(tap(() => {}));
+  }
 }

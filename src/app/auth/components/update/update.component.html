@@ -98,7 +98,16 @@
             label="{{ t('update') }}"></button>
         </div>
         <div class="update-wrapper">
-          <a routerLink="">{{ t('delete') }}</a>
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="button"
+            class="p-button-raised p-button-warning button-custom-white"
+            label="{{ t('delete') }}"
+            (click)="
+              this.deleteUserService.showConfirmationModalWindow()
+            "></button>
         </div>
       </form>
     </div>
@@ -107,4 +116,8 @@
     <div
       class="hidden md:block circle-with-blur update-small-circle shadow-4 scale"></div>
   </div>
+  <app-confirmation-modal
+    *ngIf="
+      this.confirmationService.isConfirmationModalUser
+    "></app-confirmation-modal>
 </ng-container>

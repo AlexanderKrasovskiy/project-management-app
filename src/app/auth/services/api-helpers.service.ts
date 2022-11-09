@@ -95,4 +95,19 @@ export class ApiHelpersService {
       }),
     );
   }
+
+  public delete(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`/users/${id}`).pipe(
+      retry(4),
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Can not delete user :(',
+          life: 5000,
+        });
+        return EMPTY;
+      }),
+    );
+  }
 }
