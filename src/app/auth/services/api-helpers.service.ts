@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, retry, catchError, EMPTY } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { TranslocoService } from '@ngneat/transloco';
 import {
   GetUserModel,
   LoginRequestModel,
@@ -9,6 +10,8 @@ import {
   TokenResponseModel,
   // UserModel,
 } from '../models/auth.model';
+// import { TranslocoService } from '@ngneat/transloco';
+// import { AuthService } from './auth.service';
 
 // @Injectable({
 //   providers: [MessageService],
@@ -18,6 +21,8 @@ export class ApiHelpersService {
   constructor(
     private httpClient: HttpClient,
     private messageService: MessageService,
+    // private authService: AuthService,
+    private translocoService: TranslocoService,
   ) {}
 
   public register(payload: RegisterRequestModel): Observable<GetUserModel> {
@@ -33,7 +38,9 @@ export class ApiHelpersService {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Can not create user :(',
+            detail: `${this.translocoService.translate(
+              'apiHelpers.notCreate',
+            )}`,
             life: 5000,
           });
           // console.log('[ERROR]: ', error);
@@ -55,9 +62,10 @@ export class ApiHelpersService {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Can not login :(',
+            detail: `${this.translocoService.translate('apiHelpers.notLogin')}`,
             life: 5000,
           });
+          // this.authService.logoutUser();
           return EMPTY;
         }),
       );
@@ -70,7 +78,7 @@ export class ApiHelpersService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Can not find user :(',
+          detail: `${this.translocoService.translate('apiHelpers.notFind')}`,
           life: 5000,
         });
         return EMPTY;
@@ -88,7 +96,22 @@ export class ApiHelpersService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Can not update user :(',
+          detail: `${this.translocoService.translate('apiHelpers.notUpdate')}`,
+          life: 5000,
+        });
+        return EMPTY;
+      }),
+    );
+  }
+
+  public delete(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`/users/${id}`).pipe(
+      retry(4),
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `${this.translocoService.translate('apiHelpers.notDelete')}`,
           life: 5000,
         });
         return EMPTY;

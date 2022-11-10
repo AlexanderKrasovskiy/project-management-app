@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
 
@@ -16,7 +17,8 @@ import {
 } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
 import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
-import { parseJwt } from '../../utils/parse-token.util';
+// import { parseJwt } from '../../utils/parse-token.util';
+// import { parseJwt } from '../../utils/parse-token.util';
 // import { PasswordErrors } from 'src/app/shared/models/common.model';
 
 @Component({
@@ -26,8 +28,10 @@ import { parseJwt } from '../../utils/parse-token.util';
   encapsulation: ViewEncapsulation.None,
   // providers: [MessageService],
 })
-export class RegComponent implements OnInit {
+export class RegComponent implements OnInit, OnDestroy {
   public regForm!: FormGroup;
+
+  reg$: Subscription = new Subscription();
 
   constructor(
     private apiControlService: ApiControlService,
@@ -42,20 +46,24 @@ export class RegComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
+  ngOnDestroy(): void {
+    this.reg$.unsubscribe();
+  }
+
   public onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(this.regForm.value);
 
     const loginUser: LoginRequestModel = generateLoginUser(this.regForm.value);
 
-    this.apiControlService.loginUp(newUser).subscribe(() => {
+    this.reg$ = this.apiControlService.loginUp(newUser).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
         detail: 'Successful registration!',
         life: 5000,
       });
-      this.apiControlService.loginIn(loginUser).subscribe((res) => {
-        this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
+      this.apiControlService.loginInReg(loginUser).subscribe(() => {
+        // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
