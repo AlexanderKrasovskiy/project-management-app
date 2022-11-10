@@ -22,4 +22,16 @@ export class DetailsEffects {
       ),
     );
   });
+
+  createColumn$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DetailsActions.createColumn),
+      switchMap(({ boardId, title }) =>
+        this.detailsService.createColumn(boardId, title).pipe(
+          map((column) => DetailsActions.createColumnSuccess({ column })),
+          catchError(() => of(DetailsActions.createColumnFailure())),
+        ),
+      ),
+    );
+  });
 }

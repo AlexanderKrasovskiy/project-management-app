@@ -10,6 +10,8 @@
       <app-column *ngFor="let column of columns" [column]="column"></app-column>
     </article>
 
-    <button pRipple class="btn_add_column">+ Add Column</button>
+    <button pRipple class="btn_add_column" (click)="openDialog()">
+      + Add Column
+    </button>
   </section>
 </main>
