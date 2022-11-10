@@ -21,11 +21,11 @@ export const createColumn = createAction(
   props<{ title: string }>(),
 );
 export const createColumnSuccess = createAction(
-  '[Details Page] Create Column Success',
+  '[Details Service] Create Column Success',
   props<{ column: ColumnModel }>(),
 );
 export const createColumnFailure = createAction(
-  '[Details Page] Create Column Failure',
+  '[Details Service] Create Column Failure',
 );
 
 export const deleteColumn = createAction(
@@ -33,9 +33,9 @@ export const deleteColumn = createAction(
   props<{ columnId: string }>(),
 );
 export const deleteColumnSuccess = createAction(
-  '[Details Page] Delete Column Success',
+  '[Details Service] Delete Column Success',
   props<{ id: string }>(),
 );
 export const deleteColumnFailure = createAction(
-  '[Details Page] Delete Column Failure',
+  '[Details Service] Delete Column Failure',
 );
