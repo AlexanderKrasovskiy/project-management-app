@@ -11,6 +11,7 @@ import { BoardHeaderComponent } from './components/board-header/board-header.com
 import { ColumnComponent } from './components/column/column.component';
 import { TaskComponent } from './components/task/task.component';
 import { ColumnModalComponent } from './components/column-modal/column-modal.component';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ColumnModalComponent } from './components/column-modal/column-modal.com
     ColumnComponent,
     TaskComponent,
     ColumnModalComponent,
+    DeleteModalComponent,
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,6 @@ import { ColumnModel } from 'src/app/pages/details/models/details.model';
 import * as DetailsActions from '../actions/details.actions';
 
 export interface DetailsBoardState {
-  // isLoading: boolean;
   id: string;
   title: string;
   description: string;
@@ -11,7 +10,6 @@ export interface DetailsBoardState {
 }
 
 const initialState: DetailsBoardState = {
-  // isLoading: false,
   id: '',
   title: '',
   description: '',
@@ -20,18 +18,10 @@ const initialState: DetailsBoardState = {
 
 export const currentBoardReducer = createReducer(
   initialState,
-  // on(
-  //   DetailsActions.loadBoard,
-  //   (state): DetailsBoardState => ({
-  //     ...state,
-  //     isLoading: true,
-  //   }),
-  // ),
   on(
     DetailsActions.loadBoardSuccess,
     (_, { board: { id, title, description, columns } }): DetailsBoardState => {
-      // const { id, title, description, columns } = board;
-      return { id, title, description, columns }; // isLoading: false,
+      return { id, title, description, columns };
     },
   ),
   on(

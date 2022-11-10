@@ -18,7 +18,7 @@ export const loadBoardFailure = createAction(
 
 export const createColumn = createAction(
   '[Details Page] Create Column',
-  props<{ boardId: string; title: string }>(),
+  props<{ title: string }>(),
 );
 export const createColumnSuccess = createAction(
   '[Details Page] Create Column Success',
@@ -26,4 +26,16 @@ export const createColumnSuccess = createAction(
 );
 export const createColumnFailure = createAction(
   '[Details Page] Create Column Failure',
+);
+
+export const deleteColumn = createAction(
+  '[Details Page] Delete Column',
+  props<{ columnId: string }>(),
+);
+export const deleteColumnSuccess = createAction(
+  '[Details Page] Delete Column Success',
+  props<{ id: string }>(),
+);
+export const deleteColumnFailure = createAction(
+  '[Details Page] Delete Column Failure',
 );

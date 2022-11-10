@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
-import { map, Subscription, tap } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { loadBoard, createColumn } from 'src/app/store/actions/details.actions';
 import { selectColumns } from 'src/app/store/selectors/details.selectors';
@@ -16,7 +16,6 @@ import { ColumnModalComponent } from '../components/column-modal/column-modal.co
 })
 export class DetailsPageComponent implements OnInit, OnDestroy {
   subId$!: Subscription;
-  boardId!: string;
 
   subCols$!: Subscription;
   columns: ColumnModel[] = [];
@@ -29,12 +28,7 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subId$ = this.route.params
-      .pipe(
-        map((params) => params['id']),
-        tap((id) => {
-          this.boardId = id;
-        }),
-      )
+      .pipe(map((params) => params['id']))
       .subscribe((id: string) => this.store.dispatch(loadBoard({ id })));
 
     // eslint-disable-next-line @ngrx/no-store-subscription
@@ -56,9 +50,8 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ColumnModalComponent, { data });
 
     dialogRef.afterClosed().subscribe((title) => {
-      // console.log('Modal Result: ', title);
       if (!title) return;
-      this.store.dispatch(createColumn({ boardId: this.boardId, title }));
+      this.store.dispatch(createColumn({ title }));
     });
   }
 
