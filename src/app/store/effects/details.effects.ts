@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { BoardResModel } from 'src/app/pages/details/models/details.model';
 import { DetailsService } from 'src/app/pages/details/services/details.service';
 import * as DetailsActions from '../actions/details.actions';
 import { selectBoardId } from '../selectors/details.selectors';
@@ -19,6 +20,9 @@ export class DetailsEffects {
       ofType(DetailsActions.loadBoard, DetailsActions.deleteColumnSuccess),
       switchMap(({ id }) =>
         this.detailsService.getBoardById(id).pipe(
+          tap((board: BoardResModel) => {
+            board.columns.sort((a, b) => a.order - b.order);
+          }),
           map((board) => DetailsActions.loadBoardSuccess({ board })),
           catchError(() => of(DetailsActions.loadBoardFailure())),
         ),
