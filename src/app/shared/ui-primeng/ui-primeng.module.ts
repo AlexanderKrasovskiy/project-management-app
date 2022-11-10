@@ -11,6 +11,7 @@ import { SidebarModule } from 'primeng/sidebar';
 // import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 const PrimeComponents = [
   ButtonModule,
@@ -24,6 +25,7 @@ const PrimeComponents = [
   SidebarModule,
   ToastModule,
   RippleModule,
+  ProgressSpinnerModule,
 ];
 
 @NgModule({

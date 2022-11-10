@@ -10,6 +10,7 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { WelcomeModule } from './pages/welcome/welcome.module';
 import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
+import { SpinnerModule } from './spinner/spinner.module';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FooterModule } from './footer/footer.module';
     WelcomeModule,
     HeaderModule,
     FooterModule,
+    SpinnerModule,
     // SharedModule,
   ],
   providers: [],
