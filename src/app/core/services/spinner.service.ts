@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export default class SpinnerService {
+export class SpinnerService {
   private loading: boolean = false;
 
   public setLoading(loading: boolean) {
