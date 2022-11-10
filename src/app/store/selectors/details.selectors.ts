@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { DetailsBoardState } from '../reducers/details.reducer';
-// import { AppState } from "../state.model";
 
 const selectCurrentBoard =
   createFeatureSelector<DetailsBoardState>('currentBoard');
@@ -13,4 +12,9 @@ export const selectBoardTitle = createSelector(
 export const selectColumns = createSelector(
   selectCurrentBoard,
   (board) => board.columns,
+);
+
+export const selectBoardId = createSelector(
+  selectCurrentBoard,
+  (board) => board.id,
 );

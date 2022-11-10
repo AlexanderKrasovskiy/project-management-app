@@ -3,9 +3,11 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { loadBoard } from 'src/app/store/actions/details.actions';
+import { loadBoard, createColumn } from 'src/app/store/actions/details.actions';
 import { selectColumns } from 'src/app/store/selectors/details.selectors';
+import { MatDialog } from '@angular/material/dialog';
 import { ColumnModel } from '../models/details.model';
+import { ColumnModalComponent } from '../components/column-modal/column-modal.component';
 
 @Component({
   selector: 'app-details',
@@ -14,10 +16,15 @@ import { ColumnModel } from '../models/details.model';
 })
 export class DetailsPageComponent implements OnInit, OnDestroy {
   subId$!: Subscription;
+
   subCols$!: Subscription;
   columns: ColumnModel[] = [];
 
-  constructor(private route: ActivatedRoute, private store: Store) {}
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.subId$ = this.route.params
@@ -30,16 +37,26 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.subId$.unsubscribe();
-    this.subCols$.unsubscribe();
-  }
-
   dropCols(event: CdkDragDrop<string[]>) {
     // console.log('EVENT: ', event);
     // console.log('DATA: ', event.item.data);
     // console.log('BEFORE: ', columns);
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
     // console.log('AFTER: ', columns);
+  }
+
+  openDialog(): void {
+    const data = { title: '' };
+    const dialogRef = this.dialog.open(ColumnModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe((title) => {
+      if (!title) return;
+      this.store.dispatch(createColumn({ title }));
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subId$.unsubscribe();
+    this.subCols$.unsubscribe();
   }
 }

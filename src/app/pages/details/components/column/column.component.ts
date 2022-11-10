@@ -4,6 +4,11 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { deleteColumn } from 'src/app/store/actions/details.actions';
+import { ColumnModel, TaskModel } from '../../models/details.model';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-column',
@@ -13,15 +18,25 @@ import {
 export class ColumnComponent {
   isEditable = false;
 
-  @Input() column!: any; // add types from models
+  @Input() column!: ColumnModel;
 
-  tasks = [1, 2, 3, 4, 5, 6];
+  constructor(public dialog: MatDialog, private store: Store) {}
 
-  toggleEdit() {
+  openDialog(): void {
+    const data = { title: 'колонку' };
+    const dialogRef = this.dialog.open(DeleteModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe((confirm) => {
+      if (!confirm) return;
+      this.store.dispatch(deleteColumn({ columnId: this.column.id }));
+    });
+  }
+
+  toggleTitleEdit() {
     this.isEditable = !this.isEditable;
   }
 
-  dropTask(event: CdkDragDrop<number[]>) {
+  dropTask(event: CdkDragDrop<TaskModel[]>) {
     if (event.previousContainer === event.container) {
       // console.log('Move Task in Col: ', event);
       moveItemInArray(

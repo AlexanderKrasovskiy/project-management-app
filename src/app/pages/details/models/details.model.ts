@@ -12,7 +12,7 @@ export interface ColumnModel {
   tasks: TaskModel[];
 }
 
-interface TaskModel {
+export interface TaskModel {
   id: string;
   title: string;
   order: number;
