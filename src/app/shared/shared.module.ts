@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { TooltipModule } from 'primeng/tooltip';
 import { UiPrimengModule } from './ui-primeng/ui-primeng.module';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
@@ -11,6 +9,7 @@ import { DeleteUserService } from '../auth/services/delete-user.service';
 import { ApiControlService } from '../auth/services/api-control.service';
 import { ApiHelpersService } from '../auth/services/api-helpers.service';
 import { MainService } from '../main/services/main.service';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 @NgModule({
   declarations: [ConfirmationModalComponent],
@@ -20,6 +19,7 @@ import { MainService } from '../main/services/main.service';
     ReactiveFormsModule,
     UiPrimengModule,
     TooltipModule,
+    TranslocoRootModule,
   ],
   exports: [
     FormsModule,
@@ -27,6 +27,7 @@ import { MainService } from '../main/services/main.service';
     UiPrimengModule,
     TooltipModule,
     ConfirmationModalComponent,
+    TranslocoRootModule,
   ], // m.b. delete
   providers: [
     ConfirmationModalService,

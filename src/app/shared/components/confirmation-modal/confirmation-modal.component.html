@@ -1,28 +1,30 @@
-<section class="overlay">
-  <div class="inform-card card-simple shadow-4">
-    <h2 class="font-light inform-title">
-      Удалить {{ this.confirmationService.title }}?
-    </h2>
-    <div class="inform-wrapper">
-      <button
-        pButton
-        pRipple
-        color="primary"
-        class="p-button-raised p-button-danger button-custom-white button-false"
-        (click)="this.confirmationService.hideConfirmationModalWindow()"
-        label="Нет"></button>
-      <button
-        pButton
-        pRipple
-        color="primary"
-        class="p-button-raised p-button-success button-custom-white button-true"
-        (click)="
-          (this.confirmationService.isConfirmationModalBoard &&
-            this.mainService.removeBoard()) ||
-            (this.confirmationService.isConfirmationModalUser &&
-              this.deleteUserService.removeUser())
-        "
-        label="Да"></button>
+<ng-container *transloco="let t; read: 'confirmation'">
+  <section class="overlay">
+    <div class="inform-card card-simple shadow-4">
+      <h2 class="font-light inform-title">
+        Удалить {{ this.confirmationService.title }}?
+      </h2>
+      <div class="inform-wrapper">
+        <button
+          pButton
+          pRipple
+          color="primary"
+          class="p-button-raised p-button-danger button-custom-white button-false"
+          (click)="this.confirmationService.hideConfirmationModalWindow()"
+          label="{{ t('false') }}"></button>
+        <button
+          pButton
+          pRipple
+          color="primary"
+          class="p-button-raised p-button-success button-custom-white button-true"
+          (click)="
+            (this.confirmationService.isConfirmationModalBoard &&
+              this.mainService.removeBoard()) ||
+              (this.confirmationService.isConfirmationModalUser &&
+                this.deleteUserService.removeUser())
+          "
+          label="{{ t('true') }}"></button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</ng-container>

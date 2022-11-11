@@ -8,8 +8,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 
-import { TranslocoRootModule } from '../transloco-root.module';
-
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { allBoardsReducer } from '../store/reducers/boards.reducer';
 import { BoardsEffects } from '../store/effects/boards.effect';
@@ -33,7 +31,6 @@ import { DetailsService } from '../pages/details/services/details.service';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([BoardsEffects, DetailsEffects]),
-    TranslocoRootModule,
     // SharedModule,
   ],
   exports: [],
