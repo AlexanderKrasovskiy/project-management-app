@@ -30,7 +30,6 @@ import { DetailsService } from '../pages/details/services/details.service';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([BoardsEffects]),
     EffectsModule.forRoot([BoardsEffects, DetailsEffects]),
     // SharedModule,
   ],
