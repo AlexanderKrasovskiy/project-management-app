@@ -1,5 +1,5 @@
 <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
-  <div class="flex flex-column">
+  <div class="flex flex-column gap-3">
     <button
       pButton
       pRipple
@@ -24,27 +24,29 @@
         type="button"
         label="Create board"
         class="p-button-raised p-button-primary p-button-text button-custom"
-        routerLink="/boards"></button>
+        routerLink="/boards"
+        (click)="visibleSidebar1 = false"></button>
 
-      <p class="user-name-auth">
+      <!-- <p class="user-name-auth">
         {{ this.authService.getUser() }}
-      </p>
+      </p> -->
 
       <button
         pButton
         pRipple
         type="button"
-        icon="pi pi-user-edit"
-        class="p-button-rounded p-button-warning"
-        routerLink="/auth/update"></button>
+        label="Edit profile"
+        class="p-button-raised p-button-warning p-button-text button-custom"
+        routerLink="/auth/update"
+        (click)="visibleSidebar1 = false"></button>
 
       <button
         pButton
         pRipple
         type="button"
-        icon="pi pi-sign-out"
-        class="p-button-rounded p-button-warning"
-        (click)="this.authService.logoutUser()"
+        label="Exit"
+        class="p-button-raised p-button-warning p-button-text button-custom"
+        (click)="this.authService.logoutUser(); visibleSidebar1 = false"
         routerLink="/auth/login"></button>
     </div>
 
@@ -87,15 +89,20 @@
       <div class="logo-circle circle-with-blur shadow-2 scale"></div>
     </div>
   </a>
-  <div class="px-5 w-max card-with-opacity buttons-wrap shadow-3">
+  <div
+    class="px-3 gap-1 md:px-5 md:gap-3 card-with-opacity buttons-wrap shadow-3">
     <div
       *ngIf="
         this.authService.getUser() || (this.authService.isUserLogged$ | async)
       "
-      class="hidden md:flex gap-2">
+      class="flex gap-2 align-items-center">
       <span *ngIf="this.isBoardsService.boardsPage()" class="p-input-icon-left">
         <i class="pi pi-search"></i>
-        <input type="text" pInputText placeholder="Search" />
+        <input
+          type="text"
+          pInputText
+          placeholder="Search"
+          class="w-10rem md:w-auto search-input" />
       </span>
 
       <button
@@ -103,10 +110,10 @@
         pRipple
         type="button"
         label="Create board"
-        class="p-button-raised p-button-primary p-button-text button-custom"
+        class="hidden md:block p-button-raised p-button-primary p-button-text button-custom"
         routerLink="/boards"></button>
 
-      <p class="user-name-auth">
+      <p class="hidden md:block user-name-auth">
         {{ this.authService.getUser() }}
       </p>
 
@@ -115,7 +122,7 @@
         pRipple
         type="button"
         icon="pi pi-user-edit"
-        class="p-button-rounded p-button-warning"
+        class="hidden md:block p-button-rounded p-button-warning"
         routerLink="/auth/update"></button>
 
       <button
@@ -123,7 +130,7 @@
         pRipple
         type="button"
         icon="pi pi-sign-out"
-        class="p-button-rounded p-button-warning"
+        class="hidden md:block p-button-rounded p-button-warning"
         (click)="this.authService.logoutUser()"
         routerLink="/auth/login"></button>
     </div>
