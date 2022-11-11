@@ -58,13 +58,14 @@ export class ApiHelpersService {
       })
       .pipe(
         retry(4),
-        catchError(() => {
+        catchError((err) => {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
             detail: `${this.translocoService.translate('apiHelpers.notLogin')}`,
             life: 5000,
           });
+          console.log('login', err);
           // this.authService.logoutUser();
           return EMPTY;
         }),
