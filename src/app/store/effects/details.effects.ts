@@ -17,7 +17,11 @@ export class DetailsEffects {
 
   loadCurrentBoard$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DetailsActions.loadBoard, DetailsActions.deleteColumnSuccess),
+      ofType(
+        DetailsActions.loadBoard,
+        DetailsActions.deleteColumnSuccess,
+        DetailsActions.updateColumnSuccess,
+      ),
       switchMap(({ id }) =>
         this.detailsService.getBoardById(id).pipe(
           tap((board: BoardResModel) => {
@@ -51,6 +55,19 @@ export class DetailsEffects {
         this.detailsService.deleteColumn(boardId, columnId).pipe(
           map(() => DetailsActions.deleteColumnSuccess({ id: boardId })),
           catchError(() => of(DetailsActions.deleteColumnFailure())),
+        ),
+      ),
+    );
+  });
+
+  updateColumn$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DetailsActions.updateColumn),
+      concatLatestFrom(() => this.store.select(selectBoardId)),
+      switchMap(([{ columnId, body }, boardId]) =>
+        this.detailsService.updateColumn(boardId, columnId, body).pipe(
+          map(() => DetailsActions.updateColumnSuccess({ id: boardId })),
+          catchError(() => of(DetailsActions.updateColumnFailure())),
         ),
       ),
     );

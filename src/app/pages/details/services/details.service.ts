@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BoardResModel, ColumnModel } from '../models/details.model';
+import {
+  BoardResModel,
+  ColumnModel,
+  UpdateColumnPayload,
+} from '../models/details.model';
 
 @Injectable()
 export class DetailsService {
@@ -17,5 +21,12 @@ export class DetailsService {
 
   deleteColumn(boardId: string, columnId: string) {
     return this.http.delete(`/boards/${boardId}/columns/${columnId}`);
+  }
+
+  updateColumn(boardId: string, columnId: string, body: UpdateColumnPayload) {
+    return this.http.put<ColumnModel>(
+      `/boards/${boardId}/columns/${columnId}`,
+      body,
+    );
   }
 }

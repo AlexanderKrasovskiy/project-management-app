@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import {
   BoardResModel,
   ColumnModel,
+  UpdateColumnPayload,
 } from 'src/app/pages/details/models/details.model';
 
 export const loadBoard = createAction(
@@ -38,4 +39,16 @@ export const deleteColumnSuccess = createAction(
 );
 export const deleteColumnFailure = createAction(
   '[Details Service] Delete Column Failure',
+);
+
+export const updateColumn = createAction(
+  '[Details Page] Update Column',
+  props<{ columnId: string; body: UpdateColumnPayload }>(),
+);
+export const updateColumnSuccess = createAction(
+  '[Details Service] Update Column Success',
+  props<{ id: string }>(),
+);
+export const updateColumnFailure = createAction(
+  '[Details Service] Update Column Failure',
 );

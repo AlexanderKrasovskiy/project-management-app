@@ -25,3 +25,8 @@ interface FileModel {
   filename: string;
   fileSize: number;
 }
+
+export interface UpdateColumnPayload {
+  title: string;
+  order: number;
+}
