@@ -30,13 +30,14 @@
       icon="pi pi-plus"
       type="button"
       label="Добавить Задачу"
+      (click)="openCreateTaskModal()"
       class="p-button-rounded p-button-sm"></button>
     <button
       pButton
       pRipple
       type="button"
       icon="pi pi-trash"
-      (click)="openDialog()"
+      (click)="openDeleteColumnModal()"
       class="p-button-rounded p-button-danger p-button-outlined"></button>
   </div>
 </section>

@@ -12,6 +12,7 @@ import {
 } from 'src/app/store/actions/details.actions';
 import { ColumnModel, TaskModel } from '../../models/details.model';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { TaskModalComponent } from '../task-modal/task-modal.component';
 
 @Component({
   selector: 'app-column',
@@ -52,13 +53,26 @@ export class ColumnComponent implements OnInit {
     this.store.dispatch(updateColumn({ columnId: this.column.id, body }));
   }
 
-  openDialog(): void {
+  openDeleteColumnModal(): void {
     const data = { title: 'колонку' };
     const dialogRef = this.dialog.open(DeleteModalComponent, { data });
 
     dialogRef.afterClosed().subscribe((confirm) => {
       if (!confirm) return;
       this.store.dispatch(deleteColumn({ columnId: this.column.id }));
+    });
+  }
+
+  openCreateTaskModal(): void {
+    const data = { title: '', description: '' };
+    const dialogRef = this.dialog.open(TaskModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe(({ title, description }) => {
+      if (!(title || description)) return;
+      console.log('TITLE: ', title);
+      console.log('DESCRIPTION: ', description);
+
+      // this.store.dispatch(deleteColumn({ columnId: this.column.id }));
     });
   }
 
