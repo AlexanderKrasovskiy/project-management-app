@@ -3,14 +3,14 @@
     <div
       class="column_title_text"
       [ngClass]="{ hidden: isEditable }"
-      (click)="toggleTitleEdit()">
-      {{ column.title }}
+      (click)="showInput()">
+      {{ tempTitle }}
     </div>
     <div class="column_title_edit" [ngClass]="{ hidden: !isEditable }">
-      <input type="text" pInputText [value]="column.title" />
+      <input type="text" pInputText #headingInput />
       <div class="edit_btns">
-        <i class="pi pi-check"></i>
-        <i class="pi pi-times" (click)="toggleTitleEdit()"></i>
+        <i class="pi pi-check" (click)="updateTitle()"></i>
+        <i class="pi pi-times" (click)="hideInput()"></i>
       </div>
     </div>
   </div>
