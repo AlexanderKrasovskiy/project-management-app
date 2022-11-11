@@ -1,0 +1,54 @@
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { catchError, map, of, switchMap } from 'rxjs';
+import { DetailsService } from 'src/app/pages/details/services/details.service';
+import * as DetailsActions from '../actions/details.actions';
+import { selectBoardId } from '../selectors/details.selectors';
+
+@Injectable()
+export class DetailsEffects {
+  constructor(
+    private actions$: Actions,
+    private detailsService: DetailsService,
+    private store: Store,
+  ) {}
+
+  loadCurrentBoard$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DetailsActions.loadBoard, DetailsActions.deleteColumnSuccess),
+      switchMap(({ id }) =>
+        this.detailsService.getBoardById(id).pipe(
+          map((board) => DetailsActions.loadBoardSuccess({ board })),
+          catchError(() => of(DetailsActions.loadBoardFailure())),
+        ),
+      ),
+    );
+  });
+
+  createColumn$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DetailsActions.createColumn),
+      concatLatestFrom(() => this.store.select(selectBoardId)),
+      switchMap(([{ title }, boardId]) =>
+        this.detailsService.createColumn(boardId, title).pipe(
+          map((column) => DetailsActions.createColumnSuccess({ column })),
+          catchError(() => of(DetailsActions.createColumnFailure())),
+        ),
+      ),
+    );
+  });
+
+  deleteColumn$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DetailsActions.deleteColumn),
+      concatLatestFrom(() => this.store.select(selectBoardId)),
+      switchMap(([{ columnId }, boardId]) =>
+        this.detailsService.deleteColumn(boardId, columnId).pipe(
+          map(() => DetailsActions.deleteColumnSuccess({ id: boardId })),
+          catchError(() => of(DetailsActions.deleteColumnFailure())),
+        ),
+      ),
+    );
+  });
+}

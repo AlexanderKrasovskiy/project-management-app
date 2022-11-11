@@ -18,8 +18,10 @@
           color="primary"
           class="p-button-raised p-button-success button-custom-white button-true"
           (click)="
-            this.confirmationService.isConfirmationModalBoard &&
-              this.mainService.removeBoard()
+            (this.confirmationService.isConfirmationModalBoard &&
+              this.mainService.removeBoard()) ||
+              (this.confirmationService.isConfirmationModalUser &&
+                this.deleteUserService.removeUser())
           "
           label="{{ t('true') }}"></button>
       </div>

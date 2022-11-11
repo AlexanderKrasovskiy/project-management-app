@@ -1,0 +1,26 @@
+<section class="board_header">
+  <p-sidebar [(visible)]="displaySide" [style]="sideBarStyles">
+    SideBar Demo
+  </p-sidebar>
+
+  <a
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-arrow-left"
+    routerLink="/boards"
+    class="back_btn p-button-rounded"></a>
+
+  <button
+    pButton
+    pRipple
+    type="button"
+    icon="pi pi-align-left"
+    (click)="displaySide = true"
+    class="p-button-rounded"></button>
+
+  <h4>
+    Board:
+    <span class="board_title">{{ boardTitle$ | async }}</span>
+  </h4>
+</section>

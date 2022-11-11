@@ -48,6 +48,17 @@
     "tooltipPassword": "Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]",
     "update": "Update"
   },
+  "deleteUser": {
+    "user": "user",
+    "successful": "Successful delete!"
+  },
+  "apiHelpers": {
+    "notCreate": "Can not create user :(",
+    "notLogin": "Can not login :(",
+    "notFind": "Can not find user :(",
+    "notUpdate": "Can not update user :(",
+    "notDelete": "Can not delete user :("
+  },
   "main": {
     "title": "All boards",
     "createNewBoard": "Create a new board",

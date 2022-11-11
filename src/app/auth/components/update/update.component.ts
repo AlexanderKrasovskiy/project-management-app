@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -7,13 +7,16 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
+import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import {
   RegisterRequestModel,
   // LoginRequestModel,
 } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
+import { DeleteUserService } from '../../services/delete-user.service';
 import { generateNewUser } from '../../utils/generate.util';
 import { parseJwt } from '../../utils/parse-token.util';
 
@@ -23,8 +26,10 @@ import { parseJwt } from '../../utils/parse-token.util';
   styleUrls: ['./update.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class UpdateComponent implements OnInit {
+export class UpdateComponent implements OnInit, OnDestroy {
   public updateForm!: FormGroup;
+
+  upd$: Subscription = new Subscription();
 
   constructor(
     private apiControlService: ApiControlService,
@@ -32,6 +37,8 @@ export class UpdateComponent implements OnInit {
     public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
+    public confirmationService: ConfirmationModalService,
+    public deleteUserService: DeleteUserService,
   ) {}
 
   public ngOnInit(): void {
@@ -39,12 +46,16 @@ export class UpdateComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
+  ngOnDestroy(): void {
+    this.upd$.unsubscribe();
+  }
+
   public onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(
       this.updateForm.value,
     );
 
-    this.apiControlService
+    this.upd$ = this.apiControlService
       .updateUser(
         parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
         newUser,
