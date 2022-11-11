@@ -37,7 +37,7 @@
     "signup": "Sign Up"
   },
   "update": {
-    "title": "Profile modification",
+    "title": "Edit profile",
     "name": "Enter your name",
     "emptyField": "This field can't be empty",
     "login": "Enter your login",

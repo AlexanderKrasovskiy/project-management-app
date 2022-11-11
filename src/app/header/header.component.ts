@@ -1,4 +1,9 @@
-import { Component, HostListener, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 // import { fromEvent } from 'rxjs';
@@ -11,7 +16,7 @@ import { IsBoardsService } from '../auth/services/is-boards.service';
   styleUrls: ['./header.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   public stateOptions;
 
   public value1: string = 'En';
@@ -33,7 +38,10 @@ export class HeaderComponent {
     ];
   }
 
-  // ngOnInit(): void {
+  ngOnInit(): void {
+    this.transloco.setActiveLang('ru');
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
