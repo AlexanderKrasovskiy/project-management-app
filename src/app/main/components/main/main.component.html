@@ -3,7 +3,7 @@
     <h1 class="main__title card-with-blur scale">{{ t('title') }}</h1>
     <section class="main__boards grid">
       <div
-        class="board card-with-blur scale"
+        class="new-board card-with-blur scale"
         pTooltip="{{ t('createNewBoard') }}"
         tooltipPosition="bottom"
         (click)="this.mainService.showModalWindowForCreate()">
@@ -11,9 +11,10 @@
       </div>
       <div
         class="board card-with-blur scale"
-        *ngFor="let board of boards$ | async"
+        *ngFor="let board of boards$ | async; let index = index"
         [pTooltip]="board.description | slice: 0:40"
-        tooltipPosition="bottom">
+        tooltipPosition="bottom"
+        #boardImage>
         <div class="board__setting">
           <div
             class="setting"
@@ -23,7 +24,9 @@
             ">
             <i class="pi pi-trash"></i>
           </div>
-          <div class="setting"><i class="pi pi-cog"></i></div>
+          <div class="setting" (click)="showBackgroundChangeModalWindow(index)">
+            <i class="pi pi-cog"></i>
+          </div>
           <div
             class="setting"
             (click)="
@@ -33,7 +36,9 @@
             <i class="pi pi-pencil"></i>
           </div>
         </div>
-        <h3 class="board__title">{{ board.title | slice: 0:17 }}</h3>
+        <div class="wrap" [routerLink]="[board.id]">
+          <h3 class="board__title">{{ board.title | slice: 0:17 }}</h3>
+        </div>
       </div>
     </section>
     <section class="overlay" *ngIf="this.mainService.isModalWindow">
@@ -85,6 +90,30 @@
               label="{{ t('true') }}"></button>
           </div>
         </form>
+      </div>
+    </section>
+    <section class="overlay" *ngIf="this.mainService.isbackgroundSwap">
+      <div class="inform-card card-simple shadow-4">
+        <h2 class="font-light inform-title">Веберите фон</h2>
+        <div class="wrap-background">
+          <div
+            class="background"
+            *ngFor="let image of this.mainService.images"
+            [ngStyle]="{
+              'background-image': 'url(assets/images/' + image + '.png)'
+            }"
+            (click)="changeBackground(image)"></div>
+        </div>
+        <div class="inform-wrapper">
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="button"
+            class="p-button-raised p-button-danger button-custom-white button-false"
+            (click)="this.mainService.hideBackgroundChangeModalWindow()"
+            label="Отмена"></button>
+        </div>
       </div>
     </section>
     <app-confirmation-modal

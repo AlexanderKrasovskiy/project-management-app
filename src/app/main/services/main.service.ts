@@ -6,8 +6,17 @@ import { deleteBoard } from 'src/app/store/actions/boards.action';
 @Injectable()
 export class MainService {
   isModalWindow: boolean = false;
+  isbackgroundSwap: boolean = false;
   titleModalWindow: string = '';
   idBoard: string = '';
+  images: string[] = [
+    'board-1-small',
+    'board-2-small',
+    'board-3-small',
+    'board-4-small',
+    'board-5-small',
+    'board-6-small',
+  ];
 
   constructor(
     private store: Store,
@@ -29,6 +38,10 @@ export class MainService {
     this.confirmationService.title = 'доску';
   }
 
+  hideBackgroundChangeModalWindow(): void {
+    this.isbackgroundSwap = false;
+  }
+
   updateId(id: string) {
     this.idBoard = id;
   }
@@ -37,7 +50,7 @@ export class MainService {
     this.store.dispatch(deleteBoard({ id }));
   }
 
-  removeBoard() {
+  removeBoard(): void {
     this.deleteBoard(this.idBoard);
     this.confirmationService.isConfirmationModalBoard = false;
     this.confirmationService.title = '';
