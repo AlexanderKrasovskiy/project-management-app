@@ -3,7 +3,11 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { loadBoard, createColumn } from 'src/app/store/actions/details.actions';
+import {
+  loadBoard,
+  createColumn,
+  updateColumn,
+} from 'src/app/store/actions/details.actions';
 import { selectColumns } from 'src/app/store/selectors/details.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { ColumnModel } from '../models/details.model';
@@ -33,16 +37,26 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
 
     // eslint-disable-next-line @ngrx/no-store-subscription
     this.subCols$ = this.store.select(selectColumns).subscribe((cols) => {
-      this.columns = cols;
+      this.columns = [...cols];
     });
   }
 
   dropCols(event: CdkDragDrop<string[]>) {
-    // console.log('EVENT: ', event);
-    // console.log('DATA: ', event.item.data);
-    // console.log('BEFORE: ', columns);
-    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
-    // console.log('AFTER: ', columns);
+    const {
+      previousIndex: prevIdx,
+      currentIndex: currIdx,
+      item: {
+        data: { id, title },
+      },
+    } = event;
+
+    if (prevIdx === currIdx) return;
+
+    moveItemInArray(this.columns, prevIdx, currIdx);
+
+    this.store.dispatch(
+      updateColumn({ columnId: id, body: { title, order: currIdx + 1 } }),
+    );
   }
 
   openDialog(): void {

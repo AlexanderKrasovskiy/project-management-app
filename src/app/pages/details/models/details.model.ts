@@ -25,3 +25,13 @@ interface FileModel {
   filename: string;
   fileSize: number;
 }
+
+export interface UpdateColumnPayload {
+  title: string;
+  order: number;
+}
+
+export interface CreateTaskPayload {
+  title: string;
+  description: string;
+}

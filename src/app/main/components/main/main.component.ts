@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  Renderer2,
+  ViewChildren,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
@@ -23,11 +30,15 @@ export class MainComponent implements OnInit {
   });
 
   boards$ = this.store.select(selectCurrentBoards);
+  indexBoard: number = 0;
+
+  @ViewChildren('boardImage') elem?: QueryList<ElementRef>;
 
   constructor(
     private store: Store,
     public mainService: MainService,
     public confirmationService: ConfirmationModalService,
+    private renderer2: Renderer2,
   ) {}
 
   ngOnInit(): void {
@@ -62,5 +73,22 @@ export class MainComponent implements OnInit {
   hideModalWindow(): void {
     this.mainService.isModalWindow = false;
     this.formMain.reset();
+  }
+
+  showBackgroundChangeModalWindow(index: number): void {
+    this.indexBoard = index;
+    this.mainService.isbackgroundSwap = true;
+  }
+
+  changeBackground(image: string): void {
+    this.mainService.isbackgroundSwap = false;
+    const board = this.elem?.toArray();
+
+    if (board)
+      this.renderer2.setStyle(
+        board[this.indexBoard].nativeElement,
+        'background-image',
+        `url(assets/images/${image}.png)`,
+      );
   }
 }

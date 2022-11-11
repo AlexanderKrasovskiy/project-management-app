@@ -12,6 +12,7 @@ import { ColumnComponent } from './components/column/column.component';
 import { TaskComponent } from './components/task/task.component';
 import { ColumnModalComponent } from './components/column-modal/column-modal.component';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import { TaskModalComponent } from './components/task-modal/task-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     TaskComponent,
     ColumnModalComponent,
     DeleteModalComponent,
+    TaskModalComponent,
   ],
   imports: [
     CommonModule,

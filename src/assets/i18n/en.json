@@ -58,5 +58,17 @@
     "notFind": "Can not find user :(",
     "notUpdate": "Can not update user :(",
     "notDelete": "Can not delete user :("
+  },
+  "main": {
+    "title": "All boards",
+    "createNewBoard": "Create a new board",
+    "titleBoard": "Enter a board title",
+    "descriptionBoard": "Enter a board description",
+    "true": "Yes",
+    "false": "No"
+  },
+  "confirmation": {
+    "true": "Remove",
+    "false": "Cancel"
   }
 }
