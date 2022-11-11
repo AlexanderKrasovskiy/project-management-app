@@ -39,7 +39,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.transloco.setActiveLang('ru');
+    this.transloco.setActiveLang(
+      localStorage.getItem('PlanLanguageInfo') || 'en',
+    );
   }
 
   @HostListener('window:scroll', [])
@@ -64,6 +66,7 @@ export class HeaderComponent implements OnInit {
 
   changeLang(lang: string) {
     this.transloco.setActiveLang(lang);
+    localStorage.setItem('PlanLanguageInfo', lang);
   }
 
   authPage() {
