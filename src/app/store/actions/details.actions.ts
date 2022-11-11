@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import {
   BoardResModel,
   ColumnModel,
+  CreateTaskPayload,
   UpdateColumnPayload,
 } from 'src/app/pages/details/models/details.model';
 
@@ -51,4 +52,16 @@ export const updateColumnSuccess = createAction(
 );
 export const updateColumnFailure = createAction(
   '[Details Service] Update Column Failure',
+);
+
+export const createTask = createAction(
+  '[Details Page] Create Task',
+  props<{ columnId: string; body: CreateTaskPayload }>(),
+);
+export const createTaskSuccess = createAction(
+  '[Details Service] Create Task Success',
+  props<{ id: string }>(),
+);
+export const createTaskFailure = createAction(
+  '[Details Service] Create Task Failure',
 );

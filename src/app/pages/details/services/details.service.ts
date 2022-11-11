@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { GetUserModel } from 'src/app/auth/models/auth.model';
 import {
   BoardResModel,
   ColumnModel,
   UpdateColumnPayload,
+  CreateTaskPayload,
+  TaskModel,
 } from '../models/details.model';
 
 @Injectable()
@@ -27,6 +30,20 @@ export class DetailsService {
     return this.http.put<ColumnModel>(
       `/boards/${boardId}/columns/${columnId}`,
       body,
+    );
+  }
+
+  createTask(boardId: string, columnId: string, body: CreateTaskPayload) {
+    const { id } = JSON.parse(
+      `${localStorage.getItem('PlanUserInfo')}`,
+    ) as GetUserModel;
+
+    return this.http.post<TaskModel>(
+      `/boards/${boardId}/columns/${columnId}/tasks`,
+      {
+        ...body,
+        userId: id,
+      },
     );
   }
 }

@@ -7,6 +7,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import {
+  createTask,
   deleteColumn,
   updateColumn,
 } from 'src/app/store/actions/details.actions';
@@ -67,12 +68,9 @@ export class ColumnComponent implements OnInit {
     const data = { title: '', description: '' };
     const dialogRef = this.dialog.open(TaskModalComponent, { data });
 
-    dialogRef.afterClosed().subscribe(({ title, description }) => {
-      if (!(title || description)) return;
-      console.log('TITLE: ', title);
-      console.log('DESCRIPTION: ', description);
-
-      // this.store.dispatch(deleteColumn({ columnId: this.column.id }));
+    dialogRef.afterClosed().subscribe((body) => {
+      if (!(body.title && body.description)) return;
+      this.store.dispatch(createTask({ columnId: this.column.id, body }));
     });
   }
 

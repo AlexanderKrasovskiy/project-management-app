@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-export interface TaskData {
+export interface CreateTaskData {
   title: string;
   description: string;
 }
@@ -14,7 +14,7 @@ export interface TaskData {
 export class TaskModalComponent {
   constructor(
     public dialogRef: MatDialogRef<TaskModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: TaskData,
+    @Inject(MAT_DIALOG_DATA) public data: CreateTaskData,
   ) {}
 
   onCancel(): void {

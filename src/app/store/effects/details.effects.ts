@@ -21,6 +21,7 @@ export class DetailsEffects {
         DetailsActions.loadBoard,
         DetailsActions.deleteColumnSuccess,
         DetailsActions.updateColumnSuccess,
+        DetailsActions.createTaskSuccess,
       ),
       switchMap(({ id }) =>
         this.detailsService.getBoardById(id).pipe(
@@ -68,6 +69,19 @@ export class DetailsEffects {
         this.detailsService.updateColumn(boardId, columnId, body).pipe(
           map(() => DetailsActions.updateColumnSuccess({ id: boardId })),
           catchError(() => of(DetailsActions.updateColumnFailure())),
+        ),
+      ),
+    );
+  });
+
+  createTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DetailsActions.createTask),
+      concatLatestFrom(() => this.store.select(selectBoardId)),
+      switchMap(([{ columnId, body }, boardId]) =>
+        this.detailsService.createTask(boardId, columnId, body).pipe(
+          map(() => DetailsActions.createTaskSuccess({ id: boardId })),
+          catchError(() => of(DetailsActions.createTaskFailure())),
         ),
       ),
     );
