@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Создать задачу</h1>
+<div mat-dialog-content class="input-fields">
+  <h5>Название</h5>
+  <input type="text" pInputText [(ngModel)]="data.title" required />
+  <h5>Описание</h5>
+  <textarea
+    rows="5"
+    cols="30"
+    pInputTextarea
+    class="textarea"
+    [(ngModel)]="data.description"
+    required></textarea>
+</div>
+<div mat-dialog-actions>
+  <button
+    [disabled]="!(data.title && data.description)"
+    pButton
+    pRipple
+    [mat-dialog-close]="data"
+    type="button"
+    label="Создать"
+    class="p-button-rounded"></button>
+  <button
+    pButton
+    pRipple
+    (click)="onCancel()"
+    type="button"
+    label="Отмена"
+    class="p-button-rounded p-button-danger"></button>
+</div>

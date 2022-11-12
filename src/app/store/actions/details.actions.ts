@@ -2,6 +2,8 @@ import { createAction, props } from '@ngrx/store';
 import {
   BoardResModel,
   ColumnModel,
+  CreateTaskPayload,
+  UpdateColumnPayload,
 } from 'src/app/pages/details/models/details.model';
 
 export const loadBoard = createAction(
@@ -21,11 +23,11 @@ export const createColumn = createAction(
   props<{ title: string }>(),
 );
 export const createColumnSuccess = createAction(
-  '[Details Page] Create Column Success',
+  '[Details Service] Create Column Success',
   props<{ column: ColumnModel }>(),
 );
 export const createColumnFailure = createAction(
-  '[Details Page] Create Column Failure',
+  '[Details Service] Create Column Failure',
 );
 
 export const deleteColumn = createAction(
@@ -33,9 +35,33 @@ export const deleteColumn = createAction(
   props<{ columnId: string }>(),
 );
 export const deleteColumnSuccess = createAction(
-  '[Details Page] Delete Column Success',
+  '[Details Service] Delete Column Success',
   props<{ id: string }>(),
 );
 export const deleteColumnFailure = createAction(
-  '[Details Page] Delete Column Failure',
+  '[Details Service] Delete Column Failure',
+);
+
+export const updateColumn = createAction(
+  '[Details Page] Update Column',
+  props<{ columnId: string; body: UpdateColumnPayload }>(),
+);
+export const updateColumnSuccess = createAction(
+  '[Details Service] Update Column Success',
+  props<{ id: string }>(),
+);
+export const updateColumnFailure = createAction(
+  '[Details Service] Update Column Failure',
+);
+
+export const createTask = createAction(
+  '[Details Page] Create Task',
+  props<{ columnId: string; body: CreateTaskPayload }>(),
+);
+export const createTaskSuccess = createAction(
+  '[Details Service] Create Task Success',
+  props<{ id: string }>(),
+);
+export const createTaskFailure = createAction(
+  '[Details Service] Create Task Failure',
 );
