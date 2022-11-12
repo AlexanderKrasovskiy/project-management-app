@@ -1,4 +1,10 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  ViewChild,
+} from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -10,6 +16,7 @@ import {
   createTask,
   deleteColumn,
   updateColumn,
+  updateTask,
 } from 'src/app/store/actions/details.actions';
 import { ColumnModel, TaskModel } from '../../models/details.model';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
@@ -20,29 +27,33 @@ import { TaskModalComponent } from '../task-modal/task-modal.component';
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
 })
-export class ColumnComponent implements OnInit {
+export class ColumnComponent implements OnChanges {
   @Input() column!: ColumnModel;
-  isEditable = false;
+
+  isTitleEditable = false;
   @ViewChild('headingInput') headingInput!: ElementRef<HTMLInputElement>;
   tempTitle = '';
 
+  tasks: TaskModel[] = [];
+
   constructor(public dialog: MatDialog, private store: Store) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.tempTitle = this.column.title;
+    this.tasks = [...this.column.tasks];
   }
 
   showInput() {
-    this.isEditable = true;
+    this.isTitleEditable = true;
     this.headingInput.nativeElement.value = this.tempTitle;
   }
 
   hideInput() {
-    this.isEditable = false;
+    this.isTitleEditable = false;
   }
 
   updateTitle() {
-    this.isEditable = false;
+    this.isTitleEditable = false;
     const title = this.headingInput.nativeElement.value;
     if (!title || title === this.column.title) return;
     this.tempTitle = title;
@@ -75,21 +86,47 @@ export class ColumnComponent implements OnInit {
   }
 
   dropTask(event: CdkDragDrop<TaskModel[]>) {
+    const prevIdx = event.previousIndex;
+    const currIdx = event.currentIndex;
+    const { id: taskId, title, description, userId } = event.item.data;
+
+    const body = {
+      title,
+      order: currIdx + 1,
+      description,
+      userId,
+      boardId: '',
+      columnId: '',
+    };
+
     if (event.previousContainer === event.container) {
-      // console.log('Move Task in Col: ', event);
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
+      if (prevIdx === currIdx) return;
+
+      moveItemInArray(event.container.data, prevIdx, currIdx);
+
+      body.columnId = this.column.id;
+
+      this.store.dispatch(
+        updateTask({ columnId: this.column.id, taskId, body }),
       );
     } else {
-      // console.log('Move Task bw Cols: ', event);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
-        event.previousIndex,
-        event.currentIndex,
+        prevIdx,
+        currIdx,
       );
+
+      const targetColId = event.container.element.nativeElement.dataset[
+        'id'
+      ] as string;
+      const oldColId = event.previousContainer.element.nativeElement.dataset[
+        'id'
+      ] as string;
+
+      body.columnId = targetColId;
+
+      this.store.dispatch(updateTask({ columnId: oldColId, taskId, body }));
     }
   }
 }

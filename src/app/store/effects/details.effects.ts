@@ -22,11 +22,16 @@ export class DetailsEffects {
         DetailsActions.deleteColumnSuccess,
         DetailsActions.updateColumnSuccess,
         DetailsActions.createTaskSuccess,
+        DetailsActions.deleteTaskSuccess,
+        DetailsActions.updateTaskSuccess,
       ),
       switchMap(({ id }) =>
         this.detailsService.getBoardById(id).pipe(
           tap((board: BoardResModel) => {
             board.columns.sort((a, b) => a.order - b.order);
+            board.columns.forEach((col) => {
+              col.tasks.sort((a, b) => a.order - b.order);
+            });
           }),
           map((board) => DetailsActions.loadBoardSuccess({ board })),
           catchError(() => of(DetailsActions.loadBoardFailure())),
@@ -82,6 +87,32 @@ export class DetailsEffects {
         this.detailsService.createTask(boardId, columnId, body).pipe(
           map(() => DetailsActions.createTaskSuccess({ id: boardId })),
           catchError(() => of(DetailsActions.createTaskFailure())),
+        ),
+      ),
+    );
+  });
+
+  deleteTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DetailsActions.deleteTask),
+      concatLatestFrom(() => this.store.select(selectBoardId)),
+      switchMap(([{ columnId, taskId }, boardId]) =>
+        this.detailsService.deleteTask(boardId, columnId, taskId).pipe(
+          map(() => DetailsActions.deleteTaskSuccess({ id: boardId })),
+          catchError(() => of(DetailsActions.deleteTaskFailure())),
+        ),
+      ),
+    );
+  });
+
+  updateTask$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DetailsActions.updateTask),
+      concatLatestFrom(() => this.store.select(selectBoardId)),
+      switchMap(([{ columnId, taskId, body }, boardId]) =>
+        this.detailsService.updateTask(boardId, columnId, taskId, body).pipe(
+          map(() => DetailsActions.updateTaskSuccess({ id: boardId })),
+          catchError(() => of(DetailsActions.updateTaskFailure())),
         ),
       ),
     );
