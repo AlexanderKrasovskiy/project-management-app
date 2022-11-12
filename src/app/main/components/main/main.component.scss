@@ -141,7 +141,8 @@
   .main {
     .main__boards {
       padding: 0 0 10px 0;
-      .board {
+      .board,
+      .new-board {
         width: 270px;
       }
     }
