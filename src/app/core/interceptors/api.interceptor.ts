@@ -37,9 +37,7 @@ export class ApiInterceptor implements HttpInterceptor {
           if (error.status === HttpStatusCode.Unauthorized) {
             // this.store.dispatch(UserAction.ClearData());
           }
-
-          // return throwError(() => new Error('test'));
-          console.error(error);
+          // console.error('my error', error);
           return throwError(() => error);
         }),
       );
