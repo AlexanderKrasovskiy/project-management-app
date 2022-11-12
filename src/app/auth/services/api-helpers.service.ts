@@ -34,16 +34,24 @@ export class ApiHelpersService {
       })
       .pipe(
         retry(4),
-        catchError(() => {
+        catchError((err) => {
+          let errorText: string = this.translocoService.translate(
+            'apiHelpers.notCreate',
+          );
+          errorText =
+            err.error.statusCode === 409
+              ? `${errorText}\n${this.translocoService.translate(
+                  'apiHelpers.alreadyExists',
+                )}`
+              : errorText;
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: `${this.translocoService.translate(
-              'apiHelpers.notCreate',
-            )}`,
+            detail: errorText,
             life: 5000,
           });
           // console.log('[ERROR]: ', error);
+          console.error(err.error.message);
           return EMPTY;
         }),
       );
@@ -59,14 +67,29 @@ export class ApiHelpersService {
       .pipe(
         retry(4),
         catchError((err) => {
+          let errorText: string = this.translocoService.translate(
+            'apiHelpers.notLogin',
+          );
+          errorText =
+            err.error.statusCode === 403
+              ? `${errorText}\n${this.translocoService.translate(
+                  'apiHelpers.check',
+                )}`
+              : errorText;
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: `${this.translocoService.translate('apiHelpers.notLogin')}`,
+            detail: errorText,
             life: 5000,
           });
-          console.log('login', err);
-          // this.authService.logoutUser();
+
+          // console.error(err.error.statusCode);
+          console.error(err.error.message);
+          // console.error(err);
+          // console.error(err.status);
+          // console.error(err.statusText);
+          // console.error(`${err.statusText || ''} ${err.error.message || ''}`);
+
           return EMPTY;
         }),
       );
@@ -75,13 +98,14 @@ export class ApiHelpersService {
   public user(id: string): Observable<GetUserModel> {
     return this.httpClient.get<GetUserModel>(`/users/${id}`).pipe(
       retry(4),
-      catchError(() => {
+      catchError((err) => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: `${this.translocoService.translate('apiHelpers.notFind')}`,
           life: 5000,
         });
+        console.error(err.error.message);
         return EMPTY;
       }),
     );
@@ -93,13 +117,23 @@ export class ApiHelpersService {
   ): Observable<GetUserModel> {
     return this.httpClient.put<GetUserModel>(`/users/${id}`, payload).pipe(
       retry(4),
-      catchError(() => {
+      catchError((err) => {
+        let errorText: string = this.translocoService.translate(
+          'apiHelpers.notUpdate',
+        );
+        errorText =
+          err.error.statusCode === 500
+            ? `${errorText}\n${this.translocoService.translate(
+                'apiHelpers.perhapsExists',
+              )}`
+            : errorText;
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: `${this.translocoService.translate('apiHelpers.notUpdate')}`,
+          detail: errorText,
           life: 5000,
         });
+        console.error(err.error.message);
         return EMPTY;
       }),
     );
@@ -108,13 +142,14 @@ export class ApiHelpersService {
   public delete(id: string): Observable<void> {
     return this.httpClient.delete<void>(`/users/${id}`).pipe(
       retry(4),
-      catchError(() => {
+      catchError((err) => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: `${this.translocoService.translate('apiHelpers.notDelete')}`,
           life: 5000,
         });
+        console.error(err.error.message);
         return EMPTY;
       }),
     );

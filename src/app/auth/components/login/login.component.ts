@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
-import { catchError, of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { LoginRequestModel } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
@@ -49,12 +49,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
     this.login$ = this.apiControlService
       .loginIn(loginUser)
-      .pipe(
-        catchError((err: any) => {
-          console.log('my: ', err);
-          return of(true);
-        }),
-      )
+      // .pipe(
+      //   catchError((err: any) => {
+      //     console.log('my: ', err);
+      //     return of(true);
+      //   }),
+      // )
       .subscribe(() => {
         // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
         this.messageService.add({
