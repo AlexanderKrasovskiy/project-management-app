@@ -76,12 +76,17 @@ export class ColumnComponent implements OnChanges {
   }
 
   openCreateTaskModal(): void {
-    const data = { title: '', description: '' };
+    const data = { heading: 'Создать задачу', title: '', description: '' };
     const dialogRef = this.dialog.open(TaskModalComponent, { data });
 
     dialogRef.afterClosed().subscribe((body) => {
-      if (!(body.title && body.description)) return;
-      this.store.dispatch(createTask({ columnId: this.column.id, body }));
+      if (!body?.title || !body?.description) return;
+      this.store.dispatch(
+        createTask({
+          columnId: this.column.id,
+          body: { title: body.title, description: body.description },
+        }),
+      );
     });
   }
 

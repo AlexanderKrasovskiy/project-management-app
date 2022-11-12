@@ -21,7 +21,10 @@
     [cdkDropListData]="tasks"
     [attr.data-id]="column.id"
     (cdkDropListDropped)="dropTask($event)">
-    <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+    <app-task
+      *ngFor="let task of tasks"
+      [task]="task"
+      [columnId]="column.id"></app-task>
   </div>
 
   <div class="column_footer">
