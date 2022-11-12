@@ -47,18 +47,26 @@ export class LoginComponent implements OnInit, OnDestroy {
     const loginUser: LoginRequestModel = generateLoginUser(
       this.loginForm.value,
     );
-    this.login$ = this.apiControlService.loginIn(loginUser).subscribe(() => {
-      // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Successful login!',
-        life: 5000,
+    this.login$ = this.apiControlService
+      .loginIn(loginUser)
+      // .pipe(
+      //   catchError((err: any) => {
+      //     console.log('my: ', err);
+      //     return of(true);
+      //   }),
+      // )
+      .subscribe(() => {
+        // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successful login!',
+          life: 5000,
+        });
+        setTimeout(() => {
+          this.router.navigate(['boards']);
+        }, 2000);
       });
-      setTimeout(() => {
-        this.router.navigate(['boards']);
-      }, 2000);
-    });
   }
 
   private initializeForm(): void {
