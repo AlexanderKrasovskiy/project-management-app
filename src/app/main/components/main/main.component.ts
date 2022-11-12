@@ -31,6 +31,8 @@ export class MainComponent implements OnInit {
 
   boards$ = this.store.select(selectCurrentBoards);
   indexBoard: number = 0;
+  idBoard: string = '';
+  imgBoard: string = '';
 
   @ViewChildren('boardImage') elem?: QueryList<ElementRef>;
 
@@ -75,7 +77,8 @@ export class MainComponent implements OnInit {
     this.formMain.reset();
   }
 
-  showBackgroundChangeModalWindow(index: number): void {
+  showBackgroundChangeModalWindow(id: string, index: number): void {
+    this.idBoard = id;
     this.indexBoard = index;
     this.mainService.isbackgroundSwap = true;
   }
@@ -83,12 +86,17 @@ export class MainComponent implements OnInit {
   changeBackground(image: string): void {
     this.mainService.isbackgroundSwap = false;
     const board = this.elem?.toArray();
-
     if (board)
       this.renderer2.setStyle(
         board[this.indexBoard].nativeElement,
         'background-image',
         `url(assets/images/${image}.png)`,
       );
+    this.imgBoard = image;
+    this.addLocalStorBoardImg();
+  }
+
+  addLocalStorBoardImg() {
+    this.mainService.localStorBoardImg(this.idBoard, this.imgBoard);
   }
 }

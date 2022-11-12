@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { deleteBoard } from 'src/app/store/actions/boards.action';
+import { BoardLocalStorModel } from '../models/main.model';
 
 @Injectable()
 export class MainService {
@@ -54,5 +55,16 @@ export class MainService {
     this.deleteBoard(this.idBoard);
     this.confirmationService.isConfirmationModalBoard = false;
     this.confirmationService.title = '';
+  }
+
+  localStorBoardImg(id: string, image: string) {
+    const localStor = localStorage.getItem('BoardImage');
+    const boardImg: BoardLocalStorModel = { id, image };
+
+    if (localStor) {
+      const storArr = JSON.parse(localStor);
+      storArr.push(boardImg);
+      localStorage.setItem('BoardImage', JSON.stringify(storArr));
+    } else localStorage.setItem('BoardImage', JSON.stringify([boardImg]));
   }
 }
