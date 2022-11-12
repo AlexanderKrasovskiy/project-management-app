@@ -37,7 +37,7 @@
     "signup": "Sign Up"
   },
   "update": {
-    "title": "Profile modification",
+    "title": "Edit profile",
     "name": "Enter your name",
     "emptyField": "This field can't be empty",
     "login": "Enter your login",
@@ -57,7 +57,10 @@
     "notLogin": "Can not login :(",
     "notFind": "Can not find user :(",
     "notUpdate": "Can not update user :(",
-    "notDelete": "Can not delete user :("
+    "notDelete": "Can not delete user :(",
+    "check": "Check if your login and password are correct!",
+    "alreadyExists": "This user already exists!",
+    "perhapsExists": "Perhaps such user already exists!"
   },
   "main": {
     "title": "All boards",

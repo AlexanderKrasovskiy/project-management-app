@@ -37,7 +37,7 @@
 .about-app-wrap {
   width: 100%;
   height: 100%;
-  background-image: url('../../../assets/images/leaves-03.png');
+  background-image: url('../../../assets/images/leaves-04.png');
   background-size: 100%;
   display: flex;
   flex-direction: column;
@@ -189,10 +189,17 @@
 }
 
 .back-3-bottom {
+  // position: relative;
+  display: flex;
+  // flex-wrap: wrap;
+  padding-bottom: 5rem;
+}
+
+.back-3-right {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 4%;
+  // padding-bottom: 5rem;
 }
 
 .team-title-wrap {
@@ -208,7 +215,7 @@
   width: fit-content;
   position: absolute;
   left: 10%;
-  top: 3rem;
+  // top: 3rem;
 }
 
 .course-title {
@@ -223,7 +230,9 @@
 .team-circle-sveta {
   // position: absolute;
   //min-width: 19rem;
-  width: 19rem;
+  width: 30%;
+  max-width: 19rem;
+  min-width: 16rem;
   height: fit-content;
   padding: 1rem 1rem 2rem 1rem;
   // height: 19rem;
@@ -234,7 +243,7 @@
 }
 
 .team-circle-alla {
-  margin-left: 30%;
+  // margin-left: 30%;
   margin-top: 20vh;
 }
 

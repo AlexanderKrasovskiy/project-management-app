@@ -1,7 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { fromEvent } from 'rxjs';
+// import { fromEvent } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
 import { IsBoardsService } from '../auth/services/is-boards.service';
 
@@ -18,6 +23,8 @@ export class HeaderComponent implements OnInit {
 
   public inScroll = false;
 
+  public visibleSidebar1!: boolean;
+
   constructor(
     // @inject(DOCUMENT) private document: Document,
     private transloco: TranslocoService,
@@ -32,20 +39,34 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    fromEvent(window, 'scroll')
-      // .pipe(throttleTime(50))
-      .subscribe(() => {
-        if (Number(document.defaultView?.scrollY) > 0) {
-          this.inScroll = true;
-          // console.log('scroll', event);
-        } else {
-          this.inScroll = false;
-        }
-      });
+    this.transloco.setActiveLang(
+      localStorage.getItem('PlanLanguageInfo') || 'en',
+    );
   }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+      this.inScroll = true;
+    } else {
+      this.inScroll = false;
+    }
+  }
+  // fromEvent(window, 'scroll')
+  //   // .pipe(throttleTime(50))
+  //   .subscribe(() => {
+  //     if (Number(document.defaultView?.scrollY) > 0) {
+  //       this.inScroll = true;
+  //       // console.log('scroll', event);
+  //     } else {
+  //       this.inScroll = false;
+  //     }
+  //   });
+  //  }
 
   changeLang(lang: string) {
     this.transloco.setActiveLang(lang);
+    localStorage.setItem('PlanLanguageInfo', lang);
   }
 
   authPage() {
