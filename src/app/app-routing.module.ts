@@ -9,7 +9,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome',
+    redirectTo: 'boards',
     pathMatch: 'full',
   },
   {

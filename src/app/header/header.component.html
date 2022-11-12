@@ -1,5 +1,8 @@
 <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
   <div class="flex flex-column gap-3">
+    <p class="user-name-sidebar">
+      {{ this.authService.getUser() }}
+    </p>
     <button
       pButton
       pRipple
@@ -26,10 +29,6 @@
         class="p-button-raised p-button-primary p-button-text button-custom"
         routerLink="/boards"
         (click)="visibleSidebar1 = false"></button>
-
-      <!-- <p class="user-name-auth">
-        {{ this.authService.getUser() }}
-      </p> -->
 
       <button
         pButton

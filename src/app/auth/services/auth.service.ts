@@ -11,10 +11,15 @@ import {
 })
 export class AuthService {
   // public isUserRegistered$ = new BehaviorSubject<boolean>(false);
+  private TOKEN_LIFE_DURATION = 12;
+
   public isUserLogged$ = new BehaviorSubject<boolean>(false);
 
   public setToken(token: TokenResponseModel): void {
     localStorage.setItem('PlanTokenInfo', token.token);
+    const datePlus = new Date();
+    datePlus.setHours(datePlus.getHours() + this.TOKEN_LIFE_DURATION);
+    localStorage.setItem('PlanTokenExpiredTime', datePlus.toString());
     //    if (localStorage.getItem('PlanUserInfo')) {
 
     //   }
@@ -46,6 +51,7 @@ export class AuthService {
   public logoutUser(): void {
     localStorage.removeItem('PlanUserInfo');
     localStorage.removeItem('PlanTokenInfo');
+    localStorage.removeItem('PlanTokenExpiredTime');
     this.isUserLogged$.next(false);
     // this.isUserRegistered$.next(false);
   }
