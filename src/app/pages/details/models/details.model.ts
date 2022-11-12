@@ -35,3 +35,22 @@ export interface CreateTaskPayload {
   title: string;
   description: string;
 }
+
+export interface UpdateTaskPayload {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+}
+
+export interface UpdateTaskResponse {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+}

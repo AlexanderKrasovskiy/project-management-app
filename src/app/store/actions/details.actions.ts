@@ -4,6 +4,7 @@ import {
   ColumnModel,
   CreateTaskPayload,
   UpdateColumnPayload,
+  UpdateTaskPayload,
 } from 'src/app/pages/details/models/details.model';
 
 export const loadBoard = createAction(
@@ -76,4 +77,16 @@ export const deleteTaskSuccess = createAction(
 );
 export const deleteTaskFailure = createAction(
   '[Details Service] Delete Task Failure',
+);
+
+export const updateTask = createAction(
+  '[Details Page] Update Task',
+  props<{ columnId: string; taskId: string; body: UpdateTaskPayload }>(),
+);
+export const updateTaskSuccess = createAction(
+  '[Details Service] Update Task Success',
+  props<{ id: string }>(),
+);
+export const updateTaskFailure = createAction(
+  '[Details Service] Update Task Failure',
 );

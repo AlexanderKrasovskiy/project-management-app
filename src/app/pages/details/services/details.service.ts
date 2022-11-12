@@ -8,6 +8,8 @@ import {
   UpdateColumnPayload,
   CreateTaskPayload,
   TaskModel,
+  UpdateTaskPayload,
+  UpdateTaskResponse,
 } from '../models/details.model';
 
 @Injectable()
@@ -50,6 +52,23 @@ export class DetailsService {
   deleteTask(boardId: string, columnId: string, taskId: string) {
     return this.http.delete(
       `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
+    );
+  }
+
+  updateTask(
+    boardId: string,
+    columnId: string,
+    taskId: string,
+    body: UpdateTaskPayload,
+  ): Observable<UpdateTaskResponse> {
+    const newBody = {
+      ...body,
+      boardId,
+    };
+
+    return this.http.put<UpdateTaskResponse>(
+      `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
+      newBody,
     );
   }
 }
