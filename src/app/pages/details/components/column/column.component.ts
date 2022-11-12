@@ -22,7 +22,7 @@ import { TaskModalComponent } from '../task-modal/task-modal.component';
 })
 export class ColumnComponent implements OnInit {
   @Input() column!: ColumnModel;
-  isEditable = false;
+  isTitleEditable = false;
   @ViewChild('headingInput') headingInput!: ElementRef<HTMLInputElement>;
   tempTitle = '';
 
@@ -33,16 +33,16 @@ export class ColumnComponent implements OnInit {
   }
 
   showInput() {
-    this.isEditable = true;
+    this.isTitleEditable = true;
     this.headingInput.nativeElement.value = this.tempTitle;
   }
 
   hideInput() {
-    this.isEditable = false;
+    this.isTitleEditable = false;
   }
 
   updateTitle() {
-    this.isEditable = false;
+    this.isTitleEditable = false;
     const title = this.headingInput.nativeElement.value;
     if (!title || title === this.column.title) return;
     this.tempTitle = title;

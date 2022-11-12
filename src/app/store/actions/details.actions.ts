@@ -65,3 +65,15 @@ export const createTaskSuccess = createAction(
 export const createTaskFailure = createAction(
   '[Details Service] Create Task Failure',
 );
+
+export const deleteTask = createAction(
+  '[Details Page] Delete Task',
+  props<{ columnId: string; taskId: string }>(),
+);
+export const deleteTaskSuccess = createAction(
+  '[Details Service] Delete Task Success',
+  props<{ id: string }>(),
+);
+export const deleteTaskFailure = createAction(
+  '[Details Service] Delete Task Failure',
+);

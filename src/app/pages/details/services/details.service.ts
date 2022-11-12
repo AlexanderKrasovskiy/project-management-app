@@ -46,4 +46,10 @@ export class DetailsService {
       },
     );
   }
+
+  deleteTask(boardId: string, columnId: string, taskId: string) {
+    return this.http.delete(
+      `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
+    );
+  }
 }

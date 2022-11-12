@@ -2,11 +2,11 @@
   <div class="column_title">
     <div
       class="column_title_text"
-      [ngClass]="{ hidden: isEditable }"
+      [ngClass]="{ hidden: isTitleEditable }"
       (click)="showInput()">
       {{ tempTitle }}
     </div>
-    <div class="column_title_edit" [ngClass]="{ hidden: !isEditable }">
+    <div class="column_title_edit" [ngClass]="{ hidden: !isTitleEditable }">
       <input type="text" pInputText #headingInput />
       <div class="edit_btns">
         <i class="pi pi-check" (click)="updateTitle()"></i>
@@ -20,7 +20,10 @@
     cdkDropList
     [cdkDropListData]="column.tasks"
     (cdkDropListDropped)="dropTask($event)">
-    <app-task *ngFor="let task of column.tasks" [task]="task"></app-task>
+    <app-task
+      *ngFor="let task of column.tasks"
+      [task]="task"
+      [columnId]="column.id"></app-task>
   </div>
 
   <div class="column_footer">
