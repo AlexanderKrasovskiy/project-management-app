@@ -11,12 +11,12 @@ export class MainService {
   titleModalWindow: string = '';
   idBoard: string = '';
   images: string[] = [
-    'board-1-small',
-    'board-2-small',
-    'board-3-small',
-    'board-4-small',
-    'board-5-small',
-    'board-6-small',
+    'board-1',
+    'board-2',
+    'board-3',
+    'board-4',
+    'board-5',
+    'board-6',
   ];
 
   constructor(
@@ -52,18 +52,31 @@ export class MainService {
   }
 
   removeBoard(): void {
+    const storage = localStorage.getItem('BoardImage');
+
+    if (storage) {
+      const storArr = JSON.parse(storage).filter(
+        (el: BoardLocalStorModel) => el.id !== this.idBoard,
+      );
+      localStorage.setItem('BoardImage', JSON.stringify(storArr));
+    }
+
     this.deleteBoard(this.idBoard);
     this.confirmationService.isConfirmationModalBoard = false;
     this.confirmationService.title = '';
   }
 
-  localStorBoardImg(id: string, image: string) {
-    const localStor = localStorage.getItem('BoardImage');
+  updateLocalStor(id: string, image: string): void {
+    const storage = localStorage.getItem('BoardImage');
     const boardImg: BoardLocalStorModel = { id, image };
 
-    if (localStor) {
-      const storArr = JSON.parse(localStor);
-      storArr.push(boardImg);
+    if (storage) {
+      let storArr = JSON.parse(storage);
+      if (storArr.find((i: BoardLocalStorModel) => i.id === id)) {
+        storArr = storArr.map((e: BoardLocalStorModel) =>
+          e.id === boardImg.id ? boardImg : e,
+        );
+      } else storArr.push(boardImg);
       localStorage.setItem('BoardImage', JSON.stringify(storArr));
     } else localStorage.setItem('BoardImage', JSON.stringify([boardImg]));
   }

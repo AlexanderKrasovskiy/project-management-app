@@ -14,7 +14,8 @@
         *ngFor="let board of boards$ | async; let index = index"
         [pTooltip]="board.description | slice: 0:40"
         tooltipPosition="bottom"
-        #boardImage>
+        #boardImage
+        [id]="board.id">
         <div class="board__setting">
           <div
             class="setting"
@@ -102,7 +103,7 @@
             class="background"
             *ngFor="let image of this.mainService.images"
             [ngStyle]="{
-              'background-image': 'url(assets/images/' + image + '.png)'
+              'background-image': 'url(assets/images/' + image + '-small.png)'
             }"
             (click)="changeBackground(image)"></div>
         </div>
