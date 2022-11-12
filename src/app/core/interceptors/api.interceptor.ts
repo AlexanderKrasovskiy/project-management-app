@@ -8,7 +8,7 @@ import {
   HttpStatusCode,
   HttpHeaders,
 } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, EMPTY, Observable, throwError } from 'rxjs';
 import { isTokenExpired } from 'src/app/auth/utils/token-life.util';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -46,6 +46,7 @@ export class ApiInterceptor implements HttpInterceptor {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === HttpStatusCode.Unauthorized) {
+            return EMPTY;
             // console.log(111);
             // this.store.dispatch(UserAction.ClearData());
           }

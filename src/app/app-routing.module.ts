@@ -38,6 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'boards/:id',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/details/details.module').then((m) => m.DetailsModule),
   },
