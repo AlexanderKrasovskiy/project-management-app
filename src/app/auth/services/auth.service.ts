@@ -10,14 +10,17 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  // public isUserRegistered$ = new BehaviorSubject<boolean>(false);
+  // private TOKEN_LIFE_DURATION = 2;
+  private TOKEN_LIFE_DURATION = 12;
+
   public isUserLogged$ = new BehaviorSubject<boolean>(false);
 
   public setToken(token: TokenResponseModel): void {
     localStorage.setItem('PlanTokenInfo', token.token);
-    //    if (localStorage.getItem('PlanUserInfo')) {
-
-    //   }
+    const datePlus = new Date();
+    datePlus.setHours(datePlus.getHours() + this.TOKEN_LIFE_DURATION);
+    // datePlus.setMinutes(datePlus.getMinutes() + this.TOKEN_LIFE_DURATION);
+    localStorage.setItem('PlanTokenExpiredTime', datePlus.toString());
   }
 
   public setUser(user: GetUserModel): void {
@@ -46,6 +49,7 @@ export class AuthService {
   public logoutUser(): void {
     localStorage.removeItem('PlanUserInfo');
     localStorage.removeItem('PlanTokenInfo');
+    localStorage.removeItem('PlanTokenExpiredTime');
     this.isUserLogged$.next(false);
     // this.isUserRegistered$.next(false);
   }

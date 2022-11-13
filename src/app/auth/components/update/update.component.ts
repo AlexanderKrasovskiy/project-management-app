@@ -67,9 +67,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
           detail: 'Successful update!',
           life: 5000,
         });
-        setTimeout(() => {
-          this.router.navigate(['boards']);
-        }, 2000);
+        //  setTimeout(() => {
+        this.router.navigate(['boards']);
+        //  }, 2000);
       });
   }
 
