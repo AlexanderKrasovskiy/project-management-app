@@ -26,9 +26,9 @@ export class ApiInterceptor implements HttpInterceptor {
     if (request.url.startsWith('/assets')) return next.handle(request);
 
     if (isTokenExpired()) {
-      this.authService.logoutUser();
+      // this.authService.logoutUser();
       localStorage.setItem('PlanTokenInfo', 'expired');
-      this.router.navigate(['welcome']);
+      // this.router.navigate(['welcome']);
     }
 
     return next
@@ -46,6 +46,9 @@ export class ApiInterceptor implements HttpInterceptor {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === HttpStatusCode.Unauthorized) {
+            this.authService.logoutUser();
+            localStorage.setItem('PlanTokenInfo', 'expired');
+            this.router.navigate(['welcome']);
             return EMPTY;
             // console.log(111);
             // this.store.dispatch(UserAction.ClearData());

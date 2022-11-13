@@ -10,8 +10,8 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  private TOKEN_LIFE_DURATION = 2;
-  // private TOKEN_LIFE_DURATION = 1;
+  // private TOKEN_LIFE_DURATION = 2;
+  private TOKEN_LIFE_DURATION = 12;
 
   public isUserLogged$ = new BehaviorSubject<boolean>(false);
 

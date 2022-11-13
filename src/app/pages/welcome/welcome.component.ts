@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 
@@ -7,13 +7,13 @@ import { MessageService } from 'primeng/api';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent implements AfterViewInit {
   constructor(
     private messageService: MessageService,
     private translocoService: TranslocoService,
   ) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     if (localStorage.getItem('PlanTokenInfo') === 'expired') {
       localStorage.removeItem('PlanTokenInfo');
       this.messageService.add({
