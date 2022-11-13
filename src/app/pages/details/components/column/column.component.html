@@ -1,4 +1,8 @@
-<section class="column card-with-blur" cdkDrag [cdkDragData]="column">
+<section
+  class="column card-with-blur"
+  cdkDrag
+  [cdkDragData]="column"
+  *transloco="let t; read: 'details'">
   <div class="column_title">
     <div
       class="column_title_text"
@@ -21,7 +25,10 @@
     [cdkDropListData]="tasks"
     [attr.data-id]="column.id"
     (cdkDropListDropped)="dropTask($event)">
-    <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+    <app-task
+      *ngFor="let task of tasks"
+      [task]="task"
+      [columnId]="column.id"></app-task>
   </div>
 
   <div class="column_footer">
@@ -30,7 +37,7 @@
       pRipple
       icon="pi pi-plus"
       type="button"
-      label="Добавить Задачу"
+      [label]="t('addTask')"
       (click)="openCreateTaskModal()"
       class="p-button-rounded p-button-sm"></button>
     <button

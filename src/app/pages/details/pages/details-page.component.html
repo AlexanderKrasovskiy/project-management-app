@@ -10,8 +10,12 @@
       <app-column *ngFor="let column of columns" [column]="column"></app-column>
     </article>
 
-    <button pRipple class="btn_add_column" (click)="openDialog()">
-      + Add Column
+    <button
+      pRipple
+      class="btn_add_column"
+      *transloco="let t; read: 'details'"
+      (click)="openDialog()">
+      + {{ t('addColumn') }}
     </button>
   </section>
 </main>

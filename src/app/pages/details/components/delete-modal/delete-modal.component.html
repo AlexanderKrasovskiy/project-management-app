@@ -1,17 +1,19 @@
-<h1 mat-dialog-title>Удалить {{ data.title }}?</h1>
-<div mat-dialog-actions>
-  <button
-    pButton
-    pRipple
-    [mat-dialog-close]="true"
-    type="button"
-    label="Да"
-    class="p-button-rounded"></button>
-  <button
-    pButton
-    pRipple
-    (click)="onCancel()"
-    type="button"
-    label="Нет"
-    class="p-button-rounded p-button-danger"></button>
-</div>
+<ng-container *transloco="let t; read: 'confirmation'">
+  <h1 mat-dialog-title>{{ data.title }}?</h1>
+  <div mat-dialog-actions>
+    <button
+      pButton
+      pRipple
+      [mat-dialog-close]="true"
+      type="button"
+      [label]="t('true')"
+      class="p-button-rounded"></button>
+    <button
+      pButton
+      pRipple
+      (click)="onCancel()"
+      type="button"
+      [label]="t('false')"
+      class="p-button-rounded p-button-danger"></button>
+  </div>
+</ng-container>

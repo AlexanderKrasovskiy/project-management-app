@@ -1,21 +1,23 @@
-<h1 mat-dialog-title>Создать колонку</h1>
-<div mat-dialog-content>
-  <input type="text" pInputText [(ngModel)]="data.title" required />
-</div>
-<div mat-dialog-actions>
-  <button
-    [disabled]="!data.title"
-    pButton
-    pRipple
-    [mat-dialog-close]="data.title"
-    type="button"
-    label="Создать"
-    class="p-button-rounded"></button>
-  <button
-    pButton
-    pRipple
-    (click)="onCancel()"
-    type="button"
-    label="Отмена"
-    class="p-button-rounded p-button-danger"></button>
-</div>
+<ng-container *transloco="let t; read: 'details'">
+  <h1 mat-dialog-title>{{ t('createColumn') }}</h1>
+  <div mat-dialog-content>
+    <input type="text" pInputText [(ngModel)]="data.title" required />
+  </div>
+  <div mat-dialog-actions>
+    <button
+      [disabled]="!data.title"
+      pButton
+      pRipple
+      [mat-dialog-close]="data.title"
+      type="button"
+      [label]="t('confirm')"
+      class="p-button-rounded"></button>
+    <button
+      pButton
+      pRipple
+      (click)="onCancel()"
+      type="button"
+      [label]="t('cancel')"
+      class="p-button-rounded p-button-danger"></button>
+  </div>
+</ng-container>

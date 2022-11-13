@@ -1,4 +1,4 @@
-<section class="board_header">
+<section class="board_header" *transloco="let t; read: 'details'">
   <p-sidebar [(visible)]="displaySide" [style]="sideBarStyles">
     SideBar Demo
   </p-sidebar>
@@ -20,7 +20,7 @@
     class="p-button-rounded"></button>
 
   <h4>
-    Board:
+    {{ t('boardTitle') }}:
     <span class="board_title">{{ boardTitle$ | async }}</span>
   </h4>
 </section>

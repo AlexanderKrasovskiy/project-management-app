@@ -1,5 +1,5 @@
 <div class="task" cdkDrag [cdkDragData]="task">
-  <div class="task_title">
+  <div class="task_title" (click)="openEditTaskModal()">
     {{ task.title }}
   </div>
   <button
