@@ -10,6 +10,10 @@ import { UpdateComponent } from './components/update/update.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent,
+  },
+  {
     path: 'registration',
     component: RegComponent,
   },
