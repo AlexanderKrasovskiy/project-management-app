@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-// import { LoginComponent } from './auth/components/login/login.component';
-// import { RegComponent } from './auth/components/reg/reg.component';
+import { NotFoundComponent } from './auth/components/not-found/not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 import { WelcomeComponent } from './pages/welcome/welcome.component';
@@ -21,15 +20,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./auth/auth.module').then((module) => module.AuthModule),
   },
-  // {
-  //   path: 'registration',
-  //   component: RegComponent,
-  // },
-  // {
-  //   path: 'login',
-  //   component: LoginComponent,
-  // },
-
   {
     path: 'boards',
     canActivate: [AuthGuard],
@@ -42,8 +32,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/details/details.module').then((m) => m.DetailsModule),
   },
-  // { path: '404', component: NotFoundComponent },
-  // { path: '**', redirectTo: '404' },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

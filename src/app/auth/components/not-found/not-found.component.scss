@@ -1,0 +1,86 @@
+.not-found-wrap {
+  background-image: url('../../../../assets/images/404-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+@keyframes circle-animation {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0.05turn);
+  }
+  10% {
+    transform: translateX(20%) translateY(25%) rotate(0.05turn);
+  }
+  20% {
+    transform: translateX(40%) translateY(35%) rotate(0.05turn);
+  }
+  30% {
+    transform: translateX(70%) translateY(15%) rotate(0.05turn);
+  }
+  40% {
+    transform: translateX(90%) translateY(-10%) rotate(0.05turn);
+  }
+  50% {
+    transform: translateX(100%) translateY(25%) rotate(0.05turn);
+  }
+  60% {
+    transform: translateX(80%) translateY(-15%) rotate(0.05turn);
+  }
+  70% {
+    transform: translateX(60%) translateY(10%) rotate(0.05turn);
+  }
+  80% {
+    transform: translateX(40%) translateY(-15%) rotate(0.05turn);
+  }
+  90% {
+    transform: translateX(20%) translateY(-10%) rotate(0.05turn);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0.05turn);
+  }
+}
+
+.not-found-circle-fake,
+.not-found-circle {
+  border-radius: 50%;
+  width: 35%;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(3px);
+  animation: circle-animation 25s linear infinite;
+}
+
+.not-found-circle-fake:after,
+.not-found-circle:after {
+  content: '';
+  padding-top: 100%;
+  display: block;
+}
+
+.not-found-circle {
+  background-image: url('../../../../assets/images/404-book.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // transform: rotate(0.05turn);
+}
+
+.not-found-text {
+  font-size: 2.5rem;
+  font-style: italic;
+  padding: 0 3rem;
+  text-align: center;
+  transform: rotate(-0.1turn);
+}
