@@ -1,5 +1,4 @@
 {
-  "hello": "Hello World!",
   "welcome": {
     "test": "test",
     "about": "About application",
@@ -73,5 +72,19 @@
   "confirmation": {
     "true": "Remove",
     "false": "Cancel"
+  },
+  "details": {
+    "addColumn": "Add Column",
+    "boardTitle": "Board",
+    "addTask": "Add Task",
+    "createColumn": "Create Column",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "taskTitle": "Title",
+    "taskDescription": "Description",
+    "deleteColumn": "Delete Column",
+    "deleteTask": "Delete Task",
+    "createTask": "Create Task",
+    "editTask": "Edit Task"
   }
 }

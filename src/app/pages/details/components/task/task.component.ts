@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { deleteTask, updateTask } from 'src/app/store/actions/details.actions';
 import { TaskModel } from '../../models/details.model';
@@ -15,10 +16,14 @@ export class TaskComponent {
   @Input() task!: TaskModel;
   @Input() columnId!: string;
 
-  constructor(public dialog: MatDialog, private store: Store) {}
+  constructor(
+    public dialog: MatDialog,
+    private store: Store,
+    private transloco: TranslocoService,
+  ) {}
 
   openDeleteTaskModal(): void {
-    const data = { title: 'задачу' };
+    const data = { title: this.transloco.translate('details.deleteTask') };
     const dialogRef = this.dialog.open(DeleteModalComponent, { data });
 
     dialogRef.afterClosed().subscribe((confirm) => {
@@ -31,7 +36,7 @@ export class TaskComponent {
 
   openEditTaskModal(): void {
     const data = {
-      heading: 'Редактировать задачу',
+      heading: this.transloco.translate('details.editTask'),
       title: this.task.title,
       description: this.task.description,
     };

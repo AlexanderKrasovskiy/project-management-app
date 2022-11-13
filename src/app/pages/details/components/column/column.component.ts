@@ -18,6 +18,7 @@ import {
   updateColumn,
   updateTask,
 } from 'src/app/store/actions/details.actions';
+import { TranslocoService } from '@ngneat/transloco';
 import { ColumnModel, TaskModel } from '../../models/details.model';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
@@ -36,7 +37,11 @@ export class ColumnComponent implements OnChanges {
 
   tasks: TaskModel[] = [];
 
-  constructor(public dialog: MatDialog, private store: Store) {}
+  constructor(
+    public dialog: MatDialog,
+    private store: Store,
+    private transloco: TranslocoService,
+  ) {}
 
   ngOnChanges(): void {
     this.tempTitle = this.column.title;
@@ -66,7 +71,7 @@ export class ColumnComponent implements OnChanges {
   }
 
   openDeleteColumnModal(): void {
-    const data = { title: 'колонку' };
+    const data = { title: this.transloco.translate('details.deleteColumn') };
     const dialogRef = this.dialog.open(DeleteModalComponent, { data });
 
     dialogRef.afterClosed().subscribe((confirm) => {
@@ -76,16 +81,18 @@ export class ColumnComponent implements OnChanges {
   }
 
   openCreateTaskModal(): void {
-    const data = { heading: 'Создать задачу', title: '', description: '' };
+    const data = {
+      heading: this.transloco.translate('details.createTask'),
+      title: '',
+      description: '',
+    };
     const dialogRef = this.dialog.open(TaskModalComponent, { data });
 
     dialogRef.afterClosed().subscribe((body) => {
       if (!body?.title || !body?.description) return;
+      const { title, description } = body;
       this.store.dispatch(
-        createTask({
-          columnId: this.column.id,
-          body: { title: body.title, description: body.description },
-        }),
+        createTask({ columnId: this.column.id, body: { title, description } }),
       );
     });
   }

@@ -1,5 +1,4 @@
 {
-  "hello": "Привет, мир!",
   "welcome": {
     "test": "тест",
     "about": "О приложении",
@@ -73,5 +72,19 @@
   "confirmation": {
     "true": "Удалить",
     "false": "Отменить"
+  },
+  "details": {
+    "addColumn": "Добавить Колонку",
+    "boardTitle": "Доска",
+    "addTask": "Добавить Задачу",
+    "createColumn": "Создать Колонку",
+    "confirm": "Подтвердить",
+    "cancel": "Отмена",
+    "taskTitle": "Заголовок",
+    "taskDescription": "Описание",
+    "deleteColumn": "Удалить Колонку",
+    "deleteTask": "Удалить Задачу",
+    "createTask": "Создать Задачу",
+    "editTask": "Редактировать Задачу"
   }
 }
