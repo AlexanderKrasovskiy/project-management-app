@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -7,7 +8,10 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
-  constructor(private messageService: MessageService) {}
+  constructor(
+    private messageService: MessageService,
+    private translocoService: TranslocoService,
+  ) {}
 
   ngOnInit() {
     if (localStorage.getItem('PlanTokenInfo') === 'expired') {
@@ -15,7 +19,7 @@ export class WelcomeComponent implements OnInit {
       this.messageService.add({
         severity: 'warn',
         summary: 'Warn',
-        detail: 'Your token is expired! Please, login',
+        detail: this.translocoService.translate('welcome.expired'),
         life: 5000,
       });
     }

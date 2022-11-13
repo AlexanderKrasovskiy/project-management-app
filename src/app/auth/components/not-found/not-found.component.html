@@ -1,6 +1,8 @@
-<div class="not-found-wrap">
-  <div class="not-found-circle-fake"></div>
-  <div class="not-found-circle shadow-4">
-    <p class="not-found-text">We are sorry, page not found... :(</p>
+<ng-container *transloco="let t; read: 'notFound'">
+  <div class="not-found-wrap">
+    <div class="not-found-circle-fake"></div>
+    <div class="not-found-circle shadow-4">
+      <p class="not-found-text">{{ t('text') }}</p>
+    </div>
   </div>
-</div>
+</ng-container>
