@@ -8,3 +8,8 @@ export interface BoardRequestModel {
   title: string;
   description: string;
 }
+
+export interface BoardLocalStorModel {
+  id: string;
+  image: string;
+}
