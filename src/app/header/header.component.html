@@ -1,5 +1,8 @@
 <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
   <div class="flex flex-column gap-3">
+    <p class="user-name-sidebar">
+      {{ this.authService.getUser() }}
+    </p>
     <button
       pButton
       pRipple
@@ -24,12 +27,16 @@
         type="button"
         label="Create board"
         class="p-button-raised p-button-primary p-button-text button-custom"
-        routerLink="/boards"
         (click)="visibleSidebar1 = false"></button>
 
-      <!-- <p class="user-name-auth">
-        {{ this.authService.getUser() }}
-      </p> -->
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="All boards"
+        class="p-button-raised p-button-secondary p-button-text button-custom"
+        routerLink="/boards"
+        (click)="visibleSidebar1 = false"></button>
 
       <button
         pButton
@@ -69,18 +76,18 @@
   </div>
 </p-sidebar>
 <div
-  class="h-3rem md:h-4rem header-wrap"
+  class="h-3rem lg:h-4rem header-wrap"
   [ngClass]="{ 'sticky-header': inScroll }">
   <button
     pButton
     pRipple
     type="button"
     icon="pi pi-bars"
-    class="flex p-button-raised p-button-secondary p-button-text md:hidden sidebar-button"
+    class="flex p-button-raised p-button-secondary p-button-text lg:hidden sidebar-button"
     (click)="visibleSidebar1 = true"></button>
   <a routerLink="/welcome" class="link-not-default">
     <div
-      class="hidden md:flex logo-wrap card-with-blur shadow-3"
+      class="hidden lg:flex logo-wrap card-with-blur shadow-3"
       routerLink="./welcome">
       <div class="logo-title-wrap">
         <h2 class="font-light">Plan</h2>
@@ -90,7 +97,7 @@
     </div>
   </a>
   <div
-    class="px-3 gap-1 md:px-5 md:gap-3 card-with-opacity buttons-wrap shadow-3">
+    class="px-3 gap-1 lg:px-5 lg:gap-3 card-with-opacity buttons-wrap shadow-3">
     <div
       *ngIf="
         this.authService.getUser() || (this.authService.isUserLogged$ | async)
@@ -102,7 +109,7 @@
           type="text"
           pInputText
           placeholder="Search"
-          class="w-10rem md:w-auto search-input" />
+          class="w-10rem md:w-12rem lg:w-auto search-input" />
       </span>
 
       <button
@@ -110,10 +117,17 @@
         pRipple
         type="button"
         label="Create board"
-        class="hidden md:block p-button-raised p-button-primary p-button-text button-custom"
+        class="hidden lg:block p-button-raised p-button-primary p-button-text button-custom"></button>
+
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="All boards"
+        class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"
         routerLink="/boards"></button>
 
-      <p class="hidden md:block user-name-auth">
+      <p class="hidden lg:block user-name-auth">
         {{ this.authService.getUser() }}
       </p>
 
@@ -122,7 +136,7 @@
         pRipple
         type="button"
         icon="pi pi-user-edit"
-        class="hidden md:block p-button-rounded p-button-warning"
+        class="hidden lg:block p-button-rounded p-button-warning"
         routerLink="/auth/update"></button>
 
       <button
@@ -130,7 +144,7 @@
         pRipple
         type="button"
         icon="pi pi-sign-out"
-        class="hidden md:block p-button-rounded p-button-warning"
+        class="hidden lg:block p-button-rounded p-button-warning"
         (click)="this.authService.logoutUser()"
         routerLink="/auth/login"></button>
     </div>
@@ -142,14 +156,14 @@
       type="button"
       label="Login"
       (click)="loginPage()"
-      class="hidden md:block p-button-raised p-button-secondary p-button-text button-custom"></button>
+      class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"></button>
     <button
       *ngIf="(this.authService.isUserLogged$ | async) === false"
       pButton
       pRipple
       type="button"
       label="Sign up"
-      class="hidden md:block p-button-raised p-button-secondary p-button-text button-custom"
+      class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"
       (click)="authPage()"></button>
     <p-selectButton
       [options]="stateOptions"

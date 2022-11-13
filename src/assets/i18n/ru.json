@@ -11,7 +11,9 @@
     "backend": "Бэкенд",
     "teamlead": "Тимлид",
     "frontend": "Фронтенд",
-    "design": "Дизайн"
+    "design": "Дизайн",
+    "expired": "Токен закончился! Войдите в приложение заново",
+    "teamInfo": "Ru: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis aliquid commodi vitae cum eligendi ea. Itaque inventore placeat, voluptates eos hic possimus molestiae perferendis doloribus harum vero asperiores ducimus, quibusdam omnis alias? Animi id corrupti ea. Culpa similique quibusdam, incidunt sed soluta necessitatibus corrupti. Sint beatae perferendis ut vero?"
   },
   "registration": {
     "title": "Регистрация",
@@ -72,6 +74,9 @@
   "confirmation": {
     "true": "Удалить",
     "false": "Отменить"
+  },
+  "notFound": {
+    "text": "Извините, страница не найдена... :("
   },
   "details": {
     "addColumn": "Добавить Колонку",

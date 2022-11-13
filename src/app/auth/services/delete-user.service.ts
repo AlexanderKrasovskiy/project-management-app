@@ -43,9 +43,9 @@ export class DeleteUserService {
         this.confirmationService.isConfirmationModalUser = false;
         this.confirmationService.title = '';
         this.authService.logoutUser();
-        setTimeout(() => {
-          this.router.navigate(['auth/login']);
-        }, 2000);
+        //   setTimeout(() => {
+        this.router.navigate(['auth/login']);
+        //   }, 2000);
       });
   }
 }

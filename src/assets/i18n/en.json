@@ -11,7 +11,9 @@
     "backend": "Backend",
     "teamlead": "Teamlead",
     "frontend": "Frontend",
-    "design": "Design"
+    "design": "Design",
+    "expired": "Your token is expired! Please, login",
+    "teamInfo": "Lorem ipsum dolor sit amet, \nconsectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis aliquid commodi vitae cum eligendi ea. Itaque inventore placeat, voluptates eos hic possimus molestiae perferendis doloribus harum vero asperiores ducimus, quibusdam omnis alias? Animi id corrupti ea. Culpa similique quibusdam, incidunt sed soluta necessitatibus corrupti. Sint beatae perferendis ut vero?"
   },
   "registration": {
     "title": "Registration",
@@ -72,6 +74,9 @@
   "confirmation": {
     "true": "Remove",
     "false": "Cancel"
+  },
+  "notFound": {
+    "text": "We are sorry, page not found... :("
   },
   "details": {
     "addColumn": "Add Column",
