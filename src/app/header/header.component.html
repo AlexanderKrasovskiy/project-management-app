@@ -27,6 +27,14 @@
         type="button"
         label="Create board"
         class="p-button-raised p-button-primary p-button-text button-custom"
+        (click)="visibleSidebar1 = false"></button>
+
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="All boards"
+        class="p-button-raised p-button-secondary p-button-text button-custom"
         routerLink="/boards"
         (click)="visibleSidebar1 = false"></button>
 
@@ -101,7 +109,7 @@
           type="text"
           pInputText
           placeholder="Search"
-          class="w-10rem lg:w-auto search-input" />
+          class="w-10rem md:w-12rem lg:w-auto search-input" />
       </span>
 
       <button
@@ -109,7 +117,14 @@
         pRipple
         type="button"
         label="Create board"
-        class="hidden lg:block p-button-raised p-button-primary p-button-text button-custom"
+        class="hidden lg:block p-button-raised p-button-primary p-button-text button-custom"></button>
+
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="All boards"
+        class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"
         routerLink="/boards"></button>
 
       <p class="hidden lg:block user-name-auth">
