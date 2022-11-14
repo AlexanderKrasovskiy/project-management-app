@@ -31,6 +31,5 @@ const PrimeComponents = [
 @NgModule({
   imports: [...PrimeComponents],
   exports: [...PrimeComponents],
-  providers: [],
 })
 export class UiPrimengModule {}
