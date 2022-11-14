@@ -1,0 +1,22 @@
+.inform-title {
+  padding-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.inform-wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  .button-false,
+  .button-true {
+    background-color: rgba(255, 255, 255, 0.8);
+    min-width: 100px;
+  }
+  .button-false {
+    color: #d42323;
+  }
+  .button-true {
+    color: #038b19;
+  }
+}

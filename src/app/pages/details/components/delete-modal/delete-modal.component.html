@@ -1,19 +1,21 @@
 <ng-container *transloco="let t; read: 'confirmation'">
-  <h1 mat-dialog-title>{{ data.title }}?</h1>
-  <div mat-dialog-actions>
+  <h2 class="font-light inform-title">{{ data.title }}?</h2>
+  <div class="inform-wrapper">
     <button
       pButton
       pRipple
+      color="primary"
+      type="button"
+      class="p-button-raised p-button-success button-custom-white button-true"
       [mat-dialog-close]="true"
-      type="button"
-      [label]="t('true')"
-      class="p-button-rounded"></button>
+      [label]="t('true')"></button>
     <button
       pButton
       pRipple
-      (click)="onCancel()"
+      color="primary"
       type="button"
-      [label]="t('false')"
-      class="p-button-rounded p-button-danger"></button>
+      class="p-button-raised p-button-danger button-custom-white button-false"
+      (click)="onCancel()"
+      [label]="t('false')"></button>
   </div>
 </ng-container>
