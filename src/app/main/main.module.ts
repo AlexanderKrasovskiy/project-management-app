@@ -6,10 +6,10 @@ import { ApiMainHelpersService } from './services/api-main-helpers.service';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MainComponent } from './components/main/main.component';
 import { SharedModule } from '../shared/shared.module';
-// import { MainService } from './services/main.service';
+import { MainModalComponent } from './components/main-modal/main-modal.component';
 
 @NgModule({
-  declarations: [MainComponent, MainPageComponent],
+  declarations: [MainComponent, MainPageComponent, MainModalComponent],
   imports: [CommonModule, MainRoutingModule, SharedModule, TooltipModule],
   providers: [ApiMainHelpersService],
 })
