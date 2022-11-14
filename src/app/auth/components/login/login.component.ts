@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
+    private translocoService: TranslocoService,
   ) {}
 
   public ngOnInit(): void {
@@ -60,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'Successful login!',
+          detail: this.translocoService.translate('login.successfulLogin'),
           life: 5000,
         });
         //   setTimeout(() => {
