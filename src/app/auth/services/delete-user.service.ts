@@ -37,7 +37,7 @@ export class DeleteUserService {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: `${this.translocoService.translate('deleteUser.successful')}`,
+          detail: this.translocoService.translate('deleteUser.successful'),
           life: 5000,
         });
         this.confirmationService.isConfirmationModalUser = false;

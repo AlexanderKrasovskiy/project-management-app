@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
@@ -39,6 +40,7 @@ export class RegComponent implements OnInit, OnDestroy {
     public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
+    private translocoService: TranslocoService,
   ) {}
 
   public ngOnInit(): void {
@@ -59,7 +61,9 @@ export class RegComponent implements OnInit, OnDestroy {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: 'Successful registration!',
+        detail: this.translocoService.translate(
+          'registration.successfulRegistration',
+        ),
         life: 5000,
       });
       this.apiControlService.loginInReg(loginUser).subscribe(() => {
@@ -67,7 +71,9 @@ export class RegComponent implements OnInit, OnDestroy {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'Successful login!',
+          detail: this.translocoService.translate(
+            'registration.successfulLogin',
+          ),
           life: 5000,
         });
         //  setTimeout(() => {

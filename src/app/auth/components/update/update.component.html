@@ -20,9 +20,11 @@
               id="nameInput"
               pInputText
               class="update-input-inside"
-              [ngClass]="(updateForm.get('nameInput')?.errors?.['required'] && updateForm.get('nameInput')?.touched) ? 'error-border' : '' "
+              [(ngModel)]="this.defaultName"
+              [ngClass]="(updateForm.get('nameInput')?.errors?.['required'] &&
+            updateForm.get('nameInput')?.touched) ? 'error-border' : '' "
               formControlName="nameInput" />
-            <label for="nameInput">{{ t('name') }}</label>
+            <!-- <label for="nameInput">{{ t('name') }}</label> -->
             <div
               class="input-error"
               *ngIf="updateForm.get('nameInput')?.errors?.['required'] && (updateForm.get('nameInput')?.dirty || updateForm.get('nameInput')?.touched)">
@@ -37,6 +39,7 @@
               id="loginInput"
               pInputText
               class="update-input-inside"
+              [(ngModel)]="this.defaultLogin"
               [ngClass]="(updateForm.get('loginInput')?.errors?.['required'] && updateForm.get('loginInput')?.touched) ? 'error-border' : '' "
               formControlName="loginInput" />
             <label for="loginInput">{{ t('login') }}</label>
@@ -72,7 +75,7 @@
               [toggleMask]="true"
               id="twicePasswordInput"
               formControlName="twicePasswordInput"
-              pTooltip="Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]"></p-password>
+              pTooltip="{{ t('tooltipPassword') }}"></p-password>
             <label for="passwordInput">{{ t('repeatPassword') }}</label>
             <div
               class="input-error"
