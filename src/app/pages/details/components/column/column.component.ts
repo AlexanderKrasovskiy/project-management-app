@@ -45,7 +45,7 @@ export class ColumnComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.tempTitle = this.column.title;
-    this.tasks = [...this.column.tasks];
+    if (this.column.tasks) this.tasks = [...this.column.tasks];
   }
 
   showInput() {
