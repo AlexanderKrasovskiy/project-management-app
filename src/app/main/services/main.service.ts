@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
-import { deleteBoard } from 'src/app/store/actions/boards.action';
-import { BoardLocalStorModel } from '../models/main.model';
+import {
+  createBoard,
+  deleteBoard,
+  updateBoard,
+} from 'src/app/store/actions/boards.action';
+import { MainModalComponent } from '../components/main-modal/main-modal.component';
+import { BoardLocalStorModel, BoardRequestModel } from '../models/main.model';
 
 @Injectable()
 export class MainService {
@@ -22,12 +29,48 @@ export class MainService {
   constructor(
     private store: Store,
     public confirmationService: ConfirmationModalService,
+    public dialog: MatDialog,
+    private transloco: TranslocoService,
   ) {}
 
-  showModalWindowForCreate(): void {
-    this.isModalWindow = true;
-    this.titleModalWindow = 'Создать доску?';
+  openCreateBoardModal(): void {
+    const data = {
+      heading: this.transloco.translate('main.createNewBoard'),
+      title: '',
+      description: '',
+    };
+    const dialogRef = this.dialog.open(MainModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe((modalData) => {
+      if (!modalData?.title || !modalData?.description) return;
+      this.createNewBoard({
+        title: modalData.title,
+        description: modalData.description,
+      });
+    });
   }
+
+  createNewBoard(board: BoardRequestModel): void {
+    this.store.dispatch(
+      createBoard({
+        newBoard: board,
+      }),
+    );
+  }
+
+  updateBoard(id: string, board: BoardRequestModel): void {
+    this.store.dispatch(
+      updateBoard({
+        id,
+        newBoard: board,
+      }),
+    );
+  }
+
+  // showModalWindowForCreate(): void {
+  //   this.isModalWindow = true;
+  //   this.titleModalWindow = 'Создать доску?';
+  // }
 
   showModalWindowForUpdate(): void {
     this.isModalWindow = true;

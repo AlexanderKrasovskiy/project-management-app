@@ -6,7 +6,8 @@
         class="new-board card-with-blur scale"
         pTooltip="{{ t('createNewBoard') }}"
         tooltipPosition="bottom"
-        (click)="this.mainService.showModalWindowForCreate()">
+        (click)="this.mainService.openCreateBoardModal()"
+        cdkDrag>
         <i class="pi pi-plus"></i>
       </div>
       <div
@@ -44,7 +45,7 @@
         </div>
       </div>
     </section>
-    <section class="overlay" *ngIf="this.mainService.isModalWindow">
+    <!-- <section class="overlay" *ngIf="this.mainService.isModalWindow">
       <div class="inform-card card-simple shadow-4">
         <h2 class="font-light inform-title">
           {{ this.mainService.titleModalWindow }}
@@ -94,7 +95,7 @@
           </div>
         </form>
       </div>
-    </section>
+    </section> -->
     <section class="overlay" *ngIf="this.mainService.isbackgroundSwap">
       <div class="inform-card card-simple shadow-4">
         <h2 class="font-light inform-title">Веберите фон</h2>

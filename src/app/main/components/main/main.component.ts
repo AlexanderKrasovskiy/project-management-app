@@ -12,16 +12,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
-import {
-  createBoard,
-  loadBoards,
-  updateBoard,
-} from 'src/app/store/actions/boards.action';
+import { loadBoards } from 'src/app/store/actions/boards.action';
 import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
-import {
-  BoardLocalStorModel,
-  BoardRequestModel,
-} from '../../models/main.model';
+import { BoardLocalStorModel } from '../../models/main.model';
 import { MainService } from '../../services/main.service';
 
 @Component({
@@ -74,35 +67,18 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  onSubmit(): void {
-    if (this.mainService.titleModalWindow === 'Создать доску?')
-      this.createNewBoard(this.formMain.value);
-    else this.updateBoard(this.mainService.idBoard, this.formMain.value);
-    this.formMain.reset();
-    this.mainService.isModalWindow = false;
-  }
+  // onSubmit(): void {
+  //   if (this.mainService.titleModalWindow === 'Создать доску?')
+  //     this.createNewBoard(this.formMain.value);
+  //   else this.updateBoard(this.mainService.idBoard, this.formMain.value);
+  //   this.formMain.reset();
+  //   this.mainService.isModalWindow = false;
+  // }
 
-  createNewBoard(board: BoardRequestModel): void {
-    this.store.dispatch(
-      createBoard({
-        newBoard: board,
-      }),
-    );
-  }
-
-  updateBoard(id: string, board: BoardRequestModel): void {
-    this.store.dispatch(
-      updateBoard({
-        id,
-        newBoard: board,
-      }),
-    );
-  }
-
-  hideModalWindow(): void {
-    this.mainService.isModalWindow = false;
-    this.formMain.reset();
-  }
+  // hideModalWindow(): void {
+  //   this.mainService.isModalWindow = false;
+  //   this.formMain.reset();
+  // }
 
   showBackgroundChangeModalWindow(id: string, index: number): void {
     this.idBoard = id;

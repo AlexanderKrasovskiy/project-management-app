@@ -69,6 +69,7 @@
   },
   "main": {
     "title": "Доски",
+    "updateBoardTitle": "Обновить доску",
     "createNewBoard": "Создать новую доску",
     "titleBoard": "Введите название доски",
     "descriptionBoard": "Введите описание доски",

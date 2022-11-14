@@ -69,9 +69,10 @@
   },
   "main": {
     "title": "All boards",
-    "createNewBoard": "Create a new board",
-    "titleBoard": "Enter a board title",
-    "descriptionBoard": "Enter a board description",
+    "updateBoardTitle": "Обновить доску?",
+    "createNewBoard": "Create new board",
+    "titleBoard": "Enter board title",
+    "descriptionBoard": "Enter board description",
     "true": "Yes",
     "false": "No"
   },
