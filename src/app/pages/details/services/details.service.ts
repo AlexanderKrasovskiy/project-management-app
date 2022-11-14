@@ -18,14 +18,19 @@ export class DetailsService {
 
   getBoardById(id: string): Observable<BoardResModel> {
     return this.http.get<BoardResModel>(`/boards/${id}`);
+    // fact - 404 - "Board was not founded!"
+    // fact - 400 - "Validation failed (uuid  is expected)" - with long id
   }
 
   createColumn(boardId: string, title: string): Observable<ColumnModel> {
     return this.http.post<ColumnModel>(`/boards/${boardId}/columns`, { title });
+    // fact - 404 - "Board was not founded!"
   }
 
   deleteColumn(boardId: string, columnId: string) {
     return this.http.delete(`/boards/${boardId}/columns/${columnId}`);
+    // fact - 404 - "Board was not founded!" - redirect main / 404 ?
+    // fact - 404 - "Column was not founded!" - reload board ?
   }
 
   updateColumn(boardId: string, columnId: string, body: UpdateColumnPayload) {
@@ -33,6 +38,9 @@ export class DetailsService {
       `/boards/${boardId}/columns/${columnId}`,
       body,
     );
+    // fact - 404 - "Board was not founded!" - redirect main / 404 ?
+    // fact - 404 - "Column was not founded!" - reload board ?
+    // m.b. text limits
   }
 
   createTask(boardId: string, columnId: string, body: CreateTaskPayload) {
@@ -47,12 +55,14 @@ export class DetailsService {
         userId: id,
       },
     );
+    // 404 - "User was not founded!" - redirect main / 404 ?
   }
 
   deleteTask(boardId: string, columnId: string, taskId: string) {
     return this.http.delete(
       `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
     );
+    // 404 - "Task was not founded!"
   }
 
   updateTask(
@@ -70,5 +80,9 @@ export class DetailsService {
       `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
       newBody,
     );
+    // userId - ?
+    // order - 400 - "The task order number cannot be greater than the total number of tasks!"
+    // 503 - Service Unavailable
+    // 0 - Unknown Error
   }
 }
