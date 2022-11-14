@@ -69,6 +69,7 @@
   },
   "main": {
     "title": "Доски",
+    "editBoard": "Редактировать доску",
     "createNewBoard": "Создать новую доску",
     "titleBoard": "Введите название доски",
     "descriptionBoard": "Введите описание доски",
@@ -87,8 +88,8 @@
     "boardTitle": "Доска",
     "addTask": "Добавить Задачу",
     "createColumn": "Создать Колонку",
-    "confirm": "Подтвердить",
-    "cancel": "Отмена",
+    "confirm": "Да",
+    "cancel": "Нет",
     "taskTitle": "Заголовок",
     "taskDescription": "Описание",
     "deleteColumn": "Удалить Колонку",

@@ -1,23 +1,34 @@
 <ng-container *transloco="let t; read: 'details'">
-  <h1 mat-dialog-title>{{ t('createColumn') }}</h1>
-  <div mat-dialog-content>
-    <input type="text" pInputText [(ngModel)]="data.title" required />
-  </div>
-  <div mat-dialog-actions>
-    <button
-      [disabled]="!data.title"
-      pButton
-      pRipple
-      [mat-dialog-close]="data.title"
-      type="button"
-      [label]="t('confirm')"
-      class="p-button-rounded"></button>
-    <button
-      pButton
-      pRipple
-      (click)="onCancel()"
-      type="button"
-      [label]="t('cancel')"
-      class="p-button-rounded p-button-danger"></button>
+  <h2 class="font-light inform-title">{{ t('createColumn') }}</h2>
+  <div class="fields-wrapper p-inputtext-lg">
+    <div class="p-float-label inform-input field">
+      <input
+        type="text"
+        class="inform-input-inside"
+        pInputText
+        [(ngModel)]="data.title"
+        name="nameInput" />
+      <label for="nameInput">{{ t('taskTitle') }}</label>
+    </div>
+
+    <div class="inform-wrapper">
+      <button
+        pButton
+        pRipple
+        color="primary"
+        type="button"
+        class="p-button-raised p-button-success button-custom-white button-true"
+        [disabled]="!data.title"
+        [mat-dialog-close]="data.title"
+        [label]="t('confirm')"></button>
+      <button
+        pButton
+        pRipple
+        color="primary"
+        type="button"
+        class="p-button-raised p-button-danger button-custom-white button-false"
+        (click)="onCancel()"
+        [label]="t('cancel')"></button>
+    </div>
   </div>
 </ng-container>

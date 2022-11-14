@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
-import { deleteBoard } from 'src/app/store/actions/boards.action';
+import {
+  createBoard,
+  deleteBoard,
+  updateBoard,
+} from 'src/app/store/actions/boards.action';
+import { MainModalComponent } from '../components/main-modal/main-modal.component';
 import { BoardLocalStorModel } from '../models/main.model';
 
 @Injectable()
 export class MainService {
-  isModalWindow: boolean = false;
   isbackgroundSwap: boolean = false;
-  titleModalWindow: string = '';
   idBoard: string = '';
   images: string[] = [
     'board-1',
@@ -17,21 +22,64 @@ export class MainService {
     'board-4',
     'board-5',
     'board-6',
+    'board-7',
+    'board-8',
+    'board-9',
+    'board-10',
+    'board-11',
+    'board-12',
+    'board-13',
+    'board-14',
   ];
 
   constructor(
     private store: Store,
     public confirmationService: ConfirmationModalService,
+    private dialog: MatDialog,
+    private transloco: TranslocoService,
   ) {}
 
-  showModalWindowForCreate(): void {
-    this.isModalWindow = true;
-    this.titleModalWindow = 'Создать доску?';
+  openCreateBoardModal(): void {
+    const data = {
+      heading: this.transloco.translate('main.createNewBoard'),
+      title: '',
+      description: '',
+    };
+    const dialogRef = this.dialog.open(MainModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe((modalData) => {
+      if (!modalData?.title || !modalData?.description) return;
+      this.store.dispatch(
+        createBoard({
+          newBoard: {
+            title: modalData.title,
+            description: modalData.description,
+          },
+        }),
+      );
+    });
   }
 
-  showModalWindowForUpdate(): void {
-    this.isModalWindow = true;
-    this.titleModalWindow = 'Обновить доску?';
+  openUpdateBoardModal(id: string): void {
+    const data = {
+      heading: this.transloco.translate('main.editBoard'),
+      title: '',
+      description: '',
+    };
+    const dialogRef = this.dialog.open(MainModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe((modalData) => {
+      if (!modalData?.title || !modalData?.description) return;
+      this.store.dispatch(
+        updateBoard({
+          id,
+          newBoard: {
+            title: modalData.title,
+            description: modalData.description,
+          },
+        }),
+      );
+    });
   }
 
   showConfirmationModalWindow(): void {
