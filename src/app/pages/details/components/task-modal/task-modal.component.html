@@ -1,32 +1,42 @@
 <ng-container *transloco="let t; read: 'details'">
-  <h1 mat-dialog-title>{{ data.heading }}</h1>
-  <div mat-dialog-content class="input-fields">
-    <h5>{{ t('taskTitle') }}</h5>
-    <input type="text" pInputText [(ngModel)]="data.title" required />
-    <h5>{{ t('taskDescription') }}</h5>
-    <textarea
-      rows="4"
-      cols="30"
-      pInputTextarea
-      class="textarea"
-      [(ngModel)]="data.description"
-      required></textarea>
+  <h2 class="font-light inform-title">{{ data.heading }}?</h2>
+  <div class="fields-wrapper p-inputtext-lg">
+    <div class="p-float-label inform-input field">
+      <input
+        type="text"
+        class="inform-input-inside"
+        pInputText
+        [(ngModel)]="data.title"
+        name="nameInput" />
+      <label for="nameInput">{{ t('taskTitle') }}</label>
+    </div>
+    <div class="p-float-label inform-input field">
+      <textarea
+        rows="4"
+        pInputTextarea
+        class="inform-input-inside textarea"
+        [(ngModel)]="data.description"></textarea>
+      <!-- name="nameInput" -->
+      <!-- <label for="nameInput">{{ t('taskDescription') }}</label> -->
+    </div>
   </div>
-  <div mat-dialog-actions>
+  <div class="inform-wrapper">
     <button
+      pButton
+      pRipple
+      color="primary"
+      type="button"
+      class="p-button-raised p-button-success button-custom-white button-true"
       [disabled]="!data.title || !data.description"
-      pButton
-      pRipple
       [mat-dialog-close]="data"
-      type="button"
-      [label]="t('confirm')"
-      class="p-button-rounded"></button>
+      [label]="t('confirm')"></button>
     <button
       pButton
       pRipple
-      (click)="onCancel()"
+      color="primary"
       type="button"
-      [label]="t('cancel')"
-      class="p-button-rounded p-button-danger"></button>
+      class="p-button-raised p-button-danger button-custom-white button-false"
+      (click)="onCancel()"
+      [label]="t('cancel')"></button>
   </div>
 </ng-container>

@@ -69,3 +69,15 @@ a.link-not-default {
 
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cdk-overlay-pane {
+  width: 396px;
+  max-width: 95vw !important;
+}
+
+.mat-dialog-container.cdk-dialog-container {
+  border-radius: 30px;
+  padding: 2rem;
+  background-image: url('./assets/images/question.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
