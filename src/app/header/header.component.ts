@@ -4,11 +4,15 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
+import { Store } from '@ngrx/store';
 // import { fromEvent } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
 import { IsBoardsService } from '../auth/services/is-boards.service';
+import { MainModalComponent } from '../main/components/main-modal/main-modal.component';
+import { createBoard } from '../store/actions/boards.action';
 
 @Component({
   selector: 'app-header',
@@ -31,6 +35,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public authService: AuthService,
     public isBoardsService: IsBoardsService,
+    public dialog: MatDialog,
+    private store: Store,
   ) {
     this.stateOptions = [
       { label: 'En', value: 'en' },
@@ -75,5 +81,26 @@ export class HeaderComponent implements OnInit {
 
   loginPage() {
     this.router.navigate(['/auth/login']);
+  }
+
+  openCreateBoardModal(): void {
+    const data = {
+      heading: this.transloco.translate('main.createNewBoard'),
+      title: '',
+      description: '',
+    };
+    const dialogRef = this.dialog.open(MainModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe((modalData) => {
+      if (!modalData?.title || !modalData?.description) return;
+      this.store.dispatch(
+        createBoard({
+          newBoard: {
+            title: modalData.title,
+            description: modalData.description,
+          },
+        }),
+      );
+    });
   }
 }

@@ -43,19 +43,15 @@ export class MainService {
 
     dialogRef.afterClosed().subscribe((modalData) => {
       if (!modalData?.title || !modalData?.description) return;
-      this.createNewBoard({
-        title: modalData.title,
-        description: modalData.description,
-      });
+      this.store.dispatch(
+        createBoard({
+          newBoard: {
+            title: modalData.title,
+            description: modalData.description,
+          },
+        }),
+      );
     });
-  }
-
-  createNewBoard(board: BoardRequestModel): void {
-    this.store.dispatch(
-      createBoard({
-        newBoard: board,
-      }),
-    );
   }
 
   updateBoard(id: string, board: BoardRequestModel): void {
