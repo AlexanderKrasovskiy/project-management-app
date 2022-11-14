@@ -9,13 +9,11 @@ import {
   updateBoard,
 } from 'src/app/store/actions/boards.action';
 import { MainModalComponent } from '../components/main-modal/main-modal.component';
-import { BoardLocalStorModel, BoardRequestModel } from '../models/main.model';
+import { BoardLocalStorModel } from '../models/main.model';
 
 @Injectable()
 export class MainService {
-  isModalWindow: boolean = false;
   isbackgroundSwap: boolean = false;
-  titleModalWindow: string = '';
   idBoard: string = '';
   images: string[] = [
     'board-1',
@@ -29,7 +27,7 @@ export class MainService {
   constructor(
     private store: Store,
     public confirmationService: ConfirmationModalService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private transloco: TranslocoService,
   ) {}
 
@@ -74,25 +72,6 @@ export class MainService {
         }),
       );
     });
-  }
-
-  updateBoard(id: string, board: BoardRequestModel): void {
-    this.store.dispatch(
-      updateBoard({
-        id,
-        newBoard: board,
-      }),
-    );
-  }
-
-  // showModalWindowForCreate(): void {
-  //   this.isModalWindow = true;
-  //   this.titleModalWindow = 'Создать доску?';
-  // }
-
-  showModalWindowForUpdate(): void {
-    this.isModalWindow = true;
-    this.titleModalWindow = 'Обновить доску?';
   }
 
   showConfirmationModalWindow(): void {

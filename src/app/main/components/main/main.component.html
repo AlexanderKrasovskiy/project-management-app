@@ -42,57 +42,6 @@
         </div>
       </div>
     </section>
-    <!-- <section class="overlay" *ngIf="this.mainService.isModalWindow">
-      <div class="inform-card card-simple shadow-4">
-        <h2 class="font-light inform-title">
-          {{ this.mainService.titleModalWindow }}
-        </h2>
-        <form
-          action=""
-          [formGroup]="formMain"
-          (ngSubmit)="formMain.valid && onSubmit()">
-          <div class="fields-wrapper p-inputtext-lg">
-            <div class="p-float-label inform-input field">
-              <input
-                type="text"
-                pInputText
-                class="inform-input-inside"
-                name="nameInput"
-                formControlName="title"
-                autocomplete="off" />
-              <label for="nameInput">{{ t('titleBoard') }}</label>
-            </div>
-            <div class="p-float-label inform-input field">
-              <input
-                type="text"
-                pInputText
-                class="inform-input-inside"
-                name="nameInput"
-                formControlName="description"
-                autocomplete="off" />
-              <label for="nameInput">{{ t('descriptionBoard') }}</label>
-            </div>
-          </div>
-          <div class="inform-wrapper">
-            <button
-              pButton
-              pRipple
-              color="primary"
-              type="button"
-              class="p-button-raised p-button-danger button-custom-white button-false"
-              (click)="hideModalWindow()"
-              label="{{ t('false') }}"></button>
-            <button
-              pButton
-              pRipple
-              color="primary"
-              class="p-button-raised p-button-success button-custom-white button-true"
-              type="submit"
-              label="{{ t('true') }}"></button>
-          </div>
-        </form>
-      </div>
-    </section> -->
     <section class="overlay" *ngIf="this.mainService.isbackgroundSwap">
       <div class="inform-card card-simple shadow-4">
         <h2 class="font-light inform-title">Веберите фон</h2>

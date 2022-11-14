@@ -27,6 +27,7 @@
           pRipple
           type="button"
           label="{{ t('create') }}"
+          (click)="openCreateBoardModal()"
           routerLink="/boards"
           class="p-button-raised p-button-primary p-button-text button-custom"
           (click)="visibleSidebar1 = false"></button>

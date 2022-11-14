@@ -8,7 +8,6 @@ import {
   Renderer2,
   ViewChildren,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
@@ -23,11 +22,6 @@ import { MainService } from '../../services/main.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
-  formMain: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-  });
-
   boards$ = this.store.select(selectCurrentBoards);
   indexBoard: number = 0;
   idBoard: string = '';
@@ -66,19 +60,6 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     }
   }
-
-  // onSubmit(): void {
-  //   if (this.mainService.titleModalWindow === 'Создать доску?')
-  //     this.createNewBoard(this.formMain.value);
-  //   else this.updateBoard(this.mainService.idBoard, this.formMain.value);
-  //   this.formMain.reset();
-  //   this.mainService.isModalWindow = false;
-  // }
-
-  // hideModalWindow(): void {
-  //   this.mainService.isModalWindow = false;
-  //   this.formMain.reset();
-  // }
 
   showBackgroundChangeModalWindow(id: string, index: number): void {
     this.idBoard = id;
