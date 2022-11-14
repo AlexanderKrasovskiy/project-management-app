@@ -33,10 +33,7 @@
           </div>
           <div
             class="setting"
-            (click)="
-              this.mainService.updateId(board.id);
-              this.mainService.showModalWindowForUpdate()
-            ">
+            (click)="this.mainService.openUpdateBoardModal(board.id)">
             <i class="pi pi-pencil"></i>
           </div>
         </div>

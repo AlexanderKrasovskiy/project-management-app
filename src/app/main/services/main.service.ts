@@ -54,6 +54,28 @@ export class MainService {
     });
   }
 
+  openUpdateBoardModal(id: string): void {
+    const data = {
+      heading: this.transloco.translate('main.editBoard'),
+      title: '',
+      description: '',
+    };
+    const dialogRef = this.dialog.open(MainModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe((modalData) => {
+      if (!modalData?.title || !modalData?.description) return;
+      this.store.dispatch(
+        updateBoard({
+          id,
+          newBoard: {
+            title: modalData.title,
+            description: modalData.description,
+          },
+        }),
+      );
+    });
+  }
+
   updateBoard(id: string, board: BoardRequestModel): void {
     this.store.dispatch(
       updateBoard({

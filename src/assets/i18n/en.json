@@ -69,7 +69,7 @@
   },
   "main": {
     "title": "All boards",
-    "updateBoard": "Обновить доску?",
+    "editBoard": "Edit board",
     "createNewBoard": "Create new board",
     "titleBoard": "Enter board title",
     "descriptionBoard": "Enter board description",
