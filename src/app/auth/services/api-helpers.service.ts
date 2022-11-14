@@ -102,7 +102,7 @@ export class ApiHelpersService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: `${this.translocoService.translate('apiHelpers.notFind')}`,
+          detail: this.translocoService.translate('apiHelpers.notFind'),
           life: 5000,
         });
         console.error(err.error.message);
@@ -146,7 +146,7 @@ export class ApiHelpersService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: `${this.translocoService.translate('apiHelpers.notDelete')}`,
+          detail: this.translocoService.translate('apiHelpers.notDelete'),
           life: 5000,
         });
         console.error(err.error.message);

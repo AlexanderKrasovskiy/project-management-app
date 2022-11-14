@@ -35,7 +35,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      color: #FFFFFF;
+      color: #ffffff;
       font-size: 24px;
       background-image: url('../../../../assets/images/board-6-small.png');
       .board__setting {
@@ -64,6 +64,9 @@
           font-weight: 500;
           line-height: 37px;
           text-align: center;
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 10px 0;
+          padding: 0 0.5rem;
         }
       }
       .pi-plus {
@@ -116,10 +119,10 @@
           min-width: 100px;
         }
         .button-false {
-          color: #D42323;
+          color: #d42323;
         }
         .button-true {
-          color: #038B19;
+          color: #038b19;
         }
       }
     }

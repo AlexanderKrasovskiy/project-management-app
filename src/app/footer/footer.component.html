@@ -1,31 +1,33 @@
 <!-- <div class="static md:absolute card-with-blur footer-wrap shadow-3"> -->
-<div class="absolute card-with-blur footer-wrap shadow-3">
-  <a href="https://rs.school/angular/">
-    <div class="footer-logo"></div>
-  </a>
-  <div class="github-wrap">
-    <a
-      href="https://github.com/AlexanderKrasovskiy"
-      class="flex flex-nowrap align-items-center gap-2 link-not-default">
-      <div class="hidden md:block footer-github"></div>
-      <p class="hidden md:block">Alexander Krasovskiy</p>
-      <p class="block text-xs md:hidden">Sasha</p>
+<ng-container *transloco="let t; read: 'footer'">
+  <div class="absolute card-with-blur footer-wrap shadow-3">
+    <a href="https://rs.school/angular/">
+      <div class="footer-logo"></div>
     </a>
+    <div class="github-wrap">
+      <a
+        href="https://github.com/AlexanderKrasovskiy"
+        class="flex flex-nowrap align-items-center gap-2 link-not-default">
+        <div class="hidden md:block footer-github"></div>
+        <p class="hidden md:block">{{ t('Alexander') }}</p>
+        <p class="block text-xs md:hidden">{{ t('Sasha') }}</p>
+      </a>
 
-    <a
-      href="https://github.com/ALLaTk"
-      class="flex flex-nowrap align-items-center gap-2 link-not-default">
-      <div class="hidden md:block footer-github"></div>
-      <p class="hidden md:block">Alla Tkachuk</p>
-      <p class="block text-xs md:hidden">Alla</p>
-    </a>
+      <a
+        href="https://github.com/ALLaTk"
+        class="flex flex-nowrap align-items-center gap-2 link-not-default">
+        <div class="hidden md:block footer-github"></div>
+        <p class="hidden md:block">{{ t('AllaT') }}</p>
+        <p class="block text-xs md:hidden">{{ t('Alla') }}</p>
+      </a>
 
-    <a
-      href="https://github.com/Svt1108"
-      class="flex flex-nowrap align-items-center gap-2 link-not-default">
-      <div class="hidden md:block footer-github"></div>
-      <p class="hidden md:block">Svetlana Pozina, 2022</p>
-      <p class="block text-xs md:hidden">Sveta, 2022</p>
-    </a>
+      <a
+        href="https://github.com/Svt1108"
+        class="flex flex-nowrap align-items-center gap-2 link-not-default">
+        <div class="hidden md:block footer-github"></div>
+        <p class="hidden md:block">{{ t('Svetlana') }}</p>
+        <p class="block text-xs md:hidden">{{ t('Sveta') }}</p>
+      </a>
+    </div>
   </div>
-</div>
+</ng-container>

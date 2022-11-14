@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
@@ -29,6 +30,14 @@ import { parseJwt } from '../../utils/parse-token.util';
 export class UpdateComponent implements OnInit, OnDestroy {
   public updateForm!: FormGroup;
 
+  public defaultName = JSON.parse(
+    localStorage.getItem('PlanUserInfo') as string,
+  ).name;
+
+  public defaultLogin = JSON.parse(
+    localStorage.getItem('PlanUserInfo') as string,
+  ).login;
+
   upd$: Subscription = new Subscription();
 
   constructor(
@@ -39,6 +48,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     private primengConfig: PrimeNGConfig,
     public confirmationService: ConfirmationModalService,
     public deleteUserService: DeleteUserService,
+    private translocoService: TranslocoService,
   ) {}
 
   public ngOnInit(): void {
@@ -64,7 +74,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'Successful update!',
+          detail: this.translocoService.translate('update.successful'),
           life: 5000,
         });
         //  setTimeout(() => {
