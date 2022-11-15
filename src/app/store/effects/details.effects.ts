@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, map, of, switchMap, tap } from 'rxjs';
 import { BoardResModel } from 'src/app/pages/details/models/details.model';
+import { DetailsErrorHandlerService } from 'src/app/pages/details/services/details-error-handler.service';
 import { DetailsService } from 'src/app/pages/details/services/details.service';
 import * as DetailsActions from '../actions/details.actions';
 import { selectBoardId } from '../selectors/details.selectors';
@@ -13,6 +14,7 @@ export class DetailsEffects {
     private actions$: Actions,
     private detailsService: DetailsService,
     private store: Store,
+    private errorService: DetailsErrorHandlerService,
   ) {}
 
   loadCurrentBoard$ = createEffect(() => {
@@ -24,6 +26,11 @@ export class DetailsEffects {
         DetailsActions.createTaskSuccess,
         DetailsActions.deleteTaskSuccess,
         DetailsActions.updateTaskSuccess,
+        DetailsActions.deleteColumnFailure,
+        DetailsActions.updateColumnFailure,
+        DetailsActions.createTaskFailure,
+        DetailsActions.deleteTaskFailure,
+        DetailsActions.updateTaskFailure,
       ),
       switchMap(({ id }) =>
         this.detailsService.getBoardById(id).pipe(
@@ -34,7 +41,10 @@ export class DetailsEffects {
             });
           }),
           map((board) => DetailsActions.loadBoardSuccess({ board })),
-          catchError(() => of(DetailsActions.loadBoardFailure())),
+          catchError((err) => {
+            this.errorService.handleError(err);
+            return of(DetailsActions.loadBoardFailure());
+          }),
         ),
       ),
     );
@@ -47,7 +57,13 @@ export class DetailsEffects {
       switchMap(([{ title }, boardId]) =>
         this.detailsService.createColumn(boardId, title).pipe(
           map((column) => DetailsActions.createColumnSuccess({ column })),
-          catchError(() => of(DetailsActions.createColumnFailure())),
+          catchError((err) => {
+            this.errorService.handleError(err);
+            if (this.errorService.testMessageType(err)) {
+              return of(DetailsActions.createColumnFailure());
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
@@ -60,7 +76,13 @@ export class DetailsEffects {
       switchMap(([{ columnId }, boardId]) =>
         this.detailsService.deleteColumn(boardId, columnId).pipe(
           map(() => DetailsActions.deleteColumnSuccess({ id: boardId })),
-          catchError(() => of(DetailsActions.deleteColumnFailure())),
+          catchError((err) => {
+            this.errorService.handleError(err);
+            if (this.errorService.testMessageType(err)) {
+              return of(DetailsActions.deleteColumnFailure({ id: boardId }));
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
@@ -73,7 +95,13 @@ export class DetailsEffects {
       switchMap(([{ columnId, body }, boardId]) =>
         this.detailsService.updateColumn(boardId, columnId, body).pipe(
           map(() => DetailsActions.updateColumnSuccess({ id: boardId })),
-          catchError(() => of(DetailsActions.updateColumnFailure())),
+          catchError((err) => {
+            this.errorService.handleError(err);
+            if (this.errorService.testMessageType(err)) {
+              return of(DetailsActions.updateColumnFailure({ id: boardId }));
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
@@ -86,7 +114,13 @@ export class DetailsEffects {
       switchMap(([{ columnId, body }, boardId]) =>
         this.detailsService.createTask(boardId, columnId, body).pipe(
           map(() => DetailsActions.createTaskSuccess({ id: boardId })),
-          catchError(() => of(DetailsActions.createTaskFailure())),
+          catchError((err) => {
+            this.errorService.handleError(err);
+            if (this.errorService.testMessageType(err)) {
+              return of(DetailsActions.createTaskFailure({ id: boardId }));
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
@@ -99,7 +133,13 @@ export class DetailsEffects {
       switchMap(([{ columnId, taskId }, boardId]) =>
         this.detailsService.deleteTask(boardId, columnId, taskId).pipe(
           map(() => DetailsActions.deleteTaskSuccess({ id: boardId })),
-          catchError(() => of(DetailsActions.deleteTaskFailure())),
+          catchError((err) => {
+            this.errorService.handleError(err);
+            if (this.errorService.testMessageType(err)) {
+              return of(DetailsActions.deleteTaskFailure({ id: boardId }));
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
@@ -112,7 +152,13 @@ export class DetailsEffects {
       switchMap(([{ columnId, taskId, body }, boardId]) =>
         this.detailsService.updateTask(boardId, columnId, taskId, body).pipe(
           map(() => DetailsActions.updateTaskSuccess({ id: boardId })),
-          catchError(() => of(DetailsActions.updateTaskFailure())),
+          catchError((err) => {
+            this.errorService.handleError(err);
+            if (this.errorService.testMessageType(err)) {
+              return of(DetailsActions.updateTaskFailure({ id: boardId }));
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
