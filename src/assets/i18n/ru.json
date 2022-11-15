@@ -74,11 +74,14 @@
     "titleBoard": "Введите название доски",
     "descriptionBoard": "Введите описание доски",
     "true": "Да",
-    "false": "Нет"
+    "false": "Нет",
+    "cancel": "Отменить",
+    "titleBackground": "Выберите фон"
   },
   "confirmation": {
-    "true": "Удалить",
-    "false": "Отменить"
+    "deleteBoard": "Удалить доску",
+    "remove": "Удалить",
+    "cancel": "Отменить"
   },
   "notFound": {
     "text": "Извините, страница не найдена... :("

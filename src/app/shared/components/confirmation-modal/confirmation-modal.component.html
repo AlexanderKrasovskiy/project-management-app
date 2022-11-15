@@ -1,30 +1,21 @@
 <ng-container *transloco="let t; read: 'confirmation'">
-  <section class="overlay">
-    <div class="inform-card card-simple shadow-4">
-      <h2 class="font-light inform-title">
-        Удалить {{ this.confirmationService.title }}?
-      </h2>
-      <div class="inform-wrapper">
-        <button
-          pButton
-          pRipple
-          color="primary"
-          class="p-button-raised p-button-danger button-custom-white button-false"
-          (click)="this.confirmationService.hideConfirmationModalWindow()"
-          label="{{ t('false') }}"></button>
-        <button
-          pButton
-          pRipple
-          color="primary"
-          class="p-button-raised p-button-success button-custom-white button-true"
-          (click)="
-            (this.confirmationService.isConfirmationModalBoard &&
-              this.mainService.removeBoard()) ||
-              (this.confirmationService.isConfirmationModalUser &&
-                this.deleteUserService.removeUser())
-          "
-          label="{{ t('true') }}"></button>
-      </div>
-    </div>
-  </section>
+  <h2 class="font-light inform-title">{{ data }}?</h2>
+  <div class="inform-wrapper">
+    <button
+      pButton
+      pRipple
+      color="primary"
+      type="button"
+      class="p-button-raised p-button-success button-custom-white button-true"
+      [mat-dialog-close]="data"
+      [label]="t('remove')"></button>
+    <button
+      pButton
+      pRipple
+      color="primary"
+      type="button"
+      class="p-button-raised p-button-danger button-custom-white button-false"
+      (click)="onCancel()"
+      [label]="t('cancel')"></button>
+  </div>
 </ng-container>

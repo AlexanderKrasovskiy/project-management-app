@@ -74,11 +74,14 @@
     "titleBoard": "Enter board title",
     "descriptionBoard": "Enter board description",
     "true": "Yes",
-    "false": "No"
+    "false": "No",
+    "cancel": "Cancel",
+    "titleBackground": "Choose background"
   },
   "confirmation": {
-    "true": "Remove",
-    "false": "Cancel"
+    "deleteBoard": "Remove board",
+    "remove": "Remove",
+    "cancel": "Cancel"
   },
   "notFound": {
     "text": "We are sorry, page not found... :("
