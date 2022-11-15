@@ -102,7 +102,7 @@ export class ApiHelpersService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.translocoService.translate('apiHelpers.notFind'),
+          detail: this.translocoService.translate('apiHelpers.notFound'),
           life: 5000,
         });
         console.error(err.error.message);
