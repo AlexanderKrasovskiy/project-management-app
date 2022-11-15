@@ -60,7 +60,7 @@
   "apiHelpers": {
     "notCreate": "Can not create user :(",
     "notLogin": "Can not login :(",
-    "notFind": "Can not find user :(",
+    "notFound": "Can not find user :(",
     "notUpdate": "Can not update user :(",
     "notDelete": "Can not delete user :(",
     "check": "Check if your login and password are correct!",
@@ -69,9 +69,10 @@
   },
   "main": {
     "title": "All boards",
-    "createNewBoard": "Create a new board",
-    "titleBoard": "Enter a board title",
-    "descriptionBoard": "Enter a board description",
+    "editBoard": "Edit board",
+    "createNewBoard": "Create new board",
+    "titleBoard": "Enter board title",
+    "descriptionBoard": "Enter board description",
     "true": "Yes",
     "false": "No"
   },

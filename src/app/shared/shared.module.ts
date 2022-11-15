@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { TooltipModule } from 'primeng/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 import { UiPrimengModule } from './ui-primeng/ui-primeng.module';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { ConfirmationModalService } from './services/confirmation-modal.service';
@@ -18,6 +20,7 @@ import { TranslocoRootModule } from '../transloco-root.module';
     ReactiveFormsModule,
     UiPrimengModule,
     TranslocoRootModule,
+    MatDialogModule,
   ],
   exports: [
     FormsModule,
@@ -25,6 +28,7 @@ import { TranslocoRootModule } from '../transloco-root.module';
     UiPrimengModule,
     ConfirmationModalComponent,
     TranslocoRootModule,
+    MatDialogModule,
   ], // m.b. delete
   providers: [
     ConfirmationModalService,

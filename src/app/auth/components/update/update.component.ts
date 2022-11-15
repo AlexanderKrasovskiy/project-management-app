@@ -30,14 +30,6 @@ import { parseJwt } from '../../utils/parse-token.util';
 export class UpdateComponent implements OnInit, OnDestroy {
   public updateForm!: FormGroup;
 
-  public defaultName = JSON.parse(
-    localStorage.getItem('PlanUserInfo') as string,
-  ).name;
-
-  public defaultLogin = JSON.parse(
-    localStorage.getItem('PlanUserInfo') as string,
-  ).login;
-
   upd$: Subscription = new Subscription();
 
   constructor(
@@ -86,8 +78,14 @@ export class UpdateComponent implements OnInit, OnDestroy {
   private initializeForm(): void {
     this.updateForm = new FormGroup(
       {
-        nameInput: new FormControl('', [Validators.required]),
-        loginInput: new FormControl('', [Validators.required]),
+        nameInput: new FormControl(
+          JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name,
+          [Validators.required],
+        ),
+        loginInput: new FormControl(
+          JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).login,
+          [Validators.required],
+        ),
         passwordInput: new FormControl('', [
           Validators.required,
           ValidatePassword,

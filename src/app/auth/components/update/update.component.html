@@ -20,11 +20,10 @@
               id="nameInput"
               pInputText
               class="update-input-inside"
-              [(ngModel)]="this.defaultName"
               [ngClass]="(updateForm.get('nameInput')?.errors?.['required'] &&
             updateForm.get('nameInput')?.touched) ? 'error-border' : '' "
               formControlName="nameInput" />
-            <!-- <label for="nameInput">{{ t('name') }}</label> -->
+            <label for="nameInput">{{ t('name') }}</label>
             <div
               class="input-error"
               *ngIf="updateForm.get('nameInput')?.errors?.['required'] && (updateForm.get('nameInput')?.dirty || updateForm.get('nameInput')?.touched)">
@@ -39,7 +38,6 @@
               id="loginInput"
               pInputText
               class="update-input-inside"
-              [(ngModel)]="this.defaultLogin"
               [ngClass]="(updateForm.get('loginInput')?.errors?.['required'] && updateForm.get('loginInput')?.touched) ? 'error-border' : '' "
               formControlName="loginInput" />
             <label for="loginInput">{{ t('login') }}</label>
