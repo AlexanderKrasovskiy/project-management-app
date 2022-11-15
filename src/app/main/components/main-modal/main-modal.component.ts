@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-export interface CreateBoardData {
+export interface BoardData {
   heading: string;
   title: string;
   description: string;
@@ -15,7 +15,7 @@ export interface CreateBoardData {
 export class MainModalComponent {
   constructor(
     public dialogRef: MatDialogRef<MainModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CreateBoardData,
+    @Inject(MAT_DIALOG_DATA) public data: BoardData,
   ) {}
 
   onCancel(): void {
