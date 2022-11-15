@@ -9,7 +9,7 @@ import { finalize, Observable } from 'rxjs';
 import { SpinnerService } from '../services/spinner.service';
 
 @Injectable()
-export default class LoadingInterceptor implements HttpInterceptor {
+export class LoadingInterceptor implements HttpInterceptor {
   private totalRequests = 0;
 
   constructor(private spinnerService: SpinnerService) {}

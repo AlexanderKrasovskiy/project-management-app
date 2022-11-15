@@ -15,6 +15,8 @@ import { ApiMainHelpersService } from '../main/services/api-main-helpers.service
 import { currentBoardReducer } from '../store/reducers/details.reducer';
 import { DetailsEffects } from '../store/effects/details.effects';
 import { DetailsService } from '../pages/details/services/details.service';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { DetailsErrorHandlerService } from '../pages/details/services/details-error-handler.service';
 // import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -41,8 +43,10 @@ import { DetailsService } from '../pages/details/services/details.service';
       useClass: ApiInterceptor,
       multi: true,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     // MessageService,
     DetailsService,
+    DetailsErrorHandlerService,
   ],
 })
 export class CoreModule {}

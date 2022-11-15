@@ -1,9 +1,9 @@
 <ng-container *transloco="let t; read: 'main'">
   <main class="main">
     <h1 class="main__title card-with-blur scale">{{ t('title') }}</h1>
-    <section class="main__boards grid">
+    <section class="main__boards grid md:w-10">
       <div
-        class="new-board card-with-blur scale"
+        class="new-board card-with-blur scale shadow-4"
         pTooltip="{{ t('createNewBoard') }}"
         tooltipPosition="bottom"
         (click)="this.mainService.openCreateBoardModal()"
@@ -11,7 +11,7 @@
         <i class="pi pi-plus"></i>
       </div>
       <div
-        class="board card-with-blur scale"
+        class="board card-with-blur scale shadow-4"
         *ngFor="let board of boards$ | async; let index = index"
         [pTooltip]="board.description | slice: 0:40"
         tooltipPosition="bottom"

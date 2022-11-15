@@ -41,6 +41,7 @@ export const deleteColumnSuccess = createAction(
 );
 export const deleteColumnFailure = createAction(
   '[Details Service] Delete Column Failure',
+  props<{ id: string }>(),
 );
 
 export const updateColumn = createAction(
@@ -53,6 +54,7 @@ export const updateColumnSuccess = createAction(
 );
 export const updateColumnFailure = createAction(
   '[Details Service] Update Column Failure',
+  props<{ id: string }>(),
 );
 
 export const createTask = createAction(
@@ -65,6 +67,7 @@ export const createTaskSuccess = createAction(
 );
 export const createTaskFailure = createAction(
   '[Details Service] Create Task Failure',
+  props<{ id: string }>(),
 );
 
 export const deleteTask = createAction(
@@ -77,6 +80,7 @@ export const deleteTaskSuccess = createAction(
 );
 export const deleteTaskFailure = createAction(
   '[Details Service] Delete Task Failure',
+  props<{ id: string }>(),
 );
 
 export const updateTask = createAction(
@@ -89,4 +93,5 @@ export const updateTaskSuccess = createAction(
 );
 export const updateTaskFailure = createAction(
   '[Details Service] Update Task Failure',
+  props<{ id: string }>(),
 );
