@@ -95,7 +95,13 @@
     "deleteColumn": "Delete Column",
     "deleteTask": "Delete Task",
     "createTask": "Create Task",
-    "editTask": "Edit Task"
+    "editTask": "Edit Task",
+    "boardNotFound": "Board was not found! \n May be it was deleted by another user :(",
+    "columnNotFound": "Column was not found! \n May be it was deleted by another user :(",
+    "taskNotFound": "Task was not found! \n May be it was deleted by another user :(",
+    "userNotFound": "User with such ID was not found! \n May be his account was deleted :(",
+    "defaultError": "Oops... Something went wrong :( \n Try again later",
+    "errorTitle": "Error"
   },
   "header": {
     "home": "Home",
