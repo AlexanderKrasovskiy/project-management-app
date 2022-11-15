@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import { DeleteUserService } from 'src/app/auth/services/delete-user.service';
-import { MainService } from 'src/app/main/services/main.service';
-import { ConfirmationModalService } from '../../services/confirmation-modal.service';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -10,8 +8,11 @@ import { ConfirmationModalService } from '../../services/confirmation-modal.serv
 })
 export class ConfirmationModalComponent {
   constructor(
-    public mainService: MainService,
-    public deleteUserService: DeleteUserService,
-    public confirmationService: ConfirmationModalService,
+    public dialogRef: MatDialogRef<ConfirmationModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: string,
   ) {}
+
+  onCancel(): void {
+    this.dialogRef.close();
+  }
 }
