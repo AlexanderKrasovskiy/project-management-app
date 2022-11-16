@@ -14,7 +14,8 @@ export class SearchService {
 
   constructor(private router: Router, private apiSearch: ApiSearchService) {}
 
-  searchByWord(/* value: string */) {
+  searchByWord(value: string) {
+    console.log(value);
     this.router.navigate(['/search']);
   }
 
