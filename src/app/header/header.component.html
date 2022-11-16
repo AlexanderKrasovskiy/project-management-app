@@ -106,13 +106,13 @@
           this.authService.getUser() || (this.authService.isUserLogged$ | async)
         "
         class="flex gap-2 align-items-center">
-        <span
-          *ngIf="this.isBoardsService.boardsPage()"
-          class="p-input-icon-left">
+        <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
           <input
             type="text"
             pInputText
+            #search
+            (input)="this.searchService.searchByWord(search.value)"
             placeholder="{{ t('search') }}"
             class="w-10rem md:w-12rem lg:w-auto search-input" />
         </span>

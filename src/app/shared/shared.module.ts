@@ -11,6 +11,7 @@ import { ApiControlService } from '../auth/services/api-control.service';
 import { ApiHelpersService } from '../auth/services/api-helpers.service';
 import { MainService } from '../main/services/main.service';
 import { TranslocoRootModule } from '../transloco-root.module';
+import { SearchService } from '../pages/search/services/search.service';
 
 @NgModule({
   declarations: [ConfirmationModalComponent],
@@ -36,6 +37,7 @@ import { TranslocoRootModule } from '../transloco-root.module';
     ApiControlService,
     ApiHelpersService,
     MainService,
+    SearchService,
   ],
 })
 export class SharedModule {}
