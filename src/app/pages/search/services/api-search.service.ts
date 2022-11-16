@@ -5,7 +5,7 @@ import {
   BoardIDModel,
   ColumnModel,
   TaskModel,
-  UserRequestModel,
+  UserModel,
 } from '../../models/search.model';
 
 @Injectable()
@@ -44,8 +44,8 @@ export class ApiSearchService {
       );
   }
 
-  getAllUsers(): Observable<UserRequestModel[]> {
-    return this.http.get<UserRequestModel[]>(`/users`).pipe(
+  getAllUsers(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`/users`).pipe(
       retry(4),
       catchError((error) => {
         console.log('[ERROR]: ', error);

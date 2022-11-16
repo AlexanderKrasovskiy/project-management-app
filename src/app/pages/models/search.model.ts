@@ -26,7 +26,7 @@ interface FileModel {
   fileSize: number;
 }
 
-export interface UserRequestModel {
+export interface UserModel {
   id: string;
   name: string;
   login: string;
