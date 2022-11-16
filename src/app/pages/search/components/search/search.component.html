@@ -9,12 +9,12 @@
         <th>Пользователь</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tbody *ngIf="this.search.tasksSubj$ | async as tasks">
+      <tr *ngFor="let task of tasks" [routerLink]="['/boards', task.boardId]">
+        <td>{{ task.order }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.userId }}</td>
       </tr>
     </tbody>
   </table>
