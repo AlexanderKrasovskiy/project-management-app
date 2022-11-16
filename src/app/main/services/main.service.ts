@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
-import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
+import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import {
   createBoard,
   deleteBoard,
@@ -34,7 +34,6 @@ export class MainService {
 
   constructor(
     private store: Store,
-    public confirmationService: ConfirmationModalService,
     private dialog: MatDialog,
     private transloco: TranslocoService,
   ) {}
@@ -85,36 +84,35 @@ export class MainService {
     });
   }
 
-  showConfirmationModalWindow(): void {
-    this.confirmationService.isConfirmationModalBoard = true;
-    this.confirmationService.title = 'доску';
+  openDeleteBoardModal(id: string): void {
+    const data = this.transloco.translate('confirmation.deleteBoard');
+
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, { data });
+
+    dialogRef.afterClosed().subscribe((modalData) => {
+      if (modalData) this.removeBoard(id);
+    });
   }
 
   hideBackgroundChangeModalWindow(): void {
     this.isbackgroundSwap = false;
   }
 
-  updateId(id: string) {
-    this.idBoard = id;
-  }
-
   deleteBoard(id: string): void {
     this.store.dispatch(deleteBoard({ id }));
   }
 
-  removeBoard(): void {
+  removeBoard(id: string): void {
     const storage = localStorage.getItem('BoardImage');
 
     if (storage) {
       const storArr = JSON.parse(storage).filter(
-        (el: BoardLocalStorModel) => el.id !== this.idBoard,
+        (el: BoardLocalStorModel) => el.id !== id,
       );
       localStorage.setItem('BoardImage', JSON.stringify(storArr));
     }
 
-    this.deleteBoard(this.idBoard);
-    this.confirmationService.isConfirmationModalBoard = false;
-    this.confirmationService.title = '';
+    this.deleteBoard(id);
   }
 
   updateLocalStor(id: string, image: string): void {

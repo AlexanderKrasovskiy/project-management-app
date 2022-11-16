@@ -28,17 +28,17 @@
       pRipple
       color="primary"
       type="button"
-      class="p-button-raised p-button-danger button-custom-white button-false"
-      (click)="onCancel()"
-      [label]="t('false')"></button>
+      class="p-button-raised p-button-success button-custom-white button-true"
+      [disabled]="!data.title || !data.description"
+      [mat-dialog-close]="data"
+      [label]="t('true')"></button>
     <button
       pButton
       pRipple
       color="primary"
       type="button"
-      class="p-button-raised p-button-success button-custom-white button-true"
-      [disabled]="!data.title || !data.description"
-      [mat-dialog-close]="data"
-      [label]="t('true')"></button>
+      class="p-button-raised p-button-danger button-custom-white button-false"
+      (click)="onCancel()"
+      [label]="t('false')"></button>
   </div>
 </ng-container>
