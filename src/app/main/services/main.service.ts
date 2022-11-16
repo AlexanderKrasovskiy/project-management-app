@@ -45,7 +45,10 @@ export class MainService {
       title: '',
       description: '',
     };
-    const dialogRef = this.dialog.open(MainModalComponent, { data });
+    const dialogRef = this.dialog.open(MainModalComponent, {
+      data,
+      backdropClass: 'backdropBackground',
+    });
 
     dialogRef.afterClosed().subscribe((modalData) => {
       if (!modalData?.title || !modalData?.description) return;
