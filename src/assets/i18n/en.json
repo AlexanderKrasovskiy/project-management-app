@@ -80,6 +80,7 @@
   },
   "confirmation": {
     "deleteBoard": "Remove board",
+    "deleteUser": "Remove user",
     "remove": "Remove",
     "cancel": "Cancel"
   },
