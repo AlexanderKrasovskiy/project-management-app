@@ -1,4 +1,4 @@
-<section class="serch">
+<section class="serch" *ngIf="this.search.tasksSubj$ | async as tasks">
   <h1 class="serch__title card-with-blur scale">Результаты поиска</h1>
   <table class="table">
     <thead>
@@ -9,12 +9,12 @@
         <th>Пользователь</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let task of tasks">
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{ task.order }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.userId }}</td>
       </tr>
     </tbody>
   </table>
