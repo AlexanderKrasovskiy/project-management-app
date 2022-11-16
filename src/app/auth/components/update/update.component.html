@@ -106,9 +106,7 @@
             type="button"
             class="p-button-raised p-button-secondary p-button-outlined button-custom-white"
             label="{{ t('delete') }}"
-            (click)="
-              this.deleteUserService.showConfirmationModalWindow()
-            "></button>
+            (click)="this.deleteUserService.openDeleteUserModal()"></button>
         </div>
       </form>
     </div>

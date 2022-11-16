@@ -68,7 +68,10 @@ export class MainService {
       title: '',
       description: '',
     };
-    const dialogRef = this.dialog.open(MainModalComponent, { data });
+    const dialogRef = this.dialog.open(MainModalComponent, {
+      data,
+      backdropClass: 'backdropBackground',
+    });
 
     dialogRef.afterClosed().subscribe((modalData) => {
       if (!modalData?.title || !modalData?.description) return;
@@ -87,7 +90,10 @@ export class MainService {
   openDeleteBoardModal(id: string): void {
     const data = this.transloco.translate('confirmation.deleteBoard');
 
-    const dialogRef = this.dialog.open(ConfirmationModalComponent, { data });
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data,
+      backdropClass: 'backdropBackground',
+    });
 
     dialogRef.afterClosed().subscribe((modalData) => {
       if (modalData) this.removeBoard(id);
