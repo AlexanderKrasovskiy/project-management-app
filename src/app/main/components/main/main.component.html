@@ -39,7 +39,10 @@
         </div>
       </div>
     </section>
-    <section class="overlay" *ngIf="this.mainService.isbackgroundSwap">
+    <section
+      class="overlay"
+      *ngIf="this.mainService.isbackgroundSwap"
+      (click)="this.mainService.hideBackgroundChangeModalWindow()">
       <div class="inform-card card-simple shadow-4">
         <h2 class="font-light inform-title">{{ t('titleBackground') }}</h2>
         <div class="wrap-background">

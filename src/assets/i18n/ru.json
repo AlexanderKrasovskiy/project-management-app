@@ -80,6 +80,7 @@
   },
   "confirmation": {
     "deleteBoard": "Удалить доску",
+    "deleteUser": "Удалить пользователя",
     "remove": "Удалить",
     "cancel": "Отменить"
   },

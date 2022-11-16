@@ -86,17 +86,19 @@
     justify-content: center;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
     .inform-card {
       z-index: 4;
       padding: 2rem;
-      background-image: url('../../../../assets/images/question.png');
+      background-color: rgba(255, 255, 255, 0.25);
+      background-image: url('../../../../assets/images/modal-back.png');
       background-size: cover;
       background-repeat: no-repeat;
       max-width: 25rem;
       width: 95%;
       position: absolute;
-      top: 190px;
+      top: 30%;
       .inform-title {
         padding-bottom: 2rem;
         text-align: center;
