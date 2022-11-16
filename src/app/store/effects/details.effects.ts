@@ -59,7 +59,7 @@ export class DetailsEffects {
           map((column) => DetailsActions.createColumnSuccess({ column })),
           catchError((err) => {
             this.errorService.handleError(err);
-            if (this.errorService.testMessageType(err)) {
+            if (this.errorService.isKnownMessageType(err)) {
               return of(DetailsActions.createColumnFailure());
             }
             return EMPTY;
@@ -78,7 +78,7 @@ export class DetailsEffects {
           map(() => DetailsActions.deleteColumnSuccess({ id: boardId })),
           catchError((err) => {
             this.errorService.handleError(err);
-            if (this.errorService.testMessageType(err)) {
+            if (this.errorService.isKnownMessageType(err)) {
               return of(DetailsActions.deleteColumnFailure({ id: boardId }));
             }
             return EMPTY;
@@ -97,7 +97,7 @@ export class DetailsEffects {
           map(() => DetailsActions.updateColumnSuccess({ id: boardId })),
           catchError((err) => {
             this.errorService.handleError(err);
-            if (this.errorService.testMessageType(err)) {
+            if (this.errorService.isKnownMessageType(err)) {
               return of(DetailsActions.updateColumnFailure({ id: boardId }));
             }
             return EMPTY;
@@ -116,7 +116,7 @@ export class DetailsEffects {
           map(() => DetailsActions.createTaskSuccess({ id: boardId })),
           catchError((err) => {
             this.errorService.handleError(err);
-            if (this.errorService.testMessageType(err)) {
+            if (this.errorService.isKnownMessageType(err)) {
               return of(DetailsActions.createTaskFailure({ id: boardId }));
             }
             return EMPTY;
@@ -135,7 +135,7 @@ export class DetailsEffects {
           map(() => DetailsActions.deleteTaskSuccess({ id: boardId })),
           catchError((err) => {
             this.errorService.handleError(err);
-            if (this.errorService.testMessageType(err)) {
+            if (this.errorService.isKnownMessageType(err)) {
               return of(DetailsActions.deleteTaskFailure({ id: boardId }));
             }
             return EMPTY;
@@ -154,7 +154,7 @@ export class DetailsEffects {
           map(() => DetailsActions.updateTaskSuccess({ id: boardId })),
           catchError((err) => {
             this.errorService.handleError(err);
-            if (this.errorService.testMessageType(err)) {
+            if (this.errorService.isKnownMessageType(err)) {
               return of(DetailsActions.updateTaskFailure({ id: boardId }));
             }
             return EMPTY;
