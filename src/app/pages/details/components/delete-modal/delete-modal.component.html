@@ -1,4 +1,4 @@
-<ng-container *transloco="let t; read: 'confirmation'">
+<ng-container *transloco="let t; read: 'details'">
   <h2 class="font-light inform-title">{{ data.title }}?</h2>
   <div class="inform-wrapper">
     <button
@@ -8,7 +8,7 @@
       type="button"
       class="p-button-raised p-button-success button-custom-white button-true"
       [mat-dialog-close]="true"
-      [label]="t('true')"></button>
+      [label]="t('confirm')"></button>
     <button
       pButton
       pRipple
@@ -16,6 +16,6 @@
       type="button"
       class="p-button-raised p-button-danger button-custom-white button-false"
       (click)="onCancel()"
-      [label]="t('false')"></button>
+      [label]="t('cancel')"></button>
   </div>
 </ng-container>
