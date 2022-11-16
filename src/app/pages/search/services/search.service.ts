@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { forkJoin, mergeMap, of, ReplaySubject, switchMap, tap } from 'rxjs';
-import { TaskModel } from '../../details/models/details.model';
+import { ReplaySubject } from 'rxjs';
+import { TaskModel } from '../../models/search.model';
 import { ApiSearchService } from './api-search.service';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class SearchService {
 
   constructor(private router: Router, private apiSearch: ApiSearchService) {}
 
-  searchByWord(value: string) {
+  searchByWord(/* value: string */) {
     this.router.navigate(['/search']);
   }
 
@@ -42,4 +42,3 @@ export class SearchService {
     );
   }
 }
-// console.log()

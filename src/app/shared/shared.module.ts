@@ -11,7 +11,6 @@ import { ApiControlService } from '../auth/services/api-control.service';
 import { ApiHelpersService } from '../auth/services/api-helpers.service';
 import { MainService } from '../main/services/main.service';
 import { TranslocoRootModule } from '../transloco-root.module';
-import { SearchService } from '../pages/search/services/search.service';
 import { ApiSearchService } from '../pages/search/services/api-search.service';
 
 @NgModule({
