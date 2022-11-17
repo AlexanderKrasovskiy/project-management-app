@@ -6,7 +6,7 @@ import {
   ColumnModel,
   TaskModel,
   UserModel,
-} from '../../models/search.model';
+} from '../models/search.model';
 
 @Injectable()
 export class ApiSearchService {

@@ -34,6 +34,8 @@
     border: 1px solid #ddd;
     padding: 10px 15px;
     background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    width: 100px;
     // font-size: 14px;
     // margin-left: 60px;
     // border-top: 1px solid #ddd;
@@ -93,6 +95,7 @@
   top: 3rem;
   display: flex;
   width: 90%;
+  margin-bottom: 6rem;
 }
 
 .search-card-inside {
@@ -135,4 +138,18 @@
 .notfound {
   color: rgb(150, 150, 150);
   padding: 1rem;
+}
+
+.active {
+  color: #FBC02D;
+}
+
+.arrow {
+  font-size: 12px;
+  color: rgb(196, 196, 196);
+}
+
+.arrow.active {
+  color: #FBC02D;
+  font-size: 12px;
 }

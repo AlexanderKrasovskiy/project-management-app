@@ -13,7 +13,12 @@ import { UpdateComponent } from './components/update/update.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [RegComponent, LoginComponent, UpdateComponent, NotFoundComponent],
+  declarations: [
+    RegComponent,
+    LoginComponent,
+    UpdateComponent,
+    NotFoundComponent,
+  ],
   imports: [CommonModule, AuthRoutingModule, SharedModule],
   providers: [],
 })

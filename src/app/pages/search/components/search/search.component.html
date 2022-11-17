@@ -10,15 +10,74 @@
           class="table text-xs sm:text-sm md:text-base">
           <thead>
             <tr>
-              <th>Номер</th>
-              <th>Название</th>
-              <th>Описание</th>
-              <th>Пользователь</th>
+              <th
+                (click)="this.filterService.changeSortValue('order')"
+                [class.active]="this.filterService.activeClass === 'order'">
+                Номер
+                <span
+                  class="arrow"
+                  *ngIf="!this.filterService.isOrder; else blockOrder">
+                  ▼▲
+                </span>
+                <ng-template #blockOrder class="arrow active">
+                  {{ this.filterService.sortingDirection }}
+                </ng-template>
+              </th>
+              <th
+                (click)="this.filterService.changeSortValue('title')"
+                [class.active]="this.filterService.activeClass === 'title'">
+                Название
+                <span
+                  class="arrow"
+                  *ngIf="!this.filterService.isTitle; else blockTitle">
+                  ▼▲
+                </span>
+                <ng-template #blockTitle class="arrow active">
+                  {{ this.filterService.sortingDirection }}
+                </ng-template>
+              </th>
+              <th
+                (click)="this.filterService.changeSortValue('description')"
+                [class.active]="
+                  this.filterService.activeClass === 'description'
+                ">
+                Описание
+                <span
+                  class="arrow"
+                  *ngIf="
+                    !this.filterService.isDescription;
+                    else blockDescription
+                  ">
+                  ▼▲
+                </span>
+                <ng-template #blockDescription class="arrow active">
+                  {{ this.filterService.sortingDirection }}
+                </ng-template>
+              </th>
+              <th
+                (click)="this.filterService.changeSortValue('userId')"
+                [class.active]="this.filterService.activeClass === 'userId'">
+                Пользователь
+                <span
+                  class="arrow"
+                  *ngIf="!this.filterService.isUser; else blockUser">
+                  ▼▲
+                </span>
+                <ng-template #blockUser class="arrow active">
+                  {{ this.filterService.sortingDirection }}
+                </ng-template>
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr
-              *ngFor="let task of tasks"
+              *ngFor="
+                let task of tasks
+                  | sorting: 'word':this.headerService.keyWord
+                  | sorting
+                    : this.filterService.valueSort
+                    : this.filterService.flagSortDirection
+              "
               [routerLink]="['/boards', task.boardId]">
               <td>{{ task.order }}</td>
               <td>{{ task.title }}</td>

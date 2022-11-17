@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
-import { TaskModel } from '../../models/search.model';
+import { TaskModel } from '../models/search.model';
 import { ApiSearchService } from './api-search.service';
 
 @Injectable({
@@ -9,15 +8,9 @@ import { ApiSearchService } from './api-search.service';
 })
 export class SearchService {
   tasks: TaskModel[] = [];
+  tasksSubj$ = new ReplaySubject<TaskModel[]>();
 
-  tasksSubj$ = new ReplaySubject<TaskModel[] | null>();
-
-  constructor(private router: Router, private apiSearch: ApiSearchService) {}
-
-  searchByWord(value: string) {
-    console.log(value);
-    this.router.navigate(['/search']);
-  }
+  constructor(private apiSearch: ApiSearchService) {}
 
   getTasks() {
     this.apiSearch.getAllBoards().subscribe((boards) =>

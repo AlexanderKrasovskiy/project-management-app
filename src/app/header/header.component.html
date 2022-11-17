@@ -112,7 +112,7 @@
             type="text"
             pInputText
             #search
-            (input)="this.searchService.searchByWord(search.value)"
+            (input)="this.filter.getKeyWord(search.value)"
             placeholder="{{ t('search') }}"
             class="w-10rem md:w-12rem lg:w-auto search-input" />
         </span>

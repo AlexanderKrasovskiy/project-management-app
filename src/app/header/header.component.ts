@@ -12,8 +12,8 @@ import { Store } from '@ngrx/store';
 import { AuthService } from '../auth/services/auth.service';
 import { IsBoardsService } from '../auth/services/is-boards.service';
 import { MainModalComponent } from '../main/components/main-modal/main-modal.component';
-import { SearchService } from '../pages/search/services/search.service';
 import { createBoard } from '../store/actions/boards.action';
+import { HeaderService } from './services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
     public isBoardsService: IsBoardsService,
     public dialog: MatDialog,
     private store: Store,
-    public searchService: SearchService,
+    public filter: HeaderService,
   ) {
     this.stateOptions = [
       { label: 'En', value: 'en' },
