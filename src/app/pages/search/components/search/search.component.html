@@ -10,7 +10,9 @@
       </tr>
     </thead>
     <tbody *ngIf="this.search.tasksSubj$ | async as tasks">
-      <tr *ngFor="let task of tasks" [routerLink]="['/boards', task.boardId]">
+      <tr
+        [routerLink]="['/boards', task.boardId]"
+        *ngFor="let task of tasks | sorting: 'word':this.headerService.keyWord">
         <td>{{ task.order }}</td>
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>

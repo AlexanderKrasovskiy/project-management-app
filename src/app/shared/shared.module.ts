@@ -6,6 +6,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UiPrimengModule } from './ui-primeng/ui-primeng.module';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { ConfirmationModalService } from './services/confirmation-modal.service';
+import { SortingPipe } from './pipes/sorting.pipe';
+
 import { DeleteUserService } from '../auth/services/delete-user.service';
 import { ApiControlService } from '../auth/services/api-control.service';
 import { ApiHelpersService } from '../auth/services/api-helpers.service';
@@ -14,7 +16,7 @@ import { TranslocoRootModule } from '../transloco-root.module';
 import { ApiSearchService } from '../pages/search/services/api-search.service';
 
 @NgModule({
-  declarations: [ConfirmationModalComponent],
+  declarations: [ConfirmationModalComponent, SortingPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,6 +32,7 @@ import { ApiSearchService } from '../pages/search/services/api-search.service';
     ConfirmationModalComponent,
     TranslocoRootModule,
     MatDialogModule,
+    SortingPipe,
   ], // m.b. delete
   providers: [
     ConfirmationModalService,

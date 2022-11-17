@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderService } from 'src/app/header/services/header.service';
 import { SearchService } from '../../services/search.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { SearchService } from '../../services/search.service';
   providers: [SearchService],
 })
 export class SearchComponent implements OnInit {
-  constructor(public search: SearchService) {}
+  constructor(
+    public search: SearchService,
+    public headerService: HeaderService,
+  ) {}
 
   ngOnInit() {
     this.search.getTasks();
