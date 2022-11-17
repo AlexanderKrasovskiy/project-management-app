@@ -16,17 +16,25 @@
                 Номер
                 <span
                   class="arrow"
-                  [class.active]="this.filterService.activeClass === 'order'">
-                  {{ this.filterService.sortingDirection }}
+                  *ngIf="!this.filterService.isOrder; else blockOrder">
+                  ▼▲
                 </span>
+                <ng-template #blockOrder class="arrow active">
+                  {{ this.filterService.sortingDirection }}
+                </ng-template>
               </th>
               <th
                 (click)="this.filterService.changeSortValue('title')"
                 [class.active]="this.filterService.activeClass === 'title'">
                 Название
-                <span class="arrow">
-                  {{ this.filterService.sortingDirection }}
+                <span
+                  class="arrow"
+                  *ngIf="!this.filterService.isTitle; else blockTitle">
+                  ▼▲
                 </span>
+                <ng-template #blockTitle class="arrow active">
+                  {{ this.filterService.sortingDirection }}
+                </ng-template>
               </th>
               <th
                 (click)="this.filterService.changeSortValue('description')"
@@ -34,17 +42,30 @@
                   this.filterService.activeClass === 'description'
                 ">
                 Описание
-                <span class="arrow" *ngIf="this.filterService.isDescription">
-                  {{ this.filterService.sortingDirection }}
+                <span
+                  class="arrow"
+                  *ngIf="
+                    !this.filterService.isDescription;
+                    else blockDescription
+                  ">
+                  ▼▲
                 </span>
+                <ng-template #blockDescription class="arrow active">
+                  {{ this.filterService.sortingDirection }}
+                </ng-template>
               </th>
               <th
-                (click)="this.filterService.changeSortValue('user')"
-                [class.active]="this.filterService.activeClass === 'user'">
+                (click)="this.filterService.changeSortValue('userId')"
+                [class.active]="this.filterService.activeClass === 'userId'">
                 Пользователь
-                <span class="arrow" *ngIf="this.filterService.isUser">
-                  {{ this.filterService.sortingDirection }}
+                <span
+                  class="arrow"
+                  *ngIf="!this.filterService.isUser; else blockUser">
+                  ▼▲
                 </span>
+                <ng-template #blockUser class="arrow active">
+                  {{ this.filterService.sortingDirection }}
+                </ng-template>
               </th>
             </tr>
           </thead>

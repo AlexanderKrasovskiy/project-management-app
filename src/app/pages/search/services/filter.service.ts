@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BySort, SortKeyword } from 'src/app/shared/pipes/sorting.pipe';
+import { BySort, SortKeyword } from '../models/search.model';
 
 @Injectable()
 export class FilterService {
@@ -7,7 +7,7 @@ export class FilterService {
   isTitle: boolean = false;
   isDescription: boolean = false;
   isUser: boolean = false;
-  sortingDirection: string = '▼▲';
+  sortingDirection: string = '';
   activeClass: string = '';
   valueSort: string = '';
   flagSortDirection: string = '';

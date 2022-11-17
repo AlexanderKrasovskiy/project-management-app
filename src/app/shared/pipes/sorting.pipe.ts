@@ -1,18 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TaskModel } from 'src/app/pages/search/models/search.model';
-
-export enum SortKeyword {
-  byWord = 'word',
-  byOrder = 'order',
-  byTitle = 'title',
-  byDescription = 'description',
-  byUser = 'user',
-}
-
-export enum BySort {
-  ascending = '▼',
-  descending = '▲',
-}
+import {
+  BySort,
+  SortKeyword,
+  TaskModel,
+} from 'src/app/pages/search/models/search.model';
 
 @Pipe({
   name: 'sorting',
@@ -48,14 +39,24 @@ export class SortingPipe implements PipeTransform {
         return keySort === BySort.descending ? sort : sort.reverse();
       }
       case SortKeyword.byDescription: {
-        const sort = [...items].sort((a, b) =>
-          +a.description > +b.description ? 1 : -1,
-        );
-        return keySort === BySort.descending ? sort.reverse() : sort;
+        const numArr = items
+          .filter((el) => !Number.isNaN(Number(el.description)))
+          .sort((a, b) => +a.description - +b.description);
+        const strArr = items
+          .filter((el) => Number.isNaN(Number(el.description)))
+          .sort();
+        const sort = [...numArr.concat(strArr)];
+        return keySort === BySort.descending ? sort : sort.reverse();
       }
       case SortKeyword.byUser: {
-        const sort = [...items].sort((a, b) => (a.userId > b.userId ? 1 : -1));
-        return keySort === BySort.descending ? sort.reverse() : sort;
+        const numArr = items
+          .filter((el) => !Number.isNaN(Number(el.userId)))
+          .sort((a, b) => +a.userId - +b.userId);
+        const strArr = items
+          .filter((el) => Number.isNaN(Number(el.userId)))
+          .sort();
+        const sort = [...numArr.concat(strArr)];
+        return keySort === BySort.descending ? sort : sort.reverse();
       }
       default:
         return [...items];

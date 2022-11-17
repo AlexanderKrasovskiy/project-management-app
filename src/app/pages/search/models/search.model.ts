@@ -31,3 +31,16 @@ export interface UserModel {
   name: string;
   login: string;
 }
+
+export enum SortKeyword {
+  byWord = 'word',
+  byOrder = 'order',
+  byTitle = 'title',
+  byDescription = 'description',
+  byUser = 'userId',
+}
+
+export enum BySort {
+  ascending = '▼',
+  descending = '▲',
+}
