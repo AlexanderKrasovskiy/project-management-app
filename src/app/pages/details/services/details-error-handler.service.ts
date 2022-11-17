@@ -44,7 +44,7 @@ export class DetailsErrorHandlerService {
     });
   }
 
-  testMessageType(res: HttpErrorResponse) {
+  isKnownMessageType(res: HttpErrorResponse) {
     const { message } = res.error;
 
     if (message === 'Column was not founded!') return true;
