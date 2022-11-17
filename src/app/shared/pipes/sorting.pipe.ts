@@ -3,7 +3,6 @@ import { TaskModel } from 'src/app/pages/search/models/search.model';
 
 export enum SortKeyword {
   byWord = 'word',
-  byDate = 'date',
   byOrder = 'order',
 }
 
@@ -14,14 +13,14 @@ export enum BySort {
 
 @Pipe({
   name: 'sorting',
+  pure: false,
 })
 export class SortingPipe implements PipeTransform {
   transform(items: TaskModel[], bySort: string, keySort: string): TaskModel[] {
-    if (!keySort) return [];
-
     switch (bySort) {
       case SortKeyword.byWord: {
-        return [...items].filter(
+        if (!keySort) return [];
+        return items.filter(
           (item) =>
             item.title.toLowerCase().includes(keySort.toLowerCase()) ||
             item.description.toLowerCase().includes(keySort.toLowerCase()) ||
@@ -29,8 +28,12 @@ export class SortingPipe implements PipeTransform {
             String(item.order).includes(keySort),
         );
       }
+      case SortKeyword.byOrder: {
+        const sortView = [...items].sort((a, b) => +b.order - +a.order);
+        return keySort === BySort.descending ? sortView.reverse() : sortView;
+      }
       default:
-        return items;
+        return [...items];
     }
   }
 }

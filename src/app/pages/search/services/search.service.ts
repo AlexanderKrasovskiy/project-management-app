@@ -8,7 +8,7 @@ import { ApiSearchService } from './api-search.service';
 })
 export class SearchService {
   tasks: TaskModel[] = [];
-  tasksSubj$ = new ReplaySubject<TaskModel[] | null>();
+  tasksSubj$ = new ReplaySubject<TaskModel[]>();
 
   constructor(private apiSearch: ApiSearchService) {}
 

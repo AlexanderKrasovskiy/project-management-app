@@ -3,7 +3,11 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Номер</th>
+        <th
+          (click)="this.filterService.changeSortValue('order')"
+          [class.active]="this.filterService.activeClass === 'order'">
+          Номер {{ this.filterService.sortingDirection }}
+        </th>
         <th>Название</th>
         <th>Описание</th>
         <th>Пользователь</th>
@@ -12,7 +16,13 @@
     <tbody *ngIf="this.search.tasksSubj$ | async as tasks">
       <tr
         [routerLink]="['/boards', task.boardId]"
-        *ngFor="let task of tasks | sorting: 'word':this.headerService.keyWord">
+        *ngFor="
+          let task of tasks
+            | sorting: 'word':this.headerService.keyWord
+            | sorting
+              : this.filterService.valueSort
+              : this.filterService.flagSortDirection
+        ">
         <td>{{ task.order }}</td>
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>
