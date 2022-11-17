@@ -1,21 +1,37 @@
 <section class="serch">
+  <div class="search-small-circle-fake"></div>
+  <div class="search-small-circle shadow-3 scale"></div>
   <h1 class="serch__title card-with-blur scale">Результаты поиска</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Номер</th>
-        <th>Название</th>
-        <th>Описание</th>
-        <th>Пользователь</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="w-12 md:w-10 search-wrap">
+    <div class="card-simple search-card shadow-4">
+      <div class="card-with-blur search-card-inside shadow-4">
+        <table
+          *ngIf="this.search.tasksSubj$ | async as tasks; else notfound"
+          class="table text-xs sm:text-sm md:text-base">
+          <thead>
+            <tr>
+              <th>Номер</th>
+              <th>Название</th>
+              <th>Описание</th>
+              <th>Пользователь</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let task of tasks"
+              [routerLink]="['/boards', task.boardId]">
+              <td>{{ task.order }}</td>
+              <td>{{ task.title }}</td>
+              <td>{{ task.description }}</td>
+              <td>{{ task.userId }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </section>
+
+<ng-template #notfound>
+  <p class="notfound">Try to search something else</p></ng-template
+>
