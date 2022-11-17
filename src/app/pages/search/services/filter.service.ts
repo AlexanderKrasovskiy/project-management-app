@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BySort } from 'src/app/shared/pipes/sorting.pipe';
+import { BySort, SortKeyword } from 'src/app/shared/pipes/sorting.pipe';
 
 @Injectable()
 export class FilterService {
-  public sortingDirection: string = '';
+  isOrder: boolean = false;
+  isTitle: boolean = false;
+  isDescription: boolean = false;
+  isUser: boolean = false;
+  sortingDirection: string = '▼▲';
+  activeClass: string = '';
+  valueSort: string = '';
+  flagSortDirection: string = '';
 
-  public activeClass: string = '';
-
-  public valueSort: string = '';
-
-  public flagSortDirection: string = '';
-
-  public changeSortValue(value: string): void {
+  changeSortValue(value: string): void {
+    this.isOrder = false;
+    this.isTitle = false;
+    this.isDescription = false;
+    this.isUser = false;
     if (
       this.sortingDirection === '' ||
       this.sortingDirection === BySort.descending
@@ -21,5 +26,10 @@ export class FilterService {
     this.valueSort = value;
     this.flagSortDirection = this.sortingDirection;
     this.activeClass = value;
+
+    if (value === SortKeyword.byOrder) this.isOrder = true;
+    if (value === SortKeyword.byTitle) this.isTitle = true;
+    if (value === SortKeyword.byDescription) this.isDescription = true;
+    if (value === SortKeyword.byUser) this.isUser = true;
   }
 }

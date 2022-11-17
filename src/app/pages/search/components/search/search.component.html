@@ -13,11 +13,39 @@
               <th
                 (click)="this.filterService.changeSortValue('order')"
                 [class.active]="this.filterService.activeClass === 'order'">
-                Номер {{ this.filterService.sortingDirection }}
+                Номер
+                <span
+                  class="arrow"
+                  [class.active]="this.filterService.activeClass === 'order'">
+                  {{ this.filterService.sortingDirection }}
+                </span>
               </th>
-              <th>Название</th>
-              <th>Описание</th>
-              <th>Пользователь</th>
+              <th
+                (click)="this.filterService.changeSortValue('title')"
+                [class.active]="this.filterService.activeClass === 'title'">
+                Название
+                <span class="arrow">
+                  {{ this.filterService.sortingDirection }}
+                </span>
+              </th>
+              <th
+                (click)="this.filterService.changeSortValue('description')"
+                [class.active]="
+                  this.filterService.activeClass === 'description'
+                ">
+                Описание
+                <span class="arrow" *ngIf="this.filterService.isDescription">
+                  {{ this.filterService.sortingDirection }}
+                </span>
+              </th>
+              <th
+                (click)="this.filterService.changeSortValue('user')"
+                [class.active]="this.filterService.activeClass === 'user'">
+                Пользователь
+                <span class="arrow" *ngIf="this.filterService.isUser">
+                  {{ this.filterService.sortingDirection }}
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
