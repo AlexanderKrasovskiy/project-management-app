@@ -8,6 +8,7 @@
         <table
           *ngIf="this.search.tasksSubj$ | async as tasks"
           class="table text-xs sm:text-sm md:text-base">
+          <!-- <div *ngIf="(tasks | json) !== '[]'">{{ tasks | json }}</div> -->
           <thead>
             <tr>
               <th
@@ -84,8 +85,8 @@
               <td>{{ task.description }}</td>
               <td>{{ task.userId }}</td>
             </tr>
-            <tr class="no-item notfound">
-              Try to search something else
+            <tr *ngIf="this.headerService.keyWord" class="no-item">
+              <td class="notfound">Try to search something else</td>
             </tr>
           </tbody>
         </table>
