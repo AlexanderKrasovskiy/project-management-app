@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 // import { fromEvent } from 'rxjs';
-import { AuthService } from '../pages/auth/services/auth.service';
-import { IsBoardsService } from '../pages/auth/services/is-boards.service';
-import { MainModalComponent } from '../pages/main/components/main-modal/main-modal.component';
-import { createBoard } from '../store/actions/boards.action';
-import { HeaderService } from './services/header.service';
+import { AuthService } from 'src/app/pages/auth/services/auth.service';
+import { IsBoardsService } from 'src/app/pages/auth/services/is-boards.service';
+import { MainModalComponent } from 'src/app/pages/main/components/main-modal/main-modal.component';
+import { createBoard } from 'src/app//store/actions/boards.action';
+import { HeaderService } from '../../services/header.service';
 
 @Component({
   selector: 'app-header',
