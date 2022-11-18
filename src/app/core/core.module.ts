@@ -22,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderService } from './services/header.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   imports: [
@@ -52,7 +53,7 @@ import { FooterComponent } from './components/footer/footer.component';
     DetailsErrorHandlerService,
     HeaderService,
   ],
-  declarations: [HeaderComponent, FooterComponent],
-  exports: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, SpinnerComponent],
+  exports: [HeaderComponent, FooterComponent, SpinnerComponent],
 })
 export class CoreModule {}

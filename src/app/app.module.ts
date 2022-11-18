@@ -11,7 +11,6 @@ import { CoreModule } from './core/core.module';
 import { WelcomeModule } from './pages/welcome/welcome.module';
 
 import { SharedModule } from './shared/shared.module';
-import { SpinnerModule } from './spinner/spinner.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +21,6 @@ import { SpinnerModule } from './spinner/spinner.module';
     CoreModule,
     WelcomeModule,
     SharedModule,
-    SpinnerModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
