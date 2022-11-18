@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// import { MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -49,7 +49,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
       multi: true,
     },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
-    // MessageService,
+    MessageService,
     DetailsService,
     DetailsErrorHandlerService,
     HeaderService,
