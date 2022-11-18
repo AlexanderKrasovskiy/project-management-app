@@ -1,96 +1,98 @@
-<section class="serch">
-  <div class="search-small-circle-fake"></div>
-  <div class="search-small-circle shadow-3 scale"></div>
-  <h1 class="serch__title card-with-blur scale">Результаты поиска</h1>
-  <div class="w-12 md:w-10 search-wrap">
-    <div class="card-simple search-card shadow-4">
-      <div class="card-with-blur search-card-inside shadow-4">
-        <table
-          *ngIf="this.tasksSubj$ | async as tasks; else notfound"
-          class="table text-xs sm:text-sm md:text-base">
-          <thead>
-            <tr>
-              <th
-                (click)="this.filterService.changeSortValue('order')"
-                [class.active]="this.filterService.activeClass === 'order'">
-                Номер
-                <span
-                  class="arrow"
-                  *ngIf="!this.filterService.isOrder; else blockOrder">
-                  ▼▲
-                </span>
-                <ng-template #blockOrder class="arrow active">
-                  {{ this.filterService.sortingDirection }}
-                </ng-template>
-              </th>
-              <th
-                (click)="this.filterService.changeSortValue('title')"
-                [class.active]="this.filterService.activeClass === 'title'">
-                Название
-                <span
-                  class="arrow"
-                  *ngIf="!this.filterService.isTitle; else blockTitle">
-                  ▼▲
-                </span>
-                <ng-template #blockTitle class="arrow active">
-                  {{ this.filterService.sortingDirection }}
-                </ng-template>
-              </th>
-              <th
-                (click)="this.filterService.changeSortValue('description')"
-                [class.active]="
-                  this.filterService.activeClass === 'description'
-                ">
-                Описание
-                <span
-                  class="arrow"
-                  *ngIf="
-                    !this.filterService.isDescription;
-                    else blockDescription
+<ng-container *transloco="let t; read: 'search'">
+  <section class="serch">
+    <div class="search-small-circle-fake"></div>
+    <div class="search-small-circle shadow-3 scale"></div>
+    <h1 class="serch__title card-with-blur scale">{{ t('mainTitle') }}</h1>
+    <div class="w-12 md:w-10 search-wrap">
+      <div class="card-simple search-card shadow-4">
+        <div class="card-with-blur search-card-inside shadow-4">
+          <table
+            *ngIf="this.tasksSubj$ | async as tasks; else notfound"
+            class="table text-xs sm:text-sm md:text-base">
+            <thead>
+              <tr>
+                <th
+                  (click)="this.filterService.changeSortValue('order')"
+                  [class.active]="this.filterService.activeClass === 'order'">
+                  {{ t('order') }}
+                  <span
+                    class="arrow"
+                    *ngIf="!this.filterService.isOrder; else blockOrder">
+                    ▼▲
+                  </span>
+                  <ng-template #blockOrder class="arrow active">
+                    {{ this.filterService.sortingDirection }}
+                  </ng-template>
+                </th>
+                <th
+                  (click)="this.filterService.changeSortValue('title')"
+                  [class.active]="this.filterService.activeClass === 'title'">
+                  {{ t('title') }}
+                  <span
+                    class="arrow"
+                    *ngIf="!this.filterService.isTitle; else blockTitle">
+                    ▼▲
+                  </span>
+                  <ng-template #blockTitle class="arrow active">
+                    {{ this.filterService.sortingDirection }}
+                  </ng-template>
+                </th>
+                <th
+                  (click)="this.filterService.changeSortValue('description')"
+                  [class.active]="
+                    this.filterService.activeClass === 'description'
                   ">
-                  ▼▲
-                </span>
-                <ng-template #blockDescription class="arrow active">
-                  {{ this.filterService.sortingDirection }}
-                </ng-template>
-              </th>
-              <th
-                (click)="this.filterService.changeSortValue('userId')"
-                [class.active]="this.filterService.activeClass === 'userId'">
-                Пользователь
-                <span
-                  class="arrow"
-                  *ngIf="!this.filterService.isUser; else blockUser">
-                  ▼▲
-                </span>
-                <ng-template #blockUser class="arrow active">
-                  {{ this.filterService.sortingDirection }}
-                </ng-template>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              *ngFor="
-                let task of tasks
-                  | sorting: 'word':this.headerService.keyWord
-                  | sorting
-                    : this.filterService.valueSort
-                    : this.filterService.flagSortDirection
-              "
-              [routerLink]="['/boards', task.boardId]">
-              <td>{{ task.order }}</td>
-              <td>{{ task.title }}</td>
-              <td>{{ task.description }}</td>
-              <td>{{ task.userId }}</td>
-            </tr>
-          </tbody>
-        </table>
+                  {{ t('description') }}
+                  <span
+                    class="arrow"
+                    *ngIf="
+                      !this.filterService.isDescription;
+                      else blockDescription
+                    ">
+                    ▼▲
+                  </span>
+                  <ng-template #blockDescription class="arrow active">
+                    {{ this.filterService.sortingDirection }}
+                  </ng-template>
+                </th>
+                <th
+                  (click)="this.filterService.changeSortValue('userId')"
+                  [class.active]="this.filterService.activeClass === 'userId'">
+                  {{ t('user') }}
+                  <span
+                    class="arrow"
+                    *ngIf="!this.filterService.isUser; else blockUser">
+                    ▼▲
+                  </span>
+                  <ng-template #blockUser class="arrow active">
+                    {{ this.filterService.sortingDirection }}
+                  </ng-template>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let task of tasks
+                    | sorting: 'word':this.headerService.keyWord
+                    | sorting
+                      : this.filterService.valueSort
+                      : this.filterService.flagSortDirection
+                "
+                [routerLink]="['/boards', task.boardId]">
+                <td>{{ task.order }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.userId }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<ng-template #notfound>
-  <p class="notfound">Try to search something else</p></ng-template
->
+  <ng-template #notfound>
+    <p class="notfound">{{ t('notFound') }}</p></ng-template
+  >
+</ng-container>

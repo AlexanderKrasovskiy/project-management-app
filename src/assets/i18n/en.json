@@ -124,5 +124,13 @@
     "Sasha": "Sasha",
     "Alla": "Alla",
     "Sveta": "Sveta, 2022"
+  },
+  "search": {
+    "mainTitle": "Search results",
+    "order": "Order",
+    "title": "Title",
+    "description": "Description",
+    "user": "User",
+    "notFound": "Try to search something else"
   }
 }
