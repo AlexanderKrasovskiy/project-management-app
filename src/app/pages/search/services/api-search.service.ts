@@ -1,54 +1,58 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
+import { MessageService } from 'primeng/api';
 import { catchError, EMPTY, Observable, retry } from 'rxjs';
-import {
-  BoardIDModel,
-  ColumnModel,
-  TaskModel,
-  UserModel,
-} from '../models/search.model';
+import { BoardIDModel, BoardResModel, UserModel } from '../models/search.model';
 
 @Injectable()
 export class ApiSearchService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService,
+    private transloco: TranslocoService,
+  ) {}
 
   getAllBoards(): Observable<BoardIDModel[]> {
     return this.http.get<BoardIDModel[]>('/boards').pipe(
       retry(4),
-      catchError((error) => {
-        console.log('[ERROR]: ', error);
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: this.transloco.translate('details.boardNotFound'),
+          life: 5000,
+        });
         return EMPTY;
       }),
     );
   }
 
-  getAllColumns(id: string): Observable<ColumnModel[]> {
-    return this.http.get<ColumnModel[]>(`/boards/${id}/columns`).pipe(
+  getBoardById(id: string): Observable<BoardResModel> {
+    return this.http.get<BoardResModel>(`/boards/${id}`).pipe(
       retry(4),
-      catchError((error) => {
-        console.log('[ERROR]: ', error);
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: this.transloco.translate('details.boardNotFound'),
+          life: 5000,
+        });
         return EMPTY;
       }),
     );
-  }
-
-  getAllTasks(idBoard: string, idColumn: string): Observable<TaskModel[]> {
-    return this.http
-      .get<TaskModel[]>(`/boards/${idBoard}/columns/${idColumn}/tasks`)
-      .pipe(
-        retry(4),
-        catchError((error) => {
-          console.log('[ERROR]: ', error);
-          return EMPTY;
-        }),
-      );
   }
 
   getAllUsers(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(`/users`).pipe(
       retry(4),
-      catchError((error) => {
-        console.log('[ERROR]: ', error);
+      catchError(() => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: this.transloco.translate('apiHelpers.notFound'),
+          life: 5000,
+        });
         return EMPTY;
       }),
     );
