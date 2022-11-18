@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 // import { fromEvent } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
 import { IsBoardsService } from '../auth/services/is-boards.service';
-import { MainModalComponent } from '../main/components/main-modal/main-modal.component';
+import { MainModalComponent } from '../pages/main/components/main-modal/main-modal.component';
 import { createBoard } from '../store/actions/boards.action';
 import { HeaderService } from './services/header.service';
 

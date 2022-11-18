@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import {
   BoardIDRequestModel,
   BoardRequestModel,
-} from 'src/app/main/models/main.model';
+} from 'src/app/pages/main/models/main.model';
 
 export const loadBoards = createAction(`[Board] Load Boards`);
 

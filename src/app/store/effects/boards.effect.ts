@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, of, catchError } from 'rxjs';
-import { ApiMainHelpersService } from 'src/app/main/services/api-main-helpers.service';
+import { ApiMainHelpersService } from 'src/app/pages/main/services/api-main-helpers.service';
 import * as BoardsActions from '../actions/boards.action';
 
 @Injectable()
