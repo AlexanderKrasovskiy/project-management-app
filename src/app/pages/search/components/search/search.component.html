@@ -6,7 +6,7 @@
     <div class="card-simple search-card shadow-4">
       <div class="card-with-blur search-card-inside shadow-4">
         <table
-          *ngIf="this.search.tasksSubj$ | async as tasks; else notfound"
+          *ngIf="this.tasksSubj$ | async as tasks; else notfound"
           class="table text-xs sm:text-sm md:text-base">
           <thead>
             <tr>

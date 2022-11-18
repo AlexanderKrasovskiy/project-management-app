@@ -1,12 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, EMPTY, Observable, retry } from 'rxjs';
-import {
-  BoardIDModel,
-  ColumnModel,
-  TaskModel,
-  UserModel,
-} from '../models/search.model';
+import { BoardIDModel, BoardResModel, UserModel } from '../models/search.model';
 
 @Injectable()
 export class ApiSearchService {
@@ -22,26 +17,14 @@ export class ApiSearchService {
     );
   }
 
-  getAllColumns(id: string): Observable<ColumnModel[]> {
-    return this.http.get<ColumnModel[]>(`/boards/${id}/columns`).pipe(
+  getBoardById(id: string): Observable<BoardResModel> {
+    return this.http.get<BoardResModel>(`/boards/${id}`).pipe(
       retry(4),
       catchError((error) => {
         console.log('[ERROR]: ', error);
         return EMPTY;
       }),
     );
-  }
-
-  getAllTasks(idBoard: string, idColumn: string): Observable<TaskModel[]> {
-    return this.http
-      .get<TaskModel[]>(`/boards/${idBoard}/columns/${idColumn}/tasks`)
-      .pipe(
-        retry(4),
-        catchError((error) => {
-          console.log('[ERROR]: ', error);
-          return EMPTY;
-        }),
-      );
   }
 
   getAllUsers(): Observable<UserModel[]> {
