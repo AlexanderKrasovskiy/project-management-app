@@ -14,6 +14,5 @@ import { UpdateComponent } from './components/update/update.component';
 @NgModule({
   declarations: [RegComponent, LoginComponent, UpdateComponent],
   imports: [CommonModule, AuthRoutingModule, SharedModule],
-  providers: [],
 })
 export class AuthModule {}
