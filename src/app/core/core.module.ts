@@ -21,6 +21,7 @@ import { DetailsErrorHandlerService } from '../pages/details/services/details-er
 import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderService } from './services/header.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -51,7 +52,7 @@ import { HeaderService } from './services/header.service';
     DetailsErrorHandlerService,
     HeaderService,
   ],
-  declarations: [HeaderComponent],
-  exports: [HeaderComponent],
+  declarations: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class CoreModule {}
