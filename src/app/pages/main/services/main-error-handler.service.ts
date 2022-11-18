@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 
@@ -9,7 +8,6 @@ export class MainErrorHandlerService {
   constructor(
     private messageService: MessageService,
     private transloco: TranslocoService,
-    private router: Router,
   ) {}
 
   handleError(res: HttpErrorResponse) {

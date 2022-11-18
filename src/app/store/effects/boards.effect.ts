@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, of, catchError, EMPTY } from 'rxjs';
-import { MainErrorHandlerService } from 'src/app/pages/main/service/main-error-handler.service';
+import { MainErrorHandlerService } from 'src/app/pages/main/services/main-error-handler.service';
 import { ApiMainHelpersService } from 'src/app/pages/main/services/api-main-helpers.service';
 import * as BoardsActions from '../actions/boards.action';
 
@@ -20,6 +20,7 @@ export class BoardsEffects {
         BoardsActions.createBoardSuccess,
         BoardsActions.updateBoardSuccess,
         BoardsActions.deleteBoardSuccess,
+        BoardsActions.deleteBoardFailure,
       ),
       switchMap(() =>
         this.api.getAllBoards().pipe(
