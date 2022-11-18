@@ -1,6 +1,6 @@
 import {
   Component,
-  HostListener,
+  // HostListener,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
-// import { fromEvent } from 'rxjs';
+import { animationFrameScheduler, auditTime, fromEvent } from 'rxjs';
 import { AuthService } from 'src/app/pages/auth/services/auth.service';
 import { IsBoardsService } from 'src/app/pages/auth/services/is-boards.service';
 import { MainModalComponent } from 'src/app/pages/main/components/main-modal/main-modal.component';
@@ -50,16 +50,18 @@ export class HeaderComponent implements OnInit {
     this.transloco.setActiveLang(
       localStorage.getItem('PlanLanguageInfo') || 'en',
     );
+
+    this.handleScroll();
   }
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-      this.inScroll = true;
-    } else {
-      this.inScroll = false;
-    }
-  }
+  // @HostListener('window:scroll', [])
+  // onWindowScroll() {
+  //   if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+  //     this.inScroll = true;
+  //   } else {
+  //     this.inScroll = false;
+  //   }
+  // }
   // fromEvent(window, 'scroll')
   //   // .pipe(throttleTime(50))
   //   .subscribe(() => {
@@ -71,6 +73,18 @@ export class HeaderComponent implements OnInit {
   //     }
   //   });
   //  }
+  handleScroll() {
+    fromEvent(window, 'scroll')
+      .pipe(auditTime(100, animationFrameScheduler))
+      .subscribe(() => {
+        // console.log('scroll', window.scrollY);
+        if (window.scrollY > 0) {
+          this.inScroll = true;
+        } else {
+          this.inScroll = false;
+        }
+      });
+  }
 
   changeLang(lang: string) {
     this.transloco.setActiveLang(lang);
