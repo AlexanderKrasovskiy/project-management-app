@@ -1,16 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, of, catchError } from 'rxjs';
+import { map, switchMap, of, catchError, EMPTY } from 'rxjs';
+import { MainErrorHandlerService } from 'src/app/pages/main/service/main-error-handler.service';
 import { ApiMainHelpersService } from 'src/app/pages/main/services/api-main-helpers.service';
 import * as BoardsActions from '../actions/boards.action';
 
 @Injectable()
 export class BoardsEffects {
-  constructor(private actions$: Actions, private api: ApiMainHelpersService) {}
+  constructor(
+    private actions$: Actions,
+    private api: ApiMainHelpersService,
+    private errorService: MainErrorHandlerService,
+  ) {}
 
   loadBoards$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(BoardsActions.loadBoards),
+      ofType(
+        BoardsActions.loadBoards,
+        BoardsActions.createBoardSuccess,
+        BoardsActions.updateBoardSuccess,
+        BoardsActions.deleteBoardSuccess,
+      ),
       switchMap(() =>
         this.api.getAllBoards().pipe(
           map((value) =>
@@ -18,7 +28,10 @@ export class BoardsEffects {
               boards: value,
             }),
           ),
-          catchError((error) => of(BoardsActions.loadBoardsFailure({ error }))),
+          catchError((error) => {
+            this.errorService.handleError(error);
+            return of(BoardsActions.loadBoardsFailure({ error }));
+          }),
         ),
       ),
     );
@@ -30,9 +43,13 @@ export class BoardsEffects {
       switchMap(({ newBoard: value }) =>
         this.api.createBoard(value).pipe(
           map((board) => BoardsActions.createBoardSuccess({ newBoard: board })),
-          catchError((error) =>
-            of(BoardsActions.createBoardFailure({ error })),
-          ),
+          catchError((error) => {
+            this.errorService.handleError(error);
+            if (this.errorService.isKnownMessageType(error)) {
+              return of(BoardsActions.createBoardFailure({ error }));
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
@@ -46,9 +63,13 @@ export class BoardsEffects {
           map((updateBoard) =>
             BoardsActions.updateBoardSuccess({ newBoard: updateBoard }),
           ),
-          catchError((error) =>
-            of(BoardsActions.updateBoardFailure({ error })),
-          ),
+          catchError((error) => {
+            this.errorService.handleError(error);
+            if (this.errorService.isKnownMessageType(error)) {
+              return of(BoardsActions.updateBoardFailure({ error }));
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
@@ -60,9 +81,13 @@ export class BoardsEffects {
       switchMap(({ id: value }) =>
         this.api.deleteBoard(value).pipe(
           map(() => BoardsActions.deleteBoardSuccess({ id: value })),
-          catchError((error) =>
-            of(BoardsActions.deleteBoardFailure({ error })),
-          ),
+          catchError((error) => {
+            this.errorService.handleError(error);
+            if (this.errorService.isKnownMessageType(error)) {
+              return of(BoardsActions.deleteBoardFailure({ error }));
+            }
+            return EMPTY;
+          }),
         ),
       ),
     );
