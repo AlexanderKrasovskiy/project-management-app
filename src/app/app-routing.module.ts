@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { NotFoundComponent } from './auth/components/not-found/not-found.component';
+import { NotFoundComponent } from './pages/auth/components/not-found/not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 import { WelcomeComponent } from './pages/welcome/welcome.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('./auth/auth.module').then((module) => module.AuthModule),
+      import('./pages/auth/auth.module').then((module) => module.AuthModule),
   },
   {
     path: 'search',
