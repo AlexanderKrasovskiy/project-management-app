@@ -138,10 +138,20 @@
 .notfound {
   color: rgb(150, 150, 150);
   padding: 1rem;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+}
+
+.no-item:not(:first-child) {
+  display: none;
 }
 
 .active {
-  color: #FBC02D;
+  color: #fbc02d;
 }
 
 .arrow {
@@ -150,6 +160,6 @@
 }
 
 .arrow.active {
-  color: #FBC02D;
+  color: #fbc02d;
   font-size: 12px;
 }

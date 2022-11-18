@@ -6,7 +6,7 @@
     <div class="card-simple search-card shadow-4">
       <div class="card-with-blur search-card-inside shadow-4">
         <table
-          *ngIf="this.search.tasksSubj$ | async as tasks; else notfound"
+          *ngIf="this.search.tasksSubj$ | async as tasks"
           class="table text-xs sm:text-sm md:text-base">
           <thead>
             <tr>
@@ -84,6 +84,9 @@
               <td>{{ task.description }}</td>
               <td>{{ task.userId }}</td>
             </tr>
+            <tr class="no-item notfound">
+              Try to search something else
+            </tr>
           </tbody>
         </table>
       </div>
@@ -91,6 +94,6 @@
   </div>
 </section>
 
-<ng-template #notfound>
+<!-- <ng-template #notfound>
   <p class="notfound">Try to search something else</p></ng-template
->
+> -->
