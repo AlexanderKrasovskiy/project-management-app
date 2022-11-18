@@ -4,10 +4,18 @@ export interface BoardIDModel {
   description: string;
 }
 
-export interface ColumnModel {
+export interface BoardResModel {
+  id: string;
+  title: string;
+  description: string;
+  columns: ColumnModel[];
+}
+
+interface ColumnModel {
   id: string;
   title: string;
   order: number;
+  tasks: TaskModel[];
 }
 
 export interface TaskModel {
@@ -17,7 +25,6 @@ export interface TaskModel {
   description: string;
   userId: string;
   boardId: string;
-  columnId: string;
   files: FileModel[];
 }
 
