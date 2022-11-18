@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { NotFoundComponent } from './auth/components/not-found/not-found.component';
+import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 import { WelcomeComponent } from './pages/welcome/welcome.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('./auth/auth.module').then((module) => module.AuthModule),
+      import('./pages/auth/auth.module').then((module) => module.AuthModule),
   },
   {
     path: 'search',
@@ -32,7 +32,7 @@ const routes: Routes = [
     path: 'boards',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./main/main.module').then((module) => module.MainModule),
+      import('./pages/main/main.module').then((module) => module.MainModule),
   },
   {
     path: 'boards/:id',

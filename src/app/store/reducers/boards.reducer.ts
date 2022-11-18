@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { BoardIDRequestModel } from 'src/app/main/models/main.model';
+import { BoardIDRequestModel } from 'src/app/pages/main/models/main.model';
 import {
   createBoardSuccess,
   deleteBoardSuccess,

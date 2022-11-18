@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GetUserModel } from 'src/app/auth/models/auth.model';
+import { GetUserModel } from 'src/app/pages/auth/models/auth.model';
 import {
   BoardResModel,
   ColumnModel,

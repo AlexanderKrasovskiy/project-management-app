@@ -1,5 +1,5 @@
-.update-wrap {
-  background-image: url('../../../../assets/images/update-background.jpg');
+.reg-wrap {
+  background-image: url('../../../../../assets/images/registration-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -11,9 +11,9 @@
   overflow-x: hidden;
 }
 
-.update-card {
+.reg-card {
   padding: 2rem;
-  background-image: url('../../../../assets/images/update-leaf-03.png');
+  background-image: url('../../../../../assets/images/registration-leaf.png');
   background-size: cover;
   background-repeat: no-repeat;
   max-width: 30rem;
@@ -21,18 +21,19 @@
   justify-content: center;
 }
 
-.update-big-circle {
+.reg-big-circle {
   width: 35%;
   position: absolute;
-  bottom: 0;
+  bottom: -10%;
   right: -10%;
 }
 
-.update-small-circle {
-  width: 23%;
+.reg-small-circle {
+  width: 20%;
   position: absolute;
   bottom: 10%;
-  left: 1%;
+  left: 5%;
+  background-color: rgba(121, 255, 64, 0.1);
 }
 
 // .example-container .mat-form-field + .mat-form-field {
@@ -48,19 +49,19 @@
 //   display: none;
 // }
 
-.update-title {
+.reg-title {
   // display: flex;
   padding-bottom: 2rem;
   // justify-content: center;
   text-align: center;
 }
 
-.update-input,
-.update-input-inside {
+.reg-input,
+.reg-input-inside {
   width: 100%;
 }
 
-// .update-input-inside .p-inputtext,
+// .reg-input-inside .p-inputtext,
 // .p-password-input {
 //   width: 100% !important;
 // }
@@ -76,7 +77,7 @@
   background-color: transparent;
 }
 
-.update-input-inside {
+.reg-input-inside {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.8);
 }
@@ -90,7 +91,7 @@
   width: 100%;
 }
 
-.update-login-wrapper {
+.reg-login-wrapper {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -112,10 +113,14 @@
   color: red;
 }
 
-.update-wrapper {
+.reg-wrapper {
   display: flex;
   padding-top: 1.6rem;
   gap: 1rem;
   justify-content: center;
   font-size: 0.9rem;
 }
+
+// .ok-border {
+//   border-color: red;
+// }

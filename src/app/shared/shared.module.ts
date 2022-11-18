@@ -8,10 +8,10 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { ConfirmationModalService } from './services/confirmation-modal.service';
 import { SortingPipe } from './pipes/sorting.pipe';
 
-import { DeleteUserService } from '../auth/services/delete-user.service';
-import { ApiControlService } from '../auth/services/api-control.service';
-import { ApiHelpersService } from '../auth/services/api-helpers.service';
-import { MainService } from '../main/services/main.service';
+import { DeleteUserService } from '../pages/auth/services/delete-user.service';
+import { ApiControlService } from '../pages/auth/services/api-control.service';
+import { ApiHelpersService } from '../pages/auth/services/api-helpers.service';
+import { MainService } from '../pages/main/services/main.service';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { ApiSearchService } from '../pages/search/services/api-search.service';
 
