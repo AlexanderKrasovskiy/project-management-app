@@ -23,6 +23,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HeaderService } from './services/header.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,17 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     DetailsErrorHandlerService,
     HeaderService,
   ],
-  declarations: [HeaderComponent, FooterComponent, SpinnerComponent],
-  exports: [HeaderComponent, FooterComponent, SpinnerComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    SpinnerComponent,
+    NotFoundComponent,
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    SpinnerComponent,
+    NotFoundComponent,
+  ],
 })
 export class CoreModule {}
