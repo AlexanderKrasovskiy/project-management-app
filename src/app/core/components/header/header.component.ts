@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
   //  }
   handleScroll() {
     fromEvent(window, 'scroll')
-      .pipe(auditTime(100, animationFrameScheduler))
+      .pipe(auditTime(50, animationFrameScheduler))
       .subscribe(() => {
         // console.log('scroll', window.scrollY);
         if (window.scrollY > 0) {
