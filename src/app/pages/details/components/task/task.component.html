@@ -1,12 +1,16 @@
 <div class="task" cdkDrag [cdkDragData]="task">
-  <div class="task_title" (click)="openEditTaskModal()">
+  <div
+    class="task_title"
+    (click)="openEditTaskModal()"
+    [pTooltip]="task.description | slice: 0:40"
+    tooltipPosition="bottom">
     {{ task.title }}
   </div>
   <button
     pButton
     pRipple
     type="button"
-    icon="pi pi-trash"
     (click)="openDeleteTaskModal()"
-    class="task_btn p-button-rounded p-button-danger p-button-outlined"></button>
+    icon="pi pi-times"
+    class="task_btn p-button-rounded p-button-secondary p-button-text"></button>
 </div>

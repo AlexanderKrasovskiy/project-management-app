@@ -1,5 +1,5 @@
 <section
-  class="column card-with-blur"
+  class="column card-with-blur shadow-2"
   cdkDrag
   [cdkDragData]="column"
   *transloco="let t; read: 'details'">
@@ -39,7 +39,7 @@
       type="button"
       [label]="t('addTask')"
       (click)="openCreateTaskModal()"
-      class="p-button-rounded p-button-sm"></button>
+      class="p-button-raised p-button-rounded p-button-sm"></button>
     <button
       pButton
       pRipple

@@ -1,6 +1,6 @@
 .board {
   height: 100vh;
-  padding-top: 64px;
+  padding-top: 70px;
   background-image: url('../../../../assets/images/boards-back.jpg');
   background-position: center;
   background-repeat: no-repeat;
@@ -16,12 +16,14 @@
   padding: 5px 10px;
   overflow-x: scroll;
   margin-bottom: 60px;
+  // padding-top: 0.5rem;
 }
 
 .board_columns {
+  // padding-top: 0.5rem;
   height: 100%;
   display: flex;
-  gap: 10px;
+  gap: 1.5rem;
   align-items: flex-start;
 }
 

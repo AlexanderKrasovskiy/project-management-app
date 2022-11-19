@@ -6,7 +6,7 @@
     cdkDropList
     cdkDropListOrientation="horizontal"
     (cdkDropListDropped)="dropCols($event)">
-    <article cdkDropListGroup class="board_columns">
+    <article cdkDropListGroup class="pl-2 md:pl-5 board_columns">
       <app-column *ngFor="let column of columns" [column]="column"></app-column>
     </article>
 
