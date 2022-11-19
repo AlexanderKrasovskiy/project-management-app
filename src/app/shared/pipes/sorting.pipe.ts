@@ -7,7 +7,6 @@ import {
 
 @Pipe({
   name: 'sorting',
-  pure: false,
 })
 export class SortingPipe implements PipeTransform {
   transform(items: TaskModel[], bySort: string, keySort: string): TaskModel[] {

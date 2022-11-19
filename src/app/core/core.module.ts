@@ -24,6 +24,7 @@ import { HeaderService } from './services/header.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { MainErrorHandlerService } from '../pages/main/services/main-error-handler.service';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     MessageService,
     DetailsService,
     DetailsErrorHandlerService,
+    MainErrorHandlerService,
     HeaderService,
   ],
   declarations: [
