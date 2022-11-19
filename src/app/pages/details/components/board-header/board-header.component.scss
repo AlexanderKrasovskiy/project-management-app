@@ -15,10 +15,28 @@
 }
 
 .board_title {
-  color: coral;
+  color: black;
   flex-grow: 0;
+  // font-weight: 600;
 }
 
 .back_btn {
   text-decoration: none;
+  position: relative;
+  left: -1.5rem;
+}
+
+.board_title-wrap {
+  font-weight: 500;
+  padding: 0.7rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  // width: 17rem;
+  // margin-top: 5.5rem;
+  text-align: center;
+  position: relative;
+  left: -1.5rem;
+  color: rgb(92, 92, 92);
 }

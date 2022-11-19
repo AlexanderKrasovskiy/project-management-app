@@ -1,6 +1,6 @@
 .board {
   height: 100vh;
-  padding-top: 64px;
+  padding-top: 70px;
   background-image: url('../../../../assets/images/boards-back.jpg');
   background-position: center;
   background-repeat: no-repeat;
@@ -21,8 +21,11 @@
 .board_columns {
   height: 100%;
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   align-items: flex-start;
+  @media (max-width: 600px) {
+    gap: 0.5rem;
+  }
 }
 
 .btn_add_column {
