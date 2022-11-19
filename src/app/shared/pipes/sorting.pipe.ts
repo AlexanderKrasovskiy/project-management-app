@@ -33,7 +33,7 @@ export class SortingPipe implements PipeTransform {
           .sort((a, b) => +a.title - +b.title);
         const strArr = items
           .filter((el) => Number.isNaN(Number(el.title)))
-          .sort();
+          .sort((a, b) => (a.title < b.title ? -1 : 1));
         const sort = [...numArr.concat(strArr)];
         return keySort === BySort.descending ? sort : sort.reverse();
       }
@@ -43,7 +43,7 @@ export class SortingPipe implements PipeTransform {
           .sort((a, b) => +a.description - +b.description);
         const strArr = items
           .filter((el) => Number.isNaN(Number(el.description)))
-          .sort();
+          .sort((a, b) => (a.description < b.description ? -1 : 1));
         const sort = [...numArr.concat(strArr)];
         return keySort === BySort.descending ? sort : sort.reverse();
       }
@@ -53,7 +53,7 @@ export class SortingPipe implements PipeTransform {
           .sort((a, b) => +a.userId - +b.userId);
         const strArr = items
           .filter((el) => Number.isNaN(Number(el.userId)))
-          .sort();
+          .sort((a, b) => (a.userId < b.userId ? -1 : 1));
         const sort = [...numArr.concat(strArr)];
         return keySort === BySort.descending ? sort : sort.reverse();
       }
