@@ -16,15 +16,16 @@
   padding: 5px 10px;
   overflow-x: scroll;
   margin-bottom: 60px;
-  // padding-top: 0.5rem;
 }
 
 .board_columns {
-  // padding-top: 0.5rem;
   height: 100%;
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  @media (max-width: 600px) {
+    gap: 0.5rem;
+  }
 }
 
 .btn_add_column {
