@@ -87,7 +87,11 @@ export class RegComponent implements OnInit, OnDestroy {
     this.regForm = new FormGroup(
       {
         nameInput: new FormControl('', [Validators.required]),
-        loginInput: new FormControl('', [Validators.required]),
+        loginInput: new FormControl('', [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30),
+        ]),
         passwordInput: new FormControl('', [
           Validators.required,
           ValidatePassword,

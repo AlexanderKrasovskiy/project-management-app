@@ -25,7 +25,10 @@ export class TaskComponent {
   openDeleteTaskModal(): void {
     const data = this.transloco.translate('details.deleteTask');
 
-    const dialogRef = this.dialog.open(ConfirmationModalComponent, { data });
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data,
+      backdropClass: 'backdropBackground',
+    });
 
     dialogRef.afterClosed().subscribe((confirm) => {
       if (!confirm) return;
@@ -41,7 +44,10 @@ export class TaskComponent {
       title: this.task.title,
       description: this.task.description,
     };
-    const dialogRef = this.dialog.open(TaskModalComponent, { data });
+    const dialogRef = this.dialog.open(TaskModalComponent, {
+      data,
+      backdropClass: 'backdropBackground',
+    });
 
     const bodyPayload = {
       order: this.task.order,

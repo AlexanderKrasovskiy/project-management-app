@@ -95,7 +95,7 @@
   top: 3rem;
   display: flex;
   width: 90%;
-  margin-bottom: 6rem;
+  margin-bottom: 8rem;
 }
 
 .search-card-inside {
@@ -138,10 +138,20 @@
 .notfound {
   color: rgb(150, 150, 150);
   padding: 1rem;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  justify-content: center;
+}
+
+.no-item:not(:first-child) {
+  width: 100vw;
+  display: flex;
+  display: none;
 }
 
 .active {
-  color: #FBC02D;
+  color: #fbc02d;
 }
 
 .arrow {
@@ -150,6 +160,6 @@
 }
 
 .arrow.active {
-  color: #FBC02D;
+  color: #fbc02d;
   font-size: 12px;
 }

@@ -24,7 +24,7 @@ import { HeaderService } from '../../services/header.service';
 export class HeaderComponent implements OnInit {
   public stateOptions;
 
-  public value1: string = 'En';
+  public value1 = localStorage.getItem('PlanLanguageInfo') || 'en';
 
   public inScroll = false;
 

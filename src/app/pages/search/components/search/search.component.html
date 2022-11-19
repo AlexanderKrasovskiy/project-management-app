@@ -7,8 +7,9 @@
       <div class="card-simple search-card shadow-4">
         <div class="card-with-blur search-card-inside shadow-4">
           <table
-            *ngIf="this.tasksSubj$ | async as tasks; else notfound"
+            *ngIf="this.tasksSubj$ | async as tasks"
             class="table text-xs sm:text-sm md:text-base">
+            <!-- <div *ngIf="(tasks | json) !== '[]'">{{ tasks | json }}</div> -->
             <thead>
               <tr>
                 <th
@@ -85,6 +86,9 @@
                 <td>{{ task.description }}</td>
                 <td>{{ task.userId }}</td>
               </tr>
+              <tr *ngIf="this.headerService.keyWord" class="no-item">
+                <td class="notfound">{{ t('notFound') }}</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -92,7 +96,7 @@
     </div>
   </section>
 
-  <ng-template #notfound>
-    <p class="notfound">{{ t('notFound') }}</p></ng-template
-  >
+  <!-- <ng-template #notfound>
+  <p class="notfound">Try to search something else</p></ng-template
+> -->
 </ng-container>
