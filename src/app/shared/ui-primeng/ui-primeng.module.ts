@@ -11,6 +11,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 // import { ProgressBarModule } from 'primeng/progressbar';
 
 const PrimeComponents = [
@@ -21,6 +22,7 @@ const PrimeComponents = [
   DividerModule,
   PasswordModule,
   InputTextModule,
+  InputTextareaModule,
   TooltipModule,
   SidebarModule,
   ToastModule,
