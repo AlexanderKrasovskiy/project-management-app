@@ -6,14 +6,17 @@
     "team": "Our team",
     "course": "Course Angular by RS School, 2022",
     "alla": "Alla",
-    "sasha": "Sasha",
+    "sasha": "Alex",
     "svetlana": "Svetlana",
     "backend": "Backend",
     "teamlead": "Teamlead",
     "frontend": "Frontend",
     "design": "Design",
     "expired": "Your token is expired! Please, login",
-    "teamInfo": "Lorem ipsum dolor sit amet, \nconsectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis aliquid commodi vitae cum eligendi ea. Itaque inventore placeat, voluptates eos hic possimus molestiae perferendis doloribus harum vero asperiores ducimus, quibusdam omnis alias? Animi id corrupti ea. Culpa similique quibusdam, incidunt sed soluta necessitatibus corrupti. Sint beatae perferendis ut vero?"
+    "teamInfo": "Lorem ipsum dolor sit amet, \nconsectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis aliquid commodi vitae cum eligendi ea. Itaque inventore placeat, voluptates eos hic possimus molestiae perferendis doloribus harum vero asperiores ducimus, quibusdam omnis alias? Animi id corrupti ea. Culpa similique quibusdam, incidunt sed soluta necessitatibus corrupti. Sint beatae perferendis ut vero?",
+    "teamAlla": "Deployed application backend. Developed 'all boards' page and 'global search' page. Applied NgRx for 'all boards' page. For listed above pages implemented 2-language localization, user-friendly error-handling, routing, modals for boards creation / editing / deletion. Implemented universal interceptor for all network requests. Additional features - search page sorting, ability to change boards background.",
+    "teamSasha": "Configured initial project setup. Held code-review during app developmant. Developed 'board details' page with drag-n-drop. Applied NgRx for 'board details' page. For listed above page implemented 2-language localization, user-friendly error-handling, routing, modals for column / task creation / editing / deletion. Additional features - ability to change board background at details page.",
+    "teamSveta": "Responsible for application design. Developed 'sticky' header, footer, home page, login page, sign-up page, user profile page. Applied reactive forms with custom validation while development . For listed above pages implemented 2-language localization, user-friendly error-handling, routing, routing-guard. Implemented user session handling. Additional features - 404 page."
   },
   "registration": {
     "title": "Registration",
@@ -125,7 +128,7 @@
     "Alexander": "Alexander Krasovskiy",
     "AllaT": "Alla Tkachuk",
     "Svetlana": "Svetlana Pozina, 2022",
-    "Sasha": "Sasha",
+    "Sasha": "Alex",
     "Alla": "Alla",
     "Sveta": "Sveta, 2022"
   },
