@@ -87,7 +87,7 @@
                 <td>{{ task.userId }}</td>
               </tr>
               <tr *ngIf="this.headerService.keyWord" class="no-item">
-                <td class="notfound">Try to search something else</td>
+                <td class="notfound">{{ t('notFound') }}</td>
               </tr>
             </tbody>
           </table>
