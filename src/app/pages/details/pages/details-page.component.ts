@@ -106,7 +106,10 @@ export class DetailsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDialog(): void {
     const data = { title: '' };
-    const dialogRef = this.dialog.open(ColumnModalComponent, { data });
+    const dialogRef = this.dialog.open(ColumnModalComponent, {
+      data,
+      backdropClass: 'backdropBackground',
+    });
 
     dialogRef.afterClosed().subscribe((title) => {
       if (!title) return;

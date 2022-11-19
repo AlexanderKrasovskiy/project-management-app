@@ -73,7 +73,10 @@ export class ColumnComponent implements OnChanges {
   openDeleteColumnModal(): void {
     const data = this.transloco.translate('details.deleteColumn');
 
-    const dialogRef = this.dialog.open(ConfirmationModalComponent, { data });
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data,
+      backdropClass: 'backdropBackground',
+    });
 
     dialogRef.afterClosed().subscribe((confirm) => {
       if (!confirm) return;
@@ -87,7 +90,10 @@ export class ColumnComponent implements OnChanges {
       title: '',
       description: '',
     };
-    const dialogRef = this.dialog.open(TaskModalComponent, { data });
+    const dialogRef = this.dialog.open(TaskModalComponent, {
+      data,
+      backdropClass: 'backdropBackground',
+    });
 
     dialogRef.afterClosed().subscribe((body) => {
       if (!body?.title || !body?.description) return;

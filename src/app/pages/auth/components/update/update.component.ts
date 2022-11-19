@@ -84,7 +84,11 @@ export class UpdateComponent implements OnInit, OnDestroy {
         ),
         loginInput: new FormControl(
           JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).login,
-          [Validators.required],
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(30),
+          ],
         ),
         passwordInput: new FormControl('', [
           Validators.required,
