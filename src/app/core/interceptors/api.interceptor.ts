@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/pages/auth/services/auth.service';
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
   private apiUrl: string = 'https://rs-kanban.herokuapp.com';
+  // private apiUrl: string = 'https://app-rss-production.up.railway.app';
   // private token = localStorage.getItem('PlanTokenInfo');
   constructor(private router: Router, public authService: AuthService) {}
 
