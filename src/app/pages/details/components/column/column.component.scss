@@ -70,7 +70,7 @@
   justify-content: space-around;
   padding: 1rem 1rem 1rem;
   @media (max-width: 600px) {
-    padding: 10px 2px 1px;
+    padding: 8px 7px 3px;
     justify-content: space-between;
   }
 }
@@ -104,24 +104,24 @@
 
 /* ___________ SCROLL STYLES __________________ */
 
-/* width */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
+// /* width */
+// ::-webkit-scrollbar {
+//   width: 7px;
+//   height: 7px;
+// }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+// /* Track */
+// ::-webkit-scrollbar-track {
+//   background: transparent;
+// }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 5px;
-}
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//   background: rgba(255, 255, 255, 0.6);
+//   border-radius: 5px;
+// }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.9);
-}
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: rgba(255, 255, 255, 0.9);
+// }

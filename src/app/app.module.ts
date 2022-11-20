@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 
-import { WelcomeModule } from './pages/welcome/welcome.module';
+// import { WelcomeModule } from './pages/welcome/welcome.module';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -17,7 +17,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    WelcomeModule,
+    // WelcomeModule,
     SharedModule,
   ],
   bootstrap: [AppComponent],
