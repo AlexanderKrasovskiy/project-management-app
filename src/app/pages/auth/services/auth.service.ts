@@ -22,6 +22,11 @@ export class AuthService {
     '_07',
     '_08',
     '_09',
+    '_10',
+    '_11',
+    '_12',
+    '_13',
+    '_14',
   ];
 
   private TOKEN_LIFE_DURATION = 12;
