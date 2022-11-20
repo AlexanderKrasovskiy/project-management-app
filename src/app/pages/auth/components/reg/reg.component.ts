@@ -32,7 +32,9 @@ import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
 export class RegComponent implements OnInit, OnDestroy {
   public regForm!: FormGroup;
 
-  reg$: Subscription = new Subscription();
+  public reg$: Subscription = new Subscription();
+
+  public avatar = '_01';
 
   constructor(
     private apiControlService: ApiControlService,
@@ -53,7 +55,10 @@ export class RegComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(): void {
-    const newUser: RegisterRequestModel = generateNewUser(this.regForm.value);
+    const newUser: RegisterRequestModel = generateNewUser(
+      this.regForm.value,
+      this.avatar,
+    );
 
     const loginUser: LoginRequestModel = generateLoginUser(this.regForm.value);
 
