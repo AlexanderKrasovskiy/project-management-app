@@ -111,5 +111,30 @@ a.link-not-default {
 
 .backdropBackground {
   background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(3px);
+}
+
+/* ___________ SCROLL STYLES __________________ */
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgb(131, 131, 131);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
