@@ -1,11 +1,14 @@
 import { LoginRequestModel, RegisterRequestModel } from '../models/auth.model';
 
-export const generateNewUser = (formValue: {
-  nameInput: string;
-  loginInput: string;
-  passwordInput: string;
-}): RegisterRequestModel => ({
-  name: formValue.nameInput,
+export const generateNewUser = (
+  formValue: {
+    nameInput: string;
+    loginInput: string;
+    passwordInput: string;
+  },
+  avatar: string,
+): RegisterRequestModel => ({
+  name: `${formValue.nameInput}_${avatar}`,
   login: formValue.loginInput,
   password: formValue.passwordInput,
 });

@@ -17,6 +17,7 @@ import {
   RegisterRequestModel,
 } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
+import { AuthService } from '../../services/auth.service';
 import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
 // import { parseJwt } from '../../utils/parse-token.util';
 // import { parseJwt } from '../../utils/parse-token.util';
@@ -32,7 +33,9 @@ import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
 export class RegComponent implements OnInit, OnDestroy {
   public regForm!: FormGroup;
 
-  reg$: Subscription = new Subscription();
+  public reg$: Subscription = new Subscription();
+
+  public avatar = '01';
 
   constructor(
     private apiControlService: ApiControlService,
@@ -41,6 +44,7 @@ export class RegComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
     private translocoService: TranslocoService,
+    public authService: AuthService,
   ) {}
 
   public ngOnInit(): void {
@@ -52,8 +56,21 @@ export class RegComponent implements OnInit, OnDestroy {
     this.reg$.unsubscribe();
   }
 
+  public showAvatarChangeModalWindow(): void {
+    this.authService.isAvatarSwap = true;
+  }
+
+  public changeAvatar(image: string): void {
+    this.avatar = image.slice(-2);
+    this.authService.isAvatarSwap = false;
+    //  this.updateLocalStorBoardImg();
+  }
+
   public onSubmit(): void {
-    const newUser: RegisterRequestModel = generateNewUser(this.regForm.value);
+    const newUser: RegisterRequestModel = generateNewUser(
+      this.regForm.value,
+      this.avatar,
+    );
 
     const loginUser: LoginRequestModel = generateLoginUser(this.regForm.value);
 
