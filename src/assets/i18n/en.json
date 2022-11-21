@@ -2,7 +2,12 @@
   "welcome": {
     "test": "test",
     "about": "About application",
+    "aboutText": "Project Management App is your powerful tool to maximize project's efficiency with Kanban boards. \n\n Benefits: \n - Gives a clear picture of what needs to be accomplished and when; \n - Visual - everyone on the same page; \n - Reduces the risk of errors and duplication of effort; \n - Helps teams to identify and reduce bottlenecks in their workflows; \n - Brings improved delivery speed, predictability and increased customer satisfaction as a result.",
     "guide": "Application guide",
+    "guide_1": "Easy - Create Kanban-boards for personal and team projects",
+    "guide_2": "Customize - Change board's background for intuitive navigation",
+    "guide_3": "Visual - Create and change tasks, complete projects, meet deadlines",
+    "guide_4": "Find - With our end-to-end search you can find tasks even faster",
     "team": "Our team",
     "course": "Course Angular by RS School, 2022",
     "alla": "Alla",
@@ -13,7 +18,6 @@
     "frontend": "Frontend",
     "design": "Design",
     "expired": "Your token is expired! Please, login",
-    "teamInfo": "Lorem ipsum dolor sit amet, \nconsectetur adipisicing elit. Libero nesciunt voluptate eum odit laboriosam inventore, laborum non commodi sit officiis quod incidunt iusto ducimus dolore adipisci quisquam. Doloremque, necessitatibus blanditiis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis aliquid commodi vitae cum eligendi ea. Itaque inventore placeat, voluptates eos hic possimus molestiae perferendis doloribus harum vero asperiores ducimus, quibusdam omnis alias? Animi id corrupti ea. Culpa similique quibusdam, incidunt sed soluta necessitatibus corrupti. Sint beatae perferendis ut vero?",
     "teamAlla": "Deployed application backend. Developed 'all boards' page and 'global search' page. Applied NgRx for 'all boards' page. For listed above pages implemented 2-language localization, user-friendly error-handling, routing, modals for boards creation / editing / deletion. Implemented universal interceptor for all network requests. Additional features - search page sorting, ability to change boards background.",
     "teamSasha": "Configured initial project setup. Held code-review during app developmant. Developed 'board details' page with drag-n-drop. Applied NgRx for 'board details' page. For listed above page implemented 2-language localization, user-friendly error-handling, routing, modals for column / task creation / editing / deletion. Additional features - ability to change board background at details page.",
     "teamSveta": "Responsible for application design. Developed 'sticky' header, footer, home page, login page, sign-up page, user profile page. Applied reactive forms with custom validation while development . For listed above pages implemented 2-language localization, user-friendly error-handling, routing, routing-guard. Implemented user session handling. Additional features - 404 page."

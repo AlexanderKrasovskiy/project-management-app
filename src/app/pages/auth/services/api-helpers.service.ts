@@ -51,7 +51,7 @@ export class ApiHelpersService {
             life: 5000,
           });
           // console.log('[ERROR]: ', error);
-          console.error(err.error.message);
+          // console.error(err.error.message);
           return EMPTY;
         }),
       );
@@ -84,7 +84,7 @@ export class ApiHelpersService {
           });
 
           // console.error(err.error.statusCode);
-          console.error(err.error.message);
+          // console.error(err.error.message);
           // console.error(err);
           // console.error(err.status);
           // console.error(err.statusText);
@@ -105,7 +105,7 @@ export class ApiHelpersService {
           detail: this.translocoService.translate('apiHelpers.notFound'),
           life: 5000,
         });
-        console.error(err.error.message);
+        // console.error(err.error.message);
         return EMPTY;
       }),
     );
@@ -133,7 +133,7 @@ export class ApiHelpersService {
           detail: errorText,
           life: 5000,
         });
-        console.error(err.error.message);
+        // console.error(err.error.message);
         return EMPTY;
       }),
     );
@@ -149,7 +149,7 @@ export class ApiHelpersService {
           detail: this.translocoService.translate('apiHelpers.notDelete'),
           life: 5000,
         });
-        console.error(err.error.message);
+        // console.error(err.error.message);
         return EMPTY;
       }),
     );
