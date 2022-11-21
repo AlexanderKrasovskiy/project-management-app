@@ -93,6 +93,16 @@
   padding: 1rem;
 }
 
+@media (max-width: 500px) {
+  .app-guide-all {
+    gap: 10px;
+  }
+
+  .app-guide {
+    width: 98%;
+  }
+}
+
 .app-guide-big-circle-fake,
 .app-guide-big-circle {
   border-radius: 50%;
