@@ -34,7 +34,7 @@
   height: 3.5rem;
   cursor: pointer;
   border-radius: 5px;
-  border: 0.3rem solid transparent;
+  border: 0.2rem solid transparent;
 }
 
 .update-big-circle {
@@ -190,12 +190,12 @@
       }
     }
   }
-  .wrap-background {
+  .wrap-avatar {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 10px;
-    .background {
+    .avatar {
       width: 35px;
       height: 35px;
       border: 2px solid black;
