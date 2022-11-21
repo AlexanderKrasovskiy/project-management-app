@@ -17,6 +17,7 @@ import {
   // LoginRequestModel,
 } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
+import { AuthService } from '../../services/auth.service';
 import { DeleteUserService } from '../../services/delete-user.service';
 import { generateNewUser } from '../../utils/generate.util';
 import { parseJwt } from '../../utils/parse-token.util';
@@ -30,7 +31,9 @@ import { parseJwt } from '../../utils/parse-token.util';
 export class UpdateComponent implements OnInit, OnDestroy {
   public updateForm!: FormGroup;
 
-  upd$: Subscription = new Subscription();
+  public upd$: Subscription = new Subscription();
+
+  public avatar = this.authService.getUserAvatar();
 
   constructor(
     private apiControlService: ApiControlService,
@@ -41,6 +44,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     public confirmationService: ConfirmationModalService,
     public deleteUserService: DeleteUserService,
     private translocoService: TranslocoService,
+    public authService: AuthService,
   ) {}
 
   public ngOnInit(): void {
@@ -48,13 +52,28 @@ export class UpdateComponent implements OnInit, OnDestroy {
     this.primengConfig.ripple = true;
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.upd$.unsubscribe();
   }
+
+  public showAvatarChangeModalWindow(): void {
+    this.authService.isAvatarSwap = true;
+  }
+
+  public changeAvatar(image: string): void {
+    this.avatar = image.slice(-2);
+    this.authService.isAvatarSwap = false;
+    //  this.updateLocalStorBoardImg();
+  }
+
+  // updateLocalStorBoardImg(): void {
+  //   this.mainService.updateLocalStor(this.idBoard, this.imgBoard);
+  // }
 
   public onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(
       this.updateForm.value,
+      this.avatar,
     );
 
     this.upd$ = this.apiControlService
@@ -78,10 +97,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
   private initializeForm(): void {
     this.updateForm = new FormGroup(
       {
-        nameInput: new FormControl(
-          JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name,
-          [Validators.required],
-        ),
+        nameInput: new FormControl(this.authService.getUserName(), [
+          Validators.required,
+        ]),
         loginInput: new FormControl(
           JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).login,
           [

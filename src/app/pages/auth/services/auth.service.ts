@@ -11,6 +11,24 @@ import {
 })
 export class AuthService {
   // private TOKEN_LIFE_DURATION = 2;
+  isAvatarSwap: boolean = false;
+  images: string[] = [
+    '_01',
+    '_02',
+    '_03',
+    '_04',
+    '_05',
+    '_06',
+    '_07',
+    '_08',
+    '_09',
+    '_10',
+    '_11',
+    '_12',
+    '_13',
+    '_14',
+  ];
+
   private TOKEN_LIFE_DURATION = 12;
 
   public isUserLogged$ = new BehaviorSubject<boolean>(false);
@@ -32,16 +50,37 @@ export class AuthService {
     // this.isUserRegistered$.next(true);
   }
 
-  public getUser(): string {
+  public getUserName(): string {
     if (
       localStorage.getItem('PlanUserInfo') &&
       localStorage.getItem('PlanTokenInfo')
     ) {
-      // this.isUserRegistered$.next(true);
       this.isUserLogged$.next(true);
-      // return localStorage.getItem('PlanUserInfo') as string;
-      return JSON.parse(localStorage.getItem('PlanUserInfo') as string)
-        .name as string;
+      return JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name.slice(
+        -3,
+        -2,
+      ) === '_'
+        ? JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name.slice(
+            0,
+            -3,
+          )
+        : JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name;
+    }
+    return '';
+  }
+
+  public getUserAvatar(): string {
+    if (
+      localStorage.getItem('PlanUserInfo') &&
+      localStorage.getItem('PlanTokenInfo')
+    ) {
+      this.isUserLogged$.next(true);
+      return JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name.slice(
+        -3,
+        -2,
+      ) === '_'
+        ? JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name.slice(-2)
+        : '01';
     }
     return '';
   }
@@ -52,5 +91,9 @@ export class AuthService {
     localStorage.removeItem('PlanTokenExpiredTime');
     this.isUserLogged$.next(false);
     // this.isUserRegistered$.next(false);
+  }
+
+  public hideAvatarChangeModalWindow(): void {
+    this.isAvatarSwap = false;
   }
 }

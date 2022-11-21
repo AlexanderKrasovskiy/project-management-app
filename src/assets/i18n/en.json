@@ -58,7 +58,9 @@
     "update": "Update",
     "successful": "Successful update!",
     "wrongLength": "Check login length",
-    "tooltipLogin": "Your login should contain from 3 to 30 characters"
+    "tooltipLogin": "Your login should contain from 3 to 30 characters",
+    "titleAvatar": "Choose avatar",
+    "cancel": "Cancel"
   },
   "deleteUser": {
     "user": "user",
