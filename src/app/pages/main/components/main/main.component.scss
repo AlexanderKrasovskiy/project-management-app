@@ -21,12 +21,10 @@
   }
   .main__boards {
     margin: 30px 60px 100px 60px;
-    // gap: 2.2rem;
     row-gap: 2rem;
     column-gap: 2.5rem;
     justify-content: center;
     width: fit-content;
-    // max-width: 1100px;
     .board,
     .new-board {
       cursor: pointer;

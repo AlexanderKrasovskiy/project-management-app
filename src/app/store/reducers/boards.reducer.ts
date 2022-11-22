@@ -18,14 +18,13 @@ export const allBoardsReducer = createReducer(
   on(
     loadBoardsSuccess,
     (state, { boards }): BoardsState => ({
-      ...state,
-      boards,
+      boards: [...boards].reverse(),
     }),
   ),
   on(
     createBoardSuccess,
     (state, { newBoard }): BoardsState => ({
-      boards: [...state.boards, newBoard],
+      boards: [newBoard, ...state.boards],
     }),
   ),
   on(
