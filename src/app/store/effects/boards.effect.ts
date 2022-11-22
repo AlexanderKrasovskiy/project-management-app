@@ -17,8 +17,6 @@ export class BoardsEffects {
     return this.actions$.pipe(
       ofType(
         BoardsActions.loadBoards,
-        BoardsActions.createBoardSuccess,
-        BoardsActions.updateBoardSuccess,
         BoardsActions.deleteBoardSuccess,
         BoardsActions.deleteBoardFailure,
       ),

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { TooltipModule } from 'primeng/tooltip';
 import { MainRoutingModule } from './main-routing.module';
 import { ApiMainHelpersService } from './services/api-main-helpers.service';
 import { MainPageComponent } from './pages/main-page/main-page.component';

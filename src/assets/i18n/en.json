@@ -64,7 +64,8 @@
     "wrongLength": "Check login length",
     "tooltipLogin": "Your login should contain from 3 to 30 characters",
     "titleAvatar": "Choose avatar",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "randomPassword": "Generate password"
   },
   "deleteUser": {
     "user": "user",
