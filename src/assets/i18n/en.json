@@ -2,7 +2,7 @@
   "welcome": {
     "test": "test",
     "about": "About application",
-    "aboutText": "Project Management App is your powerful tool to maximize project's efficiency with Kanban boards. \n\n Benefits: \n - Gives a clear picture of what needs to be accomplished and when; \n - Visual - everyone on the same page; \n - Reduces the risk of errors and duplication of effort; \n - Helps teams to identify and reduce bottlenecks in their workflows; \n - Brings improved delivery speed, predictability and increased customer satisfaction as a result.",
+    "aboutText": "Project Management App is your powerful tool to maximize project's efficiency with Kanban boards. \n\n Kanban-board - is a visual tool, that helps in monitoring current organisation's state and simplifies team communication. \n\n Benefits: \n - Gives a clear picture of what needs to be accomplished and when; \n - Visual - everyone on the same page; \n - Reduces the risk of errors and duplication of effort; \n - Helps teams to identify and reduce bottlenecks in their workflows; \n - Brings improved delivery speed, predictability and increased customer satisfaction as a result.",
     "guide": "Application guide",
     "guide_1": "Easy - Create Kanban-boards for personal and team projects",
     "guide_2": "Customize - Change board's background for intuitive navigation",
@@ -64,7 +64,8 @@
     "wrongLength": "Check login length",
     "tooltipLogin": "Your login should contain from 3 to 30 characters",
     "titleAvatar": "Choose avatar",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "randomPassword": "Generate password"
   },
   "deleteUser": {
     "user": "user",

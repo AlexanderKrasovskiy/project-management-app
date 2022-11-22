@@ -125,6 +125,14 @@
             class="p-button-raised p-button-secondary p-button-outlined button-custom-white"
             label="{{ t('delete') }}"
             (click)="this.deleteUserService.openDeleteUserModal()"></button>
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="button"
+            class="p-button-raised p-button-secondary p-button-outlined button-custom-white"
+            label="{{ t('randomPassword') }}"
+            (click)="this.onRandomPassword()"></button>
         </div>
       </form>
     </div>
