@@ -19,7 +19,7 @@ import {
 import { ApiControlService } from '../../services/api-control.service';
 import { AuthService } from '../../services/auth.service';
 import { DeleteUserService } from '../../services/delete-user.service';
-import { generateNewUser } from '../../utils/generate.util';
+import { generateNewUser, generatePassword } from '../../utils/generate.util';
 import { parseJwt } from '../../utils/parse-token.util';
 
 @Component({
@@ -64,6 +64,10 @@ export class UpdateComponent implements OnInit, OnDestroy {
     this.avatar = image.slice(-2);
     this.authService.isAvatarSwap = false;
     //  this.updateLocalStorBoardImg();
+  }
+
+  public onRandomPassword(): void {
+    console.log(generatePassword());
   }
 
   // updateLocalStorBoardImg(): void {
