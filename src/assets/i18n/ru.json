@@ -37,7 +37,8 @@
     "successfulRegistration": "Успешная регистрация!",
     "successfulLogin": "Успешный вход!",
     "wrongLength": "Проверьте длину логина",
-    "tooltipLogin": "Логин должен содержать от 3 до 30 символов"
+    "tooltipLogin": "Логин должен содержать от 3 до 30 символов",
+    "randomPassword": "Создать пароль"
   },
   "login": {
     "title": "Вход",

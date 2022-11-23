@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -12,6 +19,7 @@ import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
+// import { PASSWORD_ALL } from 'src/app/shared/models/common.model';
 import {
   RegisterRequestModel,
   // LoginRequestModel,
@@ -34,6 +42,13 @@ export class UpdateComponent implements OnInit, OnDestroy {
   public upd$: Subscription = new Subscription();
 
   public avatar = this.authService.getUserAvatar();
+
+  // public passwordAll = PASSWORD_ALL;
+
+  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
+
+  @ViewChild('twicePasswordContainer')
+  twicePasswordContainer!: ElementRef<HTMLElement>;
 
   constructor(
     private apiControlService: ApiControlService,
@@ -67,7 +82,44 @@ export class UpdateComponent implements OnInit, OnDestroy {
   }
 
   public onRandomPassword(): void {
-    console.log(generatePassword());
+    // console.log(generatePassword());
+
+    const newPassword: string = generatePassword();
+
+    const event = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    });
+
+    this.updateForm.patchValue({
+      passwordInput: newPassword,
+      twicePasswordInput: newPassword,
+    });
+
+    this.updateForm.controls['passwordInput'].markAsDirty();
+
+    this.updateForm.controls['twicePasswordInput'].markAsDirty();
+
+    if (
+      this.passwordContainer.nativeElement.children[0].children[0].children[0].getAttribute(
+        'type',
+      ) === 'password'
+    ) {
+      this.passwordContainer.nativeElement.children[0].children[0].children[1].dispatchEvent(
+        event,
+      );
+    }
+
+    if (
+      this.twicePasswordContainer.nativeElement.children[0].children[0].children[0].getAttribute(
+        'type',
+      ) === 'password'
+    ) {
+      this.twicePasswordContainer.nativeElement.children[0].children[0].children[1].dispatchEvent(
+        event,
+      );
+    }
   }
 
   // updateLocalStorBoardImg(): void {
@@ -90,7 +142,6 @@ export class UpdateComponent implements OnInit, OnDestroy {
           severity: 'success',
           summary: 'Success',
           detail: this.translocoService.translate('update.successful'),
-          life: 5000,
         });
         //  setTimeout(() => {
         this.router.navigate(['boards']);

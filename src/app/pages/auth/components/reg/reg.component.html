@@ -60,14 +60,14 @@
             </div>
           </div>
 
-          <span class="p-float-label reg-input mb-3">
+          <span class="p-float-label reg-input mb-3" #passwordContainer>
             <p-password
               [toggleMask]="true"
               id="passwordInput"
               formControlName="passwordInput"
               pTooltip="{{ t('tooltipPassword') }}"
               tooltipEvent="focus"
-              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})">
+              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
             </p-password>
             <label for="passwordInput">{{ t('password') }}</label>
             <div
@@ -82,14 +82,14 @@
             </div>
           </span>
 
-          <span class="p-float-label reg-input">
+          <span class="p-float-label reg-input" #twicePasswordContainer>
             <p-password
               [toggleMask]="true"
               id="twicePasswordInput"
               formControlName="twicePasswordInput"
               pTooltip="{{ t('tooltipPassword') }}"
               tooltipEvent="focus"
-              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})">
+              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
             </p-password>
             <label for="passwordInput">{{ t('repeatPassword') }}</label>
             <div
@@ -114,6 +114,14 @@
             [disabled]="!regForm.valid"
             class="p-button-raised p-button-secondary button-custom-white"
             label="{{ t('signup') }}"></button>
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="button"
+            class="p-button-raised p-button-secondary p-button-outlined button-custom-white"
+            label="{{ t('randomPassword') }}"
+            (click)="this.onRandomPassword()"></button>
         </div>
         <div class="reg-wrapper">
           <p>{{ t('registered') }}</p>
