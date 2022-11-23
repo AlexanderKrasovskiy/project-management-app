@@ -21,7 +21,6 @@ export class ApiSearchService {
           severity: 'error',
           summary: 'Error',
           detail: this.transloco.translate('details.boardNotFound'),
-          life: 5000,
         });
         return EMPTY;
       }),
@@ -36,7 +35,6 @@ export class ApiSearchService {
           severity: 'error',
           summary: 'Error',
           detail: this.transloco.translate('details.boardNotFound'),
-          life: 5000,
         });
         return EMPTY;
       }),
@@ -51,7 +49,6 @@ export class ApiSearchService {
           severity: 'error',
           summary: 'Error',
           detail: this.transloco.translate('apiHelpers.notFound'),
-          life: 5000,
         });
         return EMPTY;
       }),

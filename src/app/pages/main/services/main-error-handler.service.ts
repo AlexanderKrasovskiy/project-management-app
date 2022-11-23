@@ -17,7 +17,6 @@ export class MainErrorHandlerService {
         severity: 'error',
         summary: this.transloco.translate('details.errorTitle'),
         detail: this.transloco.translate('details.boardNotFound'),
-        life: 5000,
       });
   }
 

@@ -54,7 +54,6 @@ export class DeleteUserService {
           severity: 'success',
           summary: 'Success',
           detail: this.translocoService.translate('deleteUser.successful'),
-          life: 5000,
         });
         this.confirmationService.isConfirmationModalUser = false;
         this.confirmationService.title = '';
