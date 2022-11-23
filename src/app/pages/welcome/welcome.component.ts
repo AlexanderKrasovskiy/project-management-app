@@ -20,7 +20,6 @@ export class WelcomeComponent implements AfterViewInit {
         severity: 'warn',
         summary: 'Warn',
         detail: this.translocoService.translate('welcome.expired'),
-        life: 5000,
       });
     }
   }
