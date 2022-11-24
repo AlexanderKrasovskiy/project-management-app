@@ -2,7 +2,7 @@
   class="column card-with-blur shadow-2"
   cdkDrag
   [cdkDragData]="column"
-  *transloco="let t; read: 'details'">
+  *transloco="let transLoco; read: 'details'">
   <div class="column_title">
     <div
       class="column_title_text"
@@ -37,7 +37,7 @@
       pRipple
       icon="pi pi-plus"
       type="button"
-      [label]="t('addTask')"
+      [label]="transLoco('addTask')"
       (click)="openCreateTaskModal()"
       class="p-button-raised p-button-rounded p-button-sm"></button>
     <button

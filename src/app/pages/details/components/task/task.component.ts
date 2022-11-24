@@ -19,11 +19,11 @@ export class TaskComponent {
   constructor(
     public dialog: MatDialog,
     private store: Store,
-    private transloco: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
   openDeleteTaskModal(): void {
-    const data = this.transloco.translate('details.deleteTask');
+    const data = this.transLoco.translate('details.deleteTask');
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data,
@@ -40,7 +40,7 @@ export class TaskComponent {
 
   openEditTaskModal(): void {
     const data = {
-      heading: this.transloco.translate('details.editTask'),
+      heading: this.transLoco.translate('details.editTask'),
       title: this.task.title,
       description: this.task.description,
     };

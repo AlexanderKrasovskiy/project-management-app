@@ -8,7 +8,7 @@ import { MessageService } from 'primeng/api';
 export class DetailsErrorHandlerService {
   constructor(
     private messageService: MessageService,
-    private transloco: TranslocoService,
+    private transLoco: TranslocoService,
     private router: Router,
   ) {}
 
@@ -18,27 +18,27 @@ export class DetailsErrorHandlerService {
 
     switch (message) {
       case 'Board was not founded!':
-        toastText = this.transloco.translate('details.boardNotFound');
+        toastText = this.transLoco.translate('details.boardNotFound');
         this.router.navigate(['boards']);
         break;
       case 'Column was not founded!':
-        toastText = this.transloco.translate('details.columnNotFound');
+        toastText = this.transLoco.translate('details.columnNotFound');
         break;
       case 'Task was not founded!':
-        toastText = this.transloco.translate('details.taskNotFound');
+        toastText = this.transLoco.translate('details.taskNotFound');
         break;
       case 'User was not founded!':
-        toastText = this.transloco.translate('details.userNotFound');
+        toastText = this.transLoco.translate('details.userNotFound');
         break;
       default:
-        toastText = this.transloco.translate('details.defaultError');
+        toastText = this.transLoco.translate('details.defaultError');
         this.router.navigate(['404']);
         break;
     }
 
     this.messageService.add({
       severity: 'error',
-      summary: this.transloco.translate('details.errorTitle'),
+      summary: this.transLoco.translate('details.errorTitle'),
       detail: toastText,
       life: 5000,
     });

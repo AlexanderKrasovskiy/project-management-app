@@ -40,7 +40,7 @@ export class ColumnComponent implements OnChanges {
   constructor(
     public dialog: MatDialog,
     private store: Store,
-    private transloco: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
   ngOnChanges(): void {
@@ -71,7 +71,7 @@ export class ColumnComponent implements OnChanges {
   }
 
   openDeleteColumnModal(): void {
-    const data = this.transloco.translate('details.deleteColumn');
+    const data = this.transLoco.translate('details.deleteColumn');
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data,
@@ -86,7 +86,7 @@ export class ColumnComponent implements OnChanges {
 
   openCreateTaskModal(): void {
     const data = {
-      heading: this.transloco.translate('details.createTask'),
+      heading: this.transLoco.translate('details.createTask'),
       title: '',
       description: '',
     };
