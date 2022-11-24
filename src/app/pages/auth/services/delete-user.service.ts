@@ -52,7 +52,7 @@ export class DeleteUserService {
         this.confirmationService.isConfirmationModalUser = false;
         this.confirmationService.title = '';
         this.authService.logoutUser();
-        this.router.navigate(['auth/login']);
+        this.router.navigate(['welcome']);
       });
   }
 }
