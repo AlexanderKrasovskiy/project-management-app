@@ -33,16 +33,16 @@ import { parseJwt } from '../../utils/parse-token.util';
   encapsulation: ViewEncapsulation.None,
 })
 export class UpdateComponent implements OnInit, OnDestroy {
+  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
+
+  @ViewChild('twicePasswordContainer')
+  twicePasswordContainer!: ElementRef<HTMLElement>;
+
   public updateForm!: FormGroup;
 
   public upd$: Subscription = new Subscription();
 
   public avatar = this.authService.getUserAvatar();
-
-  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
-
-  @ViewChild('twicePasswordContainer')
-  twicePasswordContainer!: ElementRef<HTMLElement>;
 
   constructor(
     private authControlService: AuthControlService,

@@ -38,16 +38,16 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class RegComponent implements OnInit, OnDestroy {
+  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
+
+  @ViewChild('twicePasswordContainer')
+  twicePasswordContainer!: ElementRef<HTMLElement>;
+
   public regForm!: FormGroup;
 
   public reg$: Subscription = new Subscription();
 
   public avatar = '01';
-
-  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
-
-  @ViewChild('twicePasswordContainer')
-  twicePasswordContainer!: ElementRef<HTMLElement>;
 
   constructor(
     private authControlService: AuthControlService,
@@ -64,7 +64,7 @@ export class RegComponent implements OnInit, OnDestroy {
     this.primengConfig.ripple = true;
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.reg$.unsubscribe();
   }
 
