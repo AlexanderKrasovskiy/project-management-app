@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UiPrimengModule } from './ui-primeng/ui-primeng.module';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
-import { ConfirmationModalService } from './services/confirmation-modal.service';
 import { SortingPipe } from './pipes/sorting.pipe';
 
 import { DeleteUserService } from '../pages/auth/services/delete-user.service';
@@ -34,7 +33,6 @@ import { ApiSearchService } from '../pages/search/services/api-search.service';
     SortingPipe,
   ],
   providers: [
-    ConfirmationModalService,
     DeleteUserService,
     AuthControlService,
     AuthApiService,

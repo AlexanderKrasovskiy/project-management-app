@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { loadBoards } from 'src/app/store/actions/boards.action';
 import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
 import { BoardLocalStorModel } from '../../models/main.model';
@@ -34,7 +33,6 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private store: Store,
     public mainService: MainService,
-    public confirmationService: ConfirmationModalService,
     private renderer2: Renderer2,
   ) {}
 

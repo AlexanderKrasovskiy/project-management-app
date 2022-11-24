@@ -18,7 +18,6 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
-import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { RegisterRequestModel } from '../../models/auth.model';
 import { AuthControlService } from '../../services/auth-control.service';
 import { AuthService } from '../../services/auth.service';
@@ -50,7 +49,6 @@ export class UpdateComponent implements OnInit, OnDestroy {
     public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
-    public confirmationService: ConfirmationModalService,
     public deleteUserService: DeleteUserService,
     private translocoService: TranslocoService,
     public authService: AuthService,

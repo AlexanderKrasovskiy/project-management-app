@@ -5,7 +5,6 @@ import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
-import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { parseJwt } from '../utils/parse-token.util';
 import { AuthControlService } from './auth-control.service';
 import { AuthService } from './auth.service';
@@ -18,7 +17,6 @@ export class DeleteUserService {
 
   constructor(
     private router: Router,
-    public confirmationService: ConfirmationModalService,
     public authService: AuthService,
     private authControlService: AuthControlService,
     private messageService: MessageService,
@@ -54,8 +52,6 @@ export class DeleteUserService {
           summary: 'Success',
           detail: this.translocoService.translate('deleteUser.successful'),
         });
-        this.confirmationService.isConfirmationModalUser = false;
-        this.confirmationService.title = '';
         this.authService.logoutUser();
         this.router.navigate(['welcome']);
       });
