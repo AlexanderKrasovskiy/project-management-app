@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { catchError, EMPTY, map, of, switchMap, tap } from 'rxjs';
 import { BoardResModel } from 'src/app/pages/details/models/details-api.model';
 import { DetailsErrorHandlerService } from 'src/app/pages/details/services/details-error-handler.service';
-import { DetailsService } from 'src/app/pages/details/services/details.service';
+import { DetailsService } from 'src/app/pages/details/services/details-api.service';
 import * as DetailsActions from '../actions/details.actions';
 import { selectBoardId } from '../selectors/details.selectors';
 

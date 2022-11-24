@@ -15,7 +15,7 @@ import { BoardsEffects } from '../store/effects/boards.effect';
 import { ApiMainHelpersService } from '../pages/main/services/api-main-helpers.service';
 import { currentBoardReducer } from '../store/reducers/details.reducer';
 import { DetailsEffects } from '../store/effects/details.effects';
-import { DetailsService } from '../pages/details/services/details.service';
+import { DetailsService } from '../pages/details/services/details-api.service';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { DetailsErrorHandlerService } from '../pages/details/services/details-error-handler.service';
 import { SharedModule } from '../shared/shared.module';
