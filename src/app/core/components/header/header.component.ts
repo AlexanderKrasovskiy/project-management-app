@@ -10,7 +10,6 @@ import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { animationFrameScheduler, auditTime, fromEvent } from 'rxjs';
 import { AuthService } from 'src/app/pages/auth/services/auth.service';
-import { IsBoardsService } from 'src/app/pages/auth/services/is-boards.service';
 import { MainModalComponent } from 'src/app/pages/main/components/main-modal/main-modal.component';
 import { createBoard } from 'src/app//store/actions/boards.action';
 import { HeaderService } from '../../services/header.service';
@@ -35,7 +34,6 @@ export class HeaderComponent implements OnInit {
     private transloco: TranslocoService,
     private router: Router,
     public authService: AuthService,
-    public isBoardsService: IsBoardsService,
     public dialog: MatDialog,
     private store: Store,
     public filter: HeaderService,
