@@ -114,6 +114,7 @@
             type="text"
             pInputText
             #search
+            (keyup.enter)="this.filter.getKeyWord(search.value)"
             (input)="this.filter.getKeyWord(search.value)"
             placeholder="{{ t('search') }}"
             class="w-10rem md:w-12rem lg:w-auto search-input" />

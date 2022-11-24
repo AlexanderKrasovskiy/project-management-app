@@ -7,22 +7,25 @@ import { MessageService } from 'primeng/api';
 export class MainErrorHandlerService {
   constructor(
     private messageService: MessageService,
-    private transloco: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
-  handleError(res: HttpErrorResponse) {
+  handleError(res: HttpErrorResponse): void {
     const { message } = res.error;
-    if (message === 'Board was not founded!')
+    if (message === 'Board was not founded!') {
       this.messageService.add({
         severity: 'error',
-        summary: this.transloco.translate('details.errorTitle'),
-        detail: this.transloco.translate('details.boardNotFound'),
+        summary: this.transLoco.translate('details.errorTitle'),
+        detail: this.transLoco.translate('details.boardNotFound'),
       });
+    }
   }
 
-  isKnownMessageType(res: HttpErrorResponse) {
+  isKnownMessageType(res: HttpErrorResponse): boolean {
     const { message } = res.error;
-    if (message === 'Board was not founded!') return true;
+    if (message === 'Board was not founded!') {
+      return true;
+    }
     return false;
   }
 }

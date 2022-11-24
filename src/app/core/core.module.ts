@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { allBoardsReducer } from '../store/reducers/boards.reducer';
 import { BoardsEffects } from '../store/effects/boards.effect';
-import { ApiMainHelpersService } from '../pages/main/services/api-main-helpers.service';
+import { ApiMainService } from '../pages/main/services/api-main.service';
 import { currentBoardReducer } from '../store/reducers/details.reducer';
 import { DetailsEffects } from '../store/effects/details.effects';
 import { DetailsService } from '../pages/details/services/details.service';
@@ -43,7 +43,7 @@ import { MainErrorHandlerService } from '../pages/main/services/main-error-handl
     RouterModule,
   ],
   providers: [
-    ApiMainHelpersService,
+    ApiMainService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,

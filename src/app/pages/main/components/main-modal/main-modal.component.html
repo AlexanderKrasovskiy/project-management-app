@@ -1,4 +1,4 @@
-<ng-container *transloco="let t; read: 'main'">
+<ng-container *transloco="let transLoco; read: 'main'">
   <h2 class="font-light inform-title">{{ data.heading }}?</h2>
   <div class="p-inputtext-lg">
     <div class="p-float-label inform-input field">
@@ -8,8 +8,9 @@
         pInputText
         [(ngModel)]="data.title"
         autocomplete="off"
+        id="input"
         name="nameInput" />
-      <label for="nameInput">{{ t('titleBoard') }}</label>
+      <label for="input">{{ transLoco('titleBoard') }}</label>
     </div>
     <div class="p-float-label inform-input field">
       <input
@@ -17,9 +18,10 @@
         pInputText
         class="inform-input-inside"
         name="nameInput"
+        id="input"
         [(ngModel)]="data.description"
         autocomplete="off" />
-      <label for="nameInput">{{ t('descriptionBoard') }}</label>
+      <label for="input">{{ transLoco('descriptionBoard') }}</label>
     </div>
   </div>
   <div class="inform-wrapper">
@@ -31,7 +33,7 @@
       class="p-button-raised p-button-success button-custom-white button-true"
       [disabled]="!data.title || !data.description"
       [mat-dialog-close]="data"
-      [label]="t('true')"></button>
+      [label]="transLoco('true')"></button>
     <button
       pButton
       pRipple
@@ -39,6 +41,6 @@
       type="button"
       class="p-button-raised p-button-danger button-custom-white button-false"
       (click)="onCancel()"
-      [label]="t('false')"></button>
+      [label]="transLoco('false')"></button>
   </div>
 </ng-container>

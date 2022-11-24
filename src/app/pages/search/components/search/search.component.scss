@@ -1,6 +1,6 @@
 :host{
   display: block;
-  .serch {
+  .search {
     background-image: url('../../../../../assets/images/search-keyboard.jpg');
     background-size: cover;
     background-repeat: repeat;
@@ -11,7 +11,7 @@
     align-items: center;
     flex-direction: column;
     gap: 0.8rem;
-    .serch__title {
+    .search__title {
       font-weight: 500;
       padding: 0.7rem 0;
       display: flex;
