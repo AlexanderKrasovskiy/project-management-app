@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { deleteTask, updateTask } from 'src/app/store/actions/details.actions';
-import { TaskModel } from '../../models/details.model';
+import { TaskModel } from '../../models/details-api.model';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 
 @Component({

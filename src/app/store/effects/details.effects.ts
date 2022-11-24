@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, EMPTY, map, of, switchMap, tap } from 'rxjs';
-import { BoardResModel } from 'src/app/pages/details/models/details.model';
+import { BoardResModel } from 'src/app/pages/details/models/details-api.model';
 import { DetailsErrorHandlerService } from 'src/app/pages/details/services/details-error-handler.service';
 import { DetailsService } from 'src/app/pages/details/services/details.service';
 import * as DetailsActions from '../actions/details.actions';

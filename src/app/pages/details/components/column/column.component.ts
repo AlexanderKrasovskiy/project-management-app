@@ -21,7 +21,7 @@ import {
 import { TranslocoService } from '@ngneat/transloco';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { filter, tap } from 'rxjs';
-import { ColumnModel, TaskModel } from '../../models/details.model';
+import { ColumnModel, TaskModel } from '../../models/details-api.model';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 
 @Component({

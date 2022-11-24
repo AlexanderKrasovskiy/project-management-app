@@ -18,7 +18,7 @@ import {
 } from 'src/app/store/actions/details.actions';
 import { selectColumns } from 'src/app/store/selectors/details.selectors';
 import { MatDialog } from '@angular/material/dialog';
-import { ColumnModel } from '../models/details.model';
+import { ColumnModel } from '../models/details-api.model';
 import { ColumnModalComponent } from '../components/column-modal/column-modal.component';
 
 @Component({
