@@ -72,7 +72,7 @@
     "user": "user",
     "successful": "Successful delete!"
   },
-  "apiHelpers": {
+  "authApiService": {
     "notCreate": "Can not create user :(",
     "notLogin": "Can not login :(",
     "notFound": "Can not find user :(",

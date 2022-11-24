@@ -20,7 +20,7 @@ import ComparePassword from 'src/app/core/validators/compare-password.validator'
 import ValidatePassword from 'src/app/core/validators/password.validator';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { RegisterRequestModel } from '../../models/auth.model';
-import { ApiControlService } from '../../services/api-control.service';
+import { AuthControlService } from '../../services/auth-control.service';
 import { AuthService } from '../../services/auth.service';
 import { DeleteUserService } from '../../services/delete-user.service';
 import { generateNewUser, generatePassword } from '../../utils/generate.util';
@@ -45,7 +45,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
   twicePasswordContainer!: ElementRef<HTMLElement>;
 
   constructor(
-    private apiControlService: ApiControlService,
+    private authControlService: AuthControlService,
     private router: Router,
     public fb: FormBuilder,
     private messageService: MessageService,
@@ -119,7 +119,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
       this.avatar,
     );
 
-    this.upd$ = this.apiControlService
+    this.upd$ = this.authControlService
       .updateUser(
         parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
         newUser,

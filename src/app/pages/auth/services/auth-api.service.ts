@@ -11,7 +11,7 @@ import {
 } from '../models/auth.model';
 
 @Injectable()
-export class ApiHelpersService {
+export class AuthApiService {
   constructor(
     private httpClient: HttpClient,
     private messageService: MessageService,
@@ -29,12 +29,12 @@ export class ApiHelpersService {
         retry(4),
         catchError((err) => {
           let errorText: string = this.translocoService.translate(
-            'apiHelpers.notCreate',
+            'authApiService.notCreate',
           );
           errorText =
             err.error.statusCode === 409
               ? `${errorText}\n${this.translocoService.translate(
-                  'apiHelpers.alreadyExists',
+                  'authApiService.alreadyExists',
                 )}`
               : errorText;
           this.messageService.add({
@@ -60,12 +60,12 @@ export class ApiHelpersService {
         retry(4),
         catchError((err) => {
           let errorText: string = this.translocoService.translate(
-            'apiHelpers.notLogin',
+            'authApiService.notLogin',
           );
           errorText =
             err.error.statusCode === 403
               ? `${errorText}\n${this.translocoService.translate(
-                  'apiHelpers.check',
+                  'authApiService.check',
                 )}`
               : errorText;
           this.messageService.add({
@@ -93,7 +93,7 @@ export class ApiHelpersService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.translocoService.translate('apiHelpers.notFound'),
+          detail: this.translocoService.translate('authApiService.notFound'),
         });
         // console.error(err.error.message);
         return EMPTY;
@@ -109,12 +109,12 @@ export class ApiHelpersService {
       retry(4),
       catchError((err) => {
         let errorText: string = this.translocoService.translate(
-          'apiHelpers.notUpdate',
+          'authApiService.notUpdate',
         );
         errorText =
           err.error.statusCode === 500
             ? `${errorText}\n${this.translocoService.translate(
-                'apiHelpers.perhapsExists',
+                'authApiService.perhapsExists',
               )}`
             : errorText;
         this.messageService.add({
@@ -135,7 +135,7 @@ export class ApiHelpersService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.translocoService.translate('apiHelpers.notDelete'),
+          detail: this.translocoService.translate('authApiService.notDelete'),
         });
         // console.error(err.error.message);
         return EMPTY;

@@ -48,7 +48,7 @@ export class ApiSearchService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.transloco.translate('apiHelpers.notFound'),
+          detail: this.transloco.translate('authApiService.notFound'),
         });
         return EMPTY;
       }),

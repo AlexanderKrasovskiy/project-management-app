@@ -11,7 +11,7 @@ import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
 import { LoginRequestModel } from '../../models/auth.model';
-import { ApiControlService } from '../../services/api-control.service';
+import { AuthControlService } from '../../services/auth-control.service';
 import { generateLoginUser } from '../../utils/generate.util';
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   login$: Subscription = new Subscription();
 
   constructor(
-    private apiControlService: ApiControlService,
+    private authControlService: AuthControlService,
     private router: Router,
     public fb: FormBuilder,
     private messageService: MessageService,
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const loginUser: LoginRequestModel = generateLoginUser(
       this.loginForm.value,
     );
-    this.login$ = this.apiControlService.loginIn(loginUser).subscribe(() => {
+    this.login$ = this.authControlService.loginIn(loginUser).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',

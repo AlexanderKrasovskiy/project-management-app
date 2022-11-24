@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { parseJwt } from '../utils/parse-token.util';
-import { ApiControlService } from './api-control.service';
+import { AuthControlService } from './auth-control.service';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class DeleteUserService {
     private router: Router,
     public confirmationService: ConfirmationModalService,
     public authService: AuthService,
-    private apiControlService: ApiControlService,
+    private authControlService: AuthControlService,
     private messageService: MessageService,
     private translocoService: TranslocoService,
     private dialog: MatDialog,
@@ -39,7 +39,7 @@ export class DeleteUserService {
   }
 
   public removeUser() {
-    this.apiControlService
+    this.authControlService
       .deleteUser(
         parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
       )

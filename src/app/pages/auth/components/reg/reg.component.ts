@@ -23,7 +23,7 @@ import {
   LoginRequestModel,
   RegisterRequestModel,
 } from '../../models/auth.model';
-import { ApiControlService } from '../../services/api-control.service';
+import { AuthControlService } from '../../services/auth-control.service';
 import { AuthService } from '../../services/auth.service';
 import {
   generateLoginUser,
@@ -50,7 +50,7 @@ export class RegComponent implements OnInit, OnDestroy {
   twicePasswordContainer!: ElementRef<HTMLElement>;
 
   constructor(
-    private apiControlService: ApiControlService,
+    private authControlService: AuthControlService,
     private router: Router,
     public fb: FormBuilder,
     private messageService: MessageService,
@@ -124,7 +124,7 @@ export class RegComponent implements OnInit, OnDestroy {
 
     const loginUser: LoginRequestModel = generateLoginUser(this.regForm.value);
 
-    this.reg$ = this.apiControlService.loginUp(newUser).subscribe(() => {
+    this.reg$ = this.authControlService.loginUp(newUser).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
@@ -132,7 +132,7 @@ export class RegComponent implements OnInit, OnDestroy {
           'registration.successfulRegistration',
         ),
       });
-      this.apiControlService.loginInReg(loginUser).subscribe(() => {
+      this.authControlService.loginInReg(loginUser).subscribe(() => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
