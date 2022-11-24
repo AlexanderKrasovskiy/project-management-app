@@ -23,10 +23,10 @@ import { ColumnModalComponent } from '../components/column-modal/column-modal.co
 
 @Component({
   selector: 'app-details',
-  templateUrl: './details-page.component.html',
-  styleUrls: ['./details-page.component.scss'],
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss'],
 })
-export class DetailsPageComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   subId$!: Subscription;
 
   subCols$!: Subscription;
