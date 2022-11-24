@@ -11,13 +11,13 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class DeleteUserService {
-  isModalWindow: boolean = false;
-  titleModalWindow: string = '';
-  idUser: string = '';
+  public isModalWindow: boolean = false;
+  public titleModalWindow: string = '';
+  public idUser: string = '';
 
   constructor(
-    private router: Router,
     public authService: AuthService,
+    private router: Router,
     private authControlService: AuthControlService,
     private messageService: MessageService,
     private translocoService: TranslocoService,

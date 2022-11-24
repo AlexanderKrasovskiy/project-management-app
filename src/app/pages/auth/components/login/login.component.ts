@@ -26,9 +26,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   login$: Subscription = new Subscription();
 
   constructor(
+    public fb: FormBuilder,
     private authControlService: AuthControlService,
     private router: Router,
-    public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
     private translocoService: TranslocoService,

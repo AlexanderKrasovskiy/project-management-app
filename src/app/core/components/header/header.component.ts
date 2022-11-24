@@ -1,13 +1,7 @@
-import {
-  Component,
-  // HostListener,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { Store } from '@ngrx/store';
 import { animationFrameScheduler, auditTime, fromEvent } from 'rxjs';
 import { AuthService } from 'src/app/pages/auth/services/auth.service';
 import { CreateBoardService } from 'src/app/shared/services/create-board.service';
@@ -29,14 +23,12 @@ export class HeaderComponent implements OnInit {
   public visibleSidebar1!: boolean;
 
   constructor(
-    // @inject(DOCUMENT) private document: Document,
-    public createBoardMoadal: CreateBoardService,
-    private transloco: TranslocoService,
-    private router: Router,
+    public createBoard: CreateBoardService,
     public authService: AuthService,
     public dialog: MatDialog,
-    private store: Store,
     public filter: HeaderService,
+    private transloco: TranslocoService,
+    private router: Router,
   ) {
     this.stateOptions = [
       { label: 'En', value: 'en' },
@@ -52,30 +44,10 @@ export class HeaderComponent implements OnInit {
     this.handleScroll();
   }
 
-  // @HostListener('window:scroll', [])
-  // onWindowScroll() {
-  //   if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-  //     this.inScroll = true;
-  //   } else {
-  //     this.inScroll = false;
-  //   }
-  // }
-  // fromEvent(window, 'scroll')
-  //   // .pipe(throttleTime(50))
-  //   .subscribe(() => {
-  //     if (Number(document.defaultView?.scrollY) > 0) {
-  //       this.inScroll = true;
-  //       // console.log('scroll', event);
-  //     } else {
-  //       this.inScroll = false;
-  //     }
-  //   });
-  //  }
   handleScroll() {
     fromEvent(window, 'scroll')
       .pipe(auditTime(50, animationFrameScheduler))
       .subscribe(() => {
-        // console.log('scroll', window.scrollY);
         if (window.scrollY > 0) {
           this.inScroll = true;
         } else {

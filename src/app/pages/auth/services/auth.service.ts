@@ -6,8 +6,8 @@ import { GetUserModel, TokenResponseModel } from '../models/auth.model';
   providedIn: 'root',
 })
 export class AuthService {
-  isAvatarSwap: boolean = false;
-  images: string[] = [
+  public isAvatarSwap: boolean = false;
+  public images: string[] = [
     '_01',
     '_02',
     '_03',
@@ -24,9 +24,9 @@ export class AuthService {
     '_14',
   ];
 
-  private TOKEN_LIFE_DURATION = 12;
-
   public isUserLogged$ = new BehaviorSubject<boolean>(false);
+
+  private TOKEN_LIFE_DURATION = 12;
 
   public setToken(token: TokenResponseModel): void {
     localStorage.setItem('PlanTokenInfo', token.token);

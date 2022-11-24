@@ -50,13 +50,13 @@ export class RegComponent implements OnInit, OnDestroy {
   public avatar = '01';
 
   constructor(
+    public fb: FormBuilder,
+    public authService: AuthService,
     private authControlService: AuthControlService,
     private router: Router,
-    public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
     private translocoService: TranslocoService,
-    public authService: AuthService,
   ) {}
 
   public ngOnInit(): void {

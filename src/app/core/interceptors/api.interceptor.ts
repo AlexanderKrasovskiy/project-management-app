@@ -18,7 +18,7 @@ export class ApiInterceptor implements HttpInterceptor {
   private apiUrl: string = 'https://rs-kanban.herokuapp.com';
   // private apiUrl: string = 'https://app-rss-production.up.railway.app';
 
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   intercept(
     request: HttpRequest<unknown>,

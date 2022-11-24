@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class HeaderService {
-  keyWord: string = '';
+  public keyWord: string = '';
 
   constructor(private router: Router) {}
 
