@@ -40,7 +40,6 @@ export class DetailsErrorHandlerService {
       severity: 'error',
       summary: this.transLoco.translate('details.errorTitle'),
       detail: toastText,
-      life: 5000,
     });
   }
 
