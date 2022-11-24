@@ -43,6 +43,22 @@ export class AuthService {
   }
 
   public getUserName(): string {
+    return this.getPlanUserName();
+  }
+
+  public getUserAvatar(): string {
+    return this.getPlanUserAvatar();
+  }
+
+  public logoutUser(): void {
+    this.clearUserData();
+  }
+
+  public hideAvatarChangeModalWindow(): void {
+    this.isAvatarSwap = false;
+  }
+
+  private getPlanUserName(): string {
     if (
       localStorage.getItem('PlanUserInfo') &&
       localStorage.getItem('PlanTokenInfo')
@@ -61,7 +77,7 @@ export class AuthService {
     return '';
   }
 
-  public getUserAvatar(): string {
+  private getPlanUserAvatar(): string {
     if (
       localStorage.getItem('PlanUserInfo') &&
       localStorage.getItem('PlanTokenInfo')
@@ -77,14 +93,10 @@ export class AuthService {
     return '';
   }
 
-  public logoutUser(): void {
+  private clearUserData(): void {
     localStorage.removeItem('PlanUserInfo');
     localStorage.removeItem('PlanTokenInfo');
     localStorage.removeItem('PlanTokenExpiredTime');
     this.isUserLogged$.next(false);
-  }
-
-  public hideAvatarChangeModalWindow(): void {
-    this.isAvatarSwap = false;
   }
 }
