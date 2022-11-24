@@ -10,9 +10,10 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { CreateBoardService } from 'src/app/shared/services/create-board.service';
 import { loadBoards } from 'src/app/store/actions/boards.action';
 import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
-import { BoardLocalStorModel } from '../../models/main.model';
+import { BoardLocalStoreModel } from '../../models/main.model';
 import { MainService } from '../../services/main.service';
 
 @Component({
@@ -21,18 +22,18 @@ import { MainService } from '../../services/main.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
-  boards$ = this.store.select(selectCurrentBoards);
-  indexBoard: number = 0;
-  idBoard: string = '';
-  imgBoard: string = '';
-
-  private subscribe: Subscription = new Subscription();
-
   @ViewChildren('boardImage') elems!: QueryList<ElementRef>;
 
+  boards$ = this.store.select(selectCurrentBoards);
+  private subscribe: Subscription = new Subscription();
+  private indexBoard: number = 0;
+  private idBoard: string = '';
+  private imgBoard: string = '';
+
   constructor(
-    private store: Store,
+    public createBoard: CreateBoardService,
     public mainService: MainService,
+    private store: Store,
     private renderer2: Renderer2,
   ) {}
 
@@ -44,47 +45,49 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
     const storage = localStorage.getItem('BoardImage');
 
     if (storage) {
-      JSON.parse(storage).forEach((el: BoardLocalStorModel) => {
+      JSON.parse(storage).forEach((el: BoardLocalStoreModel) => {
         this.subscribe = this.elems.changes.subscribe(() => {
           this.elems.forEach((e) => {
-            if (e.nativeElement.id === el.id)
+            if (e.nativeElement.id === el.id) {
               this.renderer2.setStyle(
                 e.nativeElement,
                 'background-image',
                 `url(assets/images/${el.image}-small.png)`,
               );
+            }
           });
         });
       });
     }
   }
 
+  ngOnDestroy(): void {
+    this.subscribe.unsubscribe();
+  }
+
   showBackgroundChangeModalWindow(id: string, index: number): void {
     this.idBoard = id;
     this.indexBoard = index;
-    this.mainService.isbackgroundSwap = true;
+    this.mainService.isBackgroundSwap = true;
   }
 
   changeBackground(image: string): void {
     const board = this.elems?.toArray();
 
-    if (board)
+    if (board) {
       this.renderer2.setStyle(
         board[this.indexBoard].nativeElement,
         'background-image',
         `url(assets/images/${image}-small.png)`,
       );
+    }
 
     this.imgBoard = image;
-    this.mainService.isbackgroundSwap = false;
-    this.updateLocalStorBoardImg();
+    this.mainService.isBackgroundSwap = false;
+    this.updateLocalStoreBoardImg();
   }
 
-  updateLocalStorBoardImg(): void {
-    this.mainService.updateLocalStor(this.idBoard, this.imgBoard);
-  }
-
-  ngOnDestroy() {
-    this.subscribe.unsubscribe();
+  private updateLocalStoreBoardImg(): void {
+    this.mainService.updateLocalStore(this.idBoard, this.imgBoard);
   }
 }

@@ -10,8 +10,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { animationFrameScheduler, auditTime, fromEvent } from 'rxjs';
 import { AuthService } from 'src/app/pages/auth/services/auth.service';
-import { MainModalComponent } from 'src/app/pages/main/components/main-modal/main-modal.component';
-import { createBoard } from 'src/app//store/actions/boards.action';
+import { CreateBoardService } from 'src/app/shared/services/create-board.service';
 import { HeaderService } from '../../services/header.service';
 
 @Component({
@@ -31,6 +30,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     // @inject(DOCUMENT) private document: Document,
+    public createBoardMoadal: CreateBoardService,
     private transloco: TranslocoService,
     private router: Router,
     public authService: AuthService,
@@ -95,29 +95,5 @@ export class HeaderComponent implements OnInit {
 
   loginPage() {
     this.router.navigate(['/auth/login']);
-  }
-
-  openCreateBoardModal(): void {
-    const data = {
-      heading: this.transloco.translate('main.createNewBoard'),
-      title: '',
-      description: '',
-    };
-    const dialogRef = this.dialog.open(MainModalComponent, {
-      data,
-      backdropClass: 'backdropBackground',
-    });
-
-    dialogRef.afterClosed().subscribe((modalData) => {
-      if (!modalData?.title || !modalData?.description) return;
-      this.store.dispatch(
-        createBoard({
-          newBoard: {
-            title: modalData.title,
-            description: modalData.description,
-          },
-        }),
-      );
-    });
   }
 }

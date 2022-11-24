@@ -10,7 +10,7 @@ export class ApiSearchService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private transloco: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
   getAllBoards(): Observable<BoardIDModel[]> {
@@ -20,7 +20,7 @@ export class ApiSearchService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.transloco.translate('details.boardNotFound'),
+          detail: this.transLoco.translate('details.boardNotFound'),
         });
         return EMPTY;
       }),
@@ -34,7 +34,7 @@ export class ApiSearchService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.transloco.translate('details.boardNotFound'),
+          detail: this.transLoco.translate('details.boardNotFound'),
         });
         return EMPTY;
       }),
@@ -48,7 +48,7 @@ export class ApiSearchService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.transloco.translate('authApiService.notFound'),
+          detail: this.transLoco.translate('authApiService.notFound'),
         });
         return EMPTY;
       }),

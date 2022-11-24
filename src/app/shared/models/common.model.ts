@@ -25,3 +25,7 @@ export const PASSWORD_SYMBOLS: RegExp =
 
 export const PASSWORD_ALL: RegExp =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})/i;
+
+export enum MessageError {
+  boardNotFound = 'Board was not founded!',
+}

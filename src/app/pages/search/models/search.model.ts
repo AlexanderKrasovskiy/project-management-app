@@ -39,7 +39,7 @@ export interface UserModel {
   login: string;
 }
 
-export enum SortKeyword {
+export enum SortKeyWord {
   byWord = 'word',
   byOrder = 'order',
   byTitle = 'title',
