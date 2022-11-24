@@ -47,9 +47,15 @@ export class DetailsErrorHandlerService {
   isKnownMessageType(res: HttpErrorResponse) {
     const { message } = res.error;
 
-    if (message === 'Column was not founded!') return true;
-    if (message === 'Task was not founded!') return true;
-    if (message === 'User was not founded!') return true;
-    return false;
+    switch (message) {
+      case 'Column was not founded!':
+        return true;
+      case 'Task was not founded!':
+        return true;
+      case 'User was not founded!':
+        return true;
+      default:
+        return false;
+    }
   }
 }

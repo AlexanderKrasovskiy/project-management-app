@@ -98,7 +98,9 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
       },
     } = event;
 
-    if (prevIdx === currIdx) return;
+    if (prevIdx === currIdx) {
+      return;
+    }
 
     moveItemInArray(this.columns, prevIdx, currIdx);
 
@@ -115,7 +117,10 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((title) => {
-      if (!title) return;
+      if (!title) {
+        return;
+      }
+
       this.store.dispatch(createColumn({ title }));
     });
   }

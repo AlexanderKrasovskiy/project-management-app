@@ -31,7 +31,10 @@ export class TaskComponent {
     });
 
     dialogRef.afterClosed().subscribe((confirm) => {
-      if (!confirm) return;
+      if (!confirm) {
+        return;
+      }
+
       this.store.dispatch(
         deleteTask({ columnId: this.columnId, taskId: this.task.id }),
       );
@@ -57,13 +60,16 @@ export class TaskComponent {
     };
 
     dialogRef.afterClosed().subscribe((modalData) => {
-      if (!modalData?.title || !modalData?.description) return;
+      if (!modalData?.title || !modalData?.description) {
+        return;
+      }
 
       if (
         modalData.title === this.task.title &&
         modalData.description === this.task.description
-      )
+      ) {
         return;
+      }
 
       this.store.dispatch(
         updateTask({

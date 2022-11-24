@@ -43,7 +43,9 @@ export class ColumnComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.tempTitle = this.column.title;
-    if (this.column.tasks) this.tasks = [...this.column.tasks];
+    if (this.column.tasks) {
+      this.tasks = [...this.column.tasks];
+    }
   }
 
   showInput() {
@@ -58,7 +60,11 @@ export class ColumnComponent implements OnChanges {
   updateTitle() {
     this.isTitleEditable = false;
     const title = this.headingInput.nativeElement.value;
-    if (!title || title === this.column.title) return;
+
+    if (!title || title === this.column.title) {
+      return;
+    }
+
     this.tempTitle = title;
 
     const body = {
@@ -77,7 +83,10 @@ export class ColumnComponent implements OnChanges {
     });
 
     dialogRef.afterClosed().subscribe((confirm) => {
-      if (!confirm) return;
+      if (!confirm) {
+        return;
+      }
+
       this.store.dispatch(deleteColumn({ columnId: this.column.id }));
     });
   }
@@ -94,7 +103,10 @@ export class ColumnComponent implements OnChanges {
     });
 
     dialogRef.afterClosed().subscribe((body) => {
-      if (!body?.title || !body?.description) return;
+      if (!body?.title || !body?.description) {
+        return;
+      }
+
       const { title, description } = body;
       this.store.dispatch(
         createTask({ columnId: this.column.id, body: { title, description } }),
@@ -117,7 +129,9 @@ export class ColumnComponent implements OnChanges {
     };
 
     if (event.previousContainer === event.container) {
-      if (prevIdx === currIdx) return;
+      if (prevIdx === currIdx) {
+        return;
+      }
 
       moveItemInArray(event.container.data, prevIdx, currIdx);
 
