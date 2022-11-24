@@ -30,11 +30,9 @@ import { TaskModalComponent } from '../task-modal/task-modal.component';
 })
 export class ColumnComponent implements OnChanges {
   @Input() column!: ColumnModel;
-
-  isTitleEditable = false;
   @ViewChild('headingInput') headingInput!: ElementRef<HTMLInputElement>;
   tempTitle = '';
-
+  isTitleEditable = false;
   tasks: TaskModel[] = [];
 
   constructor(

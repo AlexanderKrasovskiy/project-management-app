@@ -27,19 +27,17 @@ import { ColumnModalComponent } from '../components/column-modal/column-modal.co
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('boardContainer') boardContainer!: ElementRef<HTMLDivElement>;
+  boardId = '';
   subId$!: Subscription;
-
   subCols$!: Subscription;
   columns: ColumnModel[] = [];
 
-  @ViewChild('boardContainer') boardContainer!: ElementRef<HTMLDivElement>;
-  boardId = '';
-
   constructor(
-    private route: ActivatedRoute,
-    private store: Store,
     public dialog: MatDialog,
     private renderer2: Renderer2,
+    private route: ActivatedRoute,
+    private store: Store,
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +48,11 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.setBoardBackGround();
+  }
+
+  ngOnDestroy(): void {
+    this.subId$.unsubscribe();
+    this.subCols$.unsubscribe();
   }
 
   dispatchLoadBoard() {
@@ -115,10 +118,5 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!title) return;
       this.store.dispatch(createColumn({ title }));
     });
-  }
-
-  ngOnDestroy(): void {
-    this.subId$.unsubscribe();
-    this.subCols$.unsubscribe();
   }
 }
