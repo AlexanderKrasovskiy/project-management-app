@@ -148,24 +148,25 @@ export class ColumnComponent implements OnChanges {
       this.store.dispatch(
         updateTask({ columnId: this.column.id, taskId, body }),
       );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        prevIdx,
-        currIdx,
-      );
-
-      const targetColId = event.container.element.nativeElement.dataset[
-        'id'
-      ] as string;
-      const oldColId = event.previousContainer.element.nativeElement.dataset[
-        'id'
-      ] as string;
-
-      body.columnId = targetColId;
-
-      this.store.dispatch(updateTask({ columnId: oldColId, taskId, body }));
+      return;
     }
+
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      prevIdx,
+      currIdx,
+    );
+
+    const targetColId = event.container.element.nativeElement.dataset[
+      'id'
+    ] as string;
+    const oldColId = event.previousContainer.element.nativeElement.dataset[
+      'id'
+    ] as string;
+
+    body.columnId = targetColId;
+
+    this.store.dispatch(updateTask({ columnId: oldColId, taskId, body }));
   }
 }
