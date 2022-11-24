@@ -20,6 +20,7 @@ import {
 } from 'src/app/store/actions/details.actions';
 import { TranslocoService } from '@ngneat/transloco';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+import { filter, tap } from 'rxjs';
 import { ColumnModel, TaskModel } from '../../models/details.model';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 
@@ -82,13 +83,15 @@ export class ColumnComponent implements OnChanges {
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((confirm) => {
-      if (!confirm) {
-        return;
-      }
-
-      this.store.dispatch(deleteColumn({ columnId: this.column.id }));
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((confirmValue) => !!confirmValue),
+        tap(() =>
+          this.store.dispatch(deleteColumn({ columnId: this.column.id })),
+        ),
+      )
+      .subscribe();
   }
 
   openCreateTaskModal(): void {
@@ -97,21 +100,26 @@ export class ColumnComponent implements OnChanges {
       title: '',
       description: '',
     };
+
     const dialogRef = this.dialog.open(TaskModalComponent, {
       data,
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((body) => {
-      if (!body?.title || !body?.description) {
-        return;
-      }
-
-      const { title, description } = body;
-      this.store.dispatch(
-        createTask({ columnId: this.column.id, body: { title, description } }),
-      );
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((task) => task?.title && task?.description),
+        tap(({ title, description }) => {
+          this.store.dispatch(
+            createTask({
+              columnId: this.column.id,
+              body: { title, description },
+            }),
+          );
+        }),
+      )
+      .subscribe();
   }
 
   dropTask(event: CdkDragDrop<TaskModel[]>) {

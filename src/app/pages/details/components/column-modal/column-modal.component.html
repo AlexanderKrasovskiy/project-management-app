@@ -6,7 +6,7 @@
         type="text"
         class="inform-input-inside"
         pInputText
-        [(ngModel)]="data.title"
+        [(ngModel)]="data"
         name="nameInput" />
       <label for="nameInput">{{ transLoco('taskTitle') }}</label>
     </div>
@@ -18,8 +18,8 @@
         color="primary"
         type="button"
         class="p-button-raised p-button-success button-custom-white button-true"
-        [disabled]="!data.title"
-        [mat-dialog-close]="data.title"
+        [disabled]="!data"
+        [mat-dialog-close]="data"
         [label]="transLoco('confirm')"></button>
       <button
         pButton

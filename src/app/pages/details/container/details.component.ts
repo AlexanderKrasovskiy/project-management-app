@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
-import { map, Subscription, tap } from 'rxjs';
+import { filter, map, Subscription, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {
   loadBoard,
@@ -62,15 +62,20 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
         tap((id) => {
           this.boardId = id;
         }),
+        tap((id: string) => this.store.dispatch(loadBoard({ id }))),
       )
-      .subscribe((id: string) => this.store.dispatch(loadBoard({ id })));
+      .subscribe();
   }
 
   setColumnsProperty() {
-    // eslint-disable-next-line @ngrx/no-store-subscription
-    this.subCols$ = this.store.select(selectColumns).subscribe((cols) => {
-      this.columns = [...cols];
-    });
+    this.subCols$ = this.store
+      .select(selectColumns)
+      .pipe(
+        tap((cols) => {
+          this.columns = [...cols];
+        }),
+      )
+      .subscribe();
   }
 
   setBoardBackGround() {
@@ -109,19 +114,19 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  openDialog(): void {
-    const data = { title: '' };
+  openAddColumnModal(): void {
+    const data = '';
     const dialogRef = this.dialog.open(ColumnModalComponent, {
       data,
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((title) => {
-      if (!title) {
-        return;
-      }
-
-      this.store.dispatch(createColumn({ title }));
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((title) => !!title),
+        tap((title) => this.store.dispatch(createColumn({ title }))),
+      )
+      .subscribe();
   }
 }
