@@ -8,20 +8,13 @@ import {
   LoginRequestModel,
   RegisterRequestModel,
   TokenResponseModel,
-  // UserModel,
 } from '../models/auth.model';
-// import { TranslocoService } from '@ngneat/transloco';
-// import { AuthService } from './auth.service';
 
-// @Injectable({
-//   providers: [MessageService],
-// })
 @Injectable()
 export class ApiHelpersService {
   constructor(
     private httpClient: HttpClient,
     private messageService: MessageService,
-    // private authService: AuthService,
     private translocoService: TranslocoService,
   ) {}
 

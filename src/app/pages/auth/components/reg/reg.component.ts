@@ -18,7 +18,6 @@ import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
-// import { PASSWORD_ALL } from 'src/app/shared/models/common.model';
 
 import {
   LoginRequestModel,
@@ -31,16 +30,12 @@ import {
   generateNewUser,
   generatePassword,
 } from '../../utils/generate.util';
-// import { parseJwt } from '../../utils/parse-token.util';
-// import { parseJwt } from '../../utils/parse-token.util';
-// import { PasswordErrors } from 'src/app/shared/models/common.model';
 
 @Component({
   selector: 'app-reg',
   templateUrl: './reg.component.html',
   styleUrls: ['./reg.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  // providers: [MessageService],
 })
 export class RegComponent implements OnInit, OnDestroy {
   public regForm!: FormGroup;
@@ -53,8 +48,6 @@ export class RegComponent implements OnInit, OnDestroy {
 
   @ViewChild('twicePasswordContainer')
   twicePasswordContainer!: ElementRef<HTMLElement>;
-
-  // public passwordAll = PASSWORD_ALL;
 
   constructor(
     private apiControlService: ApiControlService,
@@ -82,12 +75,9 @@ export class RegComponent implements OnInit, OnDestroy {
   public changeAvatar(image: string): void {
     this.avatar = image.slice(-2);
     this.authService.isAvatarSwap = false;
-    //  this.updateLocalStorBoardImg();
   }
 
   public onRandomPassword(): void {
-    // console.log(generatePassword());
-
     const newPassword: string = generatePassword();
 
     const event = new MouseEvent('click', {
@@ -143,7 +133,6 @@ export class RegComponent implements OnInit, OnDestroy {
         ),
       });
       this.apiControlService.loginInReg(loginUser).subscribe(() => {
-        // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -151,9 +140,7 @@ export class RegComponent implements OnInit, OnDestroy {
             'registration.successfulLogin',
           ),
         });
-        //  setTimeout(() => {
         this.router.navigate(['boards']);
-        //  }, 2000);
       });
     });
   }

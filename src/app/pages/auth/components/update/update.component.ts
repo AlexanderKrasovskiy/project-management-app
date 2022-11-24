@@ -19,11 +19,7 @@ import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
-// import { PASSWORD_ALL } from 'src/app/shared/models/common.model';
-import {
-  RegisterRequestModel,
-  // LoginRequestModel,
-} from '../../models/auth.model';
+import { RegisterRequestModel } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
 import { AuthService } from '../../services/auth.service';
 import { DeleteUserService } from '../../services/delete-user.service';
@@ -42,8 +38,6 @@ export class UpdateComponent implements OnInit, OnDestroy {
   public upd$: Subscription = new Subscription();
 
   public avatar = this.authService.getUserAvatar();
-
-  // public passwordAll = PASSWORD_ALL;
 
   @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
 
@@ -78,12 +72,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
   public changeAvatar(image: string): void {
     this.avatar = image.slice(-2);
     this.authService.isAvatarSwap = false;
-    //  this.updateLocalStorBoardImg();
   }
 
   public onRandomPassword(): void {
-    // console.log(generatePassword());
-
     const newPassword: string = generatePassword();
 
     const event = new MouseEvent('click', {
@@ -122,10 +113,6 @@ export class UpdateComponent implements OnInit, OnDestroy {
     }
   }
 
-  // updateLocalStorBoardImg(): void {
-  //   this.mainService.updateLocalStor(this.idBoard, this.imgBoard);
-  // }
-
   public onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(
       this.updateForm.value,
@@ -143,9 +130,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
           summary: 'Success',
           detail: this.translocoService.translate('update.successful'),
         });
-        //  setTimeout(() => {
         this.router.navigate(['boards']);
-        //  }, 2000);
       });
   }
 

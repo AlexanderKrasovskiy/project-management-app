@@ -3,8 +3,6 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
-// import { WelcomeComponent } from './pages/welcome/welcome.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -17,7 +15,6 @@ const routes: Routes = [
       import('./pages/welcome/welcome.module').then(
         (module) => module.WelcomeModule,
       ),
-    // component: WelcomeComponent,
   },
   {
     path: 'auth',

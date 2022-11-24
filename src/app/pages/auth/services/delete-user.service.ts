@@ -38,12 +38,6 @@ export class DeleteUserService {
     });
   }
 
-  // public showConfirmationModalWindow(): void {
-  //   this.confirmationService.isConfirmationModalUser = true;
-  //   this.confirmationService.title =
-  //     this.translocoService.translate('deleteUser.user');
-  // }
-
   public removeUser() {
     this.apiControlService
       .deleteUser(
@@ -58,9 +52,7 @@ export class DeleteUserService {
         this.confirmationService.isConfirmationModalUser = false;
         this.confirmationService.title = '';
         this.authService.logoutUser();
-        //   setTimeout(() => {
         this.router.navigate(['auth/login']);
-        //   }, 2000);
       });
   }
 }

@@ -3,13 +3,10 @@ import { Observable, switchMap, tap } from 'rxjs';
 import {
   GetUserModel,
   LoginRequestModel,
-  // ParsedToken,
   RegisterRequestModel,
   TokenResponseModel,
-  // UserModel,
 } from '../models/auth.model';
 import { parseJwt } from '../utils/parse-token.util';
-// import { parseJwt } from '../utils/parse-token.util';
 import { ApiHelpersService } from './api-helpers.service';
 import { AuthService } from './auth.service';
 
@@ -39,7 +36,6 @@ export class ApiControlService {
   public loginIn(user: LoginRequestModel): Observable<GetUserModel> {
     return this.apiHelpers.login(user).pipe(
       switchMap((res) => {
-        // console.log('111');
         this.authService.setToken(res);
         return this.getUser(parseJwt(res.token).userId);
       }),
