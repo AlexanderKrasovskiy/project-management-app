@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
+import { MessageError } from 'src/app/shared/models/common.model';
 
 @Injectable()
 export class MainErrorHandlerService {
@@ -12,7 +13,7 @@ export class MainErrorHandlerService {
 
   handleError(res: HttpErrorResponse): void {
     const { message } = res.error;
-    if (message === 'Board was not founded!') {
+    if (message === MessageError.boardNotFound) {
       this.messageService.add({
         severity: 'error',
         summary: this.transLoco.translate('details.errorTitle'),
@@ -23,7 +24,7 @@ export class MainErrorHandlerService {
 
   isKnownMessageType(res: HttpErrorResponse): boolean {
     const { message } = res.error;
-    if (message === 'Board was not founded!') {
+    if (message === MessageError.boardNotFound) {
       return true;
     }
     return false;

@@ -25,6 +25,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MainErrorHandlerService } from '../pages/main/services/main-error-handler.service';
+import { CreateBoardService } from '../shared/services/create-board.service';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { MainErrorHandlerService } from '../pages/main/services/main-error-handl
     DetailsErrorHandlerService,
     MainErrorHandlerService,
     HeaderService,
+    CreateBoardService,
   ],
   declarations: [
     HeaderComponent,

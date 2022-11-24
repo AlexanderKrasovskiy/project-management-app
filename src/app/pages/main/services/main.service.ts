@@ -3,13 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
-import {
-  createBoard,
-  deleteBoard,
-  updateBoard,
-} from 'src/app/store/actions/boards.action';
+import { deleteBoard, updateBoard } from 'src/app/store/actions/boards.action';
 import { MainModalComponent } from '../components/main-modal/main-modal.component';
-import { BoardLocalStoreModel } from '../models/main.model';
+import { BoardData, BoardLocalStoreModel } from '../models/main.model';
 
 @Injectable()
 export class MainService {
@@ -37,32 +33,8 @@ export class MainService {
     private transLoco: TranslocoService,
   ) {}
 
-  openCreateBoardModal(): void {
-    const data = {
-      heading: this.transLoco.translate('main.createNewBoard'),
-      title: '',
-      description: '',
-    };
-    const dialogRef = this.dialog.open(MainModalComponent, {
-      data,
-      backdropClass: 'backdropBackground',
-    });
-
-    dialogRef.afterClosed().subscribe((modalData) => {
-      if (!modalData?.title || !modalData?.description) return;
-      this.store.dispatch(
-        createBoard({
-          newBoard: {
-            title: modalData.title,
-            description: modalData.description,
-          },
-        }),
-      );
-    });
-  }
-
   openUpdateBoardModal(id: string): void {
-    const data = {
+    const data: BoardData = {
       heading: this.transLoco.translate('main.editBoard'),
       title: '',
       description: '',

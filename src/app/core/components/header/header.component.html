@@ -28,7 +28,7 @@
           pRipple
           type="button"
           label="{{ t('create') }}"
-          (click)="openCreateBoardModal()"
+          (click)="this.createBoardMoadal.openCreateBoardModal()"
           routerLink="/boards"
           class="p-button-raised p-button-primary p-button-text button-custom"
           (click)="visibleSidebar1 = false"></button>
@@ -125,7 +125,7 @@
           pRipple
           type="button"
           label="{{ t('create') }}"
-          (click)="openCreateBoardModal()"
+          (click)="this.createBoardMoadal.openCreateBoardModal()"
           routerLink="/boards"
           class="hidden lg:block p-button-raised p-button-primary p-button-text button-custom"></button>
 

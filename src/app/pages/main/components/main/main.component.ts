@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { CreateBoardService } from 'src/app/shared/services/create-board.service';
 import { loadBoards } from 'src/app/store/actions/boards.action';
 import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
 import { BoardLocalStoreModel } from '../../models/main.model';
@@ -30,8 +31,9 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   private imgBoard: string = '';
 
   constructor(
-    private store: Store,
+    public createBoard: CreateBoardService,
     public mainService: MainService,
+    private store: Store,
     private renderer2: Renderer2,
   ) {}
 
