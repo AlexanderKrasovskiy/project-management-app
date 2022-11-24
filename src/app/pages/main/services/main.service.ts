@@ -3,18 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
-import {
-  createBoard,
-  deleteBoard,
-  updateBoard,
-} from 'src/app/store/actions/boards.action';
+import { deleteBoard, updateBoard } from 'src/app/store/actions/boards.action';
 import { MainModalComponent } from '../components/main-modal/main-modal.component';
-import { BoardLocalStorModel } from '../models/main.model';
+import { BoardData, BoardLocalStoreModel } from '../models/main.model';
 
 @Injectable()
 export class MainService {
-  isbackgroundSwap: boolean = false;
-  idBoard: string = '';
+  isBackgroundSwap: boolean = false;
   images: string[] = [
     'board-1',
     'board-2',
@@ -35,36 +30,12 @@ export class MainService {
   constructor(
     private store: Store,
     private dialog: MatDialog,
-    private transloco: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
-  openCreateBoardModal(): void {
-    const data = {
-      heading: this.transloco.translate('main.createNewBoard'),
-      title: '',
-      description: '',
-    };
-    const dialogRef = this.dialog.open(MainModalComponent, {
-      data,
-      backdropClass: 'backdropBackground',
-    });
-
-    dialogRef.afterClosed().subscribe((modalData) => {
-      if (!modalData?.title || !modalData?.description) return;
-      this.store.dispatch(
-        createBoard({
-          newBoard: {
-            title: modalData.title,
-            description: modalData.description,
-          },
-        }),
-      );
-    });
-  }
-
   openUpdateBoardModal(id: string): void {
-    const data = {
-      heading: this.transloco.translate('main.editBoard'),
+    const data: BoardData = {
+      heading: this.transLoco.translate('main.editBoard'),
       title: '',
       description: '',
     };
@@ -74,7 +45,9 @@ export class MainService {
     });
 
     dialogRef.afterClosed().subscribe((modalData) => {
-      if (!modalData?.title || !modalData?.description) return;
+      if (!modalData?.title || !modalData?.description) {
+        return;
+      }
       this.store.dispatch(
         updateBoard({
           id,
@@ -88,7 +61,7 @@ export class MainService {
   }
 
   openDeleteBoardModal(id: string): void {
-    const data = this.transloco.translate('confirmation.deleteBoard');
+    const data = this.transLoco.translate('confirmation.deleteBoard');
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data,
@@ -101,38 +74,44 @@ export class MainService {
   }
 
   hideBackgroundChangeModalWindow(): void {
-    this.isbackgroundSwap = false;
+    this.isBackgroundSwap = false;
   }
 
-  deleteBoard(id: string): void {
+  updateLocalStore(id: string, image: string): void {
+    const storage = localStorage.getItem('BoardImage');
+    const boardImg: BoardLocalStoreModel = { id, image };
+
+    if (storage) {
+      let storArr = JSON.parse(storage);
+
+      if (storArr.find((i: BoardLocalStoreModel) => i.id === id)) {
+        storArr = storArr.map((e: BoardLocalStoreModel) =>
+          e.id === boardImg.id ? boardImg : e,
+        );
+      } else {
+        storArr.push(boardImg);
+      }
+
+      localStorage.setItem('BoardImage', JSON.stringify(storArr));
+    } else {
+      localStorage.setItem('BoardImage', JSON.stringify([boardImg]));
+    }
+  }
+
+  private deleteBoard(id: string): void {
     this.store.dispatch(deleteBoard({ id }));
   }
 
-  removeBoard(id: string): void {
+  private removeBoard(id: string): void {
     const storage = localStorage.getItem('BoardImage');
 
     if (storage) {
       const storArr = JSON.parse(storage).filter(
-        (el: BoardLocalStorModel) => el.id !== id,
+        (el: BoardLocalStoreModel) => el.id !== id,
       );
       localStorage.setItem('BoardImage', JSON.stringify(storArr));
     }
 
     this.deleteBoard(id);
-  }
-
-  updateLocalStor(id: string, image: string): void {
-    const storage = localStorage.getItem('BoardImage');
-    const boardImg: BoardLocalStorModel = { id, image };
-
-    if (storage) {
-      let storArr = JSON.parse(storage);
-      if (storArr.find((i: BoardLocalStorModel) => i.id === id)) {
-        storArr = storArr.map((e: BoardLocalStorModel) =>
-          e.id === boardImg.id ? boardImg : e,
-        );
-      } else storArr.push(boardImg);
-      localStorage.setItem('BoardImage', JSON.stringify(storArr));
-    } else localStorage.setItem('BoardImage', JSON.stringify([boardImg]));
   }
 }

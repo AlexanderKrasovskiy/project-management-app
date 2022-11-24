@@ -1,21 +1,22 @@
-<ng-container *transloco="let t; read: 'search'">
-  <section class="serch">
+<ng-container *transloco="let transLoco; read: 'search'">
+  <section class="search">
     <div class="search-small-circle-fake"></div>
     <div class="search-small-circle shadow-3 scale"></div>
-    <h1 class="serch__title card-with-blur scale">{{ t('mainTitle') }}</h1>
+    <h1 class="search__title card-with-blur scale">
+      {{ transLoco('mainTitle') }}
+    </h1>
     <div class="w-12 md:w-10 search-wrap">
       <div class="card-simple search-card shadow-4">
         <div class="card-with-blur search-card-inside shadow-4">
           <table
             *ngIf="this.tasksSubj$ | async as tasks"
             class="table text-xs sm:text-sm md:text-base">
-            <!-- <div *ngIf="(tasks | json) !== '[]'">{{ tasks | json }}</div> -->
             <thead>
               <tr>
                 <th
                   (click)="this.filterService.changeSortValue('order')"
                   [class.active]="this.filterService.activeClass === 'order'">
-                  {{ t('order') }}
+                  {{ transLoco('order') }}
                   <span
                     class="arrow"
                     *ngIf="!this.filterService.isOrder; else blockOrder">
@@ -28,7 +29,7 @@
                 <th
                   (click)="this.filterService.changeSortValue('title')"
                   [class.active]="this.filterService.activeClass === 'title'">
-                  {{ t('title') }}
+                  {{ transLoco('title') }}
                   <span
                     class="arrow"
                     *ngIf="!this.filterService.isTitle; else blockTitle">
@@ -43,7 +44,7 @@
                   [class.active]="
                     this.filterService.activeClass === 'description'
                   ">
-                  {{ t('description') }}
+                  {{ transLoco('description') }}
                   <span
                     class="arrow"
                     *ngIf="
@@ -59,7 +60,7 @@
                 <th
                   (click)="this.filterService.changeSortValue('userId')"
                   [class.active]="this.filterService.activeClass === 'userId'">
-                  {{ t('user') }}
+                  {{ transLoco('user') }}
                   <span
                     class="arrow"
                     *ngIf="!this.filterService.isUser; else blockUser">
@@ -87,7 +88,7 @@
                 <td>{{ task.userId }}</td>
               </tr>
               <tr *ngIf="this.headerService.keyWord" class="no-item">
-                <td class="notfound">{{ t('notFound') }}</td>
+                <td class="notfound">{{ transLoco('notFound') }}</td>
               </tr>
             </tbody>
           </table>
@@ -95,8 +96,4 @@
       </div>
     </div>
   </section>
-
-  <!-- <ng-template #notfound>
-  <p class="notfound">Try to search something else</p></ng-template
-> -->
 </ng-container>

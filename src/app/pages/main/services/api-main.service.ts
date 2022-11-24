@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { BoardIDRequestModel, BoardRequestModel } from '../models/main.model';
 
 @Injectable()
-export class ApiMainHelpersService {
+export class ApiMainService {
   constructor(private httpClient: HttpClient) {}
 
   createBoard(payload: BoardRequestModel): Observable<BoardIDRequestModel> {

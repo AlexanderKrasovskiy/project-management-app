@@ -9,7 +9,13 @@ export interface BoardRequestModel {
   description: string;
 }
 
-export interface BoardLocalStorModel {
+export interface BoardLocalStoreModel {
   id: string;
   image: string;
+}
+
+export interface BoardData {
+  heading: string;
+  title: string;
+  description: string;
 }

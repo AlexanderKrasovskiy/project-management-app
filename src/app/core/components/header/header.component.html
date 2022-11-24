@@ -28,7 +28,7 @@
           pRipple
           type="button"
           label="{{ t('create') }}"
-          (click)="openCreateBoardModal()"
+          (click)="this.createBoardMoadal.openCreateBoardModal()"
           routerLink="/boards"
           class="p-button-raised p-button-primary p-button-text button-custom"
           (click)="visibleSidebar1 = false"></button>
@@ -114,6 +114,7 @@
             type="text"
             pInputText
             #search
+            (keyup.enter)="this.filter.getKeyWord(search.value)"
             (input)="this.filter.getKeyWord(search.value)"
             placeholder="{{ t('search') }}"
             class="w-10rem md:w-12rem lg:w-auto search-input" />
@@ -124,7 +125,7 @@
           pRipple
           type="button"
           label="{{ t('create') }}"
-          (click)="openCreateBoardModal()"
+          (click)="this.createBoardMoadal.openCreateBoardModal()"
           routerLink="/boards"
           class="hidden lg:block p-button-raised p-button-primary p-button-text button-custom"></button>
 

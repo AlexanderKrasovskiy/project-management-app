@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BySort, SortKeyword } from '../models/search.model';
+import { BySort, SortKeyWord } from '../models/search.model';
 
 @Injectable()
 export class FilterService {
@@ -17,19 +17,42 @@ export class FilterService {
     this.isTitle = false;
     this.isDescription = false;
     this.isUser = false;
+    this.valueSort = value;
+    this.activeClass = value;
+
+    this.getSortingDirection();
+    this.getSortingValue(value);
+  }
+
+  private getSortingDirection(): void {
     if (
       this.sortingDirection === '' ||
       this.sortingDirection === BySort.descending
     ) {
       this.sortingDirection = BySort.ascending;
-    } else this.sortingDirection = BySort.descending;
-    this.valueSort = value;
-    this.flagSortDirection = this.sortingDirection;
-    this.activeClass = value;
+    } else {
+      this.sortingDirection = BySort.descending;
+    }
 
-    if (value === SortKeyword.byOrder) this.isOrder = true;
-    if (value === SortKeyword.byTitle) this.isTitle = true;
-    if (value === SortKeyword.byDescription) this.isDescription = true;
-    if (value === SortKeyword.byUser) this.isUser = true;
+    this.flagSortDirection = this.sortingDirection;
+  }
+
+  private getSortingValue(value: string): void {
+    switch (value) {
+      case SortKeyWord.byOrder: {
+        this.isOrder = true;
+        break;
+      }
+      case SortKeyWord.byTitle: {
+        this.isTitle = true;
+        break;
+      }
+      case SortKeyWord.byDescription: {
+        this.isDescription = true;
+        break;
+      }
+      default:
+        this.isUser = true;
+    }
   }
 }
