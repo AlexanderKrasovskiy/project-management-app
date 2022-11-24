@@ -115,6 +115,11 @@
   font-size: 0.9rem;
 }
 
+.p-button.p-button-secondary.p-button-outlined.button-custom-white,
+.p-button.p-button-danger.p-button-outlined.button-custom-white {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
 .overlay {
   z-index: 3;
   position: fixed;

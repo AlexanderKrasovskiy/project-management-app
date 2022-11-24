@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
+import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { parseJwt } from '../utils/parse-token.util';
@@ -33,9 +34,13 @@ export class DeleteUserService {
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((modalData) => {
-      if (modalData) this.removeUser();
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((modalData) => modalData),
+        tap(() => this.removeUser()),
+      )
+      .subscribe();
   }
 
   public removeUser() {
