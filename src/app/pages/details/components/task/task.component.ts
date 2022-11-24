@@ -6,6 +6,7 @@ import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { deleteTask, updateTask } from 'src/app/store/actions/details.actions';
 import { TaskModel } from '../../models/details-api.model';
+import { CreateTaskData } from '../../models/task-modal.model';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 
 @Component({
@@ -45,7 +46,7 @@ export class TaskComponent {
   }
 
   openEditTaskModal(): void {
-    const data = {
+    const data: CreateTaskData = {
       heading: this.transLoco.translate('details.editTask'),
       title: this.task.title,
       description: this.task.description,

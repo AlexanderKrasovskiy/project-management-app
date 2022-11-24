@@ -21,8 +21,14 @@ import {
 import { TranslocoService } from '@ngneat/transloco';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { filter, tap } from 'rxjs';
-import { ColumnModel, TaskModel } from '../../models/details-api.model';
+import {
+  ColumnModel,
+  TaskModel,
+  UpdateColumnPayload,
+  UpdateTaskPayload,
+} from '../../models/details-api.model';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
+import { CreateTaskData } from '../../models/task-modal.model';
 
 @Component({
   selector: 'app-column',
@@ -68,7 +74,7 @@ export class ColumnComponent implements OnChanges {
 
     this.tempTitle = title;
 
-    const body = {
+    const body: UpdateColumnPayload = {
       order: this.column.order,
       title,
     };
@@ -95,7 +101,7 @@ export class ColumnComponent implements OnChanges {
   }
 
   openCreateTaskModal(): void {
-    const data = {
+    const data: CreateTaskData = {
       heading: this.transLoco.translate('details.createTask'),
       title: '',
       description: '',
@@ -127,7 +133,7 @@ export class ColumnComponent implements OnChanges {
     const currIdx = event.currentIndex;
     const { id: taskId, title, description, userId } = event.item.data;
 
-    const body = {
+    const body: UpdateTaskPayload = {
       title,
       order: currIdx + 1,
       description,
