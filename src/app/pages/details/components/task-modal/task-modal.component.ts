@@ -1,11 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface CreateTaskData {
-  heading: string;
-  title: string;
-  description: string;
-}
+import { CreateTaskData } from '../../models/task-modal.model';
 
 @Component({
   selector: 'app-task-modal',
