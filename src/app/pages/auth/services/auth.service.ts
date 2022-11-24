@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import {
-  GetUserModel,
-  TokenResponseModel,
-  // UserModel,
-} from '../models/auth.model';
+import { GetUserModel, TokenResponseModel } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // private TOKEN_LIFE_DURATION = 2;
   isAvatarSwap: boolean = false;
   images: string[] = [
     '_01',
@@ -37,7 +32,6 @@ export class AuthService {
     localStorage.setItem('PlanTokenInfo', token.token);
     const datePlus = new Date();
     datePlus.setHours(datePlus.getHours() + this.TOKEN_LIFE_DURATION);
-    // datePlus.setMinutes(datePlus.getMinutes() + this.TOKEN_LIFE_DURATION);
     localStorage.setItem('PlanTokenExpiredTime', datePlus.toString());
   }
 
@@ -46,11 +40,25 @@ export class AuthService {
     if (localStorage.getItem('PlanUserInfo')) {
       this.isUserLogged$.next(true);
     }
-    // localStorage.setItem('PlanNameInfo', name.trim());
-    // this.isUserRegistered$.next(true);
   }
 
   public getUserName(): string {
+    return this.getPlanUserName();
+  }
+
+  public getUserAvatar(): string {
+    return this.getPlanUserAvatar();
+  }
+
+  public logoutUser(): void {
+    this.clearUserData();
+  }
+
+  public hideAvatarChangeModalWindow(): void {
+    this.isAvatarSwap = false;
+  }
+
+  private getPlanUserName(): string {
     if (
       localStorage.getItem('PlanUserInfo') &&
       localStorage.getItem('PlanTokenInfo')
@@ -69,7 +77,7 @@ export class AuthService {
     return '';
   }
 
-  public getUserAvatar(): string {
+  private getPlanUserAvatar(): string {
     if (
       localStorage.getItem('PlanUserInfo') &&
       localStorage.getItem('PlanTokenInfo')
@@ -85,15 +93,10 @@ export class AuthService {
     return '';
   }
 
-  public logoutUser(): void {
+  private clearUserData(): void {
     localStorage.removeItem('PlanUserInfo');
     localStorage.removeItem('PlanTokenInfo');
     localStorage.removeItem('PlanTokenExpiredTime');
     this.isUserLogged$.next(false);
-    // this.isUserRegistered$.next(false);
-  }
-
-  public hideAvatarChangeModalWindow(): void {
-    this.isAvatarSwap = false;
   }
 }

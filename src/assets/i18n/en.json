@@ -20,7 +20,7 @@
     "expired": "Your token is expired! Please, login",
     "teamAlla": "Deployed application backend. Developed 'all boards' page and 'global search' page. Applied NgRx for 'all boards' page. For listed above pages implemented 2-language localization, user-friendly error-handling, routing, modals for boards creation / editing / deletion. Implemented universal interceptor for all network requests. Additional features - search page sorting, ability to change boards background.",
     "teamSasha": "Configured initial project setup. Held code-review during app developmant. Developed 'board details' page with drag-n-drop. Applied NgRx for 'board details' page. For listed above page implemented 2-language localization, user-friendly error-handling, routing, modals for column / task creation / editing / deletion. Additional features - ability to change board background at details page.",
-    "teamSveta": "Responsible for application design. Developed 'sticky' header, footer, home page, login page, sign-up page, user profile page. Applied reactive forms with custom validation while development . For listed above pages implemented 2-language localization, user-friendly error-handling, routing, routing-guard. Implemented user session handling. Additional features - 404 page."
+    "teamSveta": "Responsible for application design. Developed 'sticky' header, footer, home page, login page, sign-up page, user profile page. Applied reactive forms with custom validation while development . For listed above pages implemented 2-language localization, user-friendly error-handling, routing, routing-guard. Implemented user session handling. Additional features - 404 page, user's avatar, password generation."
   },
   "registration": {
     "title": "Registration",
@@ -72,7 +72,7 @@
     "user": "user",
     "successful": "Successful delete!"
   },
-  "apiHelpers": {
+  "authApiService": {
     "notCreate": "Can not create user :(",
     "notLogin": "Can not login :(",
     "notFound": "Can not find user :(",
@@ -123,7 +123,7 @@
     "errorTitle": "Error"
   },
   "header": {
-    "home": "Home",
+    "welcome": "Welcome",
     "create": "Create board",
     "allBoards": "All boards",
     "edit": "Edit profile",

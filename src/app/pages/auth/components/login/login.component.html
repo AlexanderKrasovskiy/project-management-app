@@ -1,11 +1,7 @@
-<!-- <p-toast
-  [breakpoints]="{
-    '920px': { width: '100%', right: '0', left: '0' }
-  }"></p-toast> -->
-<ng-container *transloco="let t; read: 'login'">
+<ng-container *transloco="let translate; read: 'login'">
   <div class="overflow-y-auto md:overflow-y-hidden login-wrap">
     <div class="card-simple login-card shadow-4">
-      <h2 class="font-light login-title">{{ t('title') }}</h2>
+      <h2 class="font-light login-title">{{ translate('title') }}</h2>
 
       <form
         [formGroup]="loginForm"
@@ -21,11 +17,11 @@
               class="login-input-inside"
               [ngClass]="(loginForm.get('loginInput')?.errors?.['required'] && loginForm.get('loginInput')?.touched) ? 'error-border' : '' "
               formControlName="loginInput" />
-            <label for="loginInput">{{ t('login') }}</label>
+            <label for="loginInput">{{ translate('login') }}</label>
             <div
               class="input-error"
               *ngIf="loginForm.get('loginInput')?.errors?.['required'] && (loginForm.get('loginInput')?.dirty || loginForm.get('loginInput')?.touched)">
-              {{ t('emptyField') }}
+              {{ translate('emptyField') }}
             </div>
           </div>
 
@@ -35,16 +31,16 @@
               id="passwordInput"
               formControlName="passwordInput">
             </p-password>
-            <label for="passwordInput">{{ t('password') }}</label>
+            <label for="passwordInput">{{ translate('password') }}</label>
             <div
               class="input-error"
               *ngIf="!loginForm.get('passwordInput')?.errors?.['required'] && loginForm.errors?.['notIdenticalPassword'] && (loginForm.get('passwordInput')?.dirty || loginForm.get('passwordInput')?.touched) && (loginForm.get('twicePasswordInput')?.dirty || loginForm.get('twicePasswordInput')?.touched)">
-              {{ t('identicalPassword') }}
+              {{ translate('identicalPassword') }}
             </div>
             <div
               class="input-error"
               *ngIf="loginForm.get('passwordInput')?.errors?.['required'] && (loginForm.get('passwordInput')?.dirty || loginForm.get('passwordInput')?.touched) ">
-              {{ t('emptyField') }}
+              {{ translate('emptyField') }}
             </div>
           </span>
         </div>
@@ -57,11 +53,11 @@
             type="submit"
             [disabled]="!loginForm.valid"
             class="p-button-raised p-button-secondary button-custom-white"
-            label="{{ t('Login') }}"></button>
+            label="{{ translate('Login') }}"></button>
         </div>
         <div class="login-wrapper">
-          <p>{{ t('notRegistered') }}</p>
-          <a routerLink="/auth/registration">{{ t('signup') }}</a>
+          <p>{{ translate('notRegistered') }}</p>
+          <a routerLink="/auth/registration">{{ translate('signup') }}</a>
         </div>
       </form>
     </div>

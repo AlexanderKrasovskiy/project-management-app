@@ -18,13 +18,8 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
-import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
-// import { PASSWORD_ALL } from 'src/app/shared/models/common.model';
-import {
-  RegisterRequestModel,
-  // LoginRequestModel,
-} from '../../models/auth.model';
-import { ApiControlService } from '../../services/api-control.service';
+import { RegisterRequestModel } from '../../models/auth.model';
+import { AuthControlService } from '../../services/auth-control.service';
 import { AuthService } from '../../services/auth.service';
 import { DeleteUserService } from '../../services/delete-user.service';
 import { generateNewUser, generatePassword } from '../../utils/generate.util';
@@ -37,26 +32,23 @@ import { parseJwt } from '../../utils/parse-token.util';
   encapsulation: ViewEncapsulation.None,
 })
 export class UpdateComponent implements OnInit, OnDestroy {
+  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
+
+  @ViewChild('twicePasswordContainer')
+  twicePasswordContainer!: ElementRef<HTMLElement>;
+
   public updateForm!: FormGroup;
 
   public upd$: Subscription = new Subscription();
 
   public avatar = this.authService.getUserAvatar();
 
-  // public passwordAll = PASSWORD_ALL;
-
-  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
-
-  @ViewChild('twicePasswordContainer')
-  twicePasswordContainer!: ElementRef<HTMLElement>;
-
   constructor(
-    private apiControlService: ApiControlService,
+    private authControlService: AuthControlService,
     private router: Router,
     public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
-    public confirmationService: ConfirmationModalService,
     public deleteUserService: DeleteUserService,
     private translocoService: TranslocoService,
     public authService: AuthService,
@@ -78,12 +70,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
   public changeAvatar(image: string): void {
     this.avatar = image.slice(-2);
     this.authService.isAvatarSwap = false;
-    //  this.updateLocalStorBoardImg();
   }
 
   public onRandomPassword(): void {
-    // console.log(generatePassword());
-
     const newPassword: string = generatePassword();
 
     const event = new MouseEvent('click', {
@@ -122,17 +111,13 @@ export class UpdateComponent implements OnInit, OnDestroy {
     }
   }
 
-  // updateLocalStorBoardImg(): void {
-  //   this.mainService.updateLocalStor(this.idBoard, this.imgBoard);
-  // }
-
   public onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(
       this.updateForm.value,
       this.avatar,
     );
 
-    this.upd$ = this.apiControlService
+    this.upd$ = this.authControlService
       .updateUser(
         parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
         newUser,
@@ -143,9 +128,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
           summary: 'Success',
           detail: this.translocoService.translate('update.successful'),
         });
-        //  setTimeout(() => {
         this.router.navigate(['boards']);
-        //  }, 2000);
       });
   }
 
