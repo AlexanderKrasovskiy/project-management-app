@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
+import { MessageError } from 'src/app/shared/models/common.model';
 
 @Injectable()
 export class DetailsErrorHandlerService {
@@ -17,17 +18,17 @@ export class DetailsErrorHandlerService {
     let toastText: string;
 
     switch (message) {
-      case 'Board was not founded!':
+      case MessageError.boardNotFound:
         toastText = this.transLoco.translate('details.boardNotFound');
         this.router.navigate(['boards']);
         break;
-      case 'Column was not founded!':
+      case MessageError.columnNotFound:
         toastText = this.transLoco.translate('details.columnNotFound');
         break;
-      case 'Task was not founded!':
+      case MessageError.taskNotFound:
         toastText = this.transLoco.translate('details.taskNotFound');
         break;
-      case 'User was not founded!':
+      case MessageError.userNotFound:
         toastText = this.transLoco.translate('details.userNotFound');
         break;
       default:
@@ -47,11 +48,11 @@ export class DetailsErrorHandlerService {
     const { message } = res.error;
 
     switch (message) {
-      case 'Column was not founded!':
+      case MessageError.columnNotFound:
         return true;
-      case 'Task was not founded!':
+      case MessageError.taskNotFound:
         return true;
-      case 'User was not founded!':
+      case MessageError.userNotFound:
         return true;
       default:
         return false;

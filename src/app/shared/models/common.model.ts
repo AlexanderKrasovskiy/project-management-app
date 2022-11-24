@@ -28,4 +28,7 @@ export const PASSWORD_ALL: RegExp =
 
 export enum MessageError {
   boardNotFound = 'Board was not founded!',
+  columnNotFound = 'Column was not founded!',
+  taskNotFound = 'Task was not founded!',
+  userNotFound = 'User was not founded!',
 }
