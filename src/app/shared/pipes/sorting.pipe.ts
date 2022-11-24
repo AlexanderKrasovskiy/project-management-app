@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {
   BySort,
-  SortKeyword,
+  SortKeyWord,
   TaskModel,
 } from 'src/app/pages/search/models/search.model';
 
@@ -11,7 +11,7 @@ import {
 export class SortingPipe implements PipeTransform {
   transform(items: TaskModel[], bySort: string, keySort: string): TaskModel[] {
     switch (bySort) {
-      case SortKeyword.byWord: {
+      case SortKeyWord.byWord: {
         const filterByWord: TaskModel[] = this.getFilterArraybyWord(
           items,
           keySort,
@@ -19,21 +19,21 @@ export class SortingPipe implements PipeTransform {
 
         return keySort ? filterByWord : [];
       }
-      case SortKeyword.byOrder: {
+      case SortKeyWord.byOrder: {
         const sort: TaskModel[] = [...items].sort(
           (a, b) => Number(b.order) - Number(a.order),
         );
 
         return keySort === BySort.descending ? sort.reverse() : sort;
       }
-      case SortKeyword.byTitle: {
-        return this.getSortingArray(items, SortKeyword.byTitle, keySort);
+      case SortKeyWord.byTitle: {
+        return this.getSortingArray(items, SortKeyWord.byTitle, keySort);
       }
-      case SortKeyword.byDescription: {
-        return this.getSortingArray(items, SortKeyword.byDescription, keySort);
+      case SortKeyWord.byDescription: {
+        return this.getSortingArray(items, SortKeyWord.byDescription, keySort);
       }
-      case SortKeyword.byUser: {
-        return this.getSortingArray(items, SortKeyword.byUser, keySort);
+      case SortKeyWord.byUser: {
+        return this.getSortingArray(items, SortKeyWord.byUser, keySort);
       }
       default:
         return [...items];
