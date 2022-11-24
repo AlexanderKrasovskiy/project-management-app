@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
+import { filter, tap } from 'rxjs';
 import { MainModalComponent } from 'src/app/pages/main/components/main-modal/main-modal.component';
 import { BoardData } from 'src/app/pages/main/models/main.model';
 import { createBoard } from 'src/app/store/actions/boards.action';
@@ -25,16 +26,21 @@ export class CreateBoardService {
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((modalData) => {
-      if (!modalData?.title || !modalData?.description) return;
-      this.store.dispatch(
-        createBoard({
-          newBoard: {
-            title: modalData.title,
-            description: modalData.description,
-          },
-        }),
-      );
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((modalData) => modalData?.title || modalData?.description),
+        tap((modalData) =>
+          this.store.dispatch(
+            createBoard({
+              newBoard: {
+                title: modalData.title,
+                description: modalData.description,
+              },
+            }),
+          ),
+        ),
+      )
+      .subscribe();
   }
 }

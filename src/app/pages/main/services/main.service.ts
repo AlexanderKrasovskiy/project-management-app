@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
+import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { deleteBoard, updateBoard } from 'src/app/store/actions/boards.action';
 import { MainModalComponent } from '../components/main-modal/main-modal.component';
@@ -44,20 +45,23 @@ export class MainService {
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((modalData) => {
-      if (!modalData?.title || !modalData?.description) {
-        return;
-      }
-      this.store.dispatch(
-        updateBoard({
-          id,
-          newBoard: {
-            title: modalData.title,
-            description: modalData.description,
-          },
-        }),
-      );
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((modalData) => modalData?.title || modalData?.description),
+        tap((modalData) =>
+          this.store.dispatch(
+            updateBoard({
+              id,
+              newBoard: {
+                title: modalData.title,
+                description: modalData.description,
+              },
+            }),
+          ),
+        ),
+      )
+      .subscribe();
   }
 
   openDeleteBoardModal(id: string): void {
@@ -68,9 +72,13 @@ export class MainService {
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((modalData) => {
-      if (modalData) this.removeBoard(id);
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((modalData) => modalData),
+        tap(() => this.removeBoard(id)),
+      )
+      .subscribe();
   }
 
   hideBackgroundChangeModalWindow(): void {
