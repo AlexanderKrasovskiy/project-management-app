@@ -42,8 +42,6 @@ export class AuthApiService {
             summary: 'Error',
             detail: errorText,
           });
-          // console.log('[ERROR]: ', error);
-          // console.error(err.error.message);
           return EMPTY;
         }),
       );
@@ -73,14 +71,6 @@ export class AuthApiService {
             summary: 'Error',
             detail: errorText,
           });
-
-          // console.error(err.error.statusCode);
-          // console.error(err.error.message);
-          // console.error(err);
-          // console.error(err.status);
-          // console.error(err.statusText);
-          // console.error(`${err.statusText || ''} ${err.error.message || ''}`);
-
           return EMPTY;
         }),
       );
@@ -89,13 +79,12 @@ export class AuthApiService {
   public user(id: string): Observable<GetUserModel> {
     return this.httpClient.get<GetUserModel>(`/users/${id}`).pipe(
       retry(4),
-      catchError((err) => {
+      catchError(() => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: this.translocoService.translate('authApiService.notFound'),
         });
-        // console.error(err.error.message);
         return EMPTY;
       }),
     );
@@ -122,7 +111,6 @@ export class AuthApiService {
           summary: 'Error',
           detail: errorText,
         });
-        // console.error(err.error.message);
         return EMPTY;
       }),
     );
@@ -131,13 +119,12 @@ export class AuthApiService {
   public delete(id: string): Observable<void> {
     return this.httpClient.delete<void>(`/users/${id}`).pipe(
       retry(4),
-      catchError((err) => {
+      catchError(() => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: this.translocoService.translate('authApiService.notDelete'),
         });
-        // console.error(err.error.message);
         return EMPTY;
       }),
     );
