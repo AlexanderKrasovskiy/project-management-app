@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           severity: 'success',
           summary: 'Success',
           detail: this.translocoService.translate('login.successfulLogin'),
-          life: 5000,
         });
         //   setTimeout(() => {
         this.router.navigate(['boards']);

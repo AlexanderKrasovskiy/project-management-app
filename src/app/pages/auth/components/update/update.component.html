@@ -61,14 +61,14 @@
             </div>
           </div>
 
-          <span class="p-float-label update-input mb-3">
+          <span class="p-float-label update-input mb-3" #passwordContainer>
             <p-password
               [toggleMask]="true"
               id="passwordInput"
               formControlName="passwordInput"
               pTooltip="{{ t('tooltipPassword') }}"
               tooltipEvent="focus"
-              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})">
+              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
             </p-password>
             <label for="passwordInput">{{ t('password') }}</label>
             <div
@@ -83,14 +83,14 @@
             </div>
           </span>
 
-          <span class="p-float-label update-input">
+          <span class="p-float-label update-input" #twicePasswordContainer>
             <p-password
               [toggleMask]="true"
               id="twicePasswordInput"
               formControlName="twicePasswordInput"
               pTooltip="{{ t('tooltipPassword') }}"
               tooltipEvent="focus"
-              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})">
+              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
             </p-password>
             <label for="passwordInput">{{ t('repeatPassword') }}</label>
             <div

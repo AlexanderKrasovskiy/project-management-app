@@ -18,4 +18,14 @@ export const PASSWORD_LETTERS_SMALL: RegExp = /[a-z]+/g;
 
 export const PASSWORD_LETTERS_BIG: RegExp = /[A-Z]+/g;
 
-export const PASSWORD_SYMBOLS: RegExp = /^(?=.*[!@#\\$%\\^&\\*])/i;
+export const PASSWORD_NUMBERS: RegExp = /[0-9]+/g;
+
+export const PASSWORD_SYMBOLS: RegExp =
+  /^(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])/i;
+
+export const PASSWORD_ALL: RegExp =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})/i;
+
+export enum MessageError {
+  boardNotFound = 'Board was not founded!',
+}

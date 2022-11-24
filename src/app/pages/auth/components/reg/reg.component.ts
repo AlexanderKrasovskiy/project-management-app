@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -11,6 +18,7 @@ import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
+// import { PASSWORD_ALL } from 'src/app/shared/models/common.model';
 
 import {
   LoginRequestModel,
@@ -18,7 +26,11 @@ import {
 } from '../../models/auth.model';
 import { ApiControlService } from '../../services/api-control.service';
 import { AuthService } from '../../services/auth.service';
-import { generateLoginUser, generateNewUser } from '../../utils/generate.util';
+import {
+  generateLoginUser,
+  generateNewUser,
+  generatePassword,
+} from '../../utils/generate.util';
 // import { parseJwt } from '../../utils/parse-token.util';
 // import { parseJwt } from '../../utils/parse-token.util';
 // import { PasswordErrors } from 'src/app/shared/models/common.model';
@@ -36,6 +48,13 @@ export class RegComponent implements OnInit, OnDestroy {
   public reg$: Subscription = new Subscription();
 
   public avatar = '01';
+
+  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
+
+  @ViewChild('twicePasswordContainer')
+  twicePasswordContainer!: ElementRef<HTMLElement>;
+
+  // public passwordAll = PASSWORD_ALL;
 
   constructor(
     private apiControlService: ApiControlService,
@@ -66,6 +85,47 @@ export class RegComponent implements OnInit, OnDestroy {
     //  this.updateLocalStorBoardImg();
   }
 
+  public onRandomPassword(): void {
+    // console.log(generatePassword());
+
+    const newPassword: string = generatePassword();
+
+    const event = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    });
+
+    this.regForm.patchValue({
+      passwordInput: newPassword,
+      twicePasswordInput: newPassword,
+    });
+
+    this.regForm.controls['passwordInput'].markAsDirty();
+
+    this.regForm.controls['twicePasswordInput'].markAsDirty();
+
+    if (
+      this.passwordContainer.nativeElement.children[0].children[0].children[0].getAttribute(
+        'type',
+      ) === 'password'
+    ) {
+      this.passwordContainer.nativeElement.children[0].children[0].children[1].dispatchEvent(
+        event,
+      );
+    }
+
+    if (
+      this.twicePasswordContainer.nativeElement.children[0].children[0].children[0].getAttribute(
+        'type',
+      ) === 'password'
+    ) {
+      this.twicePasswordContainer.nativeElement.children[0].children[0].children[1].dispatchEvent(
+        event,
+      );
+    }
+  }
+
   public onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(
       this.regForm.value,
@@ -81,7 +141,6 @@ export class RegComponent implements OnInit, OnDestroy {
         detail: this.translocoService.translate(
           'registration.successfulRegistration',
         ),
-        life: 5000,
       });
       this.apiControlService.loginInReg(loginUser).subscribe(() => {
         // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
@@ -91,7 +150,6 @@ export class RegComponent implements OnInit, OnDestroy {
           detail: this.translocoService.translate(
             'registration.successfulLogin',
           ),
-          life: 5000,
         });
         //  setTimeout(() => {
         this.router.navigate(['boards']);

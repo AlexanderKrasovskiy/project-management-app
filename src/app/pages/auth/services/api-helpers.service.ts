@@ -48,7 +48,6 @@ export class ApiHelpersService {
             severity: 'error',
             summary: 'Error',
             detail: errorText,
-            life: 5000,
           });
           // console.log('[ERROR]: ', error);
           // console.error(err.error.message);
@@ -80,7 +79,6 @@ export class ApiHelpersService {
             severity: 'error',
             summary: 'Error',
             detail: errorText,
-            life: 5000,
           });
 
           // console.error(err.error.statusCode);
@@ -103,7 +101,6 @@ export class ApiHelpersService {
           severity: 'error',
           summary: 'Error',
           detail: this.translocoService.translate('apiHelpers.notFound'),
-          life: 5000,
         });
         // console.error(err.error.message);
         return EMPTY;
@@ -131,7 +128,6 @@ export class ApiHelpersService {
           severity: 'error',
           summary: 'Error',
           detail: errorText,
-          life: 5000,
         });
         // console.error(err.error.message);
         return EMPTY;
@@ -147,7 +143,6 @@ export class ApiHelpersService {
           severity: 'error',
           summary: 'Error',
           detail: this.translocoService.translate('apiHelpers.notDelete'),
-          life: 5000,
         });
         // console.error(err.error.message);
         return EMPTY;

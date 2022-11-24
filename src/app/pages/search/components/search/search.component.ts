@@ -12,8 +12,9 @@ import { SearchService } from '../../services/search.service';
   providers: [SearchService],
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  private subscribe: Subscription = new Subscription();
   tasksSubj$ = new ReplaySubject<TaskModel[]>();
+
+  private subscribe: Subscription = new Subscription();
 
   constructor(
     public search: SearchService,
@@ -21,13 +22,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     public filterService: FilterService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subscribe = this.search
       .getTasks()
       .subscribe((task) => this.tasksSubj$.next(task));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscribe.unsubscribe();
   }
 }
