@@ -5,6 +5,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { parseJwt } from '../utils/parse-token.util';
 import { AuthControlService } from './auth-control.service';
 import { AuthService } from './auth.service';
@@ -44,7 +45,9 @@ export class DeleteUserService {
   public removeUser() {
     this.authControlService
       .deleteUser(
-        parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
+        parseJwt(
+          localStorage.getItem(LocalStorageItems.PlanTokenInfo) as string,
+        ).userId,
       )
       .subscribe(() => {
         this.messageService.add({

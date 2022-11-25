@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { animationFrameScheduler, auditTime, fromEvent } from 'rxjs';
 import { AuthService } from 'src/app/pages/auth/services/auth.service';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { CreateBoardService } from 'src/app/shared/services/create-board.service';
 import { HeaderService } from '../../services/header.service';
 
@@ -16,7 +17,8 @@ import { HeaderService } from '../../services/header.service';
 export class HeaderComponent implements OnInit {
   public stateOptions;
 
-  public value1 = localStorage.getItem('PlanLanguageInfo') || 'en';
+  public value1 =
+    localStorage.getItem(LocalStorageItems.PlanLanguageInfo) || 'en';
 
   public inScroll = false;
 
@@ -38,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.transLocoService.setActiveLang(
-      localStorage.getItem('PlanLanguageInfo') || 'en',
+      localStorage.getItem(LocalStorageItems.PlanLanguageInfo) || 'en',
     );
 
     this.handleScroll();
@@ -58,7 +60,7 @@ export class HeaderComponent implements OnInit {
 
   changeLang(lang: string) {
     this.transLocoService.setActiveLang(lang);
-    localStorage.setItem('PlanLanguageInfo', lang);
+    localStorage.setItem(LocalStorageItems.PlanLanguageInfo, lang);
   }
 
   authPage() {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { GetUserModel, TokenResponseModel } from '../models/auth.model';
 
 @Injectable({
@@ -29,15 +30,18 @@ export class AuthService {
   private TOKEN_LIFE_DURATION = 12;
 
   public setToken(token: TokenResponseModel): void {
-    localStorage.setItem('PlanTokenInfo', token.token);
+    localStorage.setItem(LocalStorageItems.PlanTokenInfo, token.token);
     const datePlus = new Date();
     datePlus.setHours(datePlus.getHours() + this.TOKEN_LIFE_DURATION);
-    localStorage.setItem('PlanTokenExpiredTime', datePlus.toString());
+    localStorage.setItem(
+      LocalStorageItems.PlanTokenExpiredTime,
+      datePlus.toString(),
+    );
   }
 
   public setUser(user: GetUserModel): void {
-    localStorage.setItem('PlanUserInfo', JSON.stringify(user));
-    if (localStorage.getItem('PlanUserInfo')) {
+    localStorage.setItem(LocalStorageItems.PlanUserInfo, JSON.stringify(user));
+    if (localStorage.getItem(LocalStorageItems.PlanUserInfo)) {
       this.isUserLogged$.next(true);
     }
   }
@@ -60,43 +64,43 @@ export class AuthService {
 
   private getPlanUserName(): string {
     if (
-      localStorage.getItem('PlanUserInfo') &&
-      localStorage.getItem('PlanTokenInfo')
+      localStorage.getItem(LocalStorageItems.PlanUserInfo) &&
+      localStorage.getItem(LocalStorageItems.PlanTokenInfo)
     ) {
       this.isUserLogged$.next(true);
-      return JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name.slice(
-        -3,
-        -2,
-      ) === '_'
-        ? JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name.slice(
-            0,
-            -3,
-          )
-        : JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name;
+      return JSON.parse(
+        `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
+      ).name.slice(-3, -2) === '_'
+        ? JSON.parse(
+            `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
+          ).name.slice(0, -3)
+        : JSON.parse(`${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`)
+            .name;
     }
     return '';
   }
 
   private getPlanUserAvatar(): string {
     if (
-      localStorage.getItem('PlanUserInfo') &&
-      localStorage.getItem('PlanTokenInfo')
+      localStorage.getItem(LocalStorageItems.PlanUserInfo) &&
+      localStorage.getItem(LocalStorageItems.PlanTokenInfo)
     ) {
       this.isUserLogged$.next(true);
-      return JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name.slice(
-        -3,
-        -2,
-      ) === '_'
-        ? JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).name.slice(-2)
+      return JSON.parse(
+        `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
+      ).name.slice(-3, -2) === '_'
+        ? JSON.parse(
+            `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
+          ).name.slice(-2)
         : '01';
     }
     return '';
   }
 
   private clearUserData(): void {
-    localStorage.removeItem('PlanUserInfo');
-    localStorage.removeItem('PlanTokenInfo');
-    localStorage.removeItem('PlanTokenExpiredTime');
+    localStorage.removeItem(LocalStorageItems.PlanUserInfo);
+    localStorage.removeItem(LocalStorageItems.PlanTokenInfo);
+    localStorage.removeItem(LocalStorageItems.PlanTokenExpiredTime);
     this.isUserLogged$.next(false);
   }
 }

@@ -18,6 +18,7 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { RegisterRequestModel } from '../../models/auth.model';
 import { AuthControlService } from '../../services/auth-control.service';
 import { AuthService } from '../../services/auth.service';
@@ -119,7 +120,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     this.upd$ = this.authControlService
       .updateUser(
-        parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
+        parseJwt(
+          localStorage.getItem(LocalStorageItems.PlanTokenInfo) as string,
+        ).userId,
         newUser,
       )
       .subscribe(() => {
@@ -200,7 +203,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
           Validators.required,
         ]),
         loginInput: new FormControl(
-          JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).login,
+          JSON.parse(
+            `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
+          ).login,
           [
             Validators.required,
             Validators.minLength(3),

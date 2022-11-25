@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 
 @Component({
   selector: 'app-welcome',
@@ -14,8 +15,8 @@ export class WelcomeComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    if (localStorage.getItem('PlanTokenInfo') === 'expired') {
-      localStorage.removeItem('PlanTokenInfo');
+    if (localStorage.getItem(LocalStorageItems.PlanTokenInfo) === 'expired') {
+      localStorage.removeItem(LocalStorageItems.PlanTokenInfo);
       this.messageService.add({
         severity: 'warn',
         summary: 'Warn',
