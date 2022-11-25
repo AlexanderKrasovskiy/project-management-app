@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('./pages/auth/auth.module').then((module) => module.AuthModule),
+      import('./auth/auth.module').then((module) => module.AuthModule),
   },
   {
     path: 'search',

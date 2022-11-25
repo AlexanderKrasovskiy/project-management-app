@@ -6,9 +6,9 @@ import { UiPrimengModule } from './ui-primeng/ui-primeng.module';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { SortingPipe } from './pipes/sorting.pipe';
 
-import { DeleteUserService } from '../pages/auth/services/delete-user.service';
-import { AuthControlService } from '../pages/auth/services/auth-control.service';
-import { AuthApiService } from '../pages/auth/services/auth-api.service';
+import { DeleteUserService } from '../auth/services/delete-user.service';
+import { AuthControlService } from '../auth/services/auth-control.service';
+import { AuthApiService } from '../auth/services/auth-api.service';
 import { MainService } from '../pages/main/services/main.service';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { ApiSearchService } from '../pages/search/services/api-search.service';

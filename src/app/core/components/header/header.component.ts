@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { animationFrameScheduler, auditTime, fromEvent } from 'rxjs';
-import { AuthService } from 'src/app/pages/auth/services/auth.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { CreateBoardService } from 'src/app/shared/services/create-board.service';
 import { HeaderService } from '../../services/header.service';
