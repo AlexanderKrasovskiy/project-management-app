@@ -7,8 +7,8 @@ import { GetUserModel, TokenResponseModel } from '../models/auth.model';
   providedIn: 'root',
 })
 export class AuthService {
-  public isAvatarSwap: boolean = false;
-  public images: string[] = [
+  isAvatarSwap: boolean = false;
+  images: string[] = [
     '_01',
     '_02',
     '_03',
@@ -25,11 +25,11 @@ export class AuthService {
     '_14',
   ];
 
-  public isUserLogged$ = new BehaviorSubject<boolean>(false);
+  isUserLogged$ = new BehaviorSubject<boolean>(false);
 
   private TOKEN_LIFE_DURATION = 12;
 
-  public setToken(token: TokenResponseModel): void {
+  setToken(token: TokenResponseModel): void {
     localStorage.setItem(LocalStorageItems.PlanTokenInfo, token.token);
     const datePlus = new Date();
     datePlus.setHours(datePlus.getHours() + this.TOKEN_LIFE_DURATION);
@@ -39,26 +39,26 @@ export class AuthService {
     );
   }
 
-  public setUser(user: GetUserModel): void {
+  setUser(user: GetUserModel): void {
     localStorage.setItem(LocalStorageItems.PlanUserInfo, JSON.stringify(user));
     if (localStorage.getItem(LocalStorageItems.PlanUserInfo)) {
       this.isUserLogged$.next(true);
     }
   }
 
-  public getUserName(): string {
+  getUserName(): string {
     return this.getPlanUserName();
   }
 
-  public getUserAvatar(): string {
+  getUserAvatar(): string {
     return this.getPlanUserAvatar();
   }
 
-  public logoutUser(): void {
+  logoutUser(): void {
     this.clearUserData();
   }
 
-  public hideAvatarChangeModalWindow(): void {
+  hideAvatarChangeModalWindow(): void {
     this.isAvatarSwap = false;
   }
 

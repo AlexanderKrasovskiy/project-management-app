@@ -12,9 +12,9 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class DeleteUserService {
-  public isModalWindow: boolean = false;
-  public titleModalWindow: string = '';
-  public idUser: string = '';
+  isModalWindow: boolean = false;
+  titleModalWindow: string = '';
+  idUser: string = '';
 
   constructor(
     public authService: AuthService,
@@ -25,7 +25,7 @@ export class DeleteUserService {
     private dialog: MatDialog,
   ) {}
 
-  public openDeleteUserModal(): void {
+  openDeleteUserModal(): void {
     const data = this.transLocoService.translate('confirmation.deleteUser');
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
@@ -42,7 +42,7 @@ export class DeleteUserService {
       .subscribe();
   }
 
-  public removeUser() {
+  removeUser() {
     this.authControlService
       .deleteUser(
         parseJwt(

@@ -18,7 +18,7 @@ export class AuthApiService {
     private transLocoService: TranslocoService,
   ) {}
 
-  public register(payload: RegisterRequestModel): Observable<GetUserModel> {
+  register(payload: RegisterRequestModel): Observable<GetUserModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
@@ -47,7 +47,7 @@ export class AuthApiService {
       );
   }
 
-  public login(payload: LoginRequestModel): Observable<TokenResponseModel> {
+  login(payload: LoginRequestModel): Observable<TokenResponseModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
@@ -76,7 +76,7 @@ export class AuthApiService {
       );
   }
 
-  public user(id: string): Observable<GetUserModel> {
+  user(id: string): Observable<GetUserModel> {
     return this.httpClient.get<GetUserModel>(`/users/${id}`).pipe(
       retry(4),
       catchError(() => {
@@ -90,10 +90,7 @@ export class AuthApiService {
     );
   }
 
-  public update(
-    id: string,
-    payload: RegisterRequestModel,
-  ): Observable<GetUserModel> {
+  update(id: string, payload: RegisterRequestModel): Observable<GetUserModel> {
     return this.httpClient.put<GetUserModel>(`/users/${id}`, payload).pipe(
       retry(4),
       catchError((err) => {
@@ -116,7 +113,7 @@ export class AuthApiService {
     );
   }
 
-  public delete(id: string): Observable<void> {
+  delete(id: string): Observable<void> {
     return this.httpClient.delete<void>(`/users/${id}`).pipe(
       retry(4),
       catchError(() => {

@@ -6,12 +6,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
@@ -43,14 +38,13 @@ export class RegComponent implements OnInit, OnDestroy {
   @ViewChild('twicePasswordContainer')
   twicePasswordContainer!: ElementRef<HTMLElement>;
 
-  public regForm!: FormGroup;
+  regForm!: FormGroup;
 
-  public reg$: Subscription = new Subscription();
+  reg$: Subscription = new Subscription();
 
-  public avatar = '01';
+  avatar = '01';
 
   constructor(
-    public fb: FormBuilder,
     public authService: AuthService,
     private authControlService: AuthControlService,
     private router: Router,
@@ -59,25 +53,25 @@ export class RegComponent implements OnInit, OnDestroy {
     private transLocoService: TranslocoService,
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.initializeForm();
     this.primengConfig.ripple = true;
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.reg$.unsubscribe();
   }
 
-  public showAvatarChangeModalWindow(): void {
+  showAvatarChangeModalWindow(): void {
     this.authService.isAvatarSwap = true;
   }
 
-  public changeAvatar(image: string): void {
+  changeAvatar(image: string): void {
     this.avatar = image.slice(-2);
     this.authService.isAvatarSwap = false;
   }
 
-  public onRandomPassword(): void {
+  onRandomPassword(): void {
     const newPassword: string = generatePassword();
 
     const event = new MouseEvent('click', {
@@ -116,7 +110,7 @@ export class RegComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(
       this.regForm.value,
       this.avatar,
@@ -145,7 +139,7 @@ export class RegComponent implements OnInit, OnDestroy {
     });
   }
 
-  public handleErrors(errorType: string): boolean {
+  handleErrors(errorType: string): boolean {
     if (errorType === 'emptyName') {
       return (
         this.regForm.get('nameInput')?.errors?.['required'] &&

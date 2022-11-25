@@ -1,10 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
@@ -26,7 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   login$: Subscription = new Subscription();
 
   constructor(
-    fb: FormBuilder,
     private authControlService: AuthControlService,
     private router: Router,
     private messageService: MessageService,

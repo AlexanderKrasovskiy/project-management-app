@@ -6,12 +6,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
@@ -38,42 +33,41 @@ export class UpdateComponent implements OnInit, OnDestroy {
   @ViewChild('twicePasswordContainer')
   twicePasswordContainer!: ElementRef<HTMLElement>;
 
-  public updateForm!: FormGroup;
+  updateForm!: FormGroup;
 
-  public upd$: Subscription = new Subscription();
+  upd$: Subscription = new Subscription();
 
-  public avatar = this.authService.getUserAvatar();
+  avatar = this.authService.getUserAvatar();
 
   constructor(
+    public authService: AuthService,
+    public deleteUserService: DeleteUserService,
     private authControlService: AuthControlService,
     private router: Router,
-    public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
-    public deleteUserService: DeleteUserService,
     private transLocoService: TranslocoService,
-    public authService: AuthService,
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.initializeForm();
     this.primengConfig.ripple = true;
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.upd$.unsubscribe();
   }
 
-  public showAvatarChangeModalWindow(): void {
+  showAvatarChangeModalWindow(): void {
     this.authService.isAvatarSwap = true;
   }
 
-  public changeAvatar(image: string): void {
+  changeAvatar(image: string): void {
     this.avatar = image.slice(-2);
     this.authService.isAvatarSwap = false;
   }
 
-  public onRandomPassword(): void {
+  onRandomPassword(): void {
     const newPassword: string = generatePassword();
 
     const event = new MouseEvent('click', {
@@ -112,7 +106,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     const newUser: RegisterRequestModel = generateNewUser(
       this.updateForm.value,
       this.avatar,
@@ -135,7 +129,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
       });
   }
 
-  public handleErrors(errorType: string): boolean {
+  handleErrors(errorType: string): boolean {
     if (errorType === 'emptyName') {
       return (
         this.updateForm.get('nameInput')?.errors?.['required'] &&
