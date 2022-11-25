@@ -13,9 +13,9 @@
     <button
       pRipple
       class="btn_add_column"
-      *transloco="let t; read: 'details'"
-      (click)="openDialog()">
-      + {{ t('addColumn') }}
+      *transloco="let transLoco; read: 'details'"
+      (click)="openAddColumnModal()">
+      + {{ transLoco(translations.addColumn) }}
     </button>
   </section>
 </main>

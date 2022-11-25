@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
-import { map, Subscription, tap } from 'rxjs';
+import { filter, map, Subscription, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {
   loadBoard,
@@ -19,28 +19,28 @@ import {
 import { selectColumns } from 'src/app/store/selectors/details.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { LocalStorageItems } from 'src/app/shared/models/common.model';
-import { ColumnModel } from '../models/details.model';
+import { ColumnModel } from '../models/details-api.model';
 import { ColumnModalComponent } from '../components/column-modal/column-modal.component';
+import { DetailsTranslations } from '../models/details-translate.model';
 
 @Component({
   selector: 'app-details',
-  templateUrl: './details-page.component.html',
-  styleUrls: ['./details-page.component.scss'],
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss'],
 })
-export class DetailsPageComponent implements OnInit, AfterViewInit, OnDestroy {
-  subId$!: Subscription;
-
-  subCols$!: Subscription;
-  columns: ColumnModel[] = [];
-
+export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('boardContainer') boardContainer!: ElementRef<HTMLDivElement>;
   boardId = '';
+  subId$!: Subscription;
+  subCols$!: Subscription;
+  columns: ColumnModel[] = [];
+  translations = DetailsTranslations;
 
   constructor(
-    private route: ActivatedRoute,
-    private store: Store,
     public dialog: MatDialog,
     private renderer2: Renderer2,
+    private route: ActivatedRoute,
+    private store: Store,
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +53,11 @@ export class DetailsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setBoardBackGround();
   }
 
+  ngOnDestroy(): void {
+    this.subId$.unsubscribe();
+    this.subCols$.unsubscribe();
+  }
+
   dispatchLoadBoard() {
     this.subId$ = this.route.params
       .pipe(
@@ -60,15 +65,20 @@ export class DetailsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         tap((id) => {
           this.boardId = id;
         }),
+        tap((id: string) => this.store.dispatch(loadBoard({ id }))),
       )
-      .subscribe((id: string) => this.store.dispatch(loadBoard({ id })));
+      .subscribe();
   }
 
   setColumnsProperty() {
-    // eslint-disable-next-line @ngrx/no-store-subscription
-    this.subCols$ = this.store.select(selectColumns).subscribe((cols) => {
-      this.columns = [...cols];
-    });
+    this.subCols$ = this.store
+      .select(selectColumns)
+      .pipe(
+        tap((cols) => {
+          this.columns = [...cols];
+        }),
+      )
+      .subscribe();
   }
 
   setBoardBackGround() {
@@ -96,7 +106,9 @@ export class DetailsPageComponent implements OnInit, AfterViewInit, OnDestroy {
       },
     } = event;
 
-    if (prevIdx === currIdx) return;
+    if (prevIdx === currIdx) {
+      return;
+    }
 
     moveItemInArray(this.columns, prevIdx, currIdx);
 
@@ -105,21 +117,19 @@ export class DetailsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  openDialog(): void {
-    const data = { title: '' };
+  openAddColumnModal(): void {
+    const data = '';
     const dialogRef = this.dialog.open(ColumnModalComponent, {
       data,
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((title) => {
-      if (!title) return;
-      this.store.dispatch(createColumn({ title }));
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subId$.unsubscribe();
-    this.subCols$.unsubscribe();
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((title) => !!title),
+        tap((title) => this.store.dispatch(createColumn({ title }))),
+      )
+      .subscribe();
   }
 }

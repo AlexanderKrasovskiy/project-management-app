@@ -11,7 +11,7 @@ import {
   TaskModel,
   UpdateTaskPayload,
   UpdateTaskResponse,
-} from '../models/details.model';
+} from '../models/details-api.model';
 
 @Injectable()
 export class DetailsService {

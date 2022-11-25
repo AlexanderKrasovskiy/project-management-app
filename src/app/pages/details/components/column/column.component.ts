@@ -20,8 +20,16 @@ import {
 } from 'src/app/store/actions/details.actions';
 import { TranslocoService } from '@ngneat/transloco';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
-import { ColumnModel, TaskModel } from '../../models/details.model';
+import { filter, tap } from 'rxjs';
+import {
+  ColumnModel,
+  TaskModel,
+  UpdateColumnPayload,
+  UpdateTaskPayload,
+} from '../../models/details-api.model';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
+import { CreateTaskData } from '../../models/task-modal.model';
+import { DetailsTranslations } from '../../models/details-translate.model';
 
 @Component({
   selector: 'app-column',
@@ -30,22 +38,23 @@ import { TaskModalComponent } from '../task-modal/task-modal.component';
 })
 export class ColumnComponent implements OnChanges {
   @Input() column!: ColumnModel;
-
-  isTitleEditable = false;
   @ViewChild('headingInput') headingInput!: ElementRef<HTMLInputElement>;
   tempTitle = '';
-
+  isTitleEditable = false;
   tasks: TaskModel[] = [];
+  translations = DetailsTranslations;
 
   constructor(
     public dialog: MatDialog,
     private store: Store,
-    private transloco: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
   ngOnChanges(): void {
     this.tempTitle = this.column.title;
-    if (this.column.tasks) this.tasks = [...this.column.tasks];
+    if (this.column.tasks) {
+      this.tasks = [...this.column.tasks];
+    }
   }
 
   showInput() {
@@ -60,10 +69,14 @@ export class ColumnComponent implements OnChanges {
   updateTitle() {
     this.isTitleEditable = false;
     const title = this.headingInput.nativeElement.value;
-    if (!title || title === this.column.title) return;
+
+    if (!title || title === this.column.title) {
+      return;
+    }
+
     this.tempTitle = title;
 
-    const body = {
+    const body: UpdateColumnPayload = {
       order: this.column.order,
       title,
     };
@@ -71,37 +84,50 @@ export class ColumnComponent implements OnChanges {
   }
 
   openDeleteColumnModal(): void {
-    const data = this.transloco.translate('details.deleteColumn');
+    const data = this.transLoco.translate(DetailsTranslations.deleteColumn);
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data,
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((confirm) => {
-      if (!confirm) return;
-      this.store.dispatch(deleteColumn({ columnId: this.column.id }));
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((confirmValue) => !!confirmValue),
+        tap(() =>
+          this.store.dispatch(deleteColumn({ columnId: this.column.id })),
+        ),
+      )
+      .subscribe();
   }
 
   openCreateTaskModal(): void {
-    const data = {
-      heading: this.transloco.translate('details.createTask'),
+    const data: CreateTaskData = {
+      heading: this.transLoco.translate(DetailsTranslations.createTask),
       title: '',
       description: '',
     };
+
     const dialogRef = this.dialog.open(TaskModalComponent, {
       data,
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((body) => {
-      if (!body?.title || !body?.description) return;
-      const { title, description } = body;
-      this.store.dispatch(
-        createTask({ columnId: this.column.id, body: { title, description } }),
-      );
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((task) => task?.title && task?.description),
+        tap(({ title, description }) => {
+          this.store.dispatch(
+            createTask({
+              columnId: this.column.id,
+              body: { title, description },
+            }),
+          );
+        }),
+      )
+      .subscribe();
   }
 
   dropTask(event: CdkDragDrop<TaskModel[]>) {
@@ -109,7 +135,7 @@ export class ColumnComponent implements OnChanges {
     const currIdx = event.currentIndex;
     const { id: taskId, title, description, userId } = event.item.data;
 
-    const body = {
+    const body: UpdateTaskPayload = {
       title,
       order: currIdx + 1,
       description,
@@ -119,7 +145,9 @@ export class ColumnComponent implements OnChanges {
     };
 
     if (event.previousContainer === event.container) {
-      if (prevIdx === currIdx) return;
+      if (prevIdx === currIdx) {
+        return;
+      }
 
       moveItemInArray(event.container.data, prevIdx, currIdx);
 
@@ -128,24 +156,25 @@ export class ColumnComponent implements OnChanges {
       this.store.dispatch(
         updateTask({ columnId: this.column.id, taskId, body }),
       );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        prevIdx,
-        currIdx,
-      );
-
-      const targetColId = event.container.element.nativeElement.dataset[
-        'id'
-      ] as string;
-      const oldColId = event.previousContainer.element.nativeElement.dataset[
-        'id'
-      ] as string;
-
-      body.columnId = targetColId;
-
-      this.store.dispatch(updateTask({ columnId: oldColId, taskId, body }));
+      return;
     }
+
+    transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      prevIdx,
+      currIdx,
+    );
+
+    const targetColId = event.container.element.nativeElement.dataset[
+      'id'
+    ] as string;
+    const oldColId = event.previousContainer.element.nativeElement.dataset[
+      'id'
+    ] as string;
+
+    body.columnId = targetColId;
+
+    this.store.dispatch(updateTask({ columnId: oldColId, taskId, body }));
   }
 }
