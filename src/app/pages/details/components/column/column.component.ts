@@ -38,11 +38,12 @@ import { DetailsTranslations } from '../../models/details-translate.model';
 })
 export class ColumnComponent implements OnChanges {
   @Input() column!: ColumnModel;
-  @ViewChild('headingInput') headingInput!: ElementRef<HTMLInputElement>;
   tempTitle = '';
   isTitleEditable = false;
   tasks: TaskModel[] = [];
   translations = DetailsTranslations;
+  @ViewChild('headingInput')
+  private headingInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     public dialog: MatDialog,

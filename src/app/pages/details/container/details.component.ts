@@ -29,12 +29,13 @@ import { DetailsTranslations } from '../models/details-translate.model';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('boardContainer') boardContainer!: ElementRef<HTMLDivElement>;
-  boardId = '';
-  subId$!: Subscription;
-  subCols$!: Subscription;
   columns: ColumnModel[] = [];
   translations = DetailsTranslations;
+  @ViewChild('boardContainer')
+  private boardContainer!: ElementRef<HTMLDivElement>;
+  private boardId = '';
+  private subId$!: Subscription;
+  private subCols$!: Subscription;
 
   constructor(
     public dialog: MatDialog,
@@ -56,45 +57,6 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.subId$.unsubscribe();
     this.subCols$.unsubscribe();
-  }
-
-  dispatchLoadBoard() {
-    this.subId$ = this.route.params
-      .pipe(
-        map((params) => params['id']),
-        tap((id) => {
-          this.boardId = id;
-        }),
-        tap((id: string) => this.store.dispatch(loadBoard({ id }))),
-      )
-      .subscribe();
-  }
-
-  setColumnsProperty() {
-    this.subCols$ = this.store
-      .select(selectColumns)
-      .pipe(
-        tap((cols) => {
-          this.columns = [...cols];
-        }),
-      )
-      .subscribe();
-  }
-
-  setBoardBackGround() {
-    const boardImages = localStorage.getItem(LocalStorageItems.BoardImage);
-
-    if (boardImages) {
-      JSON.parse(boardImages).forEach((el: { id: string; image: string }) => {
-        if (el.id === this.boardId) {
-          this.renderer2.setStyle(
-            this.boardContainer.nativeElement,
-            'background-image',
-            `url(assets/images/${el.image}.jpg)`,
-          );
-        }
-      });
-    }
   }
 
   dropCols(event: CdkDragDrop<string[]>) {
@@ -131,5 +93,44 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
         tap((title) => this.store.dispatch(createColumn({ title }))),
       )
       .subscribe();
+  }
+
+  private dispatchLoadBoard() {
+    this.subId$ = this.route.params
+      .pipe(
+        map((params) => params['id']),
+        tap((id) => {
+          this.boardId = id;
+        }),
+        tap((id: string) => this.store.dispatch(loadBoard({ id }))),
+      )
+      .subscribe();
+  }
+
+  private setColumnsProperty() {
+    this.subCols$ = this.store
+      .select(selectColumns)
+      .pipe(
+        tap((cols) => {
+          this.columns = [...cols];
+        }),
+      )
+      .subscribe();
+  }
+
+  private setBoardBackGround() {
+    const boardImages = localStorage.getItem(LocalStorageItems.BoardImage);
+
+    if (boardImages) {
+      JSON.parse(boardImages).forEach((el: { id: string; image: string }) => {
+        if (el.id === this.boardId) {
+          this.renderer2.setStyle(
+            this.boardContainer.nativeElement,
+            'background-image',
+            `url(assets/images/${el.image}.jpg)`,
+          );
+        }
+      });
+    }
   }
 }
