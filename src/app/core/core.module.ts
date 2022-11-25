@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterModule } from '@angular/router';
-import { DetailsService } from 'src/app/pages/details/services/details-api.service';
+import { DetailsService } from 'src/app/details/services/details-api.service';
 import { environment } from '../../environments/environment';
 
 import { ApiInterceptor } from './interceptors/api.interceptor';
@@ -17,7 +17,7 @@ import { ApiMainService } from '../pages/main/services/api-main.service';
 import { currentBoardReducer } from '../store/reducers/details.reducer';
 import { DetailsEffects } from '../store/effects/details.effects';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { DetailsErrorHandlerService } from '../pages/details/services/details-error-handler.service';
+import { DetailsErrorHandlerService } from '../details/services/details-error-handler.service';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderService } from './services/header.service';

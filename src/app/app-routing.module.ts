@@ -41,7 +41,7 @@ const routes: Routes = [
     path: 'boards/:id',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./pages/details/details.module').then((m) => m.DetailsModule),
+      import('./details/details.module').then((m) => m.DetailsModule),
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' },
