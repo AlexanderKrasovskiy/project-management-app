@@ -14,9 +14,7 @@ const routes: Routes = [
     path: 'welcome',
     canActivate: [NoAuthGuard],
     loadChildren: () =>
-      import('./pages/welcome/welcome.module').then(
-        (module) => module.WelcomeModule,
-      ),
+      import('./welcome/welcome.module').then((module) => module.WelcomeModule),
   },
   {
     path: 'auth',
