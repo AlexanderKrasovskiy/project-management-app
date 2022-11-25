@@ -1,7 +1,7 @@
-:host{
+:host {
   display: block;
   .search {
-    background-image: url('../../../../../assets/images/search-keyboard.jpg');
+    background-image: url('../../../../assets/images/search-keyboard.jpg');
     background-size: cover;
     background-repeat: repeat;
     width: 100%;
@@ -83,7 +83,7 @@
 }
 
 .search-card {
-  background-image: url('../../../../../assets/images/search-green.png');
+  background-image: url('../../../../assets/images/search-green.png');
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -125,7 +125,7 @@
 
 .search-small-circle {
   opacity: 0.8;
-  background-image: url('../../../../../assets/images/branch1-05.png');
+  background-image: url('../../../../assets/images/branch1-05.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right;

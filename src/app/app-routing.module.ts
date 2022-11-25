@@ -27,9 +27,7 @@ const routes: Routes = [
     path: 'search',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./pages/search/search.module').then(
-        (module) => module.SearchModule,
-      ),
+      import('./search/search.module').then((module) => module.SearchModule),
   },
   {
     path: 'boards',

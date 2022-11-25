@@ -11,7 +11,7 @@ import { AuthControlService } from '../auth/services/auth-control.service';
 import { AuthApiService } from '../auth/services/auth-api.service';
 import { MainService } from '../main/services/main.service';
 import { TranslocoRootModule } from '../transloco-root.module';
-import { ApiSearchService } from '../pages/search/services/api-search.service';
+import { ApiSearchService } from '../search/services/api-search.service';
 
 @NgModule({
   declarations: [ConfirmationModalComponent, SortingPipe],
