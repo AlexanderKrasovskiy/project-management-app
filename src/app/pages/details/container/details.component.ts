@@ -20,6 +20,7 @@ import { selectColumns } from 'src/app/store/selectors/details.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { ColumnModel } from '../models/details-api.model';
 import { ColumnModalComponent } from '../components/column-modal/column-modal.component';
+import { DetailsTranslations } from '../models/details-translate.model';
 
 @Component({
   selector: 'app-details',
@@ -32,6 +33,7 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   subId$!: Subscription;
   subCols$!: Subscription;
   columns: ColumnModel[] = [];
+  translations = DetailsTranslations;
 
   constructor(
     public dialog: MatDialog,

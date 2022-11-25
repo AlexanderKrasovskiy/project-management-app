@@ -42,6 +42,7 @@ export class ColumnComponent implements OnChanges {
   tempTitle = '';
   isTitleEditable = false;
   tasks: TaskModel[] = [];
+  translations = DetailsTranslations;
 
   constructor(
     public dialog: MatDialog,

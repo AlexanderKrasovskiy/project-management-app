@@ -9,4 +9,11 @@ export enum DetailsTranslations {
   editTask = 'details.editTask',
   deleteColumn = 'details.deleteColumn',
   createTask = 'details.createTask',
+  addColumn = 'addColumn',
+  taskTitle = 'taskTitle',
+  confirm = 'confirm',
+  cancel = 'cancel',
+  createColumn = 'createColumn',
+  addTask = 'addTask',
+  boardTitle = 'boardTitle',
 }
