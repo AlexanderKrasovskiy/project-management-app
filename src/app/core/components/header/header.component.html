@@ -1,4 +1,4 @@
-<ng-container *transloco="let t; read: 'header'">
+<ng-container *transloco="let transLoco; read: 'header'">
   <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
     <div class="flex flex-column gap-3">
       <p class="user-name-sidebar">
@@ -14,8 +14,8 @@
           pButton
           pRipple
           type="button"
-          label="{{ t('create') }}"
-          (click)="this.createBoardMoadal.openCreateBoardModal()"
+          label="{{ transLoco('create') }}"
+          (click)="this.createBoard.openCreateBoardModal()"
           routerLink="/boards"
           class="p-button-raised p-button-primary p-button-text button-custom"
           (click)="visibleSidebar1 = false"></button>
@@ -24,7 +24,7 @@
           pButton
           pRipple
           type="button"
-          label="{{ t('allBoards') }}"
+          label="{{ transLoco('allBoards') }}"
           class="p-button-raised p-button-secondary p-button-text button-custom"
           routerLink="/boards"
           (click)="visibleSidebar1 = false"></button>
@@ -33,7 +33,7 @@
           pButton
           pRipple
           type="button"
-          label="{{ t('edit') }}"
+          label="{{ transLoco('edit') }}"
           class="p-button-raised p-button-warning p-button-text button-custom"
           routerLink="/auth/update"
           (click)="visibleSidebar1 = false"></button>
@@ -42,7 +42,7 @@
           pButton
           pRipple
           type="button"
-          label="{{ t('exit') }}"
+          label="{{ transLoco('exit') }}"
           class="p-button-raised p-button-warning p-button-text button-custom"
           (click)="this.authService.logoutUser(); visibleSidebar1 = false"
           routerLink="/welcome"></button>
@@ -53,7 +53,7 @@
         pButton
         pRipple
         type="button"
-        label="{{ t('welcome') }}"
+        label="{{ transLoco('welcome') }}"
         class="p-button-raised p-button-primary p-button-text button-custom"
         routerLink="/welcome"
         (click)="visibleSidebar1 = false"></button>
@@ -62,7 +62,7 @@
         pButton
         pRipple
         type="button"
-        label="{{ t('login') }}"
+        label="{{ transLoco('login') }}"
         (click)="loginPage(); visibleSidebar1 = false"
         class="p-button-raised p-button-secondary p-button-text button-custom"></button>
       <button
@@ -70,7 +70,7 @@
         pButton
         pRipple
         type="button"
-        label="{{ t('signup') }}"
+        label="{{ transLoco('signup') }}"
         class="p-button-raised p-button-secondary p-button-text button-custom"
         (click)="authPage(); visibleSidebar1 = false"></button>
     </div>
@@ -112,7 +112,7 @@
             #search
             (keyup.enter)="this.filter.getKeyWord(search.value)"
             (input)="this.filter.getKeyWord(search.value)"
-            placeholder="{{ t('search') }}"
+            placeholder="{{ transLoco('search') }}"
             class="w-10rem md:w-12rem lg:w-auto search-input" />
         </span>
 
@@ -120,8 +120,8 @@
           pButton
           pRipple
           type="button"
-          label="{{ t('create') }}"
-          (click)="this.createBoardMoadal.openCreateBoardModal()"
+          label="{{ transLoco('create') }}"
+          (click)="this.createBoard.openCreateBoardModal()"
           routerLink="/boards"
           class="hidden lg:block p-button-raised p-button-primary p-button-text button-custom"></button>
 
@@ -129,7 +129,7 @@
           pButton
           pRipple
           type="button"
-          label="{{ t('allBoards') }}"
+          label="{{ transLoco('allBoards') }}"
           class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"
           routerLink="/boards"></button>
 
@@ -168,7 +168,7 @@
         pButton
         pRipple
         type="button"
-        label="{{ t('login') }}"
+        label="{{ transLoco('login') }}"
         (click)="loginPage()"
         class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"></button>
       <button
@@ -176,7 +176,7 @@
         pButton
         pRipple
         type="button"
-        label="{{ t('signup') }}"
+        label="{{ transLoco('signup') }}"
         class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"
         (click)="authPage()"></button>
       <p-selectButton

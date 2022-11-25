@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { CreateBoardService } from 'src/app/shared/services/create-board.service';
 import { loadBoards } from 'src/app/store/actions/boards.action';
 import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
@@ -42,7 +43,7 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    const storage = localStorage.getItem('BoardImage');
+    const storage = localStorage.getItem(LocalStorageItems.BoardImage);
 
     if (storage) {
       JSON.parse(storage).forEach((el: BoardLocalStoreModel) => {

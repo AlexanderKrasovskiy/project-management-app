@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   login$: Subscription = new Subscription();
 
   constructor(
+    public fb: FormBuilder,
     private authControlService: AuthControlService,
     private router: Router,
-    public fb: FormBuilder,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
-    private translocoService: TranslocoService,
+    private transLocoService: TranslocoService,
   ) {}
 
   public ngOnInit(): void {
@@ -51,10 +51,28 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: this.translocoService.translate('login.successfulLogin'),
+        detail: this.transLocoService.translate('login.successfulLogin'),
       });
       this.router.navigate(['boards']);
     });
+  }
+
+  public handleErrors(errorType: string): boolean {
+    if (errorType === 'emptyLogin') {
+      return (
+        this.loginForm.get('loginInput')?.errors?.['required'] &&
+        (this.loginForm.get('loginInput')?.dirty ||
+          this.loginForm.get('loginInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyPassword') {
+      return (
+        this.loginForm.get('passwordInput')?.errors?.['required'] &&
+        (this.loginForm.get('passwordInput')?.dirty ||
+          this.loginForm.get('passwordInput')?.touched)
+      );
+    }
+    return false;
   }
 
   private initializeForm(): void {

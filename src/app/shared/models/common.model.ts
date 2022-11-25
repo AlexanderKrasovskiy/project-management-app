@@ -29,3 +29,11 @@ export const PASSWORD_ALL: RegExp =
 export enum MessageError {
   boardNotFound = 'Board was not founded!',
 }
+
+export enum LocalStorageItems {
+  PlanLanguageInfo = 'PlanLanguageInfo',
+  PlanTokenInfo = 'PlanTokenInfo',
+  PlanTokenExpiredTime = 'PlanTokenExpiredTime',
+  PlanUserInfo = 'PlanUserInfo',
+  BoardImage = 'BoardImage',
+}

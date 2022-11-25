@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { deleteBoard, updateBoard } from 'src/app/store/actions/boards.action';
 import { MainModalComponent } from '../components/main-modal/main-modal.component';
 import { BoardData, BoardLocalStoreModel } from '../models/main.model';
@@ -78,7 +79,7 @@ export class MainService {
   }
 
   updateLocalStore(id: string, image: string): void {
-    const storage = localStorage.getItem('BoardImage');
+    const storage = localStorage.getItem(LocalStorageItems.BoardImage);
     const boardImg: BoardLocalStoreModel = { id, image };
 
     if (storage) {
@@ -92,9 +93,15 @@ export class MainService {
         storArr.push(boardImg);
       }
 
-      localStorage.setItem('BoardImage', JSON.stringify(storArr));
+      localStorage.setItem(
+        LocalStorageItems.BoardImage,
+        JSON.stringify(storArr),
+      );
     } else {
-      localStorage.setItem('BoardImage', JSON.stringify([boardImg]));
+      localStorage.setItem(
+        LocalStorageItems.BoardImage,
+        JSON.stringify([boardImg]),
+      );
     }
   }
 
@@ -103,13 +110,16 @@ export class MainService {
   }
 
   private removeBoard(id: string): void {
-    const storage = localStorage.getItem('BoardImage');
+    const storage = localStorage.getItem(LocalStorageItems.BoardImage);
 
     if (storage) {
       const storArr = JSON.parse(storage).filter(
         (el: BoardLocalStoreModel) => el.id !== id,
       );
-      localStorage.setItem('BoardImage', JSON.stringify(storArr));
+      localStorage.setItem(
+        LocalStorageItems.BoardImage,
+        JSON.stringify(storArr),
+      );
     }
 
     this.deleteBoard(id);
