@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ReplaySubject, Subscription } from 'rxjs';
+import { ReplaySubject, Subscription, tap } from 'rxjs';
 import { HeaderService } from 'src/app/core/services/header.service';
 import { TaskModel } from '../../models/search.model';
 import { FilterService } from '../../services/filter.service';
@@ -25,7 +25,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribe = this.search
       .getTasks()
-      .subscribe((task) => this.tasksSubj$.next(task));
+      .pipe(tap((task) => this.tasksSubj$.next(task)))
+      .subscribe();
   }
 
   ngOnDestroy(): void {

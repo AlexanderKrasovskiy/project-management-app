@@ -9,8 +9,8 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
 import { LocalStorageItems } from 'src/app/shared/models/common.model';
+import { Subscription, tap } from 'rxjs';
 import { CreateBoardService } from 'src/app/shared/services/create-board.service';
 import { loadBoards } from 'src/app/store/actions/boards.action';
 import { selectCurrentBoards } from 'src/app/store/selectors/boards.selector';
@@ -47,17 +47,21 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (storage) {
       JSON.parse(storage).forEach((el: BoardLocalStoreModel) => {
-        this.subscribe = this.elems.changes.subscribe(() => {
-          this.elems.forEach((e) => {
-            if (e.nativeElement.id === el.id) {
-              this.renderer2.setStyle(
-                e.nativeElement,
-                'background-image',
-                `url(assets/images/${el.image}-small.png)`,
-              );
-            }
-          });
-        });
+        this.subscribe = this.elems.changes
+          .pipe(
+            tap(() => {
+              this.elems.forEach((e) => {
+                if (e.nativeElement.id === el.id) {
+                  this.renderer2.setStyle(
+                    e.nativeElement,
+                    'background-image',
+                    `url(assets/images/${el.image}-small.png)`,
+                  );
+                }
+              });
+            }),
+          )
+          .subscribe();
       });
     }
   }
