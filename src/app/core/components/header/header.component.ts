@@ -15,14 +15,13 @@ import { HeaderService } from '../../services/header.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
-  public stateOptions;
+  stateOptions;
 
-  public value1 =
-    localStorage.getItem(LocalStorageItems.PlanLanguageInfo) || 'en';
+  value1 = localStorage.getItem(LocalStorageItems.PlanLanguageInfo) || 'en';
 
-  public inScroll = false;
+  inScroll = false;
 
-  public visibleSidebar1!: boolean;
+  visibleSidebar1!: boolean;
 
   constructor(
     public createBoard: CreateBoardService,

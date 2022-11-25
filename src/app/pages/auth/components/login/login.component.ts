@@ -21,12 +21,12 @@ import { generateLoginUser } from '../../utils/generate.util';
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  public loginForm!: FormGroup;
+  loginForm!: FormGroup;
 
   login$: Subscription = new Subscription();
 
   constructor(
-    public fb: FormBuilder,
+    fb: FormBuilder,
     private authControlService: AuthControlService,
     private router: Router,
     private messageService: MessageService,
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private transLocoService: TranslocoService,
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.initializeForm();
     this.primengConfig.ripple = true;
   }
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.login$.unsubscribe();
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     const loginUser: LoginRequestModel = generateLoginUser(
       this.loginForm.value,
     );
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  public handleErrors(errorType: string): boolean {
+  handleErrors(errorType: string): boolean {
     if (errorType === 'emptyLogin') {
       return (
         this.loginForm.get('loginInput')?.errors?.['required'] &&

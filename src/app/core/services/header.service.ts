@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class HeaderService {
-  public keyWord: string = '';
+  keyWord: string = '';
 
   constructor(private router: Router) {}
 
-  public getKeyWord(value: string): void {
+  getKeyWord(value: string): void {
     this.keyWord = value.trim();
     if (value.trim()) {
       this.router.navigate(['/search']);
