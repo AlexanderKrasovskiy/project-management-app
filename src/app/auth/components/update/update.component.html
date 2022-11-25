@@ -22,12 +22,17 @@
               id="nameInput"
               pInputText
               class="update-input-inside"
+              pTooltip="{{ transLoco('tooltipName') }}"
+              tooltipEvent="focus"
               [ngClass]="(updateForm.get('nameInput')?.errors?.['required'] &&
             updateForm.get('nameInput')?.touched) ? 'error-border' : '' "
               formControlName="nameInput" />
             <label for="nameInput">{{ transLoco('name') }}</label>
             <div class="input-error" *ngIf="handleErrors('emptyName')">
               {{ transLoco('emptyField') }}
+            </div>
+            <div class="input-error" *ngIf="handleErrors('wrongLengthName')">
+              {{ transLoco('wrongLengthName') }}
             </div>
           </div>
 
@@ -47,7 +52,7 @@
               {{ transLoco('emptyField') }}
             </div>
             <div class="input-error" *ngIf="handleErrors('wrongLengthLogin')">
-              {{ transLoco('wrongLength') }}
+              {{ transLoco('wrongLengthLogin') }}
             </div>
           </div>
 

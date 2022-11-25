@@ -36,8 +36,12 @@
     "signup": "Sign Up",
     "successfulRegistration": "Successful registration!",
     "successfulLogin": "Successful login!",
-    "wrongLength": "Check login length",
+    "wrongLengthLogin": "Check login length",
     "tooltipLogin": "Your login should contain from 3 to 30 characters",
+    "wrongLengthName": "Check name length",
+    "tooltipName": "Your login should contain from 3 to 20 characters",
+    "titleAvatar": "Choose avatar",
+    "cancel": "Cancel",
     "randomPassword": "Generate password"
   },
   "login": {
@@ -62,8 +66,10 @@
     "tooltipPassword": "Your password should contain at least 8 characters, a mixture of both uppercase and lowercase letters, a mixture of letters and numbers, inclusion of at least one special character, e.g., ! @ # ? ]",
     "update": "Update",
     "successful": "Successful update!",
-    "wrongLength": "Check login length",
+    "wrongLengthLogin": "Check login length",
     "tooltipLogin": "Your login should contain from 3 to 30 characters",
+    "wrongLengthName": "Check name length",
+    "tooltipName": "Your name should contain from 3 to 20 characters",
     "titleAvatar": "Choose avatar",
     "cancel": "Cancel",
     "randomPassword": "Generate password"

@@ -143,6 +143,15 @@ export class RegComponent implements OnInit, OnDestroy {
           this.regForm.get('nameInput')?.touched)
       );
     }
+    if (errorType === 'wrongLengthName') {
+      return (
+        (!this.regForm.get('nameInput')?.errors?.['required'] &&
+          this.regForm.get('nameInput')?.errors?.['minlength']) ||
+        (this.regForm.get('nameInput')?.errors?.['maxlength'] &&
+          (this.regForm.get('nameInput')?.dirty ||
+            this.regForm.get('nameInput')?.touched))
+      );
+    }
     if (errorType === 'emptyLogin') {
       return (
         this.regForm.get('loginInput')?.errors?.['required'] &&
@@ -199,7 +208,11 @@ export class RegComponent implements OnInit, OnDestroy {
   private initializeForm(): void {
     this.regForm = new FormGroup(
       {
-        nameInput: new FormControl('', [Validators.required]),
+        nameInput: new FormControl('', [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ]),
         loginInput: new FormControl('', [
           Validators.required,
           Validators.minLength(3),
