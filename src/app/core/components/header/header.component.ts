@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     public authService: AuthService,
     public dialog: MatDialog,
     public filter: HeaderService,
-    private transLocoService: TranslocoService,
+    private transLoco: TranslocoService,
     private router: Router,
   ) {
     this.stateOptions = [
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.transLocoService.setActiveLang(
+    this.transLoco.setActiveLang(
       localStorage.getItem(LocalStorageItems.PlanLanguageInfo) || 'en',
     );
 
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   }
 
   changeLang(lang: string) {
-    this.transLocoService.setActiveLang(lang);
+    this.transLoco.setActiveLang(lang);
     localStorage.setItem(LocalStorageItems.PlanLanguageInfo, lang);
   }
 

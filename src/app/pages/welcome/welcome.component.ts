@@ -11,7 +11,7 @@ import { LocalStorageItems } from 'src/app/shared/models/common.model';
 export class WelcomeComponent implements AfterViewInit {
   constructor(
     private messageService: MessageService,
-    private transLocoService: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
   ngAfterViewInit() {
@@ -20,7 +20,7 @@ export class WelcomeComponent implements AfterViewInit {
       this.messageService.add({
         severity: 'warn',
         summary: 'Warn',
-        detail: this.transLocoService.translate('welcome.expired'),
+        detail: this.transLoco.translate('welcome.expired'),
       });
     }
   }

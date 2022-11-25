@@ -15,7 +15,7 @@ export class AuthApiService {
   constructor(
     private httpClient: HttpClient,
     private messageService: MessageService,
-    private transLocoService: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
   register(payload: RegisterRequestModel): Observable<GetUserModel> {
@@ -28,12 +28,12 @@ export class AuthApiService {
       .pipe(
         retry(4),
         catchError((err) => {
-          let errorText: string = this.transLocoService.translate(
+          let errorText: string = this.transLoco.translate(
             'authApiService.notCreate',
           );
           errorText =
             err.error.statusCode === 409
-              ? `${errorText}\n${this.transLocoService.translate(
+              ? `${errorText}\n${this.transLoco.translate(
                   'authApiService.alreadyExists',
                 )}`
               : errorText;
@@ -57,12 +57,12 @@ export class AuthApiService {
       .pipe(
         retry(4),
         catchError((err) => {
-          let errorText: string = this.transLocoService.translate(
+          let errorText: string = this.transLoco.translate(
             'authApiService.notLogin',
           );
           errorText =
             err.error.statusCode === 403
-              ? `${errorText}\n${this.transLocoService.translate(
+              ? `${errorText}\n${this.transLoco.translate(
                   'authApiService.check',
                 )}`
               : errorText;
@@ -83,7 +83,7 @@ export class AuthApiService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.transLocoService.translate('authApiService.notFound'),
+          detail: this.transLoco.translate('authApiService.notFound'),
         });
         return EMPTY;
       }),
@@ -94,12 +94,12 @@ export class AuthApiService {
     return this.httpClient.put<GetUserModel>(`/users/${id}`, payload).pipe(
       retry(4),
       catchError((err) => {
-        let errorText: string = this.transLocoService.translate(
+        let errorText: string = this.transLoco.translate(
           'authApiService.notUpdate',
         );
         errorText =
           err.error.statusCode === 500
-            ? `${errorText}\n${this.transLocoService.translate(
+            ? `${errorText}\n${this.transLoco.translate(
                 'authApiService.perhapsExists',
               )}`
             : errorText;
@@ -120,7 +120,7 @@ export class AuthApiService {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.transLocoService.translate('authApiService.notDelete'),
+          detail: this.transLoco.translate('authApiService.notDelete'),
         });
         return EMPTY;
       }),
