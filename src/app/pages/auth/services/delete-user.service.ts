@@ -20,12 +20,12 @@ export class DeleteUserService {
     private router: Router,
     private authControlService: AuthControlService,
     private messageService: MessageService,
-    private translocoService: TranslocoService,
+    private transLocoService: TranslocoService,
     private dialog: MatDialog,
   ) {}
 
   public openDeleteUserModal(): void {
-    const data = this.translocoService.translate('confirmation.deleteUser');
+    const data = this.transLocoService.translate('confirmation.deleteUser');
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data,
@@ -50,7 +50,7 @@ export class DeleteUserService {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: this.translocoService.translate('deleteUser.successful'),
+          detail: this.transLocoService.translate('deleteUser.successful'),
         });
         this.authService.logoutUser();
         this.router.navigate(['welcome']);

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
-    private translocoService: TranslocoService,
+    private transLocoService: TranslocoService,
   ) {}
 
   public ngOnInit(): void {
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: this.translocoService.translate('login.successfulLogin'),
+        detail: this.transLocoService.translate('login.successfulLogin'),
       });
       this.router.navigate(['boards']);
     });

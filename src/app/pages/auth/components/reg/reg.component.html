@@ -1,4 +1,4 @@
-<ng-container *transloco="let t; read: 'registration'">
+<ng-container *transloco="let transLoco; read: 'registration'">
   <div class="overflow-y-auto md:overflow-y-hidden reg-wrap">
     <div class="card-simple reg-card shadow-4">
       <div
@@ -7,7 +7,7 @@
         [ngStyle]="{
           'background-image': 'url(assets/images/svg/' + this.avatar + '.svg)'
         }"></div>
-      <h2 class="font-light reg-title">{{ t('title') }}</h2>
+      <h2 class="font-light reg-title">{{ transLoco('title') }}</h2>
 
       <form
         [formGroup]="regForm"
@@ -24,9 +24,9 @@
               class="reg-input-inside"
               [ngClass]="(regForm.get('nameInput')?.errors?.['required'] && regForm.get('nameInput')?.touched) ? 'error-border' : '' "
               formControlName="nameInput" />
-            <label for="nameInput">{{ t('name') }}</label>
+            <label for="nameInput">{{ transLoco('name') }}</label>
             <div class="input-error" *ngIf="handleErrors('emptyName')">
-              {{ t('emptyField') }}
+              {{ transLoco('emptyField') }}
             </div>
           </div>
 
@@ -37,16 +37,16 @@
               id="loginInput"
               pInputText
               class="reg-input-inside"
-              pTooltip="{{ t('tooltipLogin') }}"
+              pTooltip="{{ transLoco('tooltipLogin') }}"
               tooltipEvent="focus"
               [ngClass]="(regForm.get('loginInput')?.errors?.['required'] && regForm.get('loginInput')?.touched) ? 'error-border' : '' "
               formControlName="loginInput" />
-            <label for="loginInput">{{ t('login') }}</label>
+            <label for="loginInput">{{ transLoco('login') }}</label>
             <div class="input-error" *ngIf="handleErrors('emptyLogin')">
-              {{ t('emptyField') }}
+              {{ transLoco('emptyField') }}
             </div>
             <div class="input-error" *ngIf="handleErrors('wrongLengthLogin')">
-              {{ t('wrongLength') }}
+              {{ transLoco('wrongLength') }}
             </div>
           </div>
 
@@ -55,16 +55,16 @@
               [toggleMask]="true"
               id="passwordInput"
               formControlName="passwordInput"
-              pTooltip="{{ t('tooltipPassword') }}"
+              pTooltip="{{ transLoco('tooltipPassword') }}"
               tooltipEvent="focus"
               strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
             </p-password>
-            <label for="passwordInput">{{ t('password') }}</label>
+            <label for="passwordInput">{{ transLoco('password') }}</label>
             <div class="input-error" *ngIf="handleErrors('identicalPassword')">
-              {{ t('identicalPassword') }}
+              {{ transLoco('identicalPassword') }}
             </div>
             <div class="input-error" *ngIf="handleErrors('emptyPassword')">
-              {{ t('emptyField') }}
+              {{ transLoco('emptyField') }}
             </div>
           </span>
 
@@ -73,18 +73,18 @@
               [toggleMask]="true"
               id="twicePasswordInput"
               formControlName="twicePasswordInput"
-              pTooltip="{{ t('tooltipPassword') }}"
+              pTooltip="{{ transLoco('tooltipPassword') }}"
               tooltipEvent="focus"
               strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
             </p-password>
-            <label for="passwordInput">{{ t('repeatPassword') }}</label>
+            <label for="passwordInput">{{ transLoco('repeatPassword') }}</label>
             <div
               class="input-error"
               *ngIf="handleErrors('identicalTwicePassword')">
-              {{ t('identicalPassword') }}
+              {{ transLoco('identicalPassword') }}
             </div>
             <div class="input-error" *ngIf="handleErrors('emptyTwicePassword')">
-              {{ t('emptyField') }}
+              {{ transLoco('emptyField') }}
             </div>
           </span>
         </div>
@@ -97,19 +97,19 @@
             type="submit"
             [disabled]="!regForm.valid"
             class="p-button-raised p-button-secondary button-custom-white"
-            label="{{ t('signup') }}"></button>
+            label="{{ transLoco('signup') }}"></button>
           <button
             pButton
             pRipple
             color="primary"
             type="button"
             class="p-button-raised p-button-secondary p-button-outlined button-custom-white"
-            label="{{ t('randomPassword') }}"
+            label="{{ transLoco('randomPassword') }}"
             (click)="this.onRandomPassword()"></button>
         </div>
         <div class="reg-wrapper">
-          <p>{{ t('registered') }}</p>
-          <a routerLink="/auth/login">{{ t('Login') }}</a>
+          <p>{{ transLoco('registered') }}</p>
+          <a routerLink="/auth/login">{{ transLoco('Login') }}</a>
         </div>
       </form>
     </div>
@@ -123,7 +123,7 @@
     *ngIf="this.authService.isAvatarSwap"
     (click)="this.authService.hideAvatarChangeModalWindow()">
     <div class="inform-card card-simple shadow-4">
-      <h2 class="font-light inform-title">{{ t('titleAvatar') }}</h2>
+      <h2 class="font-light inform-title">{{ transLoco('titleAvatar') }}</h2>
       <div class="wrap-avatar">
         <div
           class="avatar"
@@ -142,7 +142,7 @@
           type="button"
           class="p-button-raised p-button-danger button-custom-white button-false"
           (click)="this.authService.hideAvatarChangeModalWindow()"
-          label="{{ t('cancel') }}"></button>
+          label="{{ transLoco('cancel') }}"></button>
       </div>
     </div>
   </section>

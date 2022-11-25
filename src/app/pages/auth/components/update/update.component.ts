@@ -50,7 +50,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
     public deleteUserService: DeleteUserService,
-    private translocoService: TranslocoService,
+    private transLocoService: TranslocoService,
     public authService: AuthService,
   ) {}
 
@@ -126,7 +126,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: this.translocoService.translate('update.successful'),
+          detail: this.transLocoService.translate('update.successful'),
         });
         this.router.navigate(['boards']);
       });

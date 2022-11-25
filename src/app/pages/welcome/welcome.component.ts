@@ -10,7 +10,7 @@ import { MessageService } from 'primeng/api';
 export class WelcomeComponent implements AfterViewInit {
   constructor(
     private messageService: MessageService,
-    private translocoService: TranslocoService,
+    private transLocoService: TranslocoService,
   ) {}
 
   ngAfterViewInit() {
@@ -19,7 +19,7 @@ export class WelcomeComponent implements AfterViewInit {
       this.messageService.add({
         severity: 'warn',
         summary: 'Warn',
-        detail: this.translocoService.translate('welcome.expired'),
+        detail: this.transLocoService.translate('welcome.expired'),
       });
     }
   }

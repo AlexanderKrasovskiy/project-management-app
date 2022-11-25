@@ -56,7 +56,7 @@ export class RegComponent implements OnInit, OnDestroy {
     private router: Router,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
-    private translocoService: TranslocoService,
+    private transLocoService: TranslocoService,
   ) {}
 
   public ngOnInit(): void {
@@ -128,7 +128,7 @@ export class RegComponent implements OnInit, OnDestroy {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: this.translocoService.translate(
+        detail: this.transLocoService.translate(
           'registration.successfulRegistration',
         ),
       });
@@ -136,7 +136,7 @@ export class RegComponent implements OnInit, OnDestroy {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: this.translocoService.translate(
+          detail: this.transLocoService.translate(
             'registration.successfulLogin',
           ),
         });

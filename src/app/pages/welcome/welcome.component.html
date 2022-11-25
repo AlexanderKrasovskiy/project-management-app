@@ -1,14 +1,14 @@
-<ng-container *transloco="let t; read: 'welcome'">
+<ng-container *transloco="let transLoco; read: 'welcome'">
   <p-scrollTop></p-scrollTop>
   <section class="back-1 grid">
     <div class="back-1-left col-12 padding-2 md:col-8 padding-10">
       <div class="about-app-wrap-fake">
         <div class="card-simple about-app-wrap shadow-4">
           <h2 class="font-light card-title">
-            {{ t('about') }}
+            {{ transLoco('about') }}
           </h2>
           <div class="card-with-opacity about-app shadow-4">
-            <p class="team-info">{{ t('aboutText') }}</p>
+            <p class="team-info">{{ transLoco('aboutText') }}</p>
           </div>
         </div>
       </div>
@@ -32,20 +32,20 @@
     <div class="back-2-right col-12 padding-2 md:col-8 padding-10">
       <div class="w-11 md:w-9 card-with-blur app-guide-wrap shadow-4">
         <h2 class="font-light card-title">
-          {{ t('guide') }}
+          {{ transLoco('guide') }}
         </h2>
         <div class="app-guide-all">
           <div class="card-with-opacity app-guide shadow-2">
-            {{ t('guide_1') }}
+            {{ transLoco('guide_1') }}
           </div>
           <div class="card-with-opacity app-guide shadow-2">
-            {{ t('guide_2') }}
+            {{ transLoco('guide_2') }}
           </div>
           <div class="card-with-opacity app-guide shadow-2">
-            {{ t('guide_3') }}
+            {{ transLoco('guide_3') }}
           </div>
           <div class="card-with-opacity app-guide shadow-2">
-            {{ t('guide_4') }}
+            {{ transLoco('guide_4') }}
           </div>
         </div>
       </div>
@@ -55,13 +55,13 @@
   <section class="back-3">
     <div class="back-3-top">
       <div class="card-with-blur team-title-wrap shadow-4">
-        <h2 class="font-light">{{ t('team') }}</h2>
+        <h2 class="font-light">{{ transLoco('team') }}</h2>
       </div>
     </div>
 
     <div class="back-3-bottom">
       <div class="card-with-blur course-title-wrap shadow-4">
-        <p class="font-light course-title">{{ t('course') }}</p>
+        <p class="font-light course-title">{{ transLoco('course') }}</p>
       </div>
 
       <div class="back-3-left md:col-3"></div>
@@ -71,17 +71,17 @@
             <div class="alla"></div>
           </h2>
           <h5 class="main-github">
-            {{ t('alla') }}
+            {{ transLoco('alla') }}
             <a href="https://github.com/ALLaTk" class="main-github__link">
               <div class="main-github__image"></div>
             </a>
           </h5>
           <div class="lang_team_tags">
-            <p-chip [label]="t('backend')"></p-chip>
-            <p-chip [label]="t('frontend')"></p-chip>
+            <p-chip [label]="transLoco('backend')"></p-chip>
+            <p-chip [label]="transLoco('frontend')"></p-chip>
           </div>
           <p class="team-info">
-            {{ t('teamAlla') }}
+            {{ transLoco('teamAlla') }}
           </p>
         </div>
         <div class="team-circle-sasha shadow-4 scale">
@@ -89,7 +89,7 @@
             <div class="alexander"></div>
           </h2>
           <h5 class="main-github">
-            {{ t('sasha') }}
+            {{ transLoco('sasha') }}
             <a
               href="https://github.com/AlexanderKrasovskiy"
               class="main-github__link">
@@ -97,11 +97,11 @@
             </a>
           </h5>
           <div class="lang_team_tags">
-            <p-chip [label]="t('teamlead')"></p-chip>
-            <p-chip [label]="t('frontend')"></p-chip>
+            <p-chip [label]="transLoco('teamlead')"></p-chip>
+            <p-chip [label]="transLoco('frontend')"></p-chip>
           </div>
           <p class="team-info">
-            {{ t('teamSasha') }}
+            {{ transLoco('teamSasha') }}
           </p>
         </div>
         <div class="team-circle-sveta shadow-4 scale">
@@ -109,17 +109,17 @@
             <div class="svetlana"></div>
           </h2>
           <h5 class="main-github">
-            {{ t('svetlana') }}
+            {{ transLoco('svetlana') }}
             <a href="https://github.com/Svt1108" class="main-github__link">
               <div class="main-github__image"></div>
             </a>
           </h5>
           <div class="lang_team_tags">
-            <p-chip [label]="t('design')"></p-chip>
-            <p-chip [label]="t('frontend')"></p-chip>
+            <p-chip [label]="transLoco('design')"></p-chip>
+            <p-chip [label]="transLoco('frontend')"></p-chip>
           </div>
           <p class="team-info">
-            {{ t('teamSveta') }}
+            {{ transLoco('teamSveta') }}
           </p>
         </div>
       </div>
