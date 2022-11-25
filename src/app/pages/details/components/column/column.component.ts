@@ -58,16 +58,16 @@ export class ColumnComponent implements OnChanges {
     }
   }
 
-  showInput() {
+  showInput(): void {
     this.isTitleEditable = true;
     this.headingInput.nativeElement.value = this.tempTitle;
   }
 
-  hideInput() {
+  hideInput(): void {
     this.isTitleEditable = false;
   }
 
-  updateTitle() {
+  updateTitle(): void {
     this.isTitleEditable = false;
     const title = this.headingInput.nativeElement.value;
 
@@ -131,7 +131,7 @@ export class ColumnComponent implements OnChanges {
       .subscribe();
   }
 
-  dropTask(event: CdkDragDrop<TaskModel[]>) {
+  dropTask(event: CdkDragDrop<TaskModel[]>): void {
     const prevIdx = event.previousIndex;
     const currIdx = event.currentIndex;
     const { id: taskId, title, description, userId } = event.item.data;

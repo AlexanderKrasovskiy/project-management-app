@@ -29,14 +29,22 @@ export class DetailsService {
     return this.http.delete(`/boards/${boardId}/columns/${columnId}`);
   }
 
-  updateColumn(boardId: string, columnId: string, body: UpdateColumnPayload) {
+  updateColumn(
+    boardId: string,
+    columnId: string,
+    body: UpdateColumnPayload,
+  ): Observable<ColumnModel> {
     return this.http.put<ColumnModel>(
       `/boards/${boardId}/columns/${columnId}`,
       body,
     );
   }
 
-  createTask(boardId: string, columnId: string, body: CreateTaskPayload) {
+  createTask(
+    boardId: string,
+    columnId: string,
+    body: CreateTaskPayload,
+  ): Observable<TaskModel> {
     const { id } = JSON.parse(
       `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
     ) as GetUserModel;

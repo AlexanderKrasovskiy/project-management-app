@@ -14,7 +14,7 @@ export class DetailsErrorHandlerService {
     private router: Router,
   ) {}
 
-  handleError(res: HttpErrorResponse) {
+  handleError(res: HttpErrorResponse): void {
     const { message } = res.error;
     let toastText: string;
 
@@ -47,7 +47,7 @@ export class DetailsErrorHandlerService {
     });
   }
 
-  isKnownMessageType(res: HttpErrorResponse) {
+  isKnownMessageType(res: HttpErrorResponse): boolean {
     const { message } = res.error;
 
     switch (message) {

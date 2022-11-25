@@ -59,7 +59,7 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subCols$.unsubscribe();
   }
 
-  dropCols(event: CdkDragDrop<string[]>) {
+  dropCols(event: CdkDragDrop<string[]>): void {
     const {
       previousIndex: prevIdx,
       currentIndex: currIdx,
@@ -95,7 +95,7 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe();
   }
 
-  private dispatchLoadBoard() {
+  private dispatchLoadBoard(): void {
     this.subId$ = this.route.params
       .pipe(
         map((params) => params['id']),
@@ -107,7 +107,7 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe();
   }
 
-  private setColumnsProperty() {
+  private setColumnsProperty(): void {
     this.subCols$ = this.store
       .select(selectColumns)
       .pipe(
@@ -118,7 +118,7 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe();
   }
 
-  private setBoardBackGround() {
+  private setBoardBackGround(): void {
     const boardImages = localStorage.getItem(LocalStorageItems.BoardImage);
 
     if (boardImages) {
