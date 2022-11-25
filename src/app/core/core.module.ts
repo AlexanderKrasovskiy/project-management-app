@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { allBoardsReducer } from '../store/reducers/boards.reducer';
 import { BoardsEffects } from '../store/effects/boards.effect';
-import { ApiMainService } from '../pages/main/services/api-main.service';
+import { ApiMainService } from '../main/services/api-main.service';
 import { currentBoardReducer } from '../store/reducers/details.reducer';
 import { DetailsEffects } from '../store/effects/details.effects';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
@@ -24,7 +24,7 @@ import { HeaderService } from './services/header.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { MainErrorHandlerService } from '../pages/main/services/main-error-handler.service';
+import { MainErrorHandlerService } from '../main/services/main-error-handler.service';
 import { CreateBoardService } from '../shared/services/create-board.service';
 
 @NgModule({

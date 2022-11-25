@@ -1,7 +1,7 @@
 :host {
   display: block;
   .main {
-    background-image: url('../../../../../assets/images/all-boards-back.jpg');
+    background-image: url('../../../../assets/images/all-boards-back.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -40,7 +40,7 @@
         flex-direction: column;
         color: #ffffff;
         font-size: 24px;
-        background-image: url('../../../../../assets/images/board-6-small.png');
+        background-image: url('../../../../assets/images/board-6-small.png');
         .board__setting {
           position: absolute;
           top: 5px;
@@ -93,7 +93,7 @@
         z-index: 4;
         padding: 2rem;
         background-color: rgba(255, 255, 255, 0.25);
-        background-image: url('../../../../../assets/images/modal-back.png');
+        background-image: url('../../../../assets/images/modal-back.png');
         background-size: cover;
         background-repeat: no-repeat;
         max-width: 25rem;

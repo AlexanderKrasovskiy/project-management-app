@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
-import { MainModalComponent } from 'src/app/pages/main/components/main-modal/main-modal.component';
-import { BoardData } from 'src/app/pages/main/models/main.model';
+import { MainModalComponent } from 'src/app/main/components/main-modal/main-modal.component';
+import { BoardData } from 'src/app/main/models/main.model';
 import { createBoard } from 'src/app/store/actions/boards.action';
 
 @Injectable()

@@ -9,7 +9,7 @@ import { SortingPipe } from './pipes/sorting.pipe';
 import { DeleteUserService } from '../auth/services/delete-user.service';
 import { AuthControlService } from '../auth/services/auth-control.service';
 import { AuthApiService } from '../auth/services/auth-api.service';
-import { MainService } from '../pages/main/services/main.service';
+import { MainService } from '../main/services/main.service';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { ApiSearchService } from '../pages/search/services/api-search.service';
 

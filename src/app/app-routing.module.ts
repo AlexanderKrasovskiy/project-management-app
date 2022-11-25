@@ -35,7 +35,7 @@ const routes: Routes = [
     path: 'boards',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./pages/main/main.module').then((module) => module.MainModule),
+      import('./main/main.module').then((module) => module.MainModule),
   },
   {
     path: 'boards/:id',
