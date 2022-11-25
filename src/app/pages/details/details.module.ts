@@ -5,7 +5,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { DetailsRoutingModule } from './details-routing.module';
-import { DetailsPageComponent } from './pages/details-page.component';
+import { DetailsComponent } from './container/details.component';
 import { BoardHeaderComponent } from './components/board-header/board-header.component';
 import { ColumnComponent } from './components/column/column.component';
 import { TaskComponent } from './components/task/task.component';
@@ -14,7 +14,7 @@ import { TaskModalComponent } from './components/task-modal/task-modal.component
 
 @NgModule({
   declarations: [
-    DetailsPageComponent,
+    DetailsComponent,
     BoardHeaderComponent,
     ColumnComponent,
     TaskComponent,

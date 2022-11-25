@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
+import { MessageError } from 'src/app/shared/models/common.model';
+import { DetailsTranslations } from '../models/details-translate.model';
 
 @Injectable()
 export class DetailsErrorHandlerService {
   constructor(
     private messageService: MessageService,
-    private transloco: TranslocoService,
+    private transLoco: TranslocoService,
     private router: Router,
   ) {}
 
@@ -17,28 +19,30 @@ export class DetailsErrorHandlerService {
     let toastText: string;
 
     switch (message) {
-      case 'Board was not founded!':
-        toastText = this.transloco.translate('details.boardNotFound');
+      case MessageError.boardNotFound:
+        toastText = this.transLoco.translate(DetailsTranslations.boardNotFound);
         this.router.navigate(['boards']);
         break;
-      case 'Column was not founded!':
-        toastText = this.transloco.translate('details.columnNotFound');
+      case MessageError.columnNotFound:
+        toastText = this.transLoco.translate(
+          DetailsTranslations.columnNotFound,
+        );
         break;
-      case 'Task was not founded!':
-        toastText = this.transloco.translate('details.taskNotFound');
+      case MessageError.taskNotFound:
+        toastText = this.transLoco.translate(DetailsTranslations.taskNotFound);
         break;
-      case 'User was not founded!':
-        toastText = this.transloco.translate('details.userNotFound');
+      case MessageError.userNotFound:
+        toastText = this.transLoco.translate(DetailsTranslations.userNotFound);
         break;
       default:
-        toastText = this.transloco.translate('details.defaultError');
+        toastText = this.transLoco.translate(DetailsTranslations.defaultError);
         this.router.navigate(['404']);
         break;
     }
 
     this.messageService.add({
       severity: 'error',
-      summary: this.transloco.translate('details.errorTitle'),
+      summary: this.transLoco.translate(DetailsTranslations.errorTitle),
       detail: toastText,
     });
   }
@@ -46,9 +50,15 @@ export class DetailsErrorHandlerService {
   isKnownMessageType(res: HttpErrorResponse) {
     const { message } = res.error;
 
-    if (message === 'Column was not founded!') return true;
-    if (message === 'Task was not founded!') return true;
-    if (message === 'User was not founded!') return true;
-    return false;
+    switch (message) {
+      case MessageError.columnNotFound:
+        return true;
+      case MessageError.taskNotFound:
+        return true;
+      case MessageError.userNotFound:
+        return true;
+      default:
+        return false;
+    }
   }
 }

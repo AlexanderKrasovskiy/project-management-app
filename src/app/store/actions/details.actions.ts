@@ -5,7 +5,7 @@ import {
   CreateTaskPayload,
   UpdateColumnPayload,
   UpdateTaskPayload,
-} from 'src/app/pages/details/models/details.model';
+} from 'src/app/pages/details/models/details-api.model';
 
 export const loadBoard = createAction(
   '[Details Page] Load Board',

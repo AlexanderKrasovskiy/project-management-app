@@ -75,7 +75,7 @@
   }
 }
 
-:host ::ng-deep .column_footer > .p-button-label {
+:host ::ng-deep .column_footer .p-button-label {
   flex-shrink: 0;
   display: flex;
   font-weight: normal;

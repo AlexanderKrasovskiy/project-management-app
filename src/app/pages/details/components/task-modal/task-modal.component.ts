@@ -1,11 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface CreateTaskData {
-  heading: string;
-  title: string;
-  description: string;
-}
+import { DetailsTranslations } from '../../models/details-translate.model';
+import { CreateTaskData } from '../../models/task-modal.model';
 
 @Component({
   selector: 'app-task-modal',
@@ -13,6 +9,8 @@ export interface CreateTaskData {
   styleUrls: ['./task-modal.component.scss'],
 })
 export class TaskModalComponent {
+  translations = DetailsTranslations;
+
   constructor(
     public dialogRef: MatDialogRef<TaskModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CreateTaskData,

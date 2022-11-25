@@ -1,4 +1,4 @@
-<section class="board_header" *transloco="let t; read: 'details'">
+<section class="board_header" *transloco="let transLoco; read: 'details'">
   <a
     pButton
     pRipple
@@ -8,7 +8,7 @@
     class="back_btn p-button-rounded p-button-warning"></a>
 
   <h3 class="w-12rem md:w-17rem board_title-wrap card-with-blur scale">
-    {{ t('boardTitle') }}:&nbsp;
+    {{ transLoco(translations.boardTitle) }}:&nbsp;
     <span class="board_title">{{ boardTitle$ | async }}</span>
   </h3>
 </section>
