@@ -9,6 +9,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { Subscription, tap } from 'rxjs';
 import { CreateBoardService } from 'src/app/shared/services/create-board.service';
 import { loadBoards } from 'src/app/store/actions/boards.action';
@@ -42,7 +43,7 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    const storage = localStorage.getItem('BoardImage');
+    const storage = localStorage.getItem(LocalStorageItems.BoardImage);
 
     if (storage) {
       JSON.parse(storage).forEach((el: BoardLocalStoreModel) => {

@@ -5,27 +5,28 @@ import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { parseJwt } from '../utils/parse-token.util';
 import { AuthControlService } from './auth-control.service';
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class DeleteUserService {
-  isModalWindow: boolean = false;
-  titleModalWindow: string = '';
-  idUser: string = '';
+  public isModalWindow: boolean = false;
+  public titleModalWindow: string = '';
+  public idUser: string = '';
 
   constructor(
-    private router: Router,
     public authService: AuthService,
+    private router: Router,
     private authControlService: AuthControlService,
     private messageService: MessageService,
-    private translocoService: TranslocoService,
+    private transLocoService: TranslocoService,
     private dialog: MatDialog,
   ) {}
 
   public openDeleteUserModal(): void {
-    const data = this.translocoService.translate('confirmation.deleteUser');
+    const data = this.transLocoService.translate('confirmation.deleteUser');
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data,
@@ -44,13 +45,15 @@ export class DeleteUserService {
   public removeUser() {
     this.authControlService
       .deleteUser(
-        parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
+        parseJwt(
+          localStorage.getItem(LocalStorageItems.PlanTokenInfo) as string,
+        ).userId,
       )
       .subscribe(() => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: this.translocoService.translate('deleteUser.successful'),
+          detail: this.transLocoService.translate('deleteUser.successful'),
         });
         this.authService.logoutUser();
         this.router.navigate(['welcome']);
