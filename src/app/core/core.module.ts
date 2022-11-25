@@ -23,7 +23,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HeaderService } from './services/header.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotFoundComponent } from './container/not-found.component';
 import { MainErrorHandlerService } from '../main/services/main-error-handler.service';
 import { CreateBoardService } from '../shared/services/create-board.service';
 

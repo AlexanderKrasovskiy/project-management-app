@@ -91,9 +91,9 @@
                 "
                 [routerLink]="['/boards', task.boardId]">
                 <td>{{ task.order }}</td>
-                <td>{{ task.title }}</td>
-                <td>{{ task.description }}</td>
-                <td>{{ task.userId }}</td>
+                <td>{{ task.title | slice: 0:80 }}</td>
+                <td>{{ task.description | slice: 0:80 }}</td>
+                <td>{{ task.userId | slice: 0:30 }}</td>
               </tr>
               <tr *ngIf="this.headerService.keyWord" class="no-item">
                 <td class="notfound">{{ transLoco('notFound') }}</td>
