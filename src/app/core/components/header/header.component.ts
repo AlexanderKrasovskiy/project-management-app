@@ -15,21 +15,20 @@ import { HeaderService } from '../../services/header.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit {
-  public stateOptions;
+  stateOptions;
 
-  public value1 =
-    localStorage.getItem(LocalStorageItems.PlanLanguageInfo) || 'en';
+  value1 = localStorage.getItem(LocalStorageItems.PlanLanguageInfo) || 'en';
 
-  public inScroll = false;
+  inScroll = false;
 
-  public visibleSidebar1!: boolean;
+  visibleSidebar1!: boolean;
 
   constructor(
     public createBoard: CreateBoardService,
     public authService: AuthService,
     public dialog: MatDialog,
     public filter: HeaderService,
-    private transLocoService: TranslocoService,
+    private transLoco: TranslocoService,
     private router: Router,
   ) {
     this.stateOptions = [
@@ -39,7 +38,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.transLocoService.setActiveLang(
+    this.transLoco.setActiveLang(
       localStorage.getItem(LocalStorageItems.PlanLanguageInfo) || 'en',
     );
 
@@ -59,7 +58,7 @@ export class HeaderComponent implements OnInit {
   }
 
   changeLang(lang: string) {
-    this.transLocoService.setActiveLang(lang);
+    this.transLoco.setActiveLang(lang);
     localStorage.setItem(LocalStorageItems.PlanLanguageInfo, lang);
   }
 

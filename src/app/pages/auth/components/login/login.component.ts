@@ -1,10 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
@@ -21,20 +16,19 @@ import { generateLoginUser } from '../../utils/generate.util';
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  public loginForm!: FormGroup;
+  loginForm!: FormGroup;
 
   login$: Subscription = new Subscription();
 
   constructor(
-    public fb: FormBuilder,
     private authControlService: AuthControlService,
     private router: Router,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
-    private transLocoService: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.initializeForm();
     this.primengConfig.ripple = true;
   }
@@ -43,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.login$.unsubscribe();
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     const loginUser: LoginRequestModel = generateLoginUser(
       this.loginForm.value,
     );
@@ -51,13 +45,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: this.transLocoService.translate('login.successfulLogin'),
+        detail: this.transLoco.translate('login.successfulLogin'),
       });
       this.router.navigate(['boards']);
     });
   }
 
-  public handleErrors(errorType: string): boolean {
+  handleErrors(errorType: string): boolean {
     if (errorType === 'emptyLogin') {
       return (
         this.loginForm.get('loginInput')?.errors?.['required'] &&

@@ -17,7 +17,7 @@ export class AuthControlService {
     private authService: AuthService,
   ) {}
 
-  public loginUp(user: RegisterRequestModel): Observable<GetUserModel> {
+  loginUp(user: RegisterRequestModel): Observable<GetUserModel> {
     return this.authApiService.register(user).pipe(
       tap((res) => {
         this.authService.setUser(res);
@@ -25,7 +25,7 @@ export class AuthControlService {
     );
   }
 
-  public loginInReg(user: LoginRequestModel): Observable<TokenResponseModel> {
+  loginInReg(user: LoginRequestModel): Observable<TokenResponseModel> {
     return this.authApiService.login(user).pipe(
       tap((results) => {
         this.authService.setToken(results);
@@ -33,7 +33,7 @@ export class AuthControlService {
     );
   }
 
-  public loginIn(user: LoginRequestModel): Observable<GetUserModel> {
+  loginIn(user: LoginRequestModel): Observable<GetUserModel> {
     return this.authApiService.login(user).pipe(
       switchMap((res) => {
         this.authService.setToken(res);
@@ -42,7 +42,7 @@ export class AuthControlService {
     );
   }
 
-  public getUser(id: string): Observable<GetUserModel> {
+  getUser(id: string): Observable<GetUserModel> {
     return this.authApiService.user(id).pipe(
       tap((res) => {
         this.authService.setUser(res);
@@ -50,10 +50,7 @@ export class AuthControlService {
     );
   }
 
-  public updateUser(
-    id: string,
-    user: RegisterRequestModel,
-  ): Observable<GetUserModel> {
+  updateUser(id: string, user: RegisterRequestModel): Observable<GetUserModel> {
     return this.authApiService.update(id, user).pipe(
       tap((res) => {
         this.authService.setUser(res);
@@ -61,7 +58,7 @@ export class AuthControlService {
     );
   }
 
-  public deleteUser(id: string): Observable<void> {
+  deleteUser(id: string): Observable<void> {
     return this.authApiService.delete(id).pipe();
   }
 }

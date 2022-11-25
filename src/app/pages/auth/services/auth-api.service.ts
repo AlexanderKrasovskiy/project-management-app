@@ -15,10 +15,10 @@ export class AuthApiService {
   constructor(
     private httpClient: HttpClient,
     private messageService: MessageService,
-    private transLocoService: TranslocoService,
+    private transLoco: TranslocoService,
   ) {}
 
-  public register(payload: RegisterRequestModel): Observable<GetUserModel> {
+  register(payload: RegisterRequestModel): Observable<GetUserModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
@@ -28,12 +28,12 @@ export class AuthApiService {
       .pipe(
         retry(4),
         catchError((err) => {
-          let errorText: string = this.transLocoService.translate(
+          let errorText: string = this.transLoco.translate(
             'authApiService.notCreate',
           );
           errorText =
             err.error.statusCode === 409
-              ? `${errorText}\n${this.transLocoService.translate(
+              ? `${errorText}\n${this.transLoco.translate(
                   'authApiService.alreadyExists',
                 )}`
               : errorText;
@@ -47,7 +47,7 @@ export class AuthApiService {
       );
   }
 
-  public login(payload: LoginRequestModel): Observable<TokenResponseModel> {
+  login(payload: LoginRequestModel): Observable<TokenResponseModel> {
     const header = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.httpClient
@@ -57,12 +57,12 @@ export class AuthApiService {
       .pipe(
         retry(4),
         catchError((err) => {
-          let errorText: string = this.transLocoService.translate(
+          let errorText: string = this.transLoco.translate(
             'authApiService.notLogin',
           );
           errorText =
             err.error.statusCode === 403
-              ? `${errorText}\n${this.transLocoService.translate(
+              ? `${errorText}\n${this.transLoco.translate(
                   'authApiService.check',
                 )}`
               : errorText;
@@ -76,33 +76,30 @@ export class AuthApiService {
       );
   }
 
-  public user(id: string): Observable<GetUserModel> {
+  user(id: string): Observable<GetUserModel> {
     return this.httpClient.get<GetUserModel>(`/users/${id}`).pipe(
       retry(4),
       catchError(() => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.transLocoService.translate('authApiService.notFound'),
+          detail: this.transLoco.translate('authApiService.notFound'),
         });
         return EMPTY;
       }),
     );
   }
 
-  public update(
-    id: string,
-    payload: RegisterRequestModel,
-  ): Observable<GetUserModel> {
+  update(id: string, payload: RegisterRequestModel): Observable<GetUserModel> {
     return this.httpClient.put<GetUserModel>(`/users/${id}`, payload).pipe(
       retry(4),
       catchError((err) => {
-        let errorText: string = this.transLocoService.translate(
+        let errorText: string = this.transLoco.translate(
           'authApiService.notUpdate',
         );
         errorText =
           err.error.statusCode === 500
-            ? `${errorText}\n${this.transLocoService.translate(
+            ? `${errorText}\n${this.transLoco.translate(
                 'authApiService.perhapsExists',
               )}`
             : errorText;
@@ -116,14 +113,14 @@ export class AuthApiService {
     );
   }
 
-  public delete(id: string): Observable<void> {
+  delete(id: string): Observable<void> {
     return this.httpClient.delete<void>(`/users/${id}`).pipe(
       retry(4),
       catchError(() => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: this.transLocoService.translate('authApiService.notDelete'),
+          detail: this.transLoco.translate('authApiService.notDelete'),
         });
         return EMPTY;
       }),
