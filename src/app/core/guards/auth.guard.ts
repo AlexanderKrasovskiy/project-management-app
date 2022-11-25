@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/pages/auth/services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(public authService: AuthService, private router: Router) {}
 
-  public canActivate():
+  canActivate():
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
