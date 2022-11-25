@@ -6,6 +6,7 @@ import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { deleteTask, updateTask } from 'src/app/store/actions/details.actions';
 import { TaskModel } from '../../models/details-api.model';
+import { DetailsTranslations } from '../../models/details-translate.model';
 import { CreateTaskData } from '../../models/task-modal.model';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 
@@ -25,7 +26,7 @@ export class TaskComponent {
   ) {}
 
   openDeleteTaskModal(): void {
-    const data = this.transLoco.translate('details.deleteTask');
+    const data = this.transLoco.translate(DetailsTranslations.deleteTask);
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data,
@@ -47,7 +48,7 @@ export class TaskComponent {
 
   openEditTaskModal(): void {
     const data: CreateTaskData = {
-      heading: this.transLoco.translate('details.editTask'),
+      heading: this.transLoco.translate(DetailsTranslations.editTask),
       title: this.task.title,
       description: this.task.description,
     };
