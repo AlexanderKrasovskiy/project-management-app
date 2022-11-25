@@ -18,6 +18,7 @@ import {
 } from 'src/app/store/actions/details.actions';
 import { selectColumns } from 'src/app/store/selectors/details.selectors';
 import { MatDialog } from '@angular/material/dialog';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { ColumnModel } from '../models/details-api.model';
 import { ColumnModalComponent } from '../components/column-modal/column-modal.component';
 import { DetailsTranslations } from '../models/details-translate.model';
@@ -81,7 +82,7 @@ export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setBoardBackGround() {
-    const boardImages = localStorage.getItem('BoardImage');
+    const boardImages = localStorage.getItem(LocalStorageItems.BoardImage);
 
     if (boardImages) {
       JSON.parse(boardImages).forEach((el: { id: string; image: string }) => {

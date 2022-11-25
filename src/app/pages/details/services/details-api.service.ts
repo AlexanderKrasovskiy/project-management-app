@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GetUserModel } from 'src/app/pages/auth/models/auth.model';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import {
   BoardResModel,
   ColumnModel,
@@ -37,7 +38,7 @@ export class DetailsService {
 
   createTask(boardId: string, columnId: string, body: CreateTaskPayload) {
     const { id } = JSON.parse(
-      `${localStorage.getItem('PlanUserInfo')}`,
+      `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
     ) as GetUserModel;
 
     return this.http.post<TaskModel>(

@@ -18,6 +18,7 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
+import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { RegisterRequestModel } from '../../models/auth.model';
 import { AuthControlService } from '../../services/auth-control.service';
 import { AuthService } from '../../services/auth.service';
@@ -50,7 +51,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig,
     public deleteUserService: DeleteUserService,
-    private translocoService: TranslocoService,
+    private transLocoService: TranslocoService,
     public authService: AuthService,
   ) {}
 
@@ -119,17 +120,80 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     this.upd$ = this.authControlService
       .updateUser(
-        parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
+        parseJwt(
+          localStorage.getItem(LocalStorageItems.PlanTokenInfo) as string,
+        ).userId,
         newUser,
       )
       .subscribe(() => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: this.translocoService.translate('update.successful'),
+          detail: this.transLocoService.translate('update.successful'),
         });
         this.router.navigate(['boards']);
       });
+  }
+
+  public handleErrors(errorType: string): boolean {
+    if (errorType === 'emptyName') {
+      return (
+        this.updateForm.get('nameInput')?.errors?.['required'] &&
+        (this.updateForm.get('nameInput')?.dirty ||
+          this.updateForm.get('nameInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyLogin') {
+      return (
+        this.updateForm.get('loginInput')?.errors?.['required'] &&
+        (this.updateForm.get('loginInput')?.dirty ||
+          this.updateForm.get('loginInput')?.touched)
+      );
+    }
+    if (errorType === 'wrongLengthLogin') {
+      return (
+        (!this.updateForm.get('loginInput')?.errors?.['required'] &&
+          this.updateForm.get('loginInput')?.errors?.['minlength']) ||
+        (this.updateForm.get('loginInput')?.errors?.['maxlength'] &&
+          (this.updateForm.get('loginInput')?.dirty ||
+            this.updateForm.get('loginInput')?.touched))
+      );
+    }
+    if (errorType === 'identicalPassword') {
+      return (
+        !this.updateForm.get('passwordInput')?.errors?.['required'] &&
+        this.updateForm.errors?.['notIdenticalPassword'] &&
+        (this.updateForm.get('passwordInput')?.dirty ||
+          this.updateForm.get('passwordInput')?.touched) &&
+        (this.updateForm.get('twicePasswordInput')?.dirty ||
+          this.updateForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyPassword') {
+      return (
+        this.updateForm.get('passwordInput')?.errors?.['required'] &&
+        (this.updateForm.get('passwordInput')?.dirty ||
+          this.updateForm.get('passwordInput')?.touched)
+      );
+    }
+    if (errorType === 'identicalTwicePassword') {
+      return (
+        !this.updateForm.get('twicePasswordInput')?.errors?.['required'] &&
+        this.updateForm.errors?.['notIdenticalPassword'] &&
+        (this.updateForm.get('passwordInput')?.dirty ||
+          this.updateForm.get('passwordInput')?.touched) &&
+        (this.updateForm.get('twicePasswordInput')?.dirty ||
+          this.updateForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyTwicePassword') {
+      return (
+        this.updateForm.get('twicePasswordInput')?.errors?.['required'] &&
+        (this.updateForm.get('twicePasswordInput')?.dirty ||
+          this.updateForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    return false;
   }
 
   private initializeForm(): void {
@@ -139,7 +203,9 @@ export class UpdateComponent implements OnInit, OnDestroy {
           Validators.required,
         ]),
         loginInput: new FormControl(
-          JSON.parse(`${localStorage.getItem('PlanUserInfo')}`).login,
+          JSON.parse(
+            `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
+          ).login,
           [
             Validators.required,
             Validators.minLength(3),

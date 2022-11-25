@@ -32,3 +32,11 @@ export enum MessageError {
   taskNotFound = 'Task was not founded!',
   userNotFound = 'User was not founded!',
 }
+
+export enum LocalStorageItems {
+  PlanLanguageInfo = 'PlanLanguageInfo',
+  PlanTokenInfo = 'PlanTokenInfo',
+  PlanTokenExpiredTime = 'PlanTokenExpiredTime',
+  PlanUserInfo = 'PlanUserInfo',
+  BoardImage = 'BoardImage',
+}
