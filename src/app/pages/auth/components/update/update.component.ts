@@ -132,6 +132,67 @@ export class UpdateComponent implements OnInit, OnDestroy {
       });
   }
 
+  public handleErrors(errorType: string): boolean {
+    if (errorType === 'emptyName') {
+      return (
+        this.updateForm.get('nameInput')?.errors?.['required'] &&
+        (this.updateForm.get('nameInput')?.dirty ||
+          this.updateForm.get('nameInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyLogin') {
+      return (
+        this.updateForm.get('loginInput')?.errors?.['required'] &&
+        (this.updateForm.get('loginInput')?.dirty ||
+          this.updateForm.get('loginInput')?.touched)
+      );
+    }
+    if (errorType === 'wrongLengthLogin') {
+      return (
+        (!this.updateForm.get('loginInput')?.errors?.['required'] &&
+          this.updateForm.get('loginInput')?.errors?.['minlength']) ||
+        (this.updateForm.get('loginInput')?.errors?.['maxlength'] &&
+          (this.updateForm.get('loginInput')?.dirty ||
+            this.updateForm.get('loginInput')?.touched))
+      );
+    }
+    if (errorType === 'identicalPassword') {
+      return (
+        !this.updateForm.get('passwordInput')?.errors?.['required'] &&
+        this.updateForm.errors?.['notIdenticalPassword'] &&
+        (this.updateForm.get('passwordInput')?.dirty ||
+          this.updateForm.get('passwordInput')?.touched) &&
+        (this.updateForm.get('twicePasswordInput')?.dirty ||
+          this.updateForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyPassword') {
+      return (
+        this.updateForm.get('passwordInput')?.errors?.['required'] &&
+        (this.updateForm.get('passwordInput')?.dirty ||
+          this.updateForm.get('passwordInput')?.touched)
+      );
+    }
+    if (errorType === 'identicalTwicePassword') {
+      return (
+        !this.updateForm.get('twicePasswordInput')?.errors?.['required'] &&
+        this.updateForm.errors?.['notIdenticalPassword'] &&
+        (this.updateForm.get('passwordInput')?.dirty ||
+          this.updateForm.get('passwordInput')?.touched) &&
+        (this.updateForm.get('twicePasswordInput')?.dirty ||
+          this.updateForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyTwicePassword') {
+      return (
+        this.updateForm.get('twicePasswordInput')?.errors?.['required'] &&
+        (this.updateForm.get('twicePasswordInput')?.dirty ||
+          this.updateForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    return false;
+  }
+
   private initializeForm(): void {
     this.updateForm = new FormGroup(
       {

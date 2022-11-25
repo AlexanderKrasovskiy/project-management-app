@@ -57,6 +57,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
+  public handleErrors(errorType: string): boolean {
+    if (errorType === 'emptyLogin') {
+      return (
+        this.loginForm.get('loginInput')?.errors?.['required'] &&
+        (this.loginForm.get('loginInput')?.dirty ||
+          this.loginForm.get('loginInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyPassword') {
+      return (
+        this.loginForm.get('passwordInput')?.errors?.['required'] &&
+        (this.loginForm.get('passwordInput')?.dirty ||
+          this.loginForm.get('passwordInput')?.touched)
+      );
+    }
+    return false;
+  }
+
   private initializeForm(): void {
     this.loginForm = new FormGroup({
       loginInput: new FormControl('', [Validators.required]),

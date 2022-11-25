@@ -18,9 +18,7 @@
               [ngClass]="(loginForm.get('loginInput')?.errors?.['required'] && loginForm.get('loginInput')?.touched) ? 'error-border' : '' "
               formControlName="loginInput" />
             <label for="loginInput">{{ translate('login') }}</label>
-            <div
-              class="input-error"
-              *ngIf="loginForm.get('loginInput')?.errors?.['required'] && (loginForm.get('loginInput')?.dirty || loginForm.get('loginInput')?.touched)">
+            <div class="input-error" *ngIf="handleErrors('emptyLogin')">
               {{ translate('emptyField') }}
             </div>
           </div>
@@ -32,14 +30,7 @@
               formControlName="passwordInput">
             </p-password>
             <label for="passwordInput">{{ translate('password') }}</label>
-            <div
-              class="input-error"
-              *ngIf="!loginForm.get('passwordInput')?.errors?.['required'] && loginForm.errors?.['notIdenticalPassword'] && (loginForm.get('passwordInput')?.dirty || loginForm.get('passwordInput')?.touched) && (loginForm.get('twicePasswordInput')?.dirty || loginForm.get('twicePasswordInput')?.touched)">
-              {{ translate('identicalPassword') }}
-            </div>
-            <div
-              class="input-error"
-              *ngIf="loginForm.get('passwordInput')?.errors?.['required'] && (loginForm.get('passwordInput')?.dirty || loginForm.get('passwordInput')?.touched) ">
+            <div class="input-error" *ngIf="handleErrors('emptyPassword')">
               {{ translate('emptyField') }}
             </div>
           </span>

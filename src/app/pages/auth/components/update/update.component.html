@@ -26,9 +26,7 @@
             updateForm.get('nameInput')?.touched) ? 'error-border' : '' "
               formControlName="nameInput" />
             <label for="nameInput">{{ t('name') }}</label>
-            <div
-              class="input-error"
-              *ngIf="updateForm.get('nameInput')?.errors?.['required'] && (updateForm.get('nameInput')?.dirty || updateForm.get('nameInput')?.touched)">
+            <div class="input-error" *ngIf="handleErrors('emptyName')">
               {{ t('emptyField') }}
             </div>
           </div>
@@ -45,14 +43,10 @@
               [ngClass]="(updateForm.get('loginInput')?.errors?.['required'] && updateForm.get('loginInput')?.touched) ? 'error-border' : '' "
               formControlName="loginInput" />
             <label for="loginInput">{{ t('login') }}</label>
-            <div
-              class="input-error"
-              *ngIf="updateForm.get('loginInput')?.errors?.['required'] && (updateForm.get('loginInput')?.dirty || updateForm.get('loginInput')?.touched)">
+            <div class="input-error" *ngIf="handleErrors('emptyLogin')">
               {{ t('emptyField') }}
             </div>
-            <div
-              class="input-error"
-              *ngIf="!updateForm.get('loginInput')?.errors?.['required'] && (updateForm.get('loginInput')?.errors?.['minLength'] || updateForm.get('loginInput')?.errors?.['maxLength']) && (updateForm.get('loginInput')?.dirty || updateForm.get('loginInput')?.touched)">
+            <div class="input-error" *ngIf="handleErrors('wrongLengthLogin')">
               {{ t('wrongLength') }}
             </div>
           </div>
@@ -67,14 +61,10 @@
               strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
             </p-password>
             <label for="passwordInput">{{ t('password') }}</label>
-            <div
-              class="input-error"
-              *ngIf="!updateForm.get('passwordInput')?.errors?.['required'] && updateForm.errors?.['notIdenticalPassword'] && (updateForm.get('passwordInput')?.dirty || updateForm.get('passwordInput')?.touched) && (updateForm.get('twicePasswordInput')?.dirty || updateForm.get('twicePasswordInput')?.touched)">
+            <div class="input-error" *ngIf="handleErrors('identicalPassword')">
               {{ t('identicalPassword') }}
             </div>
-            <div
-              class="input-error"
-              *ngIf="updateForm.get('passwordInput')?.errors?.['required'] && (updateForm.get('passwordInput')?.dirty || updateForm.get('passwordInput')?.touched) ">
+            <div class="input-error" *ngIf="handleErrors('emptyPassword')">
               {{ t('emptyField') }}
             </div>
           </span>
@@ -91,12 +81,10 @@
             <label for="passwordInput">{{ t('repeatPassword') }}</label>
             <div
               class="input-error"
-              *ngIf="!updateForm.get('twicePasswordInput')?.errors?.['required'] && updateForm.errors?.['notIdenticalPassword'] && (updateForm.get('passwordInput')?.dirty || updateForm.get('passwordInput')?.touched) && (updateForm.get('twicePasswordInput')?.dirty || updateForm.get('twicePasswordInput')?.touched)">
+              *ngIf="handleErrors('identicalTwicePassword')">
               {{ t('identicalPassword') }}
             </div>
-            <div
-              class="input-error"
-              *ngIf="updateForm.get('twicePasswordInput')?.errors?.['required'] && (updateForm.get('twicePasswordInput')?.dirty || updateForm.get('twicePasswordInput')?.touched) ">
+            <div class="input-error" *ngIf="handleErrors('emptyTwicePassword')">
               {{ t('emptyField') }}
             </div>
           </span>

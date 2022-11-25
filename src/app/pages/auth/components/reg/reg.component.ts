@@ -145,6 +145,67 @@ export class RegComponent implements OnInit, OnDestroy {
     });
   }
 
+  public handleErrors(errorType: string): boolean {
+    if (errorType === 'emptyName') {
+      return (
+        this.regForm.get('nameInput')?.errors?.['required'] &&
+        (this.regForm.get('nameInput')?.dirty ||
+          this.regForm.get('nameInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyLogin') {
+      return (
+        this.regForm.get('loginInput')?.errors?.['required'] &&
+        (this.regForm.get('loginInput')?.dirty ||
+          this.regForm.get('loginInput')?.touched)
+      );
+    }
+    if (errorType === 'wrongLengthLogin') {
+      return (
+        (!this.regForm.get('loginInput')?.errors?.['required'] &&
+          this.regForm.get('loginInput')?.errors?.['minlength']) ||
+        (this.regForm.get('loginInput')?.errors?.['maxlength'] &&
+          (this.regForm.get('loginInput')?.dirty ||
+            this.regForm.get('loginInput')?.touched))
+      );
+    }
+    if (errorType === 'identicalPassword') {
+      return (
+        !this.regForm.get('passwordInput')?.errors?.['required'] &&
+        this.regForm.errors?.['notIdenticalPassword'] &&
+        (this.regForm.get('passwordInput')?.dirty ||
+          this.regForm.get('passwordInput')?.touched) &&
+        (this.regForm.get('twicePasswordInput')?.dirty ||
+          this.regForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyPassword') {
+      return (
+        this.regForm.get('passwordInput')?.errors?.['required'] &&
+        (this.regForm.get('passwordInput')?.dirty ||
+          this.regForm.get('passwordInput')?.touched)
+      );
+    }
+    if (errorType === 'identicalTwicePassword') {
+      return (
+        !this.regForm.get('twicePasswordInput')?.errors?.['required'] &&
+        this.regForm.errors?.['notIdenticalPassword'] &&
+        (this.regForm.get('passwordInput')?.dirty ||
+          this.regForm.get('passwordInput')?.touched) &&
+        (this.regForm.get('twicePasswordInput')?.dirty ||
+          this.regForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    if (errorType === 'emptyTwicePassword') {
+      return (
+        this.regForm.get('twicePasswordInput')?.errors?.['required'] &&
+        (this.regForm.get('twicePasswordInput')?.dirty ||
+          this.regForm.get('twicePasswordInput')?.touched)
+      );
+    }
+    return false;
+  }
+
   private initializeForm(): void {
     this.regForm = new FormGroup(
       {
