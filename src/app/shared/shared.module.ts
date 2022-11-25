@@ -4,12 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UiPrimengModule } from './ui-primeng/ui-primeng.module';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
-import { ConfirmationModalService } from './services/confirmation-modal.service';
 import { SortingPipe } from './pipes/sorting.pipe';
 
 import { DeleteUserService } from '../pages/auth/services/delete-user.service';
-import { ApiControlService } from '../pages/auth/services/api-control.service';
-import { ApiHelpersService } from '../pages/auth/services/api-helpers.service';
+import { AuthControlService } from '../pages/auth/services/auth-control.service';
+import { AuthApiService } from '../pages/auth/services/auth-api.service';
 import { MainService } from '../pages/main/services/main.service';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { ApiSearchService } from '../pages/search/services/api-search.service';
@@ -34,10 +33,9 @@ import { ApiSearchService } from '../pages/search/services/api-search.service';
     SortingPipe,
   ],
   providers: [
-    ConfirmationModalService,
     DeleteUserService,
-    ApiControlService,
-    ApiHelpersService,
+    AuthControlService,
+    AuthApiService,
     MainService,
     ApiSearchService,
   ],

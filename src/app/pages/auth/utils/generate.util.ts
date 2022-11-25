@@ -33,11 +33,6 @@ const shuffle = (array: Array<string>): Array<string> => {
     array1[i] = array1[j];
     array1[j] = tmp;
   }
-
-  // for (let i = array1.length - 1; i > 0; i = -1) {
-  //   const j = Math.floor(Math.random() * (i + 1));
-  //   [array1[i], array1[j]] = [array1[j], array1[i]];
-  // }
   return array1;
 };
 
@@ -152,11 +147,5 @@ export const generatePassword = (): string => {
   for (let i = 0; i < specialsNumber; i += 1) {
     arr.push(specials[randomNumber(0, specials.length - 1)]);
   }
-  // console.log('length', length);
-  // console.log('lowerCharactersNumber', lowerCharactersNumber);
-  // console.log('upperCharactersNumber', upperCharactersNumber);
-  // console.log('numbersNumber', numbersNumber);
-  // console.log('specialsNumber', specialsNumber);
-  // console.log(arr);
   return shuffle(arr).join('');
 };

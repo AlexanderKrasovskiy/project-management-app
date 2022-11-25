@@ -3,25 +3,22 @@ import { Observable, switchMap, tap } from 'rxjs';
 import {
   GetUserModel,
   LoginRequestModel,
-  // ParsedToken,
   RegisterRequestModel,
   TokenResponseModel,
-  // UserModel,
 } from '../models/auth.model';
 import { parseJwt } from '../utils/parse-token.util';
-// import { parseJwt } from '../utils/parse-token.util';
-import { ApiHelpersService } from './api-helpers.service';
+import { AuthApiService } from './auth-api.service';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class ApiControlService {
+export class AuthControlService {
   constructor(
-    private apiHelpers: ApiHelpersService,
+    private authApiService: AuthApiService,
     private authService: AuthService,
   ) {}
 
   public loginUp(user: RegisterRequestModel): Observable<GetUserModel> {
-    return this.apiHelpers.register(user).pipe(
+    return this.authApiService.register(user).pipe(
       tap((res) => {
         this.authService.setUser(res);
       }),
@@ -29,7 +26,7 @@ export class ApiControlService {
   }
 
   public loginInReg(user: LoginRequestModel): Observable<TokenResponseModel> {
-    return this.apiHelpers.login(user).pipe(
+    return this.authApiService.login(user).pipe(
       tap((results) => {
         this.authService.setToken(results);
       }),
@@ -37,9 +34,8 @@ export class ApiControlService {
   }
 
   public loginIn(user: LoginRequestModel): Observable<GetUserModel> {
-    return this.apiHelpers.login(user).pipe(
+    return this.authApiService.login(user).pipe(
       switchMap((res) => {
-        // console.log('111');
         this.authService.setToken(res);
         return this.getUser(parseJwt(res.token).userId);
       }),
@@ -47,7 +43,7 @@ export class ApiControlService {
   }
 
   public getUser(id: string): Observable<GetUserModel> {
-    return this.apiHelpers.user(id).pipe(
+    return this.authApiService.user(id).pipe(
       tap((res) => {
         this.authService.setUser(res);
       }),
@@ -58,7 +54,7 @@ export class ApiControlService {
     id: string,
     user: RegisterRequestModel,
   ): Observable<GetUserModel> {
-    return this.apiHelpers.update(id, user).pipe(
+    return this.authApiService.update(id, user).pipe(
       tap((res) => {
         this.authService.setUser(res);
       }),
@@ -66,6 +62,6 @@ export class ApiControlService {
   }
 
   public deleteUser(id: string): Observable<void> {
-    return this.apiHelpers.delete(id).pipe();
+    return this.authApiService.delete(id).pipe();
   }
 }

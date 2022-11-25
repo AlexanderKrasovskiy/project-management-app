@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
+import { filter, tap } from 'rxjs';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
-import { ConfirmationModalService } from 'src/app/shared/services/confirmation-modal.service';
 import { parseJwt } from '../utils/parse-token.util';
-import { ApiControlService } from './api-control.service';
+import { AuthControlService } from './auth-control.service';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -17,9 +17,8 @@ export class DeleteUserService {
 
   constructor(
     private router: Router,
-    public confirmationService: ConfirmationModalService,
     public authService: AuthService,
-    private apiControlService: ApiControlService,
+    private authControlService: AuthControlService,
     private messageService: MessageService,
     private translocoService: TranslocoService,
     private dialog: MatDialog,
@@ -33,19 +32,17 @@ export class DeleteUserService {
       backdropClass: 'backdropBackground',
     });
 
-    dialogRef.afterClosed().subscribe((modalData) => {
-      if (modalData) this.removeUser();
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((modalData) => modalData),
+        tap(() => this.removeUser()),
+      )
+      .subscribe();
   }
 
-  // public showConfirmationModalWindow(): void {
-  //   this.confirmationService.isConfirmationModalUser = true;
-  //   this.confirmationService.title =
-  //     this.translocoService.translate('deleteUser.user');
-  // }
-
   public removeUser() {
-    this.apiControlService
+    this.authControlService
       .deleteUser(
         parseJwt(localStorage.getItem('PlanTokenInfo') as string).userId,
       )
@@ -55,12 +52,8 @@ export class DeleteUserService {
           summary: 'Success',
           detail: this.translocoService.translate('deleteUser.successful'),
         });
-        this.confirmationService.isConfirmationModalUser = false;
-        this.confirmationService.title = '';
         this.authService.logoutUser();
-        //   setTimeout(() => {
-        this.router.navigate(['auth/login']);
-        //   }, 2000);
+        this.router.navigate(['welcome']);
       });
   }
 }

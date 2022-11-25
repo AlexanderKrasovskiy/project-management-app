@@ -18,46 +18,39 @@ import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
-// import { PASSWORD_ALL } from 'src/app/shared/models/common.model';
 
 import {
   LoginRequestModel,
   RegisterRequestModel,
 } from '../../models/auth.model';
-import { ApiControlService } from '../../services/api-control.service';
+import { AuthControlService } from '../../services/auth-control.service';
 import { AuthService } from '../../services/auth.service';
 import {
   generateLoginUser,
   generateNewUser,
   generatePassword,
 } from '../../utils/generate.util';
-// import { parseJwt } from '../../utils/parse-token.util';
-// import { parseJwt } from '../../utils/parse-token.util';
-// import { PasswordErrors } from 'src/app/shared/models/common.model';
 
 @Component({
   selector: 'app-reg',
   templateUrl: './reg.component.html',
   styleUrls: ['./reg.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  // providers: [MessageService],
 })
 export class RegComponent implements OnInit, OnDestroy {
+  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
+
+  @ViewChild('twicePasswordContainer')
+  twicePasswordContainer!: ElementRef<HTMLElement>;
+
   public regForm!: FormGroup;
 
   public reg$: Subscription = new Subscription();
 
   public avatar = '01';
 
-  @ViewChild('passwordContainer') passwordContainer!: ElementRef<HTMLElement>;
-
-  @ViewChild('twicePasswordContainer')
-  twicePasswordContainer!: ElementRef<HTMLElement>;
-
-  // public passwordAll = PASSWORD_ALL;
-
   constructor(
-    private apiControlService: ApiControlService,
+    private authControlService: AuthControlService,
     private router: Router,
     public fb: FormBuilder,
     private messageService: MessageService,
@@ -71,7 +64,7 @@ export class RegComponent implements OnInit, OnDestroy {
     this.primengConfig.ripple = true;
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.reg$.unsubscribe();
   }
 
@@ -82,12 +75,9 @@ export class RegComponent implements OnInit, OnDestroy {
   public changeAvatar(image: string): void {
     this.avatar = image.slice(-2);
     this.authService.isAvatarSwap = false;
-    //  this.updateLocalStorBoardImg();
   }
 
   public onRandomPassword(): void {
-    // console.log(generatePassword());
-
     const newPassword: string = generatePassword();
 
     const event = new MouseEvent('click', {
@@ -134,7 +124,7 @@ export class RegComponent implements OnInit, OnDestroy {
 
     const loginUser: LoginRequestModel = generateLoginUser(this.regForm.value);
 
-    this.reg$ = this.apiControlService.loginUp(newUser).subscribe(() => {
+    this.reg$ = this.authControlService.loginUp(newUser).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
@@ -142,8 +132,7 @@ export class RegComponent implements OnInit, OnDestroy {
           'registration.successfulRegistration',
         ),
       });
-      this.apiControlService.loginInReg(loginUser).subscribe(() => {
-        // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
+      this.authControlService.loginInReg(loginUser).subscribe(() => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -151,9 +140,7 @@ export class RegComponent implements OnInit, OnDestroy {
             'registration.successfulLogin',
           ),
         });
-        //  setTimeout(() => {
         this.router.navigate(['boards']);
-        //  }, 2000);
       });
     });
   }

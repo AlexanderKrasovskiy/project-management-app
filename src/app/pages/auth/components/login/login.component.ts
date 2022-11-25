@@ -11,10 +11,8 @@ import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
 import { LoginRequestModel } from '../../models/auth.model';
-import { ApiControlService } from '../../services/api-control.service';
+import { AuthControlService } from '../../services/auth-control.service';
 import { generateLoginUser } from '../../utils/generate.util';
-// import { parseJwt } from '../../utils/parse-token.util';
-// import { parseJwt } from '../../utils/parse-token.util';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   login$: Subscription = new Subscription();
 
   constructor(
-    private apiControlService: ApiControlService,
+    private authControlService: AuthControlService,
     private router: Router,
     public fb: FormBuilder,
     private messageService: MessageService,
@@ -49,25 +47,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     const loginUser: LoginRequestModel = generateLoginUser(
       this.loginForm.value,
     );
-    this.login$ = this.apiControlService
-      .loginIn(loginUser)
-      // .pipe(
-      //   catchError((err: any) => {
-      //     console.log('my: ', err);
-      //     return of(true);
-      //   }),
-      // )
-      .subscribe(() => {
-        // this.apiControlService.getUser(parseJwt(res.token).userId).subscribe();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: this.translocoService.translate('login.successfulLogin'),
-        });
-        //   setTimeout(() => {
-        this.router.navigate(['boards']);
-        //   }, 2000);
+    this.login$ = this.authControlService.loginIn(loginUser).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: this.translocoService.translate('login.successfulLogin'),
       });
+      this.router.navigate(['boards']);
+    });
   }
 
   private initializeForm(): void {
