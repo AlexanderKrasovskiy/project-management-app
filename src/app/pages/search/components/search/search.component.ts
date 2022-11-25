@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ReplaySubject, Subscription, tap } from 'rxjs';
 import { HeaderService } from 'src/app/core/services/header.service';
-import { TaskModel } from '../../models/search.model';
+import { SortKeyWord, TaskModel } from '../../models/search.model';
 import { FilterService } from '../../services/filter.service';
 import { SearchService } from '../../services/search.service';
 
@@ -13,7 +13,7 @@ import { SearchService } from '../../services/search.service';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   tasksSubj$ = new ReplaySubject<TaskModel[]>();
-
+  sort = SortKeyWord;
   private subscribe: Subscription = new Subscription();
 
   constructor(

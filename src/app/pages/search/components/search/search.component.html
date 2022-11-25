@@ -14,8 +14,10 @@
             <thead>
               <tr>
                 <th
-                  (click)="this.filterService.changeSortValue('order')"
-                  [class.active]="this.filterService.activeClass === 'order'">
+                  (click)="this.filterService.changeSortValue(sort.byOrder)"
+                  [class.active]="
+                    this.filterService.activeClass === sort.byOrder
+                  ">
                   {{ transLoco('order') }}
                   <span
                     class="arrow"
@@ -27,8 +29,10 @@
                   </ng-template>
                 </th>
                 <th
-                  (click)="this.filterService.changeSortValue('title')"
-                  [class.active]="this.filterService.activeClass === 'title'">
+                  (click)="this.filterService.changeSortValue(sort.byTitle)"
+                  [class.active]="
+                    this.filterService.activeClass === sort.byTitle
+                  ">
                   {{ transLoco('title') }}
                   <span
                     class="arrow"
@@ -40,9 +44,11 @@
                   </ng-template>
                 </th>
                 <th
-                  (click)="this.filterService.changeSortValue('description')"
+                  (click)="
+                    this.filterService.changeSortValue(sort.byDescription)
+                  "
                   [class.active]="
-                    this.filterService.activeClass === 'description'
+                    this.filterService.activeClass === sort.byDescription
                   ">
                   {{ transLoco('description') }}
                   <span
@@ -58,8 +64,10 @@
                   </ng-template>
                 </th>
                 <th
-                  (click)="this.filterService.changeSortValue('userId')"
-                  [class.active]="this.filterService.activeClass === 'userId'">
+                  (click)="this.filterService.changeSortValue(sort.byUser)"
+                  [class.active]="
+                    this.filterService.activeClass === sort.byUser
+                  ">
                   {{ transLoco('user') }}
                   <span
                     class="arrow"
