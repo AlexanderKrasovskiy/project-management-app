@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, of, catchError, EMPTY } from 'rxjs';
-import { MainErrorHandlerService } from 'src/app/pages/main/services/main-error-handler.service';
-import { ApiMainService } from 'src/app/pages/main/services/api-main.service';
+import { MainErrorHandlerService } from 'src/app/main/services/main-error-handler.service';
+import { ApiMainService } from 'src/app/main/services/api-main.service';
 import * as BoardsActions from '../actions/boards.action';
 
 @Injectable()

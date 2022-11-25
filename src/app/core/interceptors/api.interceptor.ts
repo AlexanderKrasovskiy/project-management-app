@@ -9,9 +9,9 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { catchError, EMPTY, Observable, throwError } from 'rxjs';
-import { isTokenExpired } from 'src/app/pages/auth/utils/token-life.util';
+import { isTokenExpired } from 'src/app/auth/utils/token-life.util';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/pages/auth/services/auth.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { LocalStorageItems } from 'src/app/shared/models/common.model';
 
 @Injectable()

@@ -14,34 +14,30 @@ const routes: Routes = [
     path: 'welcome',
     canActivate: [NoAuthGuard],
     loadChildren: () =>
-      import('./pages/welcome/welcome.module').then(
-        (module) => module.WelcomeModule,
-      ),
+      import('./welcome/welcome.module').then((module) => module.WelcomeModule),
   },
   {
     path: 'auth',
     loadChildren: () =>
-      import('./pages/auth/auth.module').then((module) => module.AuthModule),
+      import('./auth/auth.module').then((module) => module.AuthModule),
   },
   {
     path: 'search',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./pages/search/search.module').then(
-        (module) => module.SearchModule,
-      ),
+      import('./search/search.module').then((module) => module.SearchModule),
   },
   {
     path: 'boards',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./pages/main/main.module').then((module) => module.MainModule),
+      import('./main/main.module').then((module) => module.MainModule),
   },
   {
     path: 'boards/:id',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./pages/details/details.module').then((m) => m.DetailsModule),
+      import('./details/details.module').then((m) => m.DetailsModule),
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' },

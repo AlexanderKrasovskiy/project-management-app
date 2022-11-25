@@ -3,7 +3,7 @@ import {
   BySort,
   SortKeyWord,
   TaskModel,
-} from 'src/app/pages/search/models/search.model';
+} from 'src/app/search/models/search.model';
 
 @Pipe({
   name: 'sorting',

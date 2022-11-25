@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ColumnModel } from 'src/app/pages/details/models/details-api.model';
+import { ColumnModel } from 'src/app/details/models/details-api.model';
 import * as DetailsActions from '../actions/details.actions';
 
 export interface DetailsBoardState {
