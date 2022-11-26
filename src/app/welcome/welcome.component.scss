@@ -3,6 +3,7 @@
   flex-direction: column;
   overflow-x: hidden;
   padding-top: 3rem;
+  white-space: pre-line;
 }
 
 .back-1,
@@ -58,6 +59,7 @@
   width: 95%;
   padding: 2rem;
   min-height: 85%;
+  font-size: 1.1rem;
 }
 
 .card-title {
@@ -89,6 +91,7 @@
   width: 49%;
   height: fit-content;
   padding: 1rem;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 500px) {
