@@ -18,10 +18,21 @@
 .column_title {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   padding: 10px;
-  height: 40px;
+  padding-bottom: 25px;
+  height: 65px;
+}
+
+.column_drag {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5px;
+  margin-bottom: 10px;
 }
 
 .hidden {
@@ -62,6 +73,9 @@
   gap: 0.5rem;
   padding: 0.1rem 0.5rem;
   overflow-y: auto;
+  @media (max-width: 600px) {
+    padding-right: 35px;
+  }
 }
 
 .column_footer {
