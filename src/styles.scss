@@ -16,6 +16,10 @@
   font-style: normal;
 }
 
+body {
+  font-size: 93.7%;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -69,7 +73,13 @@ body {
 .button-custom-white {
   border-radius: 20px;
   height: 2.5rem;
-  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.p-button-raised.button-custom-big {
+  border-radius: 20px;
+  height: 2.5rem;
+  font-size: 1rem;
 }
 
 a.link-not-default:active,
@@ -81,12 +91,17 @@ a.link-not-default {
 
 .p-password-panel {
   font-size: 0;
-  height: 2.6rem;
+  height: 2rem;
   opacity: 0.7;
+  padding: 0.7rem 0 0.1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .p-password-meter {
   border: 1px solid rgb(165, 165, 165);
+  width: 94%;
 }
 
 .cdk-overlay-pane {

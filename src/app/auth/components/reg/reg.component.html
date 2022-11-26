@@ -1,6 +1,6 @@
 <ng-container *transloco="let transLoco; read: 'registration'">
   <div class="overflow-y-auto md:overflow-y-hidden reg-wrap">
-    <div class="card-simple reg-card shadow-4">
+    <div class="pl-3 pr-2 sm:pl-6 sm:pr-5 card-simple reg-card shadow-4">
       <div
         class="set-avatar shadow-4 scale"
         (click)="showAvatarChangeModalWindow()"
@@ -22,11 +22,16 @@
               id="nameInput"
               pInputText
               class="reg-input-inside"
+              pTooltip="{{ transLoco('tooltipName') }}"
+              tooltipEvent="focus"
               [ngClass]="(regForm.get('nameInput')?.errors?.['required'] && regForm.get('nameInput')?.touched) ? 'error-border' : '' "
               formControlName="nameInput" />
             <label for="nameInput">{{ transLoco('name') }}</label>
             <div class="input-error" *ngIf="handleErrors('emptyName')">
               {{ transLoco('emptyField') }}
+            </div>
+            <div class="input-error" *ngIf="handleErrors('wrongLengthName')">
+              {{ transLoco('wrongLengthName') }}
             </div>
           </div>
 
@@ -46,7 +51,7 @@
               {{ transLoco('emptyField') }}
             </div>
             <div class="input-error" *ngIf="handleErrors('wrongLengthLogin')">
-              {{ transLoco('wrongLength') }}
+              {{ transLoco('wrongLengthLogin') }}
             </div>
           </div>
 

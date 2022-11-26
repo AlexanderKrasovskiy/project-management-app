@@ -3,6 +3,7 @@
   flex-direction: column;
   overflow-x: hidden;
   padding-top: 3rem;
+  white-space: pre-line;
 }
 
 .back-1,
@@ -58,6 +59,7 @@
   width: 95%;
   padding: 2rem;
   min-height: 85%;
+  font-size: 1.1rem;
 }
 
 .card-title {
@@ -104,7 +106,7 @@
 .app-guide-big-circle-fake,
 .app-guide-big-circle {
   border-radius: 50%;
-  width: 100%;
+  width: 90%;
   position: absolute;
   top: 5%;
   left: 10%;
@@ -131,7 +133,7 @@
 .app-guide-small-circle-fake,
 .app-guide-small-circle {
   border-radius: 50%;
-  width: 70%;
+  width: 60%;
   position: absolute;
   top: 55%;
   left: 45%;
@@ -147,10 +149,10 @@
 }
 
 .about-app-big-circle {
-  width: 110%;
+  width: 100%;
   position: absolute;
   top: 5%;
-  right: -20%;
+  right: -10%;
 }
 
 .about-app-small-circle {

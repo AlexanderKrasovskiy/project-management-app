@@ -137,6 +137,15 @@ export class UpdateComponent implements OnInit, OnDestroy {
           this.updateForm.get('nameInput')?.touched)
       );
     }
+    if (errorType === 'wrongLengthName') {
+      return (
+        (!this.updateForm.get('nameInput')?.errors?.['required'] &&
+          this.updateForm.get('nameInput')?.errors?.['minlength']) ||
+        (this.updateForm.get('nameInput')?.errors?.['maxlength'] &&
+          (this.updateForm.get('nameInput')?.dirty ||
+            this.updateForm.get('nameInput')?.touched))
+      );
+    }
     if (errorType === 'emptyLogin') {
       return (
         this.updateForm.get('loginInput')?.errors?.['required'] &&
@@ -195,6 +204,8 @@ export class UpdateComponent implements OnInit, OnDestroy {
       {
         nameInput: new FormControl(this.authService.getUserName(), [
           Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
         ]),
         loginInput: new FormControl(
           JSON.parse(
