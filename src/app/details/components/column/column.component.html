@@ -4,6 +4,7 @@
   [cdkDragData]="column"
   *transloco="let transLoco; read: 'details'">
   <div class="column_title">
+    <div cdkDragHandle class="column_drag">===</div>
     <div
       class="column_title_text"
       [ngClass]="{ hidden: isTitleEditable }"
