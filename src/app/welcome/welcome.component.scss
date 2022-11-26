@@ -91,7 +91,6 @@
   width: 49%;
   height: fit-content;
   padding: 1rem;
-  font-size: 1.1rem;
 }
 
 @media (max-width: 500px) {
@@ -107,7 +106,7 @@
 .app-guide-big-circle-fake,
 .app-guide-big-circle {
   border-radius: 50%;
-  width: 100%;
+  width: 90%;
   position: absolute;
   top: 5%;
   left: 10%;
@@ -134,7 +133,7 @@
 .app-guide-small-circle-fake,
 .app-guide-small-circle {
   border-radius: 50%;
-  width: 70%;
+  width: 60%;
   position: absolute;
   top: 55%;
   left: 45%;
@@ -150,10 +149,10 @@
 }
 
 .about-app-big-circle {
-  width: 110%;
+  width: 100%;
   position: absolute;
   top: 5%;
-  right: -20%;
+  right: -10%;
 }
 
 .about-app-small-circle {
