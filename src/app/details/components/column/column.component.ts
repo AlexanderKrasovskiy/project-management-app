@@ -118,12 +118,12 @@ export class ColumnComponent implements OnChanges {
     dialogRef
       .afterClosed()
       .pipe(
-        filter((task) => task?.title && task?.description),
+        filter((task) => task?.title.trim() && task?.description.trim()),
         tap(({ title, description }) => {
           this.store.dispatch(
             createTask({
               columnId: this.column.id,
-              body: { title, description },
+              body: { title: title.trim(), description: description.trim() },
             }),
           );
         }),

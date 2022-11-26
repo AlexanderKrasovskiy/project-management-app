@@ -61,10 +61,11 @@ export class TaskComponent {
     dialogRef
       .afterClosed()
       .pipe(
-        filter((task) => task?.title && task?.description),
+        filter((task) => task?.title.trim() && task?.description.trim()),
         filter(({ title, description }) => {
           return (
-            title !== this.task.title || description !== this.task.description
+            title.trim() !== this.task.title ||
+            description.trim() !== this.task.description
           );
         }),
         tap(({ title, description }) => {
@@ -73,8 +74,8 @@ export class TaskComponent {
               columnId: this.columnId,
               taskId: this.task.id,
               body: {
-                title,
-                description,
+                title: title.trim(),
+                description: description.trim(),
                 order: this.task.order,
                 userId: this.task.userId,
                 boardId: '',

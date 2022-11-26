@@ -21,8 +21,8 @@
         color="primary"
         type="button"
         class="p-button-raised p-button-success button-custom-white button-true"
-        [disabled]="!data"
-        [mat-dialog-close]="data"
+        [disabled]="!data.trim()"
+        [mat-dialog-close]="data.trim()"
         [label]="transLoco(translations.confirm)"></button>
       <button
         pButton
