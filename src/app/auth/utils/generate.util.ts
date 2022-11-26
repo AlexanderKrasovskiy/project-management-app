@@ -8,8 +8,8 @@ export const generateNewUser = (
   },
   avatar: string,
 ): RegisterRequestModel => ({
-  name: `${formValue.nameInput}_${avatar}`,
-  login: formValue.loginInput,
+  name: `${formValue.nameInput.trim()}_${avatar}`,
+  login: formValue.loginInput.trim(),
   password: formValue.passwordInput,
 });
 
@@ -17,7 +17,7 @@ export const generateLoginUser = (formValue: {
   loginInput: string;
   passwordInput: string;
 }): LoginRequestModel => ({
-  login: formValue.loginInput,
+  login: formValue.loginInput.trim(),
   password: formValue.passwordInput,
 });
 

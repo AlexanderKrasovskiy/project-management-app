@@ -12,6 +12,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { PrimeNGConfig, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
+import { LengthValidator } from 'src/app/core/validators/length.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
 
 import {
@@ -145,11 +146,10 @@ export class RegComponent implements OnInit, OnDestroy {
     }
     if (errorType === 'wrongLengthName') {
       return (
-        (!this.regForm.get('nameInput')?.errors?.['required'] &&
-          this.regForm.get('nameInput')?.errors?.['minlength']) ||
-        (this.regForm.get('nameInput')?.errors?.['maxlength'] &&
-          (this.regForm.get('nameInput')?.dirty ||
-            this.regForm.get('nameInput')?.touched))
+        !this.regForm.get('nameInput')?.errors?.['required'] &&
+        this.regForm.get('nameInput')?.errors?.['lengthError'] &&
+        (this.regForm.get('nameInput')?.dirty ||
+          this.regForm.get('nameInput')?.touched)
       );
     }
     if (errorType === 'emptyLogin') {
@@ -161,11 +161,10 @@ export class RegComponent implements OnInit, OnDestroy {
     }
     if (errorType === 'wrongLengthLogin') {
       return (
-        (!this.regForm.get('loginInput')?.errors?.['required'] &&
-          this.regForm.get('loginInput')?.errors?.['minlength']) ||
-        (this.regForm.get('loginInput')?.errors?.['maxlength'] &&
-          (this.regForm.get('loginInput')?.dirty ||
-            this.regForm.get('loginInput')?.touched))
+        !this.regForm.get('loginInput')?.errors?.['required'] &&
+        this.regForm.get('loginInput')?.errors?.['lengthError'] &&
+        (this.regForm.get('loginInput')?.dirty ||
+          this.regForm.get('loginInput')?.touched)
       );
     }
     if (errorType === 'identicalPassword') {
@@ -210,13 +209,11 @@ export class RegComponent implements OnInit, OnDestroy {
       {
         nameInput: new FormControl('', [
           Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(20),
+          LengthValidator(3, 20),
         ]),
         loginInput: new FormControl('', [
           Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(30),
+          LengthValidator(3, 30),
         ]),
         passwordInput: new FormControl('', [
           Validators.required,

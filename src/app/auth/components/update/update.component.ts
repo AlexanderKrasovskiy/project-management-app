@@ -12,6 +12,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import ComparePassword from 'src/app/core/validators/compare-password.validator';
+import { LengthValidator } from 'src/app/core/validators/length.validator';
 import ValidatePassword from 'src/app/core/validators/password.validator';
 import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { RegisterRequestModel } from '../../models/auth.model';
@@ -139,11 +140,10 @@ export class UpdateComponent implements OnInit, OnDestroy {
     }
     if (errorType === 'wrongLengthName') {
       return (
-        (!this.updateForm.get('nameInput')?.errors?.['required'] &&
-          this.updateForm.get('nameInput')?.errors?.['minlength']) ||
-        (this.updateForm.get('nameInput')?.errors?.['maxlength'] &&
-          (this.updateForm.get('nameInput')?.dirty ||
-            this.updateForm.get('nameInput')?.touched))
+        !this.updateForm.get('nameInput')?.errors?.['required'] &&
+        this.updateForm.get('nameInput')?.errors?.['lengthError'] &&
+        (this.updateForm.get('nameInput')?.dirty ||
+          this.updateForm.get('nameInput')?.touched)
       );
     }
     if (errorType === 'emptyLogin') {
@@ -155,11 +155,10 @@ export class UpdateComponent implements OnInit, OnDestroy {
     }
     if (errorType === 'wrongLengthLogin') {
       return (
-        (!this.updateForm.get('loginInput')?.errors?.['required'] &&
-          this.updateForm.get('loginInput')?.errors?.['minlength']) ||
-        (this.updateForm.get('loginInput')?.errors?.['maxlength'] &&
-          (this.updateForm.get('loginInput')?.dirty ||
-            this.updateForm.get('loginInput')?.touched))
+        !this.updateForm.get('loginInput')?.errors?.['required'] &&
+        this.updateForm.get('loginInput')?.errors?.['lengthError'] &&
+        (this.updateForm.get('loginInput')?.dirty ||
+          this.updateForm.get('loginInput')?.touched)
       );
     }
     if (errorType === 'identicalPassword') {
@@ -204,18 +203,13 @@ export class UpdateComponent implements OnInit, OnDestroy {
       {
         nameInput: new FormControl(this.authService.getUserName(), [
           Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(20),
+          LengthValidator(3, 20),
         ]),
         loginInput: new FormControl(
           JSON.parse(
             `${localStorage.getItem(LocalStorageItems.PlanUserInfo)}`,
           ).login,
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.maxLength(30),
-          ],
+          [Validators.required, LengthValidator(3, 30)],
         ),
         passwordInput: new FormControl('', [
           Validators.required,
