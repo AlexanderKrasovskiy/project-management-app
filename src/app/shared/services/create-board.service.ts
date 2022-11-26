@@ -29,7 +29,10 @@ export class CreateBoardService {
     dialogRef
       .afterClosed()
       .pipe(
-        filter((modalData) => modalData?.title || modalData?.description),
+        filter(
+          (modalData) =>
+            modalData?.title.trim() || modalData?.description.trim(),
+        ),
         tap((modalData) =>
           this.store.dispatch(
             createBoard({
