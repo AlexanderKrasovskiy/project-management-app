@@ -35,11 +35,11 @@ export class MainService {
     private transLoco: TranslocoService,
   ) {}
 
-  openUpdateBoardModal(id: string): void {
+  openUpdateBoardModal(id: string, title: string, description: string): void {
     const data: BoardData = {
       heading: this.transLoco.translate('main.editBoard'),
-      title: '',
-      description: '',
+      title,
+      description,
     };
     const dialogRef = this.dialog.open(MainModalComponent, {
       data,

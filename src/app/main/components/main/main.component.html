@@ -30,7 +30,13 @@
           </div>
           <div
             class="setting"
-            (click)="this.mainService.openUpdateBoardModal(board.id)">
+            (click)="
+              this.mainService.openUpdateBoardModal(
+                board.id,
+                board.title,
+                board.description
+              )
+            ">
             <i class="pi pi-pencil"></i>
           </div>
         </div>

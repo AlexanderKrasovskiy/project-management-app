@@ -19,6 +19,7 @@ export class BoardsEffects {
         BoardsActions.loadBoards,
         BoardsActions.deleteBoardSuccess,
         BoardsActions.deleteBoardFailure,
+        BoardsActions.updateBoardFailure,
       ),
       switchMap(() =>
         this.api.getAllBoards().pipe(
