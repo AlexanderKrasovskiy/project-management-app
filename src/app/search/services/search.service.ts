@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, mergeMap, Observable, switchMap } from 'rxjs';
 import { BoardResModel, TaskModel, UserModel } from '../models/search.model';
@@ -8,7 +9,10 @@ import { ApiSearchService } from './api-search.service';
   providedIn: 'any',
 })
 export class SearchService {
-  constructor(private apiSearch: ApiSearchService) {}
+  constructor(
+    private apiSearch: ApiSearchService,
+    private location: Location,
+  ) {}
 
   getTasks(): Observable<TaskModel[]> {
     return this.apiSearch.getAllBoards().pipe(
@@ -25,6 +29,10 @@ export class SearchService {
           .pipe(map((usersArr) => this.getTasksByUser(tasksArr, usersArr))),
       ),
     );
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   private getTasksByBoard(array: BoardResModel[]): TaskModel[][] {

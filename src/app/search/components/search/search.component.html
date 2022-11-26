@@ -2,9 +2,18 @@
   <section class="search">
     <div class="search-small-circle-fake"></div>
     <div class="search-small-circle shadow-3 scale"></div>
-    <h1 class="search__title card-with-blur scale">
-      {{ transLoco('mainTitle') }}
-    </h1>
+    <div class="search__title-wrap">
+      <a
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-arrow-left"
+        (click)="this.search.goBack()"
+        class="back_btn p-button-rounded p-button-warning"></a>
+      <h1 class="search__title card-with-blur scale">
+        {{ transLoco('mainTitle') }}
+      </h1>
+    </div>
     <div class="w-12 md:w-10 search-wrap">
       <div class="card-simple search-card shadow-4">
         <div class="card-with-blur search-card-inside shadow-4">
