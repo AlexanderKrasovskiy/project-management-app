@@ -145,7 +145,7 @@
           [ngStyle]="{
             'background-image':
               'url(assets/images/svg/' +
-              this.authService.getUserAvatar() +
+              (this.authService.getUserAvatar() || '01') +
               '.svg)',
             'background-position': 'center',
             'background-repeat': 'no-repeat',

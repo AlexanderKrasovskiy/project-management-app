@@ -37,13 +37,11 @@ export class AuthService {
       LocalStorageItems.PlanTokenExpiredTime,
       datePlus.toString(),
     );
+    this.isUserLogged$.next(true);
   }
 
   setUser(user: GetUserModel): void {
     localStorage.setItem(LocalStorageItems.PlanUserInfo, JSON.stringify(user));
-    if (localStorage.getItem(LocalStorageItems.PlanUserInfo)) {
-      this.isUserLogged$.next(true);
-    }
   }
 
   getUserName(): string {
