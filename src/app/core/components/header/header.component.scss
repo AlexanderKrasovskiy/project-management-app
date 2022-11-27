@@ -47,7 +47,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   position: relative;
   z-index: 3;
 }
@@ -61,6 +60,7 @@
   align-items: center;
   font-size: 0.8rem;
   padding-left: 1rem;
+  word-break: break-all;
 }
 
 .select-button-custom .p-button {
@@ -79,6 +79,15 @@
 
 .user-name-sidebar {
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-style: italic;
+  word-break: break-all;
+}
+
+.profile-button {
+  &:hover {
+    transform: scale(1.01);
+    transition: 0.1s;
+    box-shadow: 4px 4px 6px -5px rgba(34, 60, 80, 0.35);
+  }
 }
