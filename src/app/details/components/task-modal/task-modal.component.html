@@ -9,7 +9,7 @@
         [(ngModel)]="data.title"
         id="taskTitle"
         name="nameInput" />
-      <label for="taskTitle">{{ transLoco(translations.taskTitle) }}</label>
+      <label for="taskTitle">{{ transLoco('taskTitle') }}</label>
     </div>
     <div class="p-float-label inform-input field">
       <textarea
@@ -28,7 +28,7 @@
       class="p-button-raised p-button-success button-custom-white button-true"
       [disabled]="!data.title.trim() || !data.description.trim()"
       [mat-dialog-close]="data"
-      [label]="transLoco(translations.confirm)"></button>
+      [label]="transLoco('confirm')"></button>
     <button
       pButton
       pRipple
@@ -36,6 +36,6 @@
       type="button"
       class="p-button-raised p-button-danger button-custom-white button-false"
       (click)="onCancel()"
-      [label]="transLoco(translations.cancel)"></button>
+      [label]="transLoco('cancel')"></button>
   </div>
 </ng-container>

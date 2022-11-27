@@ -41,7 +41,6 @@ export class ColumnComponent implements OnChanges {
   tempTitle = '';
   isTitleEditable = false;
   tasks: TaskModel[] = [];
-  translations = DetailsTranslations;
   @ViewChild('headingInput')
   private headingInput!: ElementRef<HTMLInputElement>;
 

@@ -21,7 +21,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { LocalStorageItems } from 'src/app/shared/models/common.model';
 import { ColumnModel } from '../models/details-api.model';
 import { ColumnModalComponent } from '../components/column-modal/column-modal.component';
-import { DetailsTranslations } from '../models/details-translate.model';
 
 @Component({
   selector: 'app-details',
@@ -30,7 +29,6 @@ import { DetailsTranslations } from '../models/details-translate.model';
 })
 export class DetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   columns: ColumnModel[] = [];
-  translations = DetailsTranslations;
   @ViewChild('boardContainer')
   private boardContainer!: ElementRef<HTMLDivElement>;
   private boardId = '';
