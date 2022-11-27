@@ -1,7 +1,5 @@
 <ng-container *transloco="let transLoco; read: 'details'">
-  <h2 class="font-light inform-title">
-    {{ transLoco(translations.createColumn) }}
-  </h2>
+  <h2 class="font-light inform-title">{{ transLoco('createColumn') }}</h2>
   <div class="p-inputtext-lg">
     <div class="p-float-label inform-input field">
       <input
@@ -11,7 +9,7 @@
         [(ngModel)]="data"
         id="columnTitle"
         name="nameInput" />
-      <label for="columnTitle">{{ transLoco(translations.taskTitle) }}</label>
+      <label for="columnTitle">{{ transLoco('taskTitle') }}</label>
     </div>
 
     <div class="inform-wrapper">
@@ -23,7 +21,7 @@
         class="p-button-raised p-button-success button-custom-white button-true"
         [disabled]="!data.trim()"
         [mat-dialog-close]="data.trim()"
-        [label]="transLoco(translations.confirm)"></button>
+        [label]="transLoco('confirm')"></button>
       <button
         pButton
         pRipple
@@ -31,7 +29,7 @@
         type="button"
         class="p-button-raised p-button-danger button-custom-white button-false"
         (click)="onCancel()"
-        [label]="transLoco(translations.cancel)"></button>
+        [label]="transLoco('cancel')"></button>
     </div>
   </div>
 </ng-container>
