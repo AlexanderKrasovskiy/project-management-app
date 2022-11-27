@@ -55,10 +55,14 @@ export class SearchService {
     usersArray: UserModel[],
   ): TaskModel[] {
     return tasksArray.map((task) => {
-      usersArray.forEach((user) => {
-        // eslint-disable-next-line no-param-reassign
-        if (user.id === task.userId) task.userId = user.name;
-      });
+      if (task.userId) {
+        usersArray.forEach((user) => {
+          if (user.id === task.userId) {
+            // eslint-disable-next-line no-param-reassign
+            task.userId = user.name;
+          }
+        });
+      }
       return task;
     });
   }
