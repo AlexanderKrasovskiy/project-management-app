@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { MessageError } from 'src/app/shared/models/common.model';
-import { DetailsTranslations } from '../models/details-translate.model';
 
 @Injectable()
 export class DetailsErrorHandlerService {
@@ -20,29 +19,27 @@ export class DetailsErrorHandlerService {
 
     switch (message) {
       case MessageError.boardNotFound:
-        toastText = this.transLoco.translate(DetailsTranslations.boardNotFound);
+        toastText = this.transLoco.translate('details.boardNotFound');
         this.router.navigate(['boards']);
         break;
       case MessageError.columnNotFound:
-        toastText = this.transLoco.translate(
-          DetailsTranslations.columnNotFound,
-        );
+        toastText = this.transLoco.translate('details.columnNotFound');
         break;
       case MessageError.taskNotFound:
-        toastText = this.transLoco.translate(DetailsTranslations.taskNotFound);
+        toastText = this.transLoco.translate('details.taskNotFound');
         break;
       case MessageError.userNotFound:
-        toastText = this.transLoco.translate(DetailsTranslations.userNotFound);
+        toastText = this.transLoco.translate('details.userNotFound');
         break;
       default:
-        toastText = this.transLoco.translate(DetailsTranslations.defaultError);
+        toastText = this.transLoco.translate('details.defaultError');
         this.router.navigate(['404']);
         break;
     }
 
     this.messageService.add({
       severity: 'error',
-      summary: this.transLoco.translate(DetailsTranslations.errorTitle),
+      summary: this.transLoco.translate('details.errorTitle'),
       detail: toastText,
     });
   }
