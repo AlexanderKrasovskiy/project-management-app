@@ -29,7 +29,6 @@ import {
 } from '../../models/details-api.model';
 import { TaskModalComponent } from '../task-modal/task-modal.component';
 import { CreateTaskData } from '../../models/task-modal.model';
-import { DetailsTranslations } from '../../models/details-translate.model';
 
 @Component({
   selector: 'app-column',
@@ -84,7 +83,7 @@ export class ColumnComponent implements OnChanges {
   }
 
   openDeleteColumnModal(): void {
-    const data = this.transLoco.translate(DetailsTranslations.deleteColumn);
+    const data = this.transLoco.translate('details.deleteColumn');
 
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data,
@@ -104,7 +103,7 @@ export class ColumnComponent implements OnChanges {
 
   openCreateTaskModal(): void {
     const data: CreateTaskData = {
-      heading: this.transLoco.translate(DetailsTranslations.createTask),
+      heading: this.transLoco.translate('details.createTask'),
       title: '',
       description: '',
     };
