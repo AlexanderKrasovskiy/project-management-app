@@ -97,7 +97,9 @@
     "true": "Yes",
     "false": "No",
     "cancel": "Cancel",
-    "titleBackground": "Choose background"
+    "titleBackground": "Choose background",
+    "tooltipTitle": "Board title should contain to 25 characters",
+    "tooltipDescription": "Board description should contain to 250 characters"
   },
   "confirmation": {
     "deleteBoard": "Remove board",
