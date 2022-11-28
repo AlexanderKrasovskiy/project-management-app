@@ -219,6 +219,7 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(122, 173, 62, 0.21);
+  transition: 0.5s;
   padding: 2rem;
   width: fit-content;
   position: absolute;
@@ -324,4 +325,11 @@
   justify-content: center;
   padding: 1rem 0;
   gap: 5px;
+}
+
+.course-title-link {
+  z-index: 100;
+  .course-title-wrap:hover {
+    background-color: rgba(121, 173, 62, 0.363);
+  }
 }
