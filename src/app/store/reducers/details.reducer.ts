@@ -19,6 +19,12 @@ const initialState: DetailsBoardState = {
 export const currentBoardReducer = createReducer(
   initialState,
   on(
+    DetailsActions.loadBoard,
+    (): DetailsBoardState => ({
+      ...initialState,
+    }),
+  ),
+  on(
     DetailsActions.loadBoardSuccess,
     (_, { board: { id, title, description, columns } }): DetailsBoardState => {
       return { id, title, description, columns };
