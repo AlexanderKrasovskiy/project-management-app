@@ -1,1 +1,155 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/primeflex/primeflex.css';
+
+@font-face {
+  font-family: 'InterFont';
+  src: url('./assets/fonts/inter/Inter-Medium.ttf'),
+    url('./assets/fonts/inter/Inter-Regular.ttf'),
+    url('./assets/fonts/inter/Inter-SemiBold.ttf'),
+    url('./assets/fonts/inter/Inter-Black.ttf'),
+    url('./assets/fonts/inter/Inter-Bold.ttf'),
+    url('./assets/fonts/inter/Inter-ExtraBold.ttf'),
+    url('./assets/fonts/inter/Inter-ExtraLight.ttf'),
+    url('./assets/fonts/inter/Inter-Light.ttf'),
+    url('./assets/fonts/inter/Inter-Thin.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-size: 93.7%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'InterFont', sans-serif;
+}
+
+body {
+  font-size: 93.7%;
+}
+
+.card-simple {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+}
+
+.card-with-blur {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  border-radius: 30px;
+}
+
+.card-with-opacity {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+}
+
+.circle-with-blur {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  border-radius: 50%;
+}
+
+.circle-with-blur:after {
+  content: '';
+  padding-top: 100%;
+  display: block;
+}
+
+.scale {
+  transition: 1s;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.p-button-raised.button-custom,
+.button-custom,
+.button-custom-white {
+  border-radius: 20px;
+  height: 2.5rem;
+  font-size: 0.9rem;
+}
+
+.p-button-raised.button-custom-big {
+  border-radius: 20px;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+
+a.link-not-default:active,
+a.link-not-default:hover,
+a.link-not-default {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.p-password-panel {
+  font-size: 0;
+  height: 2rem;
+  opacity: 0.7;
+  padding: 0.7rem 0 0.1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-password-meter {
+  border: 1px solid rgb(165, 165, 165);
+  width: 94%;
+}
+
+.cdk-overlay-pane {
+  width: 396px;
+  max-width: 95vw !important;
+}
+
+.mat-dialog-container.cdk-dialog-container {
+  border-radius: 30px;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  background-image: url('./assets/images/modal-back.png');
+
+  background-position: center;
+  backdrop-filter: blur(6px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 3px solid rgb(180, 180, 180);
+  box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%),
+    0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+}
+
+.backdropBackground {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+
+/* ___________ SCROLL STYLES __________________ */
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgb(131, 131, 131);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.9);
+}

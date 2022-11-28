@@ -1,0 +1,21 @@
+<main class="board" #boardContainer>
+  <app-board-header></app-board-header>
+
+  <section
+    class="board_body"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="dropCols($event)">
+    <article cdkDropListGroup class="pl-2 md:pl-5 board_columns">
+      <app-column *ngFor="let column of columns" [column]="column"></app-column>
+    </article>
+
+    <button
+      pRipple
+      class="btn_add_column"
+      *transloco="let transLoco; read: 'details'"
+      (click)="openAddColumnModal()">
+      + {{ transLoco('addColumn') }}
+    </button>
+  </section>
+</main>

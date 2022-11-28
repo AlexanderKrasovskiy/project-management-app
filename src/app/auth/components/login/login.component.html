@@ -1,0 +1,60 @@
+<ng-container *transloco="let transLoco; read: 'login'">
+  <div class="overflow-y-auto md:overflow-y-hidden login-wrap">
+    <div class="pl-3 pr-2 sm:pl-6 sm:pr-5 card-simple login-card shadow-4">
+      <h2 class="font-light login-title">{{ transLoco('title') }}</h2>
+
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        #formDirective="ngForm">
+        <div class="fields-wrapper p-inputtext-lg">
+          <div class="p-float-label login-input field">
+            <input
+              type="text"
+              formControlName="loginInput"
+              id="loginInput"
+              pInputText
+              class="login-input-inside"
+              [ngClass]="(loginForm.get('loginInput')?.errors?.['required'] && loginForm.get('loginInput')?.touched) ? 'error-border' : '' "
+              formControlName="loginInput" />
+            <label for="loginInput">{{ transLoco('login') }}</label>
+            <div class="input-error" *ngIf="handleErrors('emptyLogin')">
+              {{ transLoco('emptyField') }}
+            </div>
+          </div>
+
+          <span class="p-float-label login-input mb-3">
+            <p-password
+              [toggleMask]="true"
+              id="passwordInput"
+              formControlName="passwordInput">
+            </p-password>
+            <label for="passwordInput">{{ transLoco('password') }}</label>
+            <div class="input-error" *ngIf="handleErrors('emptyPassword')">
+              {{ transLoco('emptyField') }}
+            </div>
+          </span>
+        </div>
+
+        <div class="login-login-wrapper">
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="submit"
+            [disabled]="!loginForm.valid"
+            class="p-button-raised p-button-secondary button-custom-big"
+            label="{{ transLoco('Login') }}"></button>
+        </div>
+        <div class="login-wrapper">
+          <p>{{ transLoco('notRegistered') }}</p>
+          <a routerLink="/auth/registration">{{ transLoco('signup') }}</a>
+        </div>
+      </form>
+    </div>
+    <div
+      class="hidden md:block circle-with-blur login-big-circle shadow-4 scale"></div>
+    <div
+      class="hidden md:block circle-with-blur login-small-circle shadow-4 scale"></div>
+  </div>
+</ng-container>

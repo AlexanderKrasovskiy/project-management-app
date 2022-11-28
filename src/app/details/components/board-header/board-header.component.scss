@@ -1,0 +1,40 @@
+.board_header {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.board_header > h4 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 45%;
+}
+
+.board_title {
+  color: black;
+  flex-grow: 0;
+  word-break: break-all;
+}
+
+.back_btn {
+  text-decoration: none;
+  position: relative;
+  left: -1.5rem;
+}
+
+.board_title-wrap {
+  font-weight: 500;
+  padding: 0.7rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  left: -1.5rem;
+  color: rgb(92, 92, 92);
+}

@@ -1,0 +1,37 @@
+.textarea {
+  resize: none;
+  font-size: 1.25rem;
+}
+
+.inform-title {
+  padding-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.inform-input,
+.inform-input-inside {
+  width: 100%;
+}
+.inform-input-inside {
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.inform-wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  .button-false,
+  .button-true {
+    background-color: rgba(255, 255, 255, 0.8);
+    min-width: 100px;
+  }
+  .button-false {
+    color: #d42323;
+  }
+  .button-true {
+    color: #038b19;
+  }
+}

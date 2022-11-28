@@ -1,0 +1,52 @@
+<section
+  class="column card-with-blur shadow-2"
+  cdkDrag
+  [cdkDragData]="column"
+  *transloco="let transLoco; read: 'details'">
+  <div class="column_title">
+    <div cdkDragHandle class="column_drag">===</div>
+    <div
+      class="column_title_text"
+      [ngClass]="{ hidden: isTitleEditable }"
+      (click)="showInput()">
+      {{ tempTitle }}
+    </div>
+    <div class="column_title_edit" [ngClass]="{ hidden: !isTitleEditable }">
+      <input type="text" pInputText #headingInput />
+      <div class="edit_btns">
+        <i class="pi pi-check" (click)="updateTitle()"></i>
+        <i class="pi pi-times" (click)="hideInput()"></i>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="column_body"
+    cdkDropList
+    [cdkDropListData]="tasks"
+    [attr.data-id]="column.id"
+    (cdkDropListDropped)="dropTask($event)">
+    <app-task
+      *ngFor="let task of tasks"
+      [task]="task"
+      [columnId]="column.id"></app-task>
+  </div>
+
+  <div class="column_footer">
+    <button
+      pButton
+      pRipple
+      icon="pi pi-plus"
+      type="button"
+      [label]="transLoco('addTask')"
+      (click)="openCreateTaskModal()"
+      class="p-button-raised p-button-rounded p-button-sm"></button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-trash"
+      (click)="openDeleteColumnModal()"
+      class="p-button-rounded p-button-danger p-button-outlined"></button>
+  </div>
+</section>

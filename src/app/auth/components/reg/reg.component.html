@@ -1,0 +1,154 @@
+<ng-container *transloco="let transLoco; read: 'registration'">
+  <div class="overflow-y-auto md:overflow-y-hidden reg-wrap">
+    <div class="pl-3 pr-2 sm:pl-6 sm:pr-5 card-simple reg-card shadow-4">
+      <div
+        class="set-avatar shadow-4 scale"
+        (click)="showAvatarChangeModalWindow()"
+        [ngStyle]="{
+          'background-image': 'url(assets/images/svg/' + this.avatar + '.svg)'
+        }"></div>
+      <h2 class="font-light reg-title">{{ transLoco('title') }}</h2>
+
+      <form
+        [formGroup]="regForm"
+        (ngSubmit)="onSubmit()"
+        #formDirective="ngForm">
+        <div class="fields-wrapper p-inputtext-lg">
+          <div class="p-float-label reg-input field">
+            <input
+              type="text"
+              name="nameInput"
+              formControlName="nameInput"
+              id="nameInput"
+              pInputText
+              class="reg-input-inside"
+              pTooltip="{{ transLoco('tooltipName') }}"
+              tooltipEvent="focus"
+              [ngClass]="(regForm.get('nameInput')?.errors?.['required'] && regForm.get('nameInput')?.touched) ? 'error-border' : '' "
+              formControlName="nameInput" />
+            <label for="nameInput">{{ transLoco('name') }}</label>
+            <div class="input-error" *ngIf="handleErrors('emptyName')">
+              {{ transLoco('emptyField') }}
+            </div>
+            <div class="input-error" *ngIf="handleErrors('wrongLengthName')">
+              {{ transLoco('wrongLengthName') }}
+            </div>
+          </div>
+
+          <div class="p-float-label reg-input field">
+            <input
+              type="text"
+              formControlName="loginInput"
+              id="loginInput"
+              pInputText
+              class="reg-input-inside"
+              pTooltip="{{ transLoco('tooltipLogin') }}"
+              tooltipEvent="focus"
+              [ngClass]="(regForm.get('loginInput')?.errors?.['required'] && regForm.get('loginInput')?.touched) ? 'error-border' : '' "
+              formControlName="loginInput" />
+            <label for="loginInput">{{ transLoco('login') }}</label>
+            <div class="input-error" *ngIf="handleErrors('emptyLogin')">
+              {{ transLoco('emptyField') }}
+            </div>
+            <div class="input-error" *ngIf="handleErrors('wrongLengthLogin')">
+              {{ transLoco('wrongLengthLogin') }}
+            </div>
+          </div>
+
+          <span class="p-float-label reg-input mb-3" #passwordContainer>
+            <p-password
+              [toggleMask]="true"
+              id="passwordInput"
+              formControlName="passwordInput"
+              pTooltip="{{ transLoco('tooltipPassword') }}"
+              tooltipEvent="focus"
+              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
+            </p-password>
+            <label for="passwordInput">{{ transLoco('password') }}</label>
+            <div class="input-error" *ngIf="handleErrors('identicalPassword')">
+              {{ transLoco('identicalPassword') }}
+            </div>
+            <div class="input-error" *ngIf="handleErrors('emptyPassword')">
+              {{ transLoco('emptyField') }}
+            </div>
+          </span>
+
+          <span class="p-float-label reg-input" #twicePasswordContainer>
+            <p-password
+              [toggleMask]="true"
+              id="twicePasswordInput"
+              formControlName="twicePasswordInput"
+              pTooltip="{{ transLoco('tooltipPassword') }}"
+              tooltipEvent="focus"
+              strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*\\'()+\\,-.\\/:;<>=\\?\\_`{}~])(?=.{8,})">
+            </p-password>
+            <label for="passwordInput">{{ transLoco('repeatPassword') }}</label>
+            <div
+              class="input-error"
+              *ngIf="handleErrors('identicalTwicePassword')">
+              {{ transLoco('identicalPassword') }}
+            </div>
+            <div class="input-error" *ngIf="handleErrors('emptyTwicePassword')">
+              {{ transLoco('emptyField') }}
+            </div>
+          </span>
+        </div>
+
+        <div class="reg-login-wrapper">
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="submit"
+            [disabled]="!regForm.valid"
+            class="p-button-raised p-button-secondary button-custom-white"
+            label="{{ transLoco('signup') }}"></button>
+          <button
+            pButton
+            pRipple
+            color="primary"
+            type="button"
+            class="p-button-raised p-button-secondary p-button-outlined button-custom-white"
+            label="{{ transLoco('randomPassword') }}"
+            (click)="this.onRandomPassword()"></button>
+        </div>
+        <div class="reg-wrapper">
+          <p>{{ transLoco('registered') }}</p>
+          <a routerLink="/auth/login">{{ transLoco('Login') }}</a>
+        </div>
+      </form>
+    </div>
+    <div
+      class="hidden md:block circle-with-blur reg-big-circle shadow-4 scale"></div>
+    <div
+      class="hidden md:block circle-with-blur reg-small-circle shadow-4 scale"></div>
+  </div>
+  <section
+    class="overlay"
+    *ngIf="this.authService.isAvatarSwap"
+    (click)="this.authService.hideAvatarChangeModalWindow()">
+    <div class="inform-card card-simple shadow-4">
+      <h2 class="font-light inform-title">{{ transLoco('titleAvatar') }}</h2>
+      <div class="wrap-avatar">
+        <div
+          class="avatar"
+          *ngFor="let image of this.authService.images"
+          [ngStyle]="{
+            'background-image':
+              'url(assets/images/svg/' + image.slice(-2) + '.svg)'
+          }"
+          (click)="changeAvatar(image)"></div>
+      </div>
+      <div class="inform-wrapper">
+        <button
+          pButton
+          pRipple
+          color="primary"
+          type="button"
+          class="p-button-raised p-button-danger button-custom-white button-false"
+          (click)="this.authService.hideAvatarChangeModalWindow()"
+          label="{{ transLoco('cancel') }}"></button>
+      </div>
+    </div>
+  </section>
+</ng-container>

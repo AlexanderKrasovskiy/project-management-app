@@ -1,0 +1,132 @@
+<ng-container *transloco="let transLoco; read: 'welcome'">
+  <p-scrollTop></p-scrollTop>
+  <section class="back-1 grid">
+    <div class="back-1-left col-12 padding-2 md:col-8 padding-10">
+      <div class="about-app-wrap-fake">
+        <div class="card-simple about-app-wrap shadow-4">
+          <h2 class="font-light card-title">
+            {{ transLoco('about') }}
+          </h2>
+          <div class="card-with-opacity about-app shadow-4">
+            <p class="team-info">{{ transLoco('aboutText') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-1-right md:col-4">
+      <div class="circle-with-blur about-app-big-circle shadow-4 scale"></div>
+      <div class="circle-with-blur about-app-small-circle shadow-4 scale"></div>
+    </div>
+  </section>
+
+  <section class="back-2 grid">
+    <div class="back-2-left md:col-4">
+      <div class="app-guide-big-circle-fake"></div>
+      <div class="app-guide-big-circle shadow-4 scale"></div>
+
+      <div class="app-guide-small-circle-fake"></div>
+      <div class="app-guide-small-circle shadow-4 scale"></div>
+    </div>
+
+    <div class="back-2-right col-12 padding-2 md:col-8 padding-10">
+      <div class="w-11 md:w-9 card-with-blur app-guide-wrap shadow-4">
+        <h2 class="font-light card-title">
+          {{ transLoco('guide') }}
+        </h2>
+        <div class="app-guide-all">
+          <div class="card-with-opacity app-guide shadow-2 team-info">
+            {{ transLoco('guide_1') }}
+          </div>
+          <div class="card-with-opacity app-guide shadow-2 team-info">
+            {{ transLoco('guide_2') }}
+          </div>
+          <div class="card-with-opacity app-guide shadow-2 team-info">
+            {{ transLoco('guide_3') }}
+          </div>
+          <div class="card-with-opacity app-guide shadow-2 team-info">
+            {{ transLoco('guide_4') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="back-3">
+    <div class="back-3-top">
+      <div class="card-with-blur team-title-wrap shadow-4">
+        <h2 class="font-light">{{ transLoco('team') }}</h2>
+      </div>
+    </div>
+
+    <div class="back-3-bottom">
+      <a
+        href="https://rs.school/angular/"
+        class="link-not-default course-title-link">
+        <div class="card-with-blur course-title-wrap shadow-4">
+          <p class="font-light course-title">{{ transLoco('course') }}</p>
+        </div>
+      </a>
+
+      <div class="back-3-left xl:col-3"></div>
+      <div class="back-3-right col-12 xl:col-9">
+        <div class="team-circle-alla shadow-4 scale">
+          <h2 class="center avatar-wrap">
+            <div class="alla"></div>
+          </h2>
+          <h5 class="main-github">
+            {{ transLoco('alla') }}
+            <a href="https://github.com/ALLaTk" class="main-github__link">
+              <div class="main-github__image"></div>
+            </a>
+          </h5>
+          <div class="lang_team_tags">
+            <p-chip [label]="transLoco('backend')"></p-chip>
+            <p-chip [label]="transLoco('frontend')"></p-chip>
+          </div>
+          <p class="team-info">
+            {{ transLoco('teamAlla') }}
+          </p>
+        </div>
+        <div class="team-circle-sasha shadow-4 scale">
+          <h2 class="center avatar-wrap">
+            <div class="alexander"></div>
+          </h2>
+          <h5 class="main-github">
+            {{ transLoco('sasha') }}
+            <a
+              href="https://github.com/AlexanderKrasovskiy"
+              class="main-github__link">
+              <div class="main-github__image"></div>
+            </a>
+          </h5>
+          <div class="lang_team_tags">
+            <p-chip [label]="transLoco('teamlead')"></p-chip>
+            <p-chip [label]="transLoco('frontend')"></p-chip>
+          </div>
+          <p class="team-info">
+            {{ transLoco('teamSasha') }}
+          </p>
+        </div>
+        <div class="team-circle-sveta shadow-4 scale">
+          <h2 class="center avatar-wrap">
+            <div class="svetlana"></div>
+          </h2>
+          <h5 class="main-github">
+            {{ transLoco('svetlana') }}
+            <a href="https://github.com/Svt1108" class="main-github__link">
+              <div class="main-github__image"></div>
+            </a>
+          </h5>
+          <div class="lang_team_tags">
+            <p-chip [label]="transLoco('design')"></p-chip>
+            <p-chip [label]="transLoco('frontend')"></p-chip>
+          </div>
+          <p class="team-info">
+            {{ transLoco('teamSveta') }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>

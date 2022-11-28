@@ -1,0 +1,191 @@
+<ng-container *transloco="let transLoco; read: 'header'">
+  <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
+    <div class="flex flex-column gap-3">
+      <p class="user-name-sidebar">
+        {{ this.authService.getUserName() }}
+      </p>
+      <div
+        *ngIf="
+          this.authService.getUserName() ||
+          (this.authService.isUserLogged$ | async)
+        "
+        class="flex flex-column gap-2">
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="{{ transLoco('create') }}"
+          (click)="this.createBoard.openCreateBoardModal()"
+          routerLink="/boards"
+          class="p-button-raised p-button-primary p-button-text button-custom"
+          (click)="visibleSidebar1 = false"></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="{{ transLoco('allBoards') }}"
+          class="p-button-raised p-button-secondary p-button-text button-custom"
+          routerLink="/boards"
+          (click)="visibleSidebar1 = false"></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="{{ transLoco('edit') }}"
+          class="p-button-raised p-button-warning p-button-text button-custom"
+          routerLink="/auth/update"
+          (click)="visibleSidebar1 = false"></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="{{ transLoco('exit') }}"
+          class="p-button-raised p-button-warning p-button-text button-custom"
+          (click)="this.authService.logoutUser(); visibleSidebar1 = false"
+          routerLink="/welcome"></button>
+      </div>
+
+      <button
+        *ngIf="(this.authService.isUserLogged$ | async) === false"
+        pButton
+        pRipple
+        type="button"
+        label="{{ transLoco('welcome') }}"
+        class="p-button-raised p-button-primary p-button-text button-custom"
+        routerLink="/welcome"
+        (click)="visibleSidebar1 = false"></button>
+      <button
+        *ngIf="(this.authService.isUserLogged$ | async) === false"
+        pButton
+        pRipple
+        type="button"
+        label="{{ transLoco('login') }}"
+        (click)="loginPage(); visibleSidebar1 = false"
+        class="p-button-raised p-button-secondary p-button-text button-custom"></button>
+      <button
+        *ngIf="(this.authService.isUserLogged$ | async) === false"
+        pButton
+        pRipple
+        type="button"
+        label="{{ transLoco('signup') }}"
+        class="p-button-raised p-button-secondary p-button-text button-custom"
+        (click)="authPage(); visibleSidebar1 = false"></button>
+    </div>
+  </p-sidebar>
+  <div
+    class="h-3rem lg:h-4rem header-wrap"
+    [ngClass]="{ 'sticky-header': inScroll }">
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-bars"
+      class="flex p-button-raised p-button-secondary p-button-text lg:hidden sidebar-button"
+      (click)="visibleSidebar1 = true"></button>
+    <a routerLink="/welcome" class="link-not-default">
+      <div
+        class="hidden lg:flex logo-wrap card-with-blur shadow-3"
+        routerLink="./welcome">
+        <div class="logo-title-wrap">
+          <h2 class="font-light">PMA</h2>
+          <h3 class="font-light">pma</h3>
+        </div>
+        <div class="logo-circle circle-with-blur shadow-2 scale"></div>
+      </div>
+    </a>
+    <div
+      class="px-3 gap-1 xl:px-5 lg:gap-3 card-with-opacity buttons-wrap shadow-3">
+      <div
+        *ngIf="
+          this.authService.getUserName() ||
+          (this.authService.isUserLogged$ | async)
+        "
+        class="flex gap-2 align-items-center">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            type="text"
+            pInputText
+            #search
+            (keyup.enter)="this.filter.getKeyWord(search.value)"
+            (input)="this.filter.getKeyWord(search.value)"
+            placeholder="{{ transLoco('search') }}"
+            class="w-10rem lg:w-12rem xl:w-auto search-input" />
+        </span>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="{{ transLoco('create') }}"
+          (click)="this.createBoard.openCreateBoardModal()"
+          routerLink="/boards"
+          class="hidden lg:block p-button-raised p-button-primary p-button-text button-custom flex-shrink-0"></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="{{ transLoco('allBoards') }}"
+          class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom flex-shrink-0"
+          routerLink="/boards"></button>
+
+        <p class="hidden lg:block user-name-auth flex-shrink-1">
+          {{ this.authService.getUserName() }}
+        </p>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          class="hidden lg:block p-button-rounded p-button-icon-only p-button-warning p-button-outlined profile-button flex-shrink-0"
+          [ngStyle]="{
+            'background-image':
+              'url(assets/images/svg/' +
+              (this.authService.getUserAvatar() || '01') +
+              '.svg)',
+            'background-position': 'center',
+            'background-repeat': 'no-repeat',
+            'background-size': 'contain'
+          }"
+          routerLink="/auth/update"></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          icon="pi pi-sign-out"
+          class="hidden lg:block p-button-rounded p-button-warning flex-shrink-0"
+          (click)="this.authService.logoutUser()"
+          routerLink="/welcome"></button>
+      </div>
+
+      <button
+        *ngIf="(this.authService.isUserLogged$ | async) === false"
+        pButton
+        pRipple
+        type="button"
+        label="{{ transLoco('login') }}"
+        (click)="loginPage()"
+        class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"></button>
+      <button
+        *ngIf="(this.authService.isUserLogged$ | async) === false"
+        pButton
+        pRipple
+        type="button"
+        label="{{ transLoco('signup') }}"
+        class="hidden lg:block p-button-raised p-button-secondary p-button-text button-custom"
+        (click)="authPage()"></button>
+      <p-selectButton
+        [options]="stateOptions"
+        [(ngModel)]="value1"
+        optionLabel="label"
+        optionValue="value"
+        (onOptionClick)="changeLang(value1)"
+        class="select-button-custom flex-shrink-0"></p-selectButton>
+    </div>
+  </div>
+</ng-container>

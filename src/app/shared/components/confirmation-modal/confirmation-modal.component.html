@@ -1,0 +1,21 @@
+<ng-container *transloco="let transLoco; read: 'confirmation'">
+  <h2 class="font-light inform-title">{{ data }}?</h2>
+  <div class="inform-wrapper">
+    <button
+      pButton
+      pRipple
+      color="primary"
+      type="button"
+      class="p-button-raised p-button-success button-custom-white button-true"
+      [mat-dialog-close]="data"
+      [label]="transLoco('remove')"></button>
+    <button
+      pButton
+      pRipple
+      color="primary"
+      type="button"
+      class="p-button-raised p-button-danger button-custom-white button-false"
+      (click)="onCancel()"
+      [label]="transLoco('cancel')"></button>
+  </div>
+</ng-container>
