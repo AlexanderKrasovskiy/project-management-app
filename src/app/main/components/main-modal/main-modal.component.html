@@ -9,6 +9,9 @@
         [(ngModel)]="data.title"
         autocomplete="off"
         id="input"
+        maxlength="25"
+        pTooltip="{{ transLoco('tooltipTitle') }}"
+        tooltipEvent="focus"
         name="nameInput" />
       <label for="input">{{ transLoco('titleBoard') }}</label>
     </div>
@@ -19,6 +22,9 @@
         class="inform-input-inside"
         name="nameInput"
         id="input"
+        maxlength="250"
+        pTooltip="{{ transLoco('tooltipDescription') }}"
+        tooltipEvent="focus"
         [(ngModel)]="data.description"
         autocomplete="off" />
       <label for="input">{{ transLoco('descriptionBoard') }}</label>

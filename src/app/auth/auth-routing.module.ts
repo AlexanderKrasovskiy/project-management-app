@@ -9,6 +9,7 @@ import { UpdateComponent } from './components/update/update.component';
 const routes: Routes = [
   {
     path: '',
+    canActivate: [NoAuthGuard],
     component: LoginComponent,
   },
   {

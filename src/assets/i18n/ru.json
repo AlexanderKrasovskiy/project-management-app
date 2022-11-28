@@ -97,7 +97,9 @@
     "true": "Да",
     "false": "Нет",
     "cancel": "Отменить",
-    "titleBackground": "Выберите фон"
+    "titleBackground": "Выберите фон",
+    "tooltipTitle": "Название доски не должно превышать 25 символов",
+    "tooltipDescription": "Описание доски не должно превышать 250 символов"
   },
   "confirmation": {
     "deleteBoard": "Удалить доску",
